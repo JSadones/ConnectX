@@ -28,3 +28,22 @@ Link tot opdracht : http://goo.gl/v0wKYx
 - Werk verdelen in slices
 - Documenteer het werk in een logboek (wie, wanneer, welke taak, hoe lang) [Userstories hier gebruiken?]
 - Project moet via de Team Foundation Server upgeload zijn ALS we het project moeten voorstellen of als we het eens moeten voorbrengen aan de mentors
+
+
+## Deadline
+vrijdag 15 mei 2015 om 12:00
+
+### Indienen
+- Project op TFS in groep 30 
+- 1 pdf bestand met [Groep30.pdf] :
+  - Titelblad
+  - Klassendiagram
+  - Wireframes
+  - Taakverdeling binnen het team
+  - Studietijdmeting
+  - [Commentaar]
+
+- Projectmap [Programmeerproject-Groep30.zip]
+  - PDF (Zie hierboven) 
+  - C#-solution
+  - Web client (HTML, CSS, JS)
