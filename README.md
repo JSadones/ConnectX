@@ -30,6 +30,9 @@ Link tot opdracht : http://goo.gl/v0wKYx
 - Project moet via de Team Foundation Server upgeload zijn ALS we het project moeten voorstellen of als we het eens moeten voorbrengen aan de mentors
 
 
+
+
+
 ## Deadline
 vrijdag 15 mei 2015 om 12:00
 
@@ -42,7 +45,6 @@ vrijdag 15 mei 2015 om 12:00
   - Taakverdeling binnen het team
   - Studietijdmeting
   - [Commentaar]
-
 - Projectmap [Programmeerproject-Groep30.zip]
   - PDF (Zie hierboven) 
   - C#-solution
