@@ -5,11 +5,13 @@ using XOPeenRij;
 namespace XOPeenRijUnitTest
 {
     [TestClass]
-    public class UnitTest1
+    public class XOPeenRIJTester
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestAanmaakSpel()
         {
+            XOPeenRij spel = new XOPeenRIJ();
+            Assert.IsTrue(spel.bestaat());
         }
     }
 }
