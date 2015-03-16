@@ -41,6 +41,19 @@ namespace XOPeenRijUnitTest
         }
 
         [TestMethod]
+        public void TestInsertTokenInRasterInFullColumn()
+        {
+            game.insertToken(0, 1);
+            game.insertToken(0, 2);
+            game.insertToken(0, 1);
+            game.insertToken(0, 2);
+            game.insertToken(0, 1);
+            game.insertToken(0, 2);
+            game.insertToken(0, 1);
+            Assert.IsFalse(game.hasNotCrashed());
+        }
+
+        [TestMethod]
         public void TestIsWon()
         {
             game.setWon(true);
