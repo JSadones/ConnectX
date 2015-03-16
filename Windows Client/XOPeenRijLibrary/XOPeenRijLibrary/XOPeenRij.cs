@@ -7,6 +7,7 @@
         private int[,] raster;
         private int rows = 6;
         private int columns = 7;
+        private int tokenStreak = 4;
         #endregion State
 
         #region Constructor
@@ -50,13 +51,19 @@
         }
 
         public bool isWon() {
-            if (won)
-            {
-                return true;
+            int counter = 0;
+            //Verticaal algoritme
+            for (int i = 0; i < rows; i++) {
+            
             }
-            else {
-                return false;
-            }
+                if (won)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
         }
 
         public bool isNotWon() {
@@ -78,7 +85,6 @@
         public void setWon(bool value) {
             won = value;
         }
-        #endregion
 
         public void insertToken(int column, int player)
         {
@@ -90,7 +96,6 @@
                 }
                 row++;
             }
-            
         }
 
         public bool hasNotCrashed()
@@ -107,5 +112,7 @@
             }
             return true;
         }
+
+        #endregion
     }
 }
