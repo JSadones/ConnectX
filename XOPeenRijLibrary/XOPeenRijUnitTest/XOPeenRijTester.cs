@@ -7,11 +7,19 @@ namespace XOPeenRijUnitTest
     [TestClass]
     public class XOPeenRijTester
     {
+        public void setup()
+        {
+            XOPeenRij spel = new XOPeenRij();
+        }
         [TestMethod]
         public void TestBestaatSpel()
         {
-            XOPeenRij spel = new XOPeenRij();
             Assert.IsTrue(spel.bestaat());
+        }
+
+        public void TestBestaatErEenRasterInHetSpel()
+        {
+            Assert.IsTrue(spel.rasterBestaat());
         }
     }
 }
