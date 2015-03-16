@@ -83,10 +83,19 @@
         public void insertToken(int column, int player)
         {
             int row = 0;
-            while (raster[row, column] != 0) {
+            while (row < rows) {
+                if (raster[row, column] == 0) {
+                    raster[row, column] = player;
+                    break;
+                }
                 row++;
             }
-            raster[row, column] = 1;
+            
+        }
+
+        public bool hasNotCrashed()
+        {
+            return false;
         }
     }
 }
