@@ -7,23 +7,29 @@ namespace XOPeenRijUnitTest
     [TestClass]
     public class XOPeenRijTester
     {
-        private XOPeenRij spel;
+        private XOPeenRij game;
 
         [TestInitialize]
         public void setup()
         {
-            spel = new XOPeenRij();
+            game = new XOPeenRij();
         }
         [TestMethod]
-        public void TestBestaatSpel()
+        public void testGameExists()
         {
-            Assert.IsTrue(spel.bestaat());
+            Assert.IsTrue(game.exists());
         }
 
         [TestMethod]
-        public void TestBestaatErEenRasterInHetSpel()
+        public void TestRasterExists()
         {
-            Assert.IsTrue(spel.rasterBestaat());
+            Assert.IsTrue(game.rasterExists());
+        }
+
+        [TestMethod]
+        public void TestIsWon()
+        {
+            Assert.IsTrue(game.isWon());
         }
     }
 }
