@@ -15,7 +15,7 @@ namespace XOPeenRijUnitTest
             game = new XOPeenRij();
         }
         [TestMethod]
-        public void testGameExists()
+        public void TestGameExists()
         {
             Assert.IsTrue(game.exists());
         }
@@ -30,6 +30,12 @@ namespace XOPeenRijUnitTest
         public void TestIsWon()
         {
             Assert.IsTrue(game.isWon());
+        }
+
+        [TestMethod]
+        public void TestIsNotWon()
+        {
+            Assert.IsTrue(game.isNotWon());
         }
     }
 }
