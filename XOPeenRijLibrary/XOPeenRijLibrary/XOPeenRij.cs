@@ -9,12 +9,16 @@
         }
         #endregion
 
-        public bool bestaat()
+        public bool exists()
         {
             return true;
         }
 
-        public bool rasterBestaat() {
+        public bool rasterExists()
+        {
+            return true;
+        }
+        public bool isWon() {
             return true;
         }
     }
