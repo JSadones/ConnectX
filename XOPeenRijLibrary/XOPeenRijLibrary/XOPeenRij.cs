@@ -6,8 +6,18 @@ using System.Threading.Tasks;
 
 namespace XOPeenRijLibrary
 {
-    class XOPeenRij
+    public class XOPeenRij
     {
-        
+        #region Properties
+        public XOPeenRij()
+        {
+
+        }
+        #endregion
+
+        public bool bestaat()
+        {
+            return true;
+        }
     }
 }
