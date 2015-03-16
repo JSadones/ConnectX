@@ -21,5 +21,9 @@
         public bool isWon() {
             return true;
         }
+
+        public bool isNotWon() {
+            return true;
+        }
     }
 }
