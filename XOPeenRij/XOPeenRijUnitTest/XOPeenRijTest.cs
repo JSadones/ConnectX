@@ -5,11 +5,16 @@ using XOPeenRij;
 namespace XOPeenRijUnitTest
 {
     [TestClass]
-    public class UnitTest1
+    public class XOPeenRijTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestSpelStarten()
         {
+
+            XOPeenRij spel = new XOPeenRij();
+
+
+
         }
     }
 }
