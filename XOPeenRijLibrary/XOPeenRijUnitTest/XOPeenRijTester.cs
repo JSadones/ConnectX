@@ -29,18 +29,21 @@ namespace XOPeenRijUnitTest
         [TestMethod]
         public void TestIsWon()
         {
+            game.setWon(true);
             Assert.IsTrue(game.isWon());
         }
 
         [TestMethod]
         public void TestIsNotWon()
         {
+            game.setWon(false);
             Assert.IsTrue(game.isNotWon());
         }
 
         [TestMethod]
         public void TestTrueIsWonAndFalseIsNotWon()
         {
+            game.setWon(true);
             Assert.IsTrue(game.isWon());
             Assert.IsFalse(game.isNotWon());
         }
