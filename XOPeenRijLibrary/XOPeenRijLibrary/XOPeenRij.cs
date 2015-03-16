@@ -5,17 +5,17 @@
         #region State
         private bool won;
         private int[,] raster;
-        private int rijen = 6;
-        private int kolommen = 7;
+        private int rows = 6;
+        private int columns = 7;
         #endregion State
 
         #region Constructor
         public XOPeenRij()
         {
             won = false;
-            raster = new int[rijen, kolommen];
-            for (int i = 0; i < rijen; i++) {
-                for (int j = 0; j < kolommen; j++) {
+            raster = new int[rows, columns];
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < columns; j++) {
                     raster[i, j] = 0;
                 }
             }
@@ -39,8 +39,8 @@
 
         public bool isRasterInitializedWithZeros()
         {
-            for (int i = 0; i < rijen; i++) {
-                for (int j = 0; j < kolommen; j++) {
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < columns; j++) {
                     if (raster[i, j] != 0) {
                         return false;
                     }
@@ -79,5 +79,14 @@
             won = value;
         }
         #endregion
+
+        public void insertToken(int column, int player)
+        {
+            int row = 0;
+            while (raster[row, column] != 0) {
+                row++;
+            }
+            raster[row, column] = 1;
+        }
     }
 }
