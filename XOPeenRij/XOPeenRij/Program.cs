@@ -12,6 +12,7 @@ namespace XOPeenRij
         /// The main entry point for the application.
         /// </summary>
         /// Testest
+        /// Nogmaals een regeltest
         [STAThread]
         static void Main()
         {
