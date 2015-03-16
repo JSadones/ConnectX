@@ -2,10 +2,12 @@
 {
     public class XOPeenRij
     {
+        private bool won;
+
         #region Properties
         public XOPeenRij()
         {
-
+            won = false;
         }
         #endregion
 
@@ -18,12 +20,35 @@
         {
             return true;
         }
+
         public bool isWon() {
-            return true;
+            if (won)
+            {
+                return true;
+            }
+            else {
+                return false;
+            }
         }
 
         public bool isNotWon() {
-            return true;
+            if (won)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public bool TestTrueIsWonAndFalseIsNotWon()
+        {
+            return false;
+        }
+
+        public void setWon(bool value) {
+            won = value;
         }
     }
 }
