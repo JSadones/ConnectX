@@ -1,0 +1,90 @@
+﻿/* Basic */
+
+	body, input, select, textarea {
+		font-size: 13pt;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+        color: inherit;
+		font-weight: 600;
+		line-height: 1.75em;
+	}
+
+    h1 {
+        font-size:3em;
+        margin-right:20px;
+        padding-left:30px;
+        padding-bottom:10px;
+        color:white;
+    }
+
+    h2 {
+        text-align:right;
+        vertical-align:middle;
+        margin-right:50px;
+        padding-top:33px;
+        padding-right:20px;
+        color:white;
+       
+    }
+
+    h3 {
+        text-align:left;
+        padding-left:20px;
+        padding-top:20px;
+    }
+
+    h3, #clear {
+        text-align:center;
+    }
+
+    a {
+        text-decoration:none;
+        color:white;
+    }
+
+    #float {
+        float:left;
+    }
+    #clear {
+        clear:both;
+    }
+
+    .container {
+        width:auto;
+    }
+
+    .container-nav {
+        height:100px;
+        width:auto;
+        background-color:darkgrey;
+    }
+
+    .container-sidebar {
+        width:25%;
+    }
+    .container-content {
+        width:75%;
+    }
+
+    .container-footer {
+        width:auto;
+    }
+
+    #content {
+        display:block;
+    }
+
+  /* Footer */
+
+  footer {
+		margin: 0 0 3em 0;
+	}
+
+	#footer {
+		text-align: center;
+	}
+
+		#footer .container {
+			margin-bottom: 4em;
+		}
