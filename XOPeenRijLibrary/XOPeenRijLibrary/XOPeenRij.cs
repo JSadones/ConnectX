@@ -97,5 +97,15 @@
         {
             return false;
         }
+
+        public bool rasterIsFull()
+        {
+            for (int i = 0; i < columns; i++) {
+                if (raster[rows - 1, i] == 0) {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }
