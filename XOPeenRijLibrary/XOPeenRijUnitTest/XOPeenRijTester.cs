@@ -37,5 +37,12 @@ namespace XOPeenRijUnitTest
         {
             Assert.IsTrue(game.isNotWon());
         }
+
+        [TestMethod]
+        public void TestTrueIsWonAndFalseIsNotWon()
+        {
+            Assert.IsTrue(game.isWon());
+            Assert.IsFalse(game.isNotWon());
+        }
     }
 }
