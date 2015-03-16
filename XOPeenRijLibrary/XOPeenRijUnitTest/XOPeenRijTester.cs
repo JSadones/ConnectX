@@ -33,6 +33,14 @@ namespace XOPeenRijUnitTest
         }
 
         [TestMethod]
+        public void TestInsertTokenInRasterAndAssertThatRasterIsNotZero()
+        {
+            // Insert token in kolom 0 voor speler 1
+            game.insertToken(0, 1);
+            Assert.IsFalse(game.isRasterInitializedWithZeros());
+        }
+
+        [TestMethod]
         public void TestIsWon()
         {
             game.setWon(true);
