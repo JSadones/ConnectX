@@ -169,5 +169,23 @@ namespace XOPeenRijUnitTest
             Assert.IsTrue(game.isWon());
             Assert.IsFalse(game.isNotWon());
         }
+
+        [TestMethod]
+        public void TestGivenNonCompletedGameIfIsNotWonYet()
+        {
+            game.insertToken(0, 1);
+            game.insertToken(0, 1);
+            game.insertToken(0, 1);
+            Assert.IsFalse(game.isWon());
+        }
+        [TestMethod]
+        public void TestGivenVerticalCompletedGameIfIsWon()
+        {
+            game.insertToken(0, 1);
+            game.insertToken(0, 1);
+            game.insertToken(0, 1);
+            game.insertToken(0, 1);
+            Assert.IsTrue(game.isWon());
+        }
     }
 }
