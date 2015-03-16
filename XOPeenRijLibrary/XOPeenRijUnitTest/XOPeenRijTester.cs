@@ -8,9 +8,10 @@ namespace XOPeenRijUnitTest
     public class XOPeenRijTester
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestBestaatSpel()
         {
-
+            XOPeenRij spel = new XOPeenRij();
+            Assert.IsTrue(spel.bestaat());
         }
     }
 }
