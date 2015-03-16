@@ -1,4 +1,4 @@
-﻿namespace _4OPeenRij
+﻿namespace XOPeenRij
 {
     partial class Form1
     {

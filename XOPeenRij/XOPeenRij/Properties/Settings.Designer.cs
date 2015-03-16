@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace _4OPeenRij.Properties
+namespace XOPeenRij.Properties
 {
 
 
