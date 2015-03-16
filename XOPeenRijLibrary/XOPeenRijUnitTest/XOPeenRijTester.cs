@@ -27,6 +27,12 @@ namespace XOPeenRijUnitTest
         }
 
         [TestMethod]
+        public void TestIsRasterInitializedWithZeros()
+        {
+            Assert.IsTrue(game.isRasterInitializedWithZeros());
+        }
+
+        [TestMethod]
         public void TestIsWon()
         {
             game.setWon(true);
