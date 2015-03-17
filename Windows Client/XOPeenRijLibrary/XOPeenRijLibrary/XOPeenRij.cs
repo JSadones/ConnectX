@@ -149,7 +149,7 @@ namespace XOPeenRijLibrary
 				counterColumn = i;
 				while (counterColumn < columns && counterRow < rows)
 				{
-					if (raster[counterColumn, counterRow] == 1)
+                    if (raster[counterRow, counterColumn] == 1)
 					{
 						counterPlayer1++;
 					}
@@ -159,7 +159,7 @@ namespace XOPeenRijLibrary
 						counterPlayer1 = 0;
 					}
 
-					if (raster[counterColumn, counterRow] == 2)
+                    if (raster[counterRow, counterColumn] == 2)
 					{
 						counterPlayer2++;
 					}
