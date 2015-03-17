@@ -17,10 +17,10 @@ namespace XOPeenRijUnitTest
         [TestInitialize]
         public void setup()
         {
-            // Leeg spel
+            // Empty game
             game = new XOPeenRij();
 
-            // Spel met een raster waar er vertical een 4 op een rij te vinden is
+            // Game in raster where 4 in a row can be found
             gameWithVerticalWonRaster = new XOPeenRij();
             gameWithVerticalWonRaster.insertToken(0, 1);
             gameWithVerticalWonRaster.insertToken(0, 1);
@@ -39,14 +39,14 @@ namespace XOPeenRijUnitTest
             gameWith45DegreeStartingAtColumn0WonRaster.insertToken(3, 2);
             gameWith45DegreeStartingAtColumn0WonRaster.insertToken(3, 1);
             
-            // Spel met een raster waar er vertical een 4 op een rij te vinden is
+            // Game in raster where 4 in a row can almost be found (3 in a row)
             gameWithNotWonRaster = new XOPeenRij();
             gameWithNotWonRaster.insertToken(0, 1);
             gameWithNotWonRaster.insertToken(0, 1);
             gameWithNotWonRaster.insertToken(0, 1);
 
 
-            // Spel met een vol raster
+            // Game with full raster
             gameWithFullRaster = new XOPeenRij();
             gameWithFullRaster.insertToken(0, 1);
             gameWithFullRaster.insertToken(0, 2);
@@ -92,7 +92,7 @@ namespace XOPeenRijUnitTest
             gameWithFullRaster.insertToken(6, 2);
 
 
-            // Spel met een net niet vol raster
+            // Game with almost full raster
             gameWithOneTokenBeforeFullRaster = new XOPeenRij();
             gameWithOneTokenBeforeFullRaster.insertToken(0, 1);
             gameWithOneTokenBeforeFullRaster.insertToken(0, 2);

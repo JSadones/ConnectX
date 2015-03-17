@@ -137,6 +137,12 @@
 
         public bool isWonDiagonal()
         {
+			// De tellers voor de streaks te zoeken, voor elk van de spelers afzonderlijk
+			int counterPlayer1 = 0;
+			int counterPlayer2 = 0;
+
+
+
             return false;
         }
 
