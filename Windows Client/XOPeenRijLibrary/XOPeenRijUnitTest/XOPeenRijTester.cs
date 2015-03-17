@@ -198,5 +198,77 @@ namespace XOPeenRijUnitTest
         {
             Assert.IsTrue(gameWith45DegreeStartingAtColumn0WonRaster.isWonDiagonal());
         }
+
+        [TestMethod]
+        public void TestGiven45DegreeWonGameIfIsWon()
+        {
+            Assert.IsTrue(gameWith45DegreeStartingAtColumn0WonRaster.isWonDiagonal());
+        }
+
+        [TestMethod]
+        public void TestNewGameWithParameters()
+        {
+            // New game with 10 rows, 12 columns, tokenStreak of 7
+            XOPeenRij gameWithParameters = new XOPeenRij(10,12,7);
+
+            Assert.IsTrue(gameWith45DegreeStartingAtColumn0WonRaster.getRows() == 10);
+            Assert.IsTrue(gameWith45DegreeStartingAtColumn0WonRaster.getColumns() == 12);
+            Assert.IsTrue(gameWith45DegreeStartingAtColumn0WonRaster.getStreakToReach() == 7);
+        }
+
+        [TestMethod]
+        public void TestTurnByAI()
+        {
+
+
+            // Spel met een net niet vol raster
+            XOPeenRij gameWithOneTokenBeforeFullRasterForAI = new XOPeenRij();
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(0, 1);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(0, 2);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(0, 1);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(0, 2);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(0, 1);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(0, 2);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(1, 1);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(1, 2);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(1, 1);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(1, 2);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(1, 1);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(1, 2);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(2, 1);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(2, 2);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(2, 1);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(2, 2);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(2, 1);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(2, 2);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(3, 1);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(3, 2);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(3, 1);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(3, 2);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(3, 1);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(3, 2);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(4, 1);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(4, 2);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(4, 1);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(4, 2);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(4, 1);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(4, 2);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(5, 1);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(5, 2);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(5, 1);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(5, 2);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(5, 1);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(5, 2);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(6, 1);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(6, 2);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(6, 1);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(6, 2);
+            gameWithOneTokenBeforeFullRasterForAI.insertToken(6, 2);
+            // Let AI Determine Spot To Put Token
+            gameWithOneTokenBeforeFullRasterForAI.insertTokenByAI();
+
+            Assert.IsTrue(gameWithOneTokenBeforeFullRasterForAI.rasterIsFull());
+        }
+
     }
 }
