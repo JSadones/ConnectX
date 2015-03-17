@@ -189,12 +189,7 @@ namespace XOPeenRijUnitTest
         }
 
         [TestMethod]
-<<<<<<< HEAD
-        public void TestNewGameWithParameters()
-        {
-=======
         public void TestNewGameWithParameters() {
->>>>>>> 1de070457212eb6492192d7392b1c41bb6a34ad6
             // New game with 10 rows, 12 columns, tokenStreak of 7
             XOPeenRij gameWithParameters = new XOPeenRij(10,12,7);
 

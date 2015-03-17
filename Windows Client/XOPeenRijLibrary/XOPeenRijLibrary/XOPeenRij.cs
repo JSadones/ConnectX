@@ -129,25 +129,16 @@ namespace XOPeenRijLibrary
                         // TODO: Score speler 2 verhogen
                     }
                 }
-            
             }
-<<<<<<< HEAD
-
             // Indien we hier belanden, is het spel niet gewonnen. 
 			won = false;
             return won;
-
-=======
-            // Indien we hier belanden, is het spel niet gewonnen
-            return false;
->>>>>>> 1de070457212eb6492192d7392b1c41bb6a34ad6
         }
 
         public bool isWonDiagonal() {
 			// De tellers voor de streaks te zoeken, voor elk van de spelers afzonderlijk
 			int counterPlayer1 = 0;
 			int counterPlayer2 = 0;
-<<<<<<< HEAD
 			int counterRow;
 			int counterColumn;
 
@@ -200,10 +191,6 @@ namespace XOPeenRijLibrary
 			// Indien we hier belanden, is het spel niet gewonnen. 
 			won = false;
 			return won;
-=======
-
-            return false;
->>>>>>> 1de070457212eb6492192d7392b1c41bb6a34ad6
         }
 
         public bool TestTrueIsWonAndFalseIsNotWon() {
