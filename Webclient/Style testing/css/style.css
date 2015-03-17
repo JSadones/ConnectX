@@ -1,6 +1,10 @@
 ﻿/* Basic */
-
-	body, input, select, textarea {
+    
+    html, body {
+        height:100%;
+        font-size:13pt;
+    }
+	input, select, textarea {
 		font-size: 13pt;
 	}
 
@@ -54,11 +58,16 @@
         clear:both;
     }
 
-    .main-container {
-        width:auto;
-        height:500px;
+
+    .wrapper {
+        min-height: 100%;
+        margin: 0 auto -50px;
         background-image: url(images/light-bg.jpg); background-repeat:no-repeat; background-position: 0,0;
         background-size:200%;
+    }
+
+    .main-container {
+        width:auto;
         
     }
 
@@ -79,7 +88,6 @@
     }
     .container-content {
         width:75%;
-        height:500px;
 
     }
 
@@ -108,6 +116,7 @@
         padding-top:15px;
         border-top:10px solid black;
         background-image: url(images/dark-bg.jpg); background-repeat:no-repeat; background-position: 0,0;
+        bottom:0;
     }
 
  .footer p {
