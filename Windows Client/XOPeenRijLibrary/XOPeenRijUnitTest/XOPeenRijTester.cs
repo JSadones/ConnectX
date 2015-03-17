@@ -8,11 +8,133 @@ namespace XOPeenRijUnitTest
     public class XOPeenRijTester
     {
         private XOPeenRij game;
+        private XOPeenRij gameWithVerticalWonRaster;
+        private XOPeenRij gameWith45DegreeStartingAtColumn0WonRaster;
+        private XOPeenRij gameWithNotWonRaster;
+        private XOPeenRij gameWithFullRaster;
+        private XOPeenRij gameWithOneTokenBeforeFullRaster;
 
         [TestInitialize]
         public void setup()
         {
+            // Leeg spel
             game = new XOPeenRij();
+
+            // Spel met een raster waar er vertical een 4 op een rij te vinden is
+            gameWithVerticalWonRaster = new XOPeenRij();
+            gameWithVerticalWonRaster.insertToken(0, 1);
+            gameWithVerticalWonRaster.insertToken(0, 1);
+            gameWithVerticalWonRaster.insertToken(0, 1);
+            gameWithVerticalWonRaster.insertToken(0, 1);
+
+            gameWith45DegreeStartingAtColumn0WonRaster = new XOPeenRij();
+            gameWith45DegreeStartingAtColumn0WonRaster.insertToken(0, 1);
+            gameWith45DegreeStartingAtColumn0WonRaster.insertToken(1, 2);
+            gameWith45DegreeStartingAtColumn0WonRaster.insertToken(1, 1);
+            gameWith45DegreeStartingAtColumn0WonRaster.insertToken(2, 2);
+            gameWith45DegreeStartingAtColumn0WonRaster.insertToken(2, 2);
+            gameWith45DegreeStartingAtColumn0WonRaster.insertToken(2, 1);
+            gameWith45DegreeStartingAtColumn0WonRaster.insertToken(3, 2);
+            gameWith45DegreeStartingAtColumn0WonRaster.insertToken(3, 2);
+            gameWith45DegreeStartingAtColumn0WonRaster.insertToken(3, 2);
+            gameWith45DegreeStartingAtColumn0WonRaster.insertToken(3, 1);
+            
+            // Spel met een raster waar er vertical een 4 op een rij te vinden is
+            gameWithNotWonRaster = new XOPeenRij();
+            gameWithNotWonRaster.insertToken(0, 1);
+            gameWithNotWonRaster.insertToken(0, 1);
+            gameWithNotWonRaster.insertToken(0, 1);
+
+
+            // Spel met een vol raster
+            gameWithFullRaster = new XOPeenRij();
+            gameWithFullRaster.insertToken(0, 1);
+            gameWithFullRaster.insertToken(0, 2);
+            gameWithFullRaster.insertToken(0, 1);
+            gameWithFullRaster.insertToken(0, 2);
+            gameWithFullRaster.insertToken(0, 1);
+            gameWithFullRaster.insertToken(0, 2);
+            gameWithFullRaster.insertToken(1, 1);
+            gameWithFullRaster.insertToken(1, 2);
+            gameWithFullRaster.insertToken(1, 1);
+            gameWithFullRaster.insertToken(1, 2);
+            gameWithFullRaster.insertToken(1, 1);
+            gameWithFullRaster.insertToken(1, 2);
+            gameWithFullRaster.insertToken(2, 1);
+            gameWithFullRaster.insertToken(2, 2);
+            gameWithFullRaster.insertToken(2, 1);
+            gameWithFullRaster.insertToken(2, 2);
+            gameWithFullRaster.insertToken(2, 1);
+            gameWithFullRaster.insertToken(2, 2);
+            gameWithFullRaster.insertToken(3, 1);
+            gameWithFullRaster.insertToken(3, 2);
+            gameWithFullRaster.insertToken(3, 1);
+            gameWithFullRaster.insertToken(3, 2);
+            gameWithFullRaster.insertToken(3, 1);
+            gameWithFullRaster.insertToken(3, 2);
+            gameWithFullRaster.insertToken(4, 1);
+            gameWithFullRaster.insertToken(4, 2);
+            gameWithFullRaster.insertToken(4, 1);
+            gameWithFullRaster.insertToken(4, 2);
+            gameWithFullRaster.insertToken(4, 1);
+            gameWithFullRaster.insertToken(4, 2);
+            gameWithFullRaster.insertToken(5, 1);
+            gameWithFullRaster.insertToken(5, 2);
+            gameWithFullRaster.insertToken(5, 1);
+            gameWithFullRaster.insertToken(5, 2);
+            gameWithFullRaster.insertToken(5, 1);
+            gameWithFullRaster.insertToken(5, 2);
+            gameWithFullRaster.insertToken(6, 1);
+            gameWithFullRaster.insertToken(6, 2);
+            gameWithFullRaster.insertToken(6, 1);
+            gameWithFullRaster.insertToken(6, 2);
+            gameWithFullRaster.insertToken(6, 1);
+            gameWithFullRaster.insertToken(6, 2);
+
+
+            // Spel met een net niet vol raster
+            gameWithOneTokenBeforeFullRaster = new XOPeenRij();
+            gameWithOneTokenBeforeFullRaster.insertToken(0, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(0, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(0, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(0, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(0, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(0, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(1, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(1, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(1, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(1, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(1, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(1, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(2, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(2, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(2, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(2, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(2, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(2, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(3, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(3, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(3, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(3, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(3, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(3, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(4, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(4, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(4, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(4, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(4, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(4, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(5, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(5, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(5, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(5, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(5, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(5, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(6, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(6, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(6, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(6, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(6, 2);
         }
         [TestMethod]
         public void TestGameExists()
@@ -43,149 +165,38 @@ namespace XOPeenRijUnitTest
         [TestMethod]
         public void TestInsertTokenInRasterInFullColumn()
         {
-            game.insertToken(0, 1);
-            game.insertToken(0, 2);
-            game.insertToken(0, 1);
-            game.insertToken(0, 2);
-            game.insertToken(0, 1);
-            game.insertToken(0, 2);
-            game.insertToken(0, 1);
-            Assert.IsFalse(game.hasNotCrashed());
+            gameWithFullRaster.insertToken(0, 1);
+            Assert.IsFalse(gameWithFullRaster.hasNotCrashed());
         }
+
         [TestMethod]
         public void TestIsRasterFullWhenRasterIsFull()
         {
-            game.insertToken(0, 1);
-            game.insertToken(0, 2);
-            game.insertToken(0, 1);
-            game.insertToken(0, 2);
-            game.insertToken(0, 1);
-            game.insertToken(0, 2);
-            game.insertToken(1, 1);
-            game.insertToken(1, 2);
-            game.insertToken(1, 1);
-            game.insertToken(1, 2);
-            game.insertToken(1, 1);
-            game.insertToken(1, 2);
-            game.insertToken(2, 1);
-            game.insertToken(2, 2);
-            game.insertToken(2, 1);
-            game.insertToken(2, 2);
-            game.insertToken(2, 1);
-            game.insertToken(2, 2);
-            game.insertToken(3, 1);
-            game.insertToken(3, 2);
-            game.insertToken(3, 1);
-            game.insertToken(3, 2);
-            game.insertToken(3, 1);
-            game.insertToken(3, 2);
-            game.insertToken(4, 1);
-            game.insertToken(4, 2);
-            game.insertToken(4, 1);
-            game.insertToken(4, 2);
-            game.insertToken(4, 1);
-            game.insertToken(4, 2);
-            game.insertToken(5, 1);
-            game.insertToken(5, 2);
-            game.insertToken(5, 1);
-            game.insertToken(5, 2);
-            game.insertToken(5, 1);
-            game.insertToken(5, 2);
-            game.insertToken(6, 1);
-            game.insertToken(6, 2);
-            game.insertToken(6, 1);
-            game.insertToken(6, 2);
-            game.insertToken(6, 1);
-            game.insertToken(6, 2);
-
-            Assert.IsTrue(game.rasterIsFull());
+            Assert.IsTrue(gameWithFullRaster.rasterIsFull());
         }
+
         [TestMethod]
         public void TestIsRasterFullWhenRasterIsNotFull()
         {
-            game.insertToken(0, 1);
-            game.insertToken(0, 2);
-            game.insertToken(0, 1);
-            game.insertToken(0, 2);
-            game.insertToken(0, 1);
-            game.insertToken(0, 2);
-            game.insertToken(1, 1);
-            game.insertToken(1, 2);
-            game.insertToken(1, 1);
-            game.insertToken(1, 2);
-            game.insertToken(1, 1);
-            game.insertToken(1, 2);
-            game.insertToken(2, 1);
-            game.insertToken(2, 2);
-            game.insertToken(2, 1);
-            game.insertToken(2, 2);
-            game.insertToken(2, 1);
-            game.insertToken(2, 2);
-            game.insertToken(3, 1);
-            game.insertToken(3, 2);
-            game.insertToken(3, 1);
-            game.insertToken(3, 2);
-            game.insertToken(3, 1);
-            game.insertToken(3, 2);
-            game.insertToken(4, 1);
-            game.insertToken(4, 2);
-            game.insertToken(4, 1);
-            game.insertToken(4, 2);
-            game.insertToken(4, 1);
-            game.insertToken(4, 2);
-            game.insertToken(5, 1);
-            game.insertToken(5, 2);
-            game.insertToken(5, 1);
-            game.insertToken(5, 2);
-            game.insertToken(5, 1);
-            game.insertToken(5, 2);
-            game.insertToken(6, 1);
-            game.insertToken(6, 2);
-            game.insertToken(6, 1);
-            game.insertToken(6, 2);
-            game.insertToken(6, 2);
-
-            Assert.IsFalse(game.rasterIsFull());
+            Assert.IsFalse(gameWithOneTokenBeforeFullRaster.rasterIsFull());
         }
 
         [TestMethod]
-        public void TestIsWon()
+        public void TestGivenNotWonGameIfIsNotWonYet()
         {
-            game.setWon(true);
-            Assert.IsTrue(game.isWon());
+            Assert.IsFalse(gameWithNotWonRaster.isWon());
         }
 
         [TestMethod]
-        public void TestIsNotWon()
+        public void TestGivenVerticalWonGameIfIsWon()
         {
-            game.setWon(false);
-            Assert.IsTrue(game.isNotWon());
+            Assert.IsTrue(gameWithVerticalWonRaster.isWonVertical());
         }
 
         [TestMethod]
-        public void TestTrueIsWonAndFalseIsNotWon()
+        public void TestGiven45DegreeWonGameIfIsWon()
         {
-            game.setWon(true);
-            Assert.IsTrue(game.isWon());
-            Assert.IsFalse(game.isNotWon());
-        }
-
-        [TestMethod]
-        public void TestGivenNonCompletedGameIfIsNotWonYet()
-        {
-            game.insertToken(0, 1);
-            game.insertToken(0, 1);
-            game.insertToken(0, 1);
-            Assert.IsFalse(game.isWon());
-        }
-        [TestMethod]
-        public void TestGivenVerticalCompletedGameIfIsWon()
-        {
-            game.insertToken(0, 1);
-            game.insertToken(0, 1);
-            game.insertToken(0, 1);
-            game.insertToken(0, 1);
-            Assert.IsTrue(game.isWon());
+            Assert.IsTrue(gameWith45DegreeStartingAtColumn0WonRaster.isWonDiagonal());
         }
     }
 }
