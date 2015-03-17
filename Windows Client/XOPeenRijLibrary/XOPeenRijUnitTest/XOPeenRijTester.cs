@@ -200,12 +200,6 @@ namespace XOPeenRijUnitTest
         }
 
         [TestMethod]
-        public void TestGiven45DegreeWonGameIfIsWon()
-        {
-            Assert.IsTrue(gameWith45DegreeStartingAtColumn0WonRaster.isWonDiagonal());
-        }
-
-        [TestMethod]
         public void TestNewGameWithParameters()
         {
             // New game with 10 rows, 12 columns, tokenStreak of 7

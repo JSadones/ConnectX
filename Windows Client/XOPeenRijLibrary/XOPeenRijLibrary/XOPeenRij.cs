@@ -129,8 +129,9 @@
             
             }
 
-            // Indien we hier belanden, is het spel niet gewonnen
-            return false;
+            // Indien we hier belanden, is het spel niet gewonnen. 
+			won = false;
+            return won;
 
         }
 
@@ -140,10 +141,58 @@
 			// De tellers voor de streaks te zoeken, voor elk van de spelers afzonderlijk
 			int counterPlayer1 = 0;
 			int counterPlayer2 = 0;
+			int counterRow;
+			int counterColumn;
 
+			// De kolommen worden afgelopen van rechts naar links
+			for (int i = columns - 1; i >= 0; i--)
+			{
+				counterRow = 0;
+				counterColumn = i;
+				while (counterColumn < columns && counterRow < rows)
+				{
+					if (raster[counterColumn, counterRow] == 1)
+					{
+						counterPlayer1++;
+					}
 
+					else
+					{
+						counterPlayer1 = 0;
+					}
 
-            return false;
+					if (raster[counterColumn, counterRow] == 2)
+					{
+						counterPlayer2++;
+					}
+
+					else
+					{
+						counterPlayer2 = 0;
+					}
+
+					counterRow++;
+					counterColumn++;
+
+					if (counterPlayer1 == tokenStreak)
+					{
+						won = true;
+						return won;
+						// TODO: Score speler 1 verhogen
+					}
+
+					// Indien speler 2 de streak behaald heeft, is het spel gewonnen
+					if (counterPlayer2 == tokenStreak)
+					{
+						won = true;
+						return won;
+						// TODO: Score speler 2 verhogen
+					}
+				}
+			}
+			// Indien we hier belanden, is het spel niet gewonnen. 
+			won = false;
+			return won;
         }
 
         public bool TestTrueIsWonAndFalseIsNotWon()
