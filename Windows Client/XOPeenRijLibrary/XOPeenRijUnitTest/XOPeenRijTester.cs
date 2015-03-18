@@ -7,7 +7,6 @@ namespace XOPeenRijUnitTest
     public class XOPeenRijTester
     {
         private XOPeenRij game;
-        private XOPeenRij gameWithVerticalWonRaster;
         private XOPeenRij gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon;
         private XOPeenRij gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon;
         private XOPeenRij gameWith45DegreeStartingAtColumn0Row0WonRaster;
