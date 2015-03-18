@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace XOPeenRijLibrary
 {
@@ -371,10 +372,7 @@ namespace XOPeenRijLibrary
             List<byte> empySpots = new List<byte>();
 
             for (byte i = 0; i < columns; i++) {
-                if (raster[i, columns - 1] == 0) {
-                    /* TODO : i++ wegwerken, momenteel moet +1 gedaan worden aangezien hij
-                    //de waarde neemt die ervoor komt, (dus in het testgeval, neemt hij kolom 5 in plaats van kolom 6 */
-                    i++;
+                if (raster[rows - 1, i] == 0) {
                     empySpots.Add(i);
                 }
             }
@@ -406,11 +404,14 @@ namespace XOPeenRijLibrary
         }
 
         public void insertTokenByAI() {
-            //TODO : Toevoegen dat er een random choice wordt genomen indien er meer dan 1 vrije plaats is.
-            List<byte> emptySpots = checkEmptySpotInColumn();
-            foreach (byte item in emptySpots) {
-                insertToken(item, 2);
-            }
+            List<byte> emptySpots;
+            Random rnd = new Random();
+            emptySpots = checkEmptySpotInColumn();
+            int length = emptySpots.Count;
+            int spot = rnd.Next(0, length);
+
+            //TODO : Hoe weet je dat player 2 AI is? of insertToken(item) gebruiken?
+            insertToken(emptySpots[spot], 2);
         }
         #endregion
     }
