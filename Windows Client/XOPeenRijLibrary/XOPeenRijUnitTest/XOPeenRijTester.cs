@@ -7,11 +7,19 @@ namespace XOPeenRijUnitTest
     public class XOPeenRijTester
     {
         private XOPeenRij game;
+<<<<<<< HEAD
         private XOPeenRij gameWithVerticalWonRaster;
         private XOPeenRij gameWith45DegreeStartingAtColumn0Row0WonRaster;
 		private XOPeenRij gameWith45DegreeStartingAtColumn0Row1WonRaster;
 		private XOPeenRij gameWith135DegreeStartingAtColumn0Row0WonRaster;
 		private XOPeenRij gameWith135DegreeStartingAtColumnXRow1WonRaster;
+=======
+        private XOPeenRij gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon;
+        private XOPeenRij gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon;
+        private XOPeenRij gameWith45DegreeStartingAtColumn0WonRaster;
+		private XOPeenRij gameWith45DegreeStartingAtRow0WonRaster;
+		private XOPeenRij gameWith135DegreeStartingAtColumn0WonRaster;
+>>>>>>> 318fd3c5c09237a2f0b1e3c4b09acdb0c23123a9
         private XOPeenRij gameWithNotWonRaster;
         private XOPeenRij gameWithFullRaster;
         private XOPeenRij gameWithOneTokenBeforeFullRaster;
@@ -22,11 +30,19 @@ namespace XOPeenRijUnitTest
             game = new XOPeenRij();
 
             // Game in raster where 4 in a row can be found vertically
-            gameWithVerticalWonRaster = new XOPeenRij();
-            gameWithVerticalWonRaster.insertToken(0, 1);
-            gameWithVerticalWonRaster.insertToken(0, 1);
-            gameWithVerticalWonRaster.insertToken(0, 1);
-            gameWithVerticalWonRaster.insertToken(0, 1);
+            gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon = new XOPeenRij();
+            gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(0, 1);
+            gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(0, 1);
+            gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(0, 1);
+            gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(0, 1);
+
+            // Game in raster where 4 in a row can be found vertically, and let game check if it is won
+            gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon = new XOPeenRij();
+            gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.insertToken(0, 1);
+            gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.insertToken(0, 1);
+            gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.insertToken(0, 1);
+            gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.insertToken(0, 1);
+            gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.isWon();
 
 			// Game in raster where diagonal 45° can be found starting from column 0 row 0
             gameWith45DegreeStartingAtColumn0Row0WonRaster = new XOPeenRij();
@@ -232,7 +248,7 @@ namespace XOPeenRijUnitTest
 
         [TestMethod]
         public void TestGivenVerticalWonGameIfIsWon() {
-            Assert.IsTrue(gameWithVerticalWonRaster.isWonVertical());
+            Assert.IsTrue(gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.isWonVertical());
         }
 
         [TestMethod]
@@ -259,60 +275,28 @@ namespace XOPeenRijUnitTest
 
         [TestMethod]
         public void TestTurnByAI() {
-            // Spel met een net niet vol raster
-            XOPeenRij gameWithOneTokenBeforeFullRasterForAI = new XOPeenRij();
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(0, 1);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(0, 2);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(0, 1);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(0, 2);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(0, 1);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(0, 2);
-
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(1, 1);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(1, 2);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(1, 1);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(1, 2);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(1, 1);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(1, 2);
-
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(2, 1);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(2, 2);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(2, 1);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(2, 2);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(2, 1);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(2, 2);
-
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(3, 1);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(3, 2);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(3, 1);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(3, 2);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(3, 1);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(3, 2);
-
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(4, 1);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(4, 2);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(4, 1);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(4, 2);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(4, 1);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(4, 2);
-
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(5, 1);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(5, 2);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(5, 1);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(5, 2);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(5, 1);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(5, 2);
-
-            //In kolom 7 wordt er geen token gestoken (dus niet vol)
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(6, 1);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(6, 2);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(6, 1);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(6, 2);
-            gameWithOneTokenBeforeFullRasterForAI.insertToken(6, 2);
+            
             // Let AI Determine Spot To Put Token
-            gameWithOneTokenBeforeFullRasterForAI.insertTokenByAI();
+            gameWithOneTokenBeforeFullRaster.insertTokenByAI();
 
-            Assert.IsTrue(gameWithOneTokenBeforeFullRasterForAI.rasterIsFull());
+            Assert.IsTrue(gameWithOneTokenBeforeFullRaster.rasterIsFull());
         }
+
+        [TestMethod]
+        public void TestClearRaster()
+        {
+            Assert.IsTrue(game.clearRaster());
+            Assert.IsTrue(game.isRasterInitializedWithZeros());
+            game.insertToken(0,1);
+            Assert.IsFalse(game.isRasterInitializedWithZeros());
+        }
+
+        [TestMethod]
+        public void TestGetWinningPlayerGivenWonGame()
+        {
+            Assert.IsTrue(gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.getWonPlayer() == 1);
+        }
+
+
     }
 }
