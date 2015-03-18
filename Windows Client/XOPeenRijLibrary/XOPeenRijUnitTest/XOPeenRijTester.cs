@@ -9,6 +9,7 @@ namespace XOPeenRijUnitTest
         private XOPeenRij game;
         private XOPeenRij gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon;
         private XOPeenRij gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon;
+		private XOPeenRij gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon;
         private XOPeenRij gameWith45DegreeStartingAtColumn0Row0WonRaster;
 		private XOPeenRij gameWith45DegreeStartingAtColumn0Row1WonRaster;
 		private XOPeenRij gameWith135DegreeStartingAtColumn0Row0WonRaster;
@@ -36,6 +37,13 @@ namespace XOPeenRijUnitTest
             gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.insertToken(0, 1);
             gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.insertToken(0, 1);
             gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.isWon();
+
+			//Game in raster where 4 in a row can be found horizontally
+			gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon = new XOPeenRij();
+			gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(0, 1);
+			gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(1, 1);
+			gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(2, 1);
+			gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(3, 1);
 
 			// Game in raster where diagonal 45° can be found starting from column 0 row 0
             gameWith45DegreeStartingAtColumn0Row0WonRaster = new XOPeenRij();
@@ -243,6 +251,11 @@ namespace XOPeenRijUnitTest
         public void TestGivenVerticalWonGameIfIsWon() {
             Assert.IsTrue(gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.isWonVertical());
         }
+
+		[TestMethod]
+		public void TestGivenHorizontalWonGameIfIsWon() {
+			Assert.IsTrue(gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon.isWonHorizontal());
+		}
 
         [TestMethod]
         public void TestGiven45DegreeWonGameIfIsWon() {

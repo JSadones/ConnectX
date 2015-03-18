@@ -111,6 +111,47 @@ namespace XOPeenRijLibrary
             return won;
         }
 
+		public bool isWonHorizontal()
+		{
+			int counterPlayer1 = 0;
+			int counterPlayer2 = 0;
+
+			for (int i = 0; i < rows; i++)
+			{
+				for (int j = 0; j < columns; j++)
+				{
+					if (raster[i, j] == 0) 
+					{
+						break;
+					}
+
+					if (raster[i, j] == 1)
+					{
+						counterPlayer1++;
+					} else counterPlayer1 = 0;
+
+					if (raster[i, j] == 2)
+					{
+						counterPlayer2++;
+					} else counterPlayer2 = 0;
+
+					if (counterPlayer1 == tokenStreak)
+					{
+						won = true;
+						return won;
+					}
+
+					if (counterPlayer2 == tokenStreak)
+					{
+						won = true;
+						return won;
+					}
+				}
+			}
+			won = false;
+			return won;
+		}
+
         public bool isWonDiagonal45() {
 			// De tellers voor de streaks te zoeken, voor elk van de spelers afzonderlijk
 			int counterPlayer1 = 0;
@@ -128,22 +169,12 @@ namespace XOPeenRijLibrary
                     if (raster[counterRow, counterColumn] == 1)
 					{
 						counterPlayer1++;
-					}
-
-					else
-					{
-						counterPlayer1 = 0;
-					}
+					} else counterPlayer1 = 0;
 
                     if (raster[counterRow, counterColumn] == 2)
 					{
 						counterPlayer2++;
-					}
-
-					else
-					{
-						counterPlayer2 = 0;
-					}
+					} else counterPlayer2 = 0;
 
 					counterRow++;
 					counterColumn++;
