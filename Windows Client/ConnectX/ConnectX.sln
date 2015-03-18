@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectXLibrary", "XOPeenRijLibrary\ConnectXLibrary.csproj", "{34F27FAE-1F21-475C-93F0-F3F07235E45F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectXLibrary", "ConnectXLibrary\ConnectXLibrary.csproj", "{34F27FAE-1F21-475C-93F0-F3F07235E45F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectXUnitTest", "XOPeenRijUnitTest\ConnectXUnitTest.csproj", "{96EA49FC-78E5-4E42-B709-CC560FE05A64}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectXUnitTest", "ConnectXUnitTest\ConnectXUnitTest.csproj", "{96EA49FC-78E5-4E42-B709-CC560FE05A64}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
