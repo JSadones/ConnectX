@@ -63,18 +63,10 @@ namespace XOPeenRijLibrary
         }
 
         public bool isWon() {
-            if (isWonVertical()) {
+            if (isWonVertical() || isWonDiagonal45() || isWonDiagonal135() || isWonHorizontal()) {
                 return true;
                 // ToDo, Winnende Speler Opvangen
-            }else 
-            if (isWonDiagonal45()) {
-                return true;
-                // ToDo, Winnende Speler Opvangen
-            }else 
-			if (isWonDiagonal135()) {
-				return true;
-				// ToDo, Winnende Speler Opvangen
-			}
+            }
             return false;
         }
 
@@ -96,19 +88,16 @@ namespace XOPeenRijLibrary
                         counterPlayer2++;
                     } else counterPlayer2 = 0;
                     if (counterPlayer1 == tokenStreak) {
-                        won = true;
-                        return won;
+                        return true;
                         // TODO: Score speler 1 verhogen
                     }
                     if (counterPlayer2 == tokenStreak) {
-                        won = true;
-                        return won;
+                        return true;
                         // TODO: Score speler 2 verhogen
                     }
                 }
             }
-			won = false;
-            return won;
+            return false;
         }
 
 		public bool isWonHorizontal()
@@ -116,40 +105,30 @@ namespace XOPeenRijLibrary
 			int counterPlayer1 = 0;
 			int counterPlayer2 = 0;
 
-			for (int i = 0; i < rows; i++)
-			{
-				for (int j = 0; j < columns; j++)
-				{
-					if (raster[i, j] == 0) 
-					{
+			for (int i = 0; i < rows; i++) {
+				for (int j = 0; j < columns; j++) {
+					if (raster[i, j] == 0)  {
 						break;
 					}
 
-					if (raster[i, j] == 1)
-					{
+					if (raster[i, j] == 1) {
 						counterPlayer1++;
 					} else counterPlayer1 = 0;
 
-					if (raster[i, j] == 2)
-					{
+					if (raster[i, j] == 2) {
 						counterPlayer2++;
 					} else counterPlayer2 = 0;
 
-					if (counterPlayer1 == tokenStreak)
-					{
-						won = true;
-						return won;
+					if (counterPlayer1 == tokenStreak) {
+						return true;
 					}
 
-					if (counterPlayer2 == tokenStreak)
-					{
-						won = true;
-						return won;
+					if (counterPlayer2 == tokenStreak) {
+						return true;
 					}
 				}
 			}
-			won = false;
-			return won;
+			return false;
 		}
 
         public bool isWonDiagonal45() {
@@ -160,37 +139,29 @@ namespace XOPeenRijLibrary
 			int counterColumn;
 
 			// 45°: De kolommen worden afgelopen van rechts naar links
-			for (int i = columns - 1; i >= 0; i--)
-			{
+			for (int i = columns - 1; i >= 0; i--) {
 				counterRow = 0;
 				counterColumn = i;
-				while (counterColumn < columns && counterRow < rows)
-				{
-                    if (raster[counterRow, counterColumn] == 1)
-					{
+				while (counterColumn < columns && counterRow < rows) {
+                    if (raster[counterRow, counterColumn] == 1) {
 						counterPlayer1++;
 					} else counterPlayer1 = 0;
 
-                    if (raster[counterRow, counterColumn] == 2)
-					{
+                    if (raster[counterRow, counterColumn] == 2) {
 						counterPlayer2++;
 					} else counterPlayer2 = 0;
 
 					counterRow++;
 					counterColumn++;
 
-					if (counterPlayer1 == tokenStreak)
-					{
-						won = true;
-						return won;
+					if (counterPlayer1 == tokenStreak) {
+						return true;
 						// TODO: Score speler 1 verhogen
 					}
 
 					// Indien speler 2 de streak behaald heeft, is het spel gewonnen
-					if (counterPlayer2 == tokenStreak)
-					{
-						won = true;
-						return won;
+					if (counterPlayer2 == tokenStreak) {
+						return true;
 						// TODO: Score speler 2 verhogen
 					}
 				}
@@ -198,55 +169,40 @@ namespace XOPeenRijLibrary
 
 
 			// 45°: De rijen worden afgelopen vanaf de tweede rij, eerste kolom naar boven
-			for (int i = 1; i < rows; i++)
-			{
+			for (int i = 1; i < rows; i++) {
 				counterRow = i;
 				counterColumn = 0;
 
-				while (counterColumn < columns && counterRow < rows)
-				{
-					if (raster[counterRow, counterColumn] == 1)
-					{
+				while (counterColumn < columns && counterRow < rows) {
+					if (raster[counterRow, counterColumn] == 1) {
 						counterPlayer1++;
-					}
-
-					else
-					{
+					} else {
 						counterPlayer1 = 0;
 					}
 
-					if (raster[counterRow, counterColumn] == 2)
-					{
+					if (raster[counterRow, counterColumn] == 2) {
 						counterPlayer2++;
-					}
-
-					else
-					{
+					} else {
 						counterPlayer2 = 0;
 					}
 
 					counterRow++;
 					counterColumn++;
 
-					if (counterPlayer1 == tokenStreak)
-					{
-						won = true;
-						return won;
+					if (counterPlayer1 == tokenStreak) {
+						return true;
 						// TODO: Score speler 1 verhogen
 					}
 
 					// Indien speler 2 de streak behaald heeft, is het spel gewonnen
-					if (counterPlayer2 == tokenStreak)
-					{
-						won = true;
-						return won;
+					if (counterPlayer2 == tokenStreak) {
+						return true;
 						// TODO: Score speler 2 verhogen
 					}
 				}
 			}
-			// Indien we hier belanden, is het spel niet gewonnen. 
-			won = false;
-			return won;
+			// Indien we hier belanden, is het spel niet gewonnen.
+			return false;
         }
 
 		public bool isWonDiagonal135()
@@ -258,33 +214,24 @@ namespace XOPeenRijLibrary
 			int counterColumn;
 
 			// 135°: De kolommen worden afgelopen van links naar rechts
-			for (int i = 0; i < columns; i++)
-			{
+			for (int i = 0; i < columns; i++) {
 				counterRow = 0;
 				counterColumn = i;
-				while (counterColumn > 0 && counterRow < rows)
-				{
+				while (counterColumn > 0 && counterRow < rows) {
 					// Als er een token van player1 gevonden wordt, teller van player2 vermeerderen met 1
-					if (raster[counterRow, counterColumn] == 1)
-					{
+					if (raster[counterRow, counterColumn] == 1) {
 						counterPlayer1++;
-					}
-
-					// Als er geen token van player1 gevonden wordt, teller terug op 0 zetten
-					else
-					{
+					} else {
 						counterPlayer1 = 0;
 					}
 
 					// Als er een token van player2 gevonden wordt, teller van player2 vermeerderen met 1
-					if (raster[counterRow, counterColumn] == 2)
-					{
+					if (raster[counterRow, counterColumn] == 2) {
 						counterPlayer2++;
 					}
 
 					// Als er geen token van player2 gevonden wordt, teller terug op 0 zetten
-					else
-					{
+					else {
 						counterPlayer2 = 0;
 					}
 
@@ -292,16 +239,14 @@ namespace XOPeenRijLibrary
 					counterColumn--;
 
 					// Indien speler 1 de streak behaald heeft, is het spel gewonnen
-					if (counterPlayer1 == tokenStreak)
-					{
+					if (counterPlayer1 == tokenStreak) {
 						won = true;
 						return won;
 						// TODO: Score speler 1 verhogen
 					}
 
 					// Indien speler 2 de streak behaald heeft, is het spel gewonnen
-					if (counterPlayer2 == tokenStreak)
-					{
+					if (counterPlayer2 == tokenStreak) {
 						won = true;
 						return won;
 						// TODO: Score speler 2 verhogen
@@ -310,55 +255,40 @@ namespace XOPeenRijLibrary
 			}
 
 			// 135°: De rijen worden afgelopen vanaf de tweede rij, laatste kolom naar boven
-			for (int i = 1; i < rows; i++)
-			{
+			for (int i = 1; i < rows; i++) {
 				counterRow = i;
 				counterColumn = columns - 1;
 
-				while (counterColumn < columns && counterRow < rows)
-				{
-					if (raster[counterRow, counterColumn] == 1)
-					{
+				while (counterColumn < columns && counterRow < rows) {
+					if (raster[counterRow, counterColumn] == 1) {
 						counterPlayer1++;
-					}
-
-					else
-					{
+					} else {
 						counterPlayer1 = 0;
 					}
 
-					if (raster[counterRow, counterColumn] == 2)
-					{
+					if (raster[counterRow, counterColumn] == 2) {
 						counterPlayer2++;
-					}
-
-					else
-					{
+					} else {
 						counterPlayer2 = 0;
 					}
 
 					counterRow++;
 					counterColumn--;
 
-					if (counterPlayer1 == tokenStreak)
-					{
-						won = true;
-						return won;
+					if (counterPlayer1 == tokenStreak) {
+                        return true;
 						// TODO: Score speler 1 verhogen
 					}
 
 					// Indien speler 2 de streak behaald heeft, is het spel gewonnen
-					if (counterPlayer2 == tokenStreak)
-					{
-						won = true;
-						return won;
+					if (counterPlayer2 == tokenStreak) {
+                        return true;
 						// TODO: Score speler 2 verhogen
 					}
 				}
 			}
  
-			won = false;
-			return won;
+			return false;
 		}
 
         public bool TestTrueIsWonAndFalseIsNotWon() {
