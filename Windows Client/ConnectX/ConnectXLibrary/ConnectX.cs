@@ -6,7 +6,7 @@ namespace ConnectXLibrary
     public class ConnectX
     {
         #region State
-        //private bool won;
+        private bool won;
         private int[,] raster;
         private int rows;
         private int columns;
