@@ -7,19 +7,13 @@ namespace XOPeenRijUnitTest
     public class XOPeenRijTester
     {
         private XOPeenRij game;
-<<<<<<< HEAD
         private XOPeenRij gameWithVerticalWonRaster;
+        private XOPeenRij gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon;
+        private XOPeenRij gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon;
         private XOPeenRij gameWith45DegreeStartingAtColumn0Row0WonRaster;
 		private XOPeenRij gameWith45DegreeStartingAtColumn0Row1WonRaster;
 		private XOPeenRij gameWith135DegreeStartingAtColumn0Row0WonRaster;
 		private XOPeenRij gameWith135DegreeStartingAtColumnXRow1WonRaster;
-=======
-        private XOPeenRij gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon;
-        private XOPeenRij gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon;
-        private XOPeenRij gameWith45DegreeStartingAtColumn0WonRaster;
-		private XOPeenRij gameWith45DegreeStartingAtRow0WonRaster;
-		private XOPeenRij gameWith135DegreeStartingAtColumn0WonRaster;
->>>>>>> 318fd3c5c09237a2f0b1e3c4b09acdb0c23123a9
         private XOPeenRij gameWithNotWonRaster;
         private XOPeenRij gameWithFullRaster;
         private XOPeenRij gameWithOneTokenBeforeFullRaster;
@@ -275,7 +269,6 @@ namespace XOPeenRijUnitTest
 
         [TestMethod]
         public void TestTurnByAI() {
-            
             // Let AI Determine Spot To Put Token
             gameWithOneTokenBeforeFullRaster.insertTokenByAI();
 
@@ -283,20 +276,16 @@ namespace XOPeenRijUnitTest
         }
 
         [TestMethod]
-        public void TestClearRaster()
-        {
-            Assert.IsTrue(game.clearRaster());
-            Assert.IsTrue(game.isRasterInitializedWithZeros());
-            game.insertToken(0,1);
+        public void TestClearRaster() {
+            gameWithFullRaster.clearRaster();
+            Assert.IsTrue(gameWithFullRaster.isRasterInitializedWithZeros());
+            game.insertToken(0, 1);
             Assert.IsFalse(game.isRasterInitializedWithZeros());
         }
 
         [TestMethod]
-        public void TestGetWinningPlayerGivenWonGame()
-        {
+        public void TestGetWinningPlayerGivenWonGame() {
             Assert.IsTrue(gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.getWonPlayer() == 1);
         }
-
-
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace XOPeenRijLibrary
@@ -24,11 +25,7 @@ namespace XOPeenRijLibrary
 
             won = false;
             raster = new int[rows, columns];
-            for (int i = 0; i < rows; i++) {
-                for (int j = 0; j < columns; j++) {
-                    raster[i, j] = 0;
-                }
-            }
+            clearRaster();
         }
         #endregion
 
@@ -72,24 +69,18 @@ namespace XOPeenRijLibrary
                 return won;
                 // ToDo, Winnende Speler Opvangen
             }
-
             if (isWonDiagonal45()) {
                 won = true;
                 return won;
                 // ToDo, Winnende Speler Opvangen
             }
-
-
-
-			if (isWonDiagonal135())
-			{
+			if (isWonDiagonal135()) {
 				won = true;
 				return won;
 				// ToDo, Winnende Speler Opvangen
 			}
-			
-            // Indien we hier belanden, is het spel duidelijk niet gewonnen
             won = false;
+
             return won;
         }
 
@@ -145,7 +136,6 @@ namespace XOPeenRijLibrary
             return won;
         }
 
-		// DIAGONALE STREAK 45 GRADEN
         public bool isWonDiagonal45() {
 			// De tellers voor de streaks te zoeken, voor elk van de spelers afzonderlijk
 			int counterPlayer1 = 0;
@@ -413,6 +403,21 @@ namespace XOPeenRijLibrary
 
             //TODO : Hoe weet je dat player 2 AI is? of insertToken(item) gebruiken?
             insertToken(emptySpots[spot], 2);
+        }
+        
+        public int getWonPlayer() {
+
+            int player = 0;
+
+            return player;
+        }
+
+        public void clearRaster() {
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < columns; j++) {
+                    raster[i, j] = 0;
+                }
+            }
         }
         #endregion
     }
