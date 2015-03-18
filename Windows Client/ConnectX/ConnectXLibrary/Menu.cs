@@ -20,11 +20,13 @@ namespace ConnectXLibrary
         }
 
         private void lblSettings_Click(object sender, EventArgs e) {
-            Settings settings = new Settings();
-            settings.StartPosition = FormStartPosition.Manual;
-            settings.Location = new Point(this.Location.X, this.Location.Y);
-            this.Hide();
-            settings.Show();
+            pnlMenu.Visible = false;
+            pnlSettings.Visible = true;
+        }
+
+        private void Menu_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

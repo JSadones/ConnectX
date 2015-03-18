@@ -55,7 +55,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ConnectXibrary\ConnectXLibrary.csproj">
+    <ProjectReference Include="..\ConnectXLibrary\ConnectXLibrary.csproj">
       <Project>{34f27fae-1f21-475c-93f0-f3f07235e45f}</Project>
       <Name>ConnectXLibrary</Name>
     </ProjectReference>
