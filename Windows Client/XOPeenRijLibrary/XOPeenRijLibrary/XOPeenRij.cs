@@ -11,6 +11,7 @@ namespace XOPeenRijLibrary
         private int rows;
         private int columns;
         private int tokenStreak;
+		private int playerAtTurn;
         #endregion State
 
         #region Constructor
@@ -176,15 +177,11 @@ namespace XOPeenRijLibrary
 				while (counterColumn < columns && counterRow < rows) {
 					if (raster[counterRow, counterColumn] == 1) {
 						counterPlayer1++;
-					} else {
-						counterPlayer1 = 0;
-					}
+					} else counterPlayer1 = 0;
 
 					if (raster[counterRow, counterColumn] == 2) {
 						counterPlayer2++;
-					} else {
-						counterPlayer2 = 0;
-					}
+					} else counterPlayer2 = 0;
 
 					counterRow++;
 					counterColumn++;
@@ -221,19 +218,12 @@ namespace XOPeenRijLibrary
 					// Als er een token van player1 gevonden wordt, teller van player2 vermeerderen met 1
 					if (raster[counterRow, counterColumn] == 1) {
 						counterPlayer1++;
-					} else {
-						counterPlayer1 = 0;
-					}
+					} else counterPlayer1 = 0;
 
 					// Als er een token van player2 gevonden wordt, teller van player2 vermeerderen met 1
 					if (raster[counterRow, counterColumn] == 2) {
 						counterPlayer2++;
-					}
-
-					// Als er geen token van player2 gevonden wordt, teller terug op 0 zetten
-					else {
-						counterPlayer2 = 0;
-					}
+					} else counterPlayer2 = 0;
 
 					counterRow++;
 					counterColumn--;
@@ -262,15 +252,11 @@ namespace XOPeenRijLibrary
 				while (counterColumn < columns && counterRow < rows) {
 					if (raster[counterRow, counterColumn] == 1) {
 						counterPlayer1++;
-					} else {
-						counterPlayer1 = 0;
-					}
+					} else counterPlayer1 = 0;
 
 					if (raster[counterRow, counterColumn] == 2) {
 						counterPlayer2++;
-					} else {
-						counterPlayer2 = 0;
-					}
+					} else counterPlayer2 = 0;
 
 					counterRow++;
 					counterColumn--;
@@ -315,6 +301,11 @@ namespace XOPeenRijLibrary
                 }
                 row++;
             }
+
+			if (player == 1)
+			{
+				playerAtTurn = 2;
+			} else playerAtTurn = 1;
         }
 
         public bool hasNotCrashed() {
@@ -358,6 +349,11 @@ namespace XOPeenRijLibrary
                 }
             }
         }
+
+		public int getPlayerAtTurn()
+		{
+			return playerAtTurn;
+		}
         #endregion
     }
 }
