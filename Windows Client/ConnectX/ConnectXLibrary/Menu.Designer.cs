@@ -42,9 +42,10 @@
             // 
             // btnPlayCPU
             // 
-            this.btnPlayCPU.Location = new System.Drawing.Point(354, 93);
+            this.btnPlayCPU.Location = new System.Drawing.Point(726, 126);
+            this.btnPlayCPU.Margin = new System.Windows.Forms.Padding(6);
             this.btnPlayCPU.Name = "btnPlayCPU";
-            this.btnPlayCPU.Size = new System.Drawing.Size(118, 28);
+            this.btnPlayCPU.Size = new System.Drawing.Size(444, 129);
             this.btnPlayCPU.TabIndex = 0;
             this.btnPlayCPU.Text = "Play against CPU";
             this.btnPlayCPU.UseVisualStyleBackColor = true;
@@ -52,9 +53,10 @@
             // 
             // btnSluiten
             // 
-            this.btnSluiten.Location = new System.Drawing.Point(354, 188);
+            this.btnSluiten.Location = new System.Drawing.Point(726, 606);
+            this.btnSluiten.Margin = new System.Windows.Forms.Padding(6);
             this.btnSluiten.Name = "btnSluiten";
-            this.btnSluiten.Size = new System.Drawing.Size(118, 23);
+            this.btnSluiten.Size = new System.Drawing.Size(444, 132);
             this.btnSluiten.TabIndex = 1;
             this.btnSluiten.Text = "Sluiten";
             this.btnSluiten.UseVisualStyleBackColor = true;
@@ -63,9 +65,10 @@
             // lblLinkWebclient
             // 
             this.lblLinkWebclient.AutoSize = true;
-            this.lblLinkWebclient.Location = new System.Drawing.Point(10, 445);
+            this.lblLinkWebclient.Location = new System.Drawing.Point(20, 856);
+            this.lblLinkWebclient.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblLinkWebclient.Name = "lblLinkWebclient";
-            this.lblLinkWebclient.Size = new System.Drawing.Size(88, 13);
+            this.lblLinkWebclient.Size = new System.Drawing.Size(177, 25);
             this.lblLinkWebclient.TabIndex = 2;
             this.lblLinkWebclient.TabStop = true;
             this.lblLinkWebclient.Text = "Webserver Client";
@@ -73,17 +76,19 @@
             // lblSideInfo
             // 
             this.lblSideInfo.AutoSize = true;
-            this.lblSideInfo.Location = new System.Drawing.Point(829, 445);
+            this.lblSideInfo.Location = new System.Drawing.Point(1658, 856);
+            this.lblSideInfo.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblSideInfo.Name = "lblSideInfo";
-            this.lblSideInfo.Size = new System.Drawing.Size(60, 13);
+            this.lblSideInfo.Size = new System.Drawing.Size(118, 25);
             this.lblSideInfo.TabIndex = 3;
             this.lblSideInfo.Text = "Connect X ";
             // 
             // lblSettings
             // 
-            this.lblSettings.Location = new System.Drawing.Point(354, 138);
+            this.lblSettings.Location = new System.Drawing.Point(726, 363);
+            this.lblSettings.Margin = new System.Windows.Forms.Padding(6);
             this.lblSettings.Name = "lblSettings";
-            this.lblSettings.Size = new System.Drawing.Size(118, 28);
+            this.lblSettings.Size = new System.Drawing.Size(444, 130);
             this.lblSettings.TabIndex = 4;
             this.lblSettings.Text = "Settings";
             this.lblSettings.UseVisualStyleBackColor = true;
@@ -92,9 +97,10 @@
             // pnlMenu
             // 
             this.pnlMenu.Controls.Add(this.pnlSettings);
-            this.pnlMenu.Location = new System.Drawing.Point(2, 1);
+            this.pnlMenu.Location = new System.Drawing.Point(4, 2);
+            this.pnlMenu.Margin = new System.Windows.Forms.Padding(6);
             this.pnlMenu.Name = "pnlMenu";
-            this.pnlMenu.Size = new System.Drawing.Size(903, 466);
+            this.pnlMenu.Size = new System.Drawing.Size(1806, 896);
             this.pnlMenu.TabIndex = 5;
             // 
             // pnlSettings
@@ -105,21 +111,26 @@
             this.pnlSettings.Controls.Add(this.lblSettings);
             this.pnlSettings.Controls.Add(this.btnSluiten);
             this.pnlSettings.Location = new System.Drawing.Point(0, 0);
+            this.pnlSettings.Margin = new System.Windows.Forms.Padding(6);
             this.pnlSettings.Name = "pnlSettings";
-            this.pnlSettings.Size = new System.Drawing.Size(903, 469);
+            this.pnlSettings.Size = new System.Drawing.Size(1806, 902);
             this.pnlSettings.TabIndex = 5;
             // 
             // Menu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(903, 468);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1794, 909);
             this.Controls.Add(this.pnlMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(919, 507);
-            this.MinimumSize = new System.Drawing.Size(919, 507);
+            this.MaximumSize = new System.Drawing.Size(1820, 980);
+            this.MinimumSize = new System.Drawing.Size(1820, 980);
             this.Name = "Menu";
+            this.Padding = new System.Windows.Forms.Padding(7, 7, 7, 50);
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Connect X";
             this.Load += new System.EventHandler(this.Menu_Load);
             this.pnlMenu.ResumeLayout(false);
