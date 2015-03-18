@@ -299,5 +299,12 @@ namespace XOPeenRijUnitTest
         public void TestGetWinningPlayerGivenWonGame() {
             Assert.IsTrue(gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.getWonPlayer() == 1);
         }
+
+        [TestMethod]
+        public void TestWhichPlayerPlaysNextTurn()
+        {
+            game.insertToken(0, 1);
+            Assert.IsTrue(game.getNextPlayerToPlay == 2);
+        }
     }
 }
