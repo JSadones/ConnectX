@@ -1,14 +1,14 @@
-﻿namespace XOPeenRijLibrary
+﻿namespace ConnectXLibrary
 {
     public class XOPeenRijInterface
     {
-        private XOPeenRij game;
+        private ConnectX game;
 
         public XOPeenRijInterface() {
         }
 
         public void newGame() {
-            game = new XOPeenRij();
+            game = new ConnectX();
         }
 
         public bool gameRunning() {

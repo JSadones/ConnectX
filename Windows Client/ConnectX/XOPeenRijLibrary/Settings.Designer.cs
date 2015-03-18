@@ -1,6 +1,6 @@
-﻿namespace XOPeenRijLibrary
+﻿namespace ConnectXLibrary
 {
-    partial class Form1
+    partial class Settings
     {
         /// <summary>
         /// Required designer variable.
@@ -28,12 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // Settings
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(341, 264);
+            this.Name = "Settings";
+            this.Text = "Settings";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
     }
 }
-

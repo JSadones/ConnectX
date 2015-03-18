@@ -50,14 +50,14 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="XOPeenRijInterfaceTester.cs" />
-    <Compile Include="XOPeenRijTester.cs" />
+    <Compile Include="ConnectXInterfaceTester.cs" />
+    <Compile Include="ConnectXTester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\XOPeenRijLibrary\XOPeenRijLibrary.csproj">
+    <ProjectReference Include="..\XOPeenRijLibrary\ConnectXLibrary.csproj">
       <Project>{34f27fae-1f21-475c-93f0-f3f07235e45f}</Project>
-      <Name>XOPeenRijLibrary</Name>
+      <Name>ConnectXLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

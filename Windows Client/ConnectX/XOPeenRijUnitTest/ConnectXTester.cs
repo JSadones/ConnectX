@@ -1,37 +1,37 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using XOPeenRijLibrary;
+using ConnectXLibrary;
 
-namespace XOPeenRijUnitTest
+namespace ConnectXUnitTest
 {
     [TestClass]
-    public class XOPeenRijTester
+    public class ConnectXTester
     {
-        private XOPeenRij game;
-        private XOPeenRij gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon;
-        private XOPeenRij gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon;
-		private XOPeenRij gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon;
-        private XOPeenRij gameWith45DegreeStartingAtColumn0Row0WonRaster;
-		private XOPeenRij gameWith45DegreeStartingAtColumn0Row1WonRaster;
-		private XOPeenRij gameWith135DegreeStartingAtColumn0Row0WonRaster;
-		private XOPeenRij gameWith135DegreeStartingAtColumnXRow1WonRaster;
-        private XOPeenRij gameWithNotWonRaster;
-        private XOPeenRij gameWithFullRaster;
-        private XOPeenRij gameWithOneTokenBeforeFullRaster;
+        private ConnectX game;
+        private ConnectX gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon;
+        private ConnectX gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon;
+		private ConnectX gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon;
+        private ConnectX gameWith45DegreeStartingAtColumn0Row0WonRaster;
+		private ConnectX gameWith45DegreeStartingAtColumn0Row1WonRaster;
+		private ConnectX gameWith135DegreeStartingAtColumn0Row0WonRaster;
+		private ConnectX gameWith135DegreeStartingAtColumnXRow1WonRaster;
+        private ConnectX gameWithNotWonRaster;
+        private ConnectX gameWithFullRaster;
+        private ConnectX gameWithOneTokenBeforeFullRaster;
 
         [TestInitialize]
         public void setup() {
             // Empty game
-            game = new XOPeenRij();
+            game = new ConnectX();
 
             // Game in raster where 4 in a row can be found vertically
-            gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon = new XOPeenRij();
+            gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon = new ConnectX();
             gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(0, 1);
             gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(0, 1);
             gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(0, 1);
             gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(0, 1);
 
             // Game in raster where 4 in a row can be found vertically, and let game check if it is won
-            gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon = new XOPeenRij();
+            gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon = new ConnectX();
             gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.insertToken(0, 1);
             gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.insertToken(0, 1);
             gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.insertToken(0, 1);
@@ -39,14 +39,14 @@ namespace XOPeenRijUnitTest
             gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.isWon();
 
 			//Game in raster where 4 in a row can be found horizontally
-			gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon = new XOPeenRij();
+			gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon = new ConnectX();
 			gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(0, 1);
 			gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(1, 1);
 			gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(2, 1);
 			gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(3, 1);
 
 			// Game in raster where diagonal 45° can be found starting from column 0 row 0
-            gameWith45DegreeStartingAtColumn0Row0WonRaster = new XOPeenRij();
+            gameWith45DegreeStartingAtColumn0Row0WonRaster = new ConnectX();
             gameWith45DegreeStartingAtColumn0Row0WonRaster.insertToken(0, 1);
             gameWith45DegreeStartingAtColumn0Row0WonRaster.insertToken(1, 2);
             gameWith45DegreeStartingAtColumn0Row0WonRaster.insertToken(1, 1);
@@ -59,7 +59,7 @@ namespace XOPeenRijUnitTest
             gameWith45DegreeStartingAtColumn0Row0WonRaster.insertToken(3, 1);
 
 			// Game in raster where diagonal 45° can be found starting from column 0 row 1
-			gameWith45DegreeStartingAtColumn0Row1WonRaster = new XOPeenRij();
+			gameWith45DegreeStartingAtColumn0Row1WonRaster = new ConnectX();
 			gameWith45DegreeStartingAtColumn0Row1WonRaster.insertToken(0, 1);
 			gameWith45DegreeStartingAtColumn0Row1WonRaster.insertToken(0, 2);
 			gameWith45DegreeStartingAtColumn0Row1WonRaster.insertToken(1, 1);
@@ -76,7 +76,7 @@ namespace XOPeenRijUnitTest
 			gameWith45DegreeStartingAtColumn0Row1WonRaster.insertToken(3, 2);
 
 			// Game in raster where diagonal 135° can be found starting from column 0 row 0
-			gameWith135DegreeStartingAtColumn0Row0WonRaster = new XOPeenRij();
+			gameWith135DegreeStartingAtColumn0Row0WonRaster = new ConnectX();
 			gameWith135DegreeStartingAtColumn0Row0WonRaster.insertToken(0, 1);
 			gameWith135DegreeStartingAtColumn0Row0WonRaster.insertToken(0, 2);
 			gameWith135DegreeStartingAtColumn0Row0WonRaster.insertToken(0, 1);
@@ -89,7 +89,7 @@ namespace XOPeenRijUnitTest
 			gameWith135DegreeStartingAtColumn0Row0WonRaster.insertToken(3, 2);
 
 			// Game in raster where diagonal 135° can be found starting from column x row 1
-			gameWith135DegreeStartingAtColumnXRow1WonRaster = new XOPeenRij();
+			gameWith135DegreeStartingAtColumnXRow1WonRaster = new ConnectX();
 			gameWith135DegreeStartingAtColumnXRow1WonRaster.insertToken(6, 2);
 			gameWith135DegreeStartingAtColumnXRow1WonRaster.insertToken(6, 2);
 			gameWith135DegreeStartingAtColumnXRow1WonRaster.insertToken(5, 2);
@@ -107,14 +107,14 @@ namespace XOPeenRijUnitTest
 
 
             // Game in raster where 4 in a row can almost be found (3 in a row)
-            gameWithNotWonRaster = new XOPeenRij();
+            gameWithNotWonRaster = new ConnectX();
             gameWithNotWonRaster.insertToken(0, 1);
             gameWithNotWonRaster.insertToken(0, 1);
             gameWithNotWonRaster.insertToken(0, 1);
 
 
             // Game with full raster
-            gameWithFullRaster = new XOPeenRij();
+            gameWithFullRaster = new ConnectX();
             gameWithFullRaster.insertToken(0, 1);
             gameWithFullRaster.insertToken(0, 2);
             gameWithFullRaster.insertToken(0, 1);
@@ -160,7 +160,7 @@ namespace XOPeenRijUnitTest
 
 
             // Game with almost full raster
-            gameWithOneTokenBeforeFullRaster = new XOPeenRij();
+            gameWithOneTokenBeforeFullRaster = new ConnectX();
             gameWithOneTokenBeforeFullRaster.insertToken(0, 1);
             gameWithOneTokenBeforeFullRaster.insertToken(0, 2);
             gameWithOneTokenBeforeFullRaster.insertToken(0, 1);
@@ -272,7 +272,7 @@ namespace XOPeenRijUnitTest
         [TestMethod]
         public void TestNewGameWithParameters() {
             // New game with 10 rows, 12 columns, tokenStreak of 7
-            XOPeenRij gameWithParameters = new XOPeenRij(10,12,7);
+            ConnectX gameWithParameters = new ConnectX(10,12,7);
 
             Assert.IsTrue(gameWithParameters.getRows() == 10);
             Assert.IsTrue(gameWithParameters.getColumns() == 12);

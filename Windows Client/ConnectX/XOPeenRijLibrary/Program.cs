@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace XOPeenRijLibrary
+namespace ConnectXLibrary
 {
     static class Program
     {
@@ -14,9 +14,9 @@ namespace XOPeenRijLibrary
             
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Menu());
 
-            XOPeenRij game = new XOPeenRij();
+            ConnectX game = new ConnectX();
         }
     }
 }

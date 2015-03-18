@@ -1,10 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using XOPeenRijLibrary;
+using ConnectXLibrary;
 
 namespace XOPeenRijUnitTest
 {
     [TestClass]
-    public class XOPeenRijInterfaceTester
+    public class ConnectXInterfaceTester
     {
         XOPeenRijInterface gameInterface;
 

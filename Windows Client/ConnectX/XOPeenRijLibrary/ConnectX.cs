@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace XOPeenRijLibrary
+namespace ConnectXLibrary
 {
-    public class XOPeenRij
+    public class ConnectX
     {
         #region State
-        private bool won;
+        //private bool won;
         private int[,] raster;
         private int rows;
         private int columns;
@@ -16,10 +16,10 @@ namespace XOPeenRijLibrary
         #endregion State
 
         #region Constructor
-        public XOPeenRij(): this(6, 7, 4) {
+        public ConnectX(): this(6, 7, 4) {
         }
 
-        public XOPeenRij(int rows, int columns, int tokenStreak) {
+        public ConnectX(int rows, int columns, int tokenStreak) {
             this.rows = rows;
             this.columns = columns;
             this.tokenStreak = tokenStreak;
@@ -310,8 +310,7 @@ namespace XOPeenRijLibrary
                 row++;
             }
 
-			if (player == 1)
-			{
+			if (player == 1) {
 				playerAtTurn = 2;
 			} else playerAtTurn = 1;
         }
