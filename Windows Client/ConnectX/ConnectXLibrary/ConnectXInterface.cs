@@ -1,10 +1,10 @@
 ﻿namespace ConnectXLibrary
 {
-    public class XOPeenRijInterface
+    public class ConnectXInterface
     {
         private ConnectX game;
 
-        public XOPeenRijInterface() {
+        public ConnectXInterface() {
         }
 
         public void newGame() {
