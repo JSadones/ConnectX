@@ -8,9 +8,10 @@ namespace XOPeenRijUnitTest
     {
         private XOPeenRij game;
         private XOPeenRij gameWithVerticalWonRaster;
-        private XOPeenRij gameWith45DegreeStartingAtColumn0WonRaster;
-		private XOPeenRij gameWith45DegreeStartingAtRow0WonRaster;
-		private XOPeenRij gameWith135DegreeStartingAtColumn0WonRaster;
+        private XOPeenRij gameWith45DegreeStartingAtColumn0Row0WonRaster;
+		private XOPeenRij gameWith45DegreeStartingAtColumn0Row1WonRaster;
+		private XOPeenRij gameWith135DegreeStartingAtColumn0Row0WonRaster;
+		private XOPeenRij gameWith135DegreeStartingAtColumnXRow1WonRaster;
         private XOPeenRij gameWithNotWonRaster;
         private XOPeenRij gameWithFullRaster;
         private XOPeenRij gameWithOneTokenBeforeFullRaster;
@@ -27,48 +28,66 @@ namespace XOPeenRijUnitTest
             gameWithVerticalWonRaster.insertToken(0, 1);
             gameWithVerticalWonRaster.insertToken(0, 1);
 
-			// Game in raster where diagonal 45° can be found starting from column 0 and up
-            gameWith45DegreeStartingAtColumn0WonRaster = new XOPeenRij();
-            gameWith45DegreeStartingAtColumn0WonRaster.insertToken(0, 1);
-            gameWith45DegreeStartingAtColumn0WonRaster.insertToken(1, 2);
-            gameWith45DegreeStartingAtColumn0WonRaster.insertToken(1, 1);
-            gameWith45DegreeStartingAtColumn0WonRaster.insertToken(2, 2);
-            gameWith45DegreeStartingAtColumn0WonRaster.insertToken(2, 2);
-            gameWith45DegreeStartingAtColumn0WonRaster.insertToken(2, 1);
-            gameWith45DegreeStartingAtColumn0WonRaster.insertToken(3, 2);
-            gameWith45DegreeStartingAtColumn0WonRaster.insertToken(3, 2);
-            gameWith45DegreeStartingAtColumn0WonRaster.insertToken(3, 2);
-            gameWith45DegreeStartingAtColumn0WonRaster.insertToken(3, 1);
+			// Game in raster where diagonal 45° can be found starting from column 0 row 0
+            gameWith45DegreeStartingAtColumn0Row0WonRaster = new XOPeenRij();
+            gameWith45DegreeStartingAtColumn0Row0WonRaster.insertToken(0, 1);
+            gameWith45DegreeStartingAtColumn0Row0WonRaster.insertToken(1, 2);
+            gameWith45DegreeStartingAtColumn0Row0WonRaster.insertToken(1, 1);
+            gameWith45DegreeStartingAtColumn0Row0WonRaster.insertToken(2, 2);
+            gameWith45DegreeStartingAtColumn0Row0WonRaster.insertToken(2, 2);
+            gameWith45DegreeStartingAtColumn0Row0WonRaster.insertToken(2, 1);
+            gameWith45DegreeStartingAtColumn0Row0WonRaster.insertToken(3, 2);
+            gameWith45DegreeStartingAtColumn0Row0WonRaster.insertToken(3, 2);
+            gameWith45DegreeStartingAtColumn0Row0WonRaster.insertToken(3, 2);
+            gameWith45DegreeStartingAtColumn0Row0WonRaster.insertToken(3, 1);
 
-			// Game in raster where diagonal 45° can be found starting from row 1 and up
-			gameWith45DegreeStartingAtRow0WonRaster = new XOPeenRij();
-			gameWith45DegreeStartingAtRow0WonRaster.insertToken(0, 1);
-			gameWith45DegreeStartingAtRow0WonRaster.insertToken(0, 2);
-			gameWith45DegreeStartingAtRow0WonRaster.insertToken(1, 1);
-			gameWith45DegreeStartingAtRow0WonRaster.insertToken(1, 2);
-			gameWith45DegreeStartingAtRow0WonRaster.insertToken(1, 2);
-			gameWith45DegreeStartingAtRow0WonRaster.insertToken(2, 1);
-			gameWith45DegreeStartingAtRow0WonRaster.insertToken(2, 2);
-			gameWith45DegreeStartingAtRow0WonRaster.insertToken(2, 1);
-			gameWith45DegreeStartingAtRow0WonRaster.insertToken(2, 2);
-			gameWith45DegreeStartingAtRow0WonRaster.insertToken(3, 1);
-			gameWith45DegreeStartingAtRow0WonRaster.insertToken(3, 2);
-			gameWith45DegreeStartingAtRow0WonRaster.insertToken(3, 1);
-			gameWith45DegreeStartingAtRow0WonRaster.insertToken(3, 2);
-			gameWith45DegreeStartingAtRow0WonRaster.insertToken(3, 2);
+			// Game in raster where diagonal 45° can be found starting from column 0 row 1
+			gameWith45DegreeStartingAtColumn0Row1WonRaster = new XOPeenRij();
+			gameWith45DegreeStartingAtColumn0Row1WonRaster.insertToken(0, 1);
+			gameWith45DegreeStartingAtColumn0Row1WonRaster.insertToken(0, 2);
+			gameWith45DegreeStartingAtColumn0Row1WonRaster.insertToken(1, 1);
+			gameWith45DegreeStartingAtColumn0Row1WonRaster.insertToken(1, 2);
+			gameWith45DegreeStartingAtColumn0Row1WonRaster.insertToken(1, 2);
+			gameWith45DegreeStartingAtColumn0Row1WonRaster.insertToken(2, 1);
+			gameWith45DegreeStartingAtColumn0Row1WonRaster.insertToken(2, 2);
+			gameWith45DegreeStartingAtColumn0Row1WonRaster.insertToken(2, 1);
+			gameWith45DegreeStartingAtColumn0Row1WonRaster.insertToken(2, 2);
+			gameWith45DegreeStartingAtColumn0Row1WonRaster.insertToken(3, 1);
+			gameWith45DegreeStartingAtColumn0Row1WonRaster.insertToken(3, 2);
+			gameWith45DegreeStartingAtColumn0Row1WonRaster.insertToken(3, 1);
+			gameWith45DegreeStartingAtColumn0Row1WonRaster.insertToken(3, 2);
+			gameWith45DegreeStartingAtColumn0Row1WonRaster.insertToken(3, 2);
 
-			// Game in raster where diagonal 135° can be found starting from column 1 and up
-			gameWith135DegreeStartingAtColumn0WonRaster = new XOPeenRij();
-			gameWith135DegreeStartingAtColumn0WonRaster.insertToken(0, 1);
-			gameWith135DegreeStartingAtColumn0WonRaster.insertToken(0, 2);
-			gameWith135DegreeStartingAtColumn0WonRaster.insertToken(0, 1);
-			gameWith135DegreeStartingAtColumn0WonRaster.insertToken(0, 2);
-			gameWith135DegreeStartingAtColumn0WonRaster.insertToken(1, 1);
-			gameWith135DegreeStartingAtColumn0WonRaster.insertToken(1, 2);
-			gameWith135DegreeStartingAtColumn0WonRaster.insertToken(1, 2);
-			gameWith135DegreeStartingAtColumn0WonRaster.insertToken(2, 1);
-			gameWith135DegreeStartingAtColumn0WonRaster.insertToken(2, 2);
-			gameWith135DegreeStartingAtColumn0WonRaster.insertToken(3, 2);
+			// Game in raster where diagonal 135° can be found starting from column 0 row 0
+			gameWith135DegreeStartingAtColumn0Row0WonRaster = new XOPeenRij();
+			gameWith135DegreeStartingAtColumn0Row0WonRaster.insertToken(0, 1);
+			gameWith135DegreeStartingAtColumn0Row0WonRaster.insertToken(0, 2);
+			gameWith135DegreeStartingAtColumn0Row0WonRaster.insertToken(0, 1);
+			gameWith135DegreeStartingAtColumn0Row0WonRaster.insertToken(0, 2);
+			gameWith135DegreeStartingAtColumn0Row0WonRaster.insertToken(1, 1);
+			gameWith135DegreeStartingAtColumn0Row0WonRaster.insertToken(1, 2);
+			gameWith135DegreeStartingAtColumn0Row0WonRaster.insertToken(1, 2);
+			gameWith135DegreeStartingAtColumn0Row0WonRaster.insertToken(2, 1);
+			gameWith135DegreeStartingAtColumn0Row0WonRaster.insertToken(2, 2);
+			gameWith135DegreeStartingAtColumn0Row0WonRaster.insertToken(3, 2);
+
+			// Game in raster where diagonal 135° can be found starting from column x row 1
+			gameWith135DegreeStartingAtColumnXRow1WonRaster = new XOPeenRij();
+			gameWith135DegreeStartingAtColumnXRow1WonRaster.insertToken(6, 2);
+			gameWith135DegreeStartingAtColumnXRow1WonRaster.insertToken(6, 2);
+			gameWith135DegreeStartingAtColumnXRow1WonRaster.insertToken(5, 2);
+			gameWith135DegreeStartingAtColumnXRow1WonRaster.insertToken(5, 1);
+			gameWith135DegreeStartingAtColumnXRow1WonRaster.insertToken(5, 2);
+			gameWith135DegreeStartingAtColumnXRow1WonRaster.insertToken(4, 1);
+			gameWith135DegreeStartingAtColumnXRow1WonRaster.insertToken(4, 2);
+			gameWith135DegreeStartingAtColumnXRow1WonRaster.insertToken(4, 1);
+			gameWith135DegreeStartingAtColumnXRow1WonRaster.insertToken(4, 2);
+			gameWith135DegreeStartingAtColumnXRow1WonRaster.insertToken(3, 2);
+			gameWith135DegreeStartingAtColumnXRow1WonRaster.insertToken(3, 1);
+			gameWith135DegreeStartingAtColumnXRow1WonRaster.insertToken(3, 2);
+			gameWith135DegreeStartingAtColumnXRow1WonRaster.insertToken(3, 1);
+			gameWith135DegreeStartingAtColumnXRow1WonRaster.insertToken(3, 2);
+
 
             // Game in raster where 4 in a row can almost be found (3 in a row)
             gameWithNotWonRaster = new XOPeenRij();
@@ -218,13 +237,14 @@ namespace XOPeenRijUnitTest
 
         [TestMethod]
         public void TestGiven45DegreeWonGameIfIsWon() {
-            Assert.IsTrue(gameWith45DegreeStartingAtColumn0WonRaster.isWonDiagonal45());
-			Assert.IsTrue(gameWith45DegreeStartingAtRow0WonRaster.isWonDiagonal45());
+            Assert.IsTrue(gameWith45DegreeStartingAtColumn0Row0WonRaster.isWonDiagonal45());
+			Assert.IsTrue(gameWith45DegreeStartingAtColumn0Row1WonRaster.isWonDiagonal45());
         }
 
 		[TestMethod]
 		public void TestGiven135DegreeWonGameIfIsWon() {
-			Assert.IsTrue(gameWith135DegreeStartingAtColumn0WonRaster.isWonDiagonal135());
+			Assert.IsTrue(gameWith135DegreeStartingAtColumn0Row0WonRaster.isWonDiagonal135());
+			Assert.IsTrue(gameWith135DegreeStartingAtColumnXRow1WonRaster.isWonDiagonal135());
 		}
 
         [TestMethod]

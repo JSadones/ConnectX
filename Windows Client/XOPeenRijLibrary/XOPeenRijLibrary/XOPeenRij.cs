@@ -87,7 +87,7 @@ namespace XOPeenRijLibrary
 				return won;
 				// ToDo, Winnende Speler Opvangen
 			}
-
+			
             // Indien we hier belanden, is het spel duidelijk niet gewonnen
             won = false;
             return won;
@@ -266,7 +266,7 @@ namespace XOPeenRijLibrary
 			{
 				counterRow = 0;
 				counterColumn = i;
-				while (counterColumn < columns && counterRow < rows)
+				while (counterColumn > 0 && counterRow < rows)
 				{
 					// Als er een token van player1 gevonden wordt, teller van player2 vermeerderen met 1
 					if (raster[counterRow, counterColumn] == 1)
@@ -293,7 +293,7 @@ namespace XOPeenRijLibrary
 					}
 
 					counterRow++;
-					counterColumn++;
+					counterColumn--;
 
 					// Indien speler 1 de streak behaald heeft, is het spel gewonnen
 					if (counterPlayer1 == tokenStreak)
@@ -317,7 +317,7 @@ namespace XOPeenRijLibrary
 			for (int i = 1; i < rows; i++)
 			{
 				counterRow = i;
-				counterColumn = 0;
+				counterColumn = columns - 1;
 
 				while (counterColumn < columns && counterRow < rows)
 				{
@@ -360,6 +360,7 @@ namespace XOPeenRijLibrary
 					}
 				}
 			}
+ 
 			won = false;
 			return won;
 		}
