@@ -145,6 +145,12 @@
         margin-left:25px;
     }
 
+    .sidebar > p {
+        clear:both;
+        text-align:center;
+        padding:3px 15px 5px 50px;
+        line-height:150%;
+    }
 
 
   /* Footer */
