@@ -16,8 +16,10 @@ namespace XOPeenRijUnitTest
         [TestMethod]
         public void TestNewGameStarted()
         {
+            Assert.IsFalse(gameInterface.gameRunning());
             gameInterface.newGame();
-            Assert.IsTrue(XOPeenRijInterface.gameRunning());
+            Assert.IsTrue(gameInterface.gameRunning());
         }
+
     }
 }
