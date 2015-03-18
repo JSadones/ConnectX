@@ -11,7 +11,11 @@ namespace XOPeenRijLibrary
         private int rows;
         private int columns;
         private int tokenStreak;
+<<<<<<< HEAD
 		private int playerAtTurn;
+=======
+        private int winningPlayer;
+>>>>>>> 296852601807aa66020c381464aea69fc311b29b
         #endregion State
 
         #region Constructor
@@ -66,7 +70,6 @@ namespace XOPeenRijLibrary
         public bool isWon() {
             if (isWonVertical() || isWonDiagonal45() || isWonDiagonal135() || isWonHorizontal()) {
                 return true;
-                // ToDo, Winnende Speler Opvangen
             }
             return false;
         }
@@ -89,10 +92,12 @@ namespace XOPeenRijLibrary
                         counterPlayer2++;
                     } else counterPlayer2 = 0;
                     if (counterPlayer1 == tokenStreak) {
+                        winningPlayer = 1;
                         return true;
                         // TODO: Score speler 1 verhogen
                     }
                     if (counterPlayer2 == tokenStreak) {
+                        winningPlayer = 2;
                         return true;
                         // TODO: Score speler 2 verhogen
                     }
@@ -121,10 +126,12 @@ namespace XOPeenRijLibrary
 					} else counterPlayer2 = 0;
 
 					if (counterPlayer1 == tokenStreak) {
+                        winningPlayer = 1;
 						return true;
 					}
 
 					if (counterPlayer2 == tokenStreak) {
+                        winningPlayer = 2;
 						return true;
 					}
 				}
@@ -156,12 +163,14 @@ namespace XOPeenRijLibrary
 					counterColumn++;
 
 					if (counterPlayer1 == tokenStreak) {
+                        winningPlayer = 1;
 						return true;
 						// TODO: Score speler 1 verhogen
 					}
 
 					// Indien speler 2 de streak behaald heeft, is het spel gewonnen
 					if (counterPlayer2 == tokenStreak) {
+                        winningPlayer = 2;
 						return true;
 						// TODO: Score speler 2 verhogen
 					}
@@ -230,15 +239,15 @@ namespace XOPeenRijLibrary
 
 					// Indien speler 1 de streak behaald heeft, is het spel gewonnen
 					if (counterPlayer1 == tokenStreak) {
-						won = true;
-						return won;
+                        winningPlayer = 1;
+						return true;
 						// TODO: Score speler 1 verhogen
 					}
 
 					// Indien speler 2 de streak behaald heeft, is het spel gewonnen
 					if (counterPlayer2 == tokenStreak) {
-						won = true;
-						return won;
+                        winningPlayer = 2;
+                        return true;
 						// TODO: Score speler 2 verhogen
 					}
 				}
@@ -262,12 +271,14 @@ namespace XOPeenRijLibrary
 					counterColumn--;
 
 					if (counterPlayer1 == tokenStreak) {
+                        winningPlayer = 1;
                         return true;
 						// TODO: Score speler 1 verhogen
 					}
 
 					// Indien speler 2 de streak behaald heeft, is het spel gewonnen
 					if (counterPlayer2 == tokenStreak) {
+                        winningPlayer = 2;
                         return true;
 						// TODO: Score speler 2 verhogen
 					}
@@ -333,13 +344,7 @@ namespace XOPeenRijLibrary
         }
         
         public int getWonPlayer() {
-            if (isWon()) { 
-                //TODO : Speler is gewonnen
-            }
-            //TODO : Speler is niet gewonnen
-
-            //TODO : Speler returnen die gewonnen is
-            return 1;
+            return winningPlayer;
         }
 
         public void clearRaster() {

@@ -37,7 +37,7 @@
 
     h3 {
         font-family:'Palatino Linotype', 'Times New Roman';
-        font-size:initial;
+        font-size:1.2em;
         font-weight:bold;
         text-align:left;
         padding-left:25px;
@@ -61,7 +61,7 @@
 
     table {
         margin-left:160px;
-        border:5px solid white;
+        border:5px solid black;
         background-image:url(images/wood-bg.jpg);
         background-repeat:no-repeat;
         background-position:center,center;
@@ -169,7 +169,7 @@
 
  .footer p {
      font-family: 'Palatino Linotype', 'Times New Roman';
-     font-size: initial;
+     font-size: 1.4em;
      clear:both;
      padding-left:50px;
      padding-bottom:10px;
