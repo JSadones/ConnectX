@@ -1,4 +1,4 @@
-# XOPeenRij
+# ConnectX
 Howest Project C# Groep 30
 
 ## Opdracht
