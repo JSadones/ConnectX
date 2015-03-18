@@ -297,6 +297,7 @@ namespace XOPeenRijUnitTest
 
         [TestMethod]
         public void TestGetWinningPlayerGivenWonGame() {
+            gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.isWon();
             Assert.IsTrue(gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.getWonPlayer() == 1);
         }
 

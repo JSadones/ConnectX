@@ -11,11 +11,8 @@ namespace XOPeenRijLibrary
         private int rows;
         private int columns;
         private int tokenStreak;
-<<<<<<< HEAD
 		private int playerAtTurn;
-=======
         private int winningPlayer;
->>>>>>> 296852601807aa66020c381464aea69fc311b29b
         #endregion State
 
         #region Constructor

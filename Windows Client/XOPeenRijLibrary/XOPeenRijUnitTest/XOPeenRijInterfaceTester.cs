@@ -14,12 +14,10 @@ namespace XOPeenRijUnitTest
         }
 
         [TestMethod]
-        public void TestNewGameStarted()
-        {
+        public void TestNewGameStarted() {
             Assert.IsFalse(gameInterface.gameRunning());
             gameInterface.newGame();
             Assert.IsTrue(gameInterface.gameRunning());
         }
-
     }
 }
