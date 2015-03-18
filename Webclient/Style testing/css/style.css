@@ -42,6 +42,7 @@
         text-align:left;
         padding-left:25px;
         padding-top:20px;
+        padding-bottom:10px;
     }
 
     h3, #clear {
@@ -58,6 +59,38 @@
         color:white;
     }
 
+    table {
+        margin-left:160px;
+        border:5px solid white;
+        background-image:url(images/wood-bg.jpg);
+        background-repeat:no-repeat;
+        background-position:center,center;
+    }
+
+    th {
+        color:white;
+        font-size:1.5em;
+        font-weight:bolder;
+        padding-bottom:20px;
+        padding-top:20px;
+        padding-left: 5px;
+        padding-right: 5px;
+        border: 3px solid lightgrey;
+    }
+
+    td {
+        color:white;
+        padding-left:40px;
+        padding-bottom:20px;
+        padding-top:20px;
+        border:3px solid lightgrey;
+    }
+
+    tr {
+        color:white;
+        border-right:2px solid lightgrey;
+    }
+
 /* Box */
 
     #float {
@@ -70,7 +103,7 @@
 
     .wrapper {
         height:95%;
-        margin: 0 0 -50px;
+        margin: 0 0 -30px;
         background-image: url(images/light-bg.jpg); background-repeat:no-repeat; background-position: 0,0;
         background-size:200%;
         padding-top: 85px;
@@ -124,14 +157,14 @@
 
  .container-footer {
         background-color:darkgrey;
-        padding-top:15px;
-        border-top:10px solid black;
+        padding-top:10px;
+        border-top:12px solid black;
         background-image: url(images/dark-bg.jpg); background-repeat:no-repeat; background-position: 0,0;
         background-size:100%;
         position:fixed;
         bottom:0;
         width:100%;
-        max-height:20%;
+        max-height:15%;
     }
 
  .footer p {
