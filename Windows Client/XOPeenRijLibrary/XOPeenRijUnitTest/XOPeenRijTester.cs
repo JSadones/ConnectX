@@ -304,7 +304,7 @@ namespace XOPeenRijUnitTest
         public void TestWhichPlayerPlaysNextTurn()
         {
             game.insertToken(0, 1);
-            Assert.IsTrue(game.getNextPlayerToPlay == 2);
+            Assert.IsTrue(game.getNextPlayerToPlay() == 2);
         }
     }
 }
