@@ -16,7 +16,8 @@ namespace ConnectXLibrary
         }
 
         private void btnPlayCPU_Click(object sender, EventArgs e) {
-            
+            pnlMenu.Visible = false;
+            pnlGameCpu.Visible = true;
         }
 
         private void lblSettings_Click(object sender, EventArgs e) {
