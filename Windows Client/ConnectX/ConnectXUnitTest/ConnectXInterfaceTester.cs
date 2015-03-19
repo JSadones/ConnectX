@@ -88,6 +88,15 @@ namespace ConnectXUnitTest
         }
 
         [TestMethod]
+        public void TestFinishOverallGame()
+        {
+            Assert.IsTrue(gameInterface.isFinished == false);
+            gameInterface.finish();
+            Assert.IsTrue(gameInterface.isFinished == true);
+
+        }
+
+        [TestMethod]
         public void TestGetPlayerAtPlay()
         {
             gameInterface.setPlayerAtPlay(1);
