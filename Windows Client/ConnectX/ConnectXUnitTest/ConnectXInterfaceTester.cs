@@ -29,8 +29,6 @@ namespace ConnectXUnitTest
 
         [TestMethod]
         public void TestNewGame2HumanPlayersWith9RowsAnd11Columns() {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
             Assert.IsFalse(gameInterface.gameRunning());
             gameInterface.newGame(2, 9, 11);
             Assert.IsTrue(gameInterface.gameRunning());
@@ -40,13 +38,7 @@ namespace ConnectXUnitTest
 		[TestMethod]
 =======
         [TestMethod]
-<<<<<<< Updated upstream
-        public void TestNewGame2HumanPlayersWith9RowsAnd5Streak()
-        {
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+        public void TestNewGame2HumanPlayersWith9RowsAnd5Streak() {
             Assert.IsFalse(gameInterface.gameRunning());
             gameInterface.newGame(2, 9, 11,5);
             Assert.IsTrue(gameInterface.gameRunning());
@@ -75,9 +67,7 @@ namespace ConnectXUnitTest
         }
 
         [TestMethod]
-<<<<<<< Updated upstream
-        public void TestCurrentGameWon()
-        {
+        public void TestCurrentGameWon() {
             gameInterface.newGame();
             
             Assert.IsTrue(gameInterface.isCurrentGameWon == false);
@@ -98,14 +88,14 @@ namespace ConnectXUnitTest
         }
 
         [TestMethod]
-        public void TestFinishOverallGame()
-        {
+        public void TestFinishOverallGame() {
             Assert.IsTrue(gameInterface.isFinished == false);
             gameInterface.finish();
             Assert.IsTrue(gameInterface.isFinished == true);
 
         }
 
+<<<<<<< Updated upstream
         [TestMethod]
 <<<<<<< Updated upstream
 >>>>>>> 5a2d9398649518b684d7112f323799d6de8d1fd3
@@ -118,8 +108,9 @@ namespace ConnectXUnitTest
         public void TestGetPlayerAtPlay() {
 >>>>>>> Stashed changes
 =======
-        public void TestGetPlayerAtPlay() {
+=======
 >>>>>>> Stashed changes
+        public void TestGetPlayerAtPlay() {
             gameInterface.setPlayerAtPlay(1);
             // Parameter == player number
             Assert.IsTrue(gameInterface.getPlayerAtPlay() == 1);

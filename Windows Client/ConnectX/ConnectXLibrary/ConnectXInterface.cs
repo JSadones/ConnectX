@@ -2,15 +2,23 @@
 {
     public class ConnectXInterface
     {
-		private int scorePlayer1 = 0;
+        #region State
+        private int scorePlayer1 = 0;
 		private int scorePlayer2 = 0;
+<<<<<<< Updated upstream
 		private int playerAtPlay;
 
+=======
+>>>>>>> Stashed changes
         private ConnectX game;
+        #endregion
 
+        #region Constructor
         public ConnectXInterface() {
         }
+        #endregion
 
+<<<<<<< Updated upstream
 		public void newGame()
 		{
 			game = new ConnectX();
@@ -20,6 +28,11 @@
 		{
             game = new ConnectX(rows, columns);
 
+=======
+        #region Methods
+        public void newGame() {
+            game = new ConnectX();
+>>>>>>> Stashed changes
         }
 
         public bool gameRunning() {
@@ -48,6 +61,7 @@
 			else return scorePlayer2;
 		}
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 		public void setPlayerAtPlay(int playerAtPlay)
 		{
@@ -68,23 +82,24 @@
 =======
         public void newGame(int p1, int p2, int p3)
         {
+=======
+        public void newGame(int p1, int p2, int p3) {
+>>>>>>> Stashed changes
             throw new System.NotImplementedException();
         }
 
-        public void setPlayerAtPlay(int p)
-        {
+        public void setPlayerAtPlay(int p) {
             throw new System.NotImplementedException();
         }
 
-        public bool insertToken(int p1, int p2)
-        {
+        public bool insertToken(int p1, int p2) {
             throw new System.NotImplementedException();
         }
 
-        public int getPlayerAtPlay()
-        {
+        public int getPlayerAtPlay() {
             throw new System.NotImplementedException();
         }
+        #endregion
     }
 >>>>>>> 5a2d9398649518b684d7112f323799d6de8d1fd3
 }
