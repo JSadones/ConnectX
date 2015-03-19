@@ -5,17 +5,26 @@
     }
 	body, input, select, textarea {
 		font-size: 0.85em;
-        line-height:1,5em;
+        line-height:0.75em;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
         color: inherit;
-		line-height: 1.75em;
+		line-height: 2em;
 	}
 
     h1 {
         font-family:'Palatino Linotype', 'Times New Roman';
-        font-size:xx-large;
+        font-size:18pt;
+        margin-right:20px;
+        padding-left:50px;
+        padding-top:10px;
+        padding-bottom:10px;
+        color:white;
+    }
+    .bigger {
+        font-family:'Palatino Linotype', 'Times New Roman';
+        font-size:18pt;
         margin-right:20px;
         padding-left:50px;
         padding-top:10px;
@@ -23,15 +32,16 @@
         color:white;
     }
 
+
     h2 {
         font-family:'Palatino Linotype', 'Times New Roman';
         font-size:initial;
         text-align:right;
-        vertical-align:middle;
         margin-right:50px;
         padding-top:30px;
         padding-right:20px;
         color:white;
+        line-height:1.25;
        
     }
 
@@ -47,12 +57,9 @@
 
     h3, #clear {
         text-align:center;
-        vertical-align:middle;
+        line-height:1.5;
     }
 
-    h1#clear {
-        line-height: 0.75
-    }
 
     a {
         text-decoration:none;
@@ -121,7 +128,9 @@
     }
 
     .container-nav {
-        position:fixed;
+        display:inline-block;
+        position:absolute;
+        top:0;
         height:85px;
         width:100%;
         border-bottom: 8px solid black;
@@ -148,7 +157,7 @@
     .sidebar > p {
         clear:both;
         text-align:center;
-        padding:3px 15px 5px 50px;
+        padding:3px 20px 5px 70px;
         line-height:150%;
     }
 
