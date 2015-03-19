@@ -30,22 +30,21 @@ namespace ConnectXLibrary
             
             float x = 0f;
             float y = 0f;
-            float xMargin = pnlGame.Width / columns;
-            float yMargin = pnlGame.Height / rows;
+            float size = 80;
 
-            Font myFont = new Font("Arial", (pnlGame.Width <= pnlGame.Height) ? xMargin / 3 : yMargin / 3);
+            Font myFont = new Font("Arial", (pnlGame.Width <= pnlGame.Height) ? size / 3 : size / 3);
 
             //Vertical lines
             for (int i = 0; i < columns + 1; i++) {
-                gr.DrawLine(myPen, x, y, x, yMargin * columns);
-                x += xMargin;
+                gr.DrawLine(myPen, x, y, x, size * columns);
+                x += size;
             }
 
             x = 0f;
             //Horizontal lines
             for (int i = 0; i < rows + 1; i++) {
-                gr.DrawLine(myPen, x, y, xMargin * columns, y);
-                y += yMargin;
+                gr.DrawLine(myPen, x, y, size * columns, y);
+                y += size;
             }
 
             x = 0f;
@@ -57,21 +56,31 @@ namespace ConnectXLibrary
                 for (int c = 0; c < columns; c++)
                 {
                     gr.DrawString(Convert.ToString(counter), myFont, Brushes.Black, x + myFont.Size, y + myFont.Size);
-                    x += xMargin;
+                    x += size;
                     counter++;
                 }
-                y += yMargin;
+                y += size;
                 x = 0;
             }
+
+            drawCircles();
+        }
+
+        //###### IN GAME.DESIGNER DIT OOK UNCOMMENTEN ######
+        //private void Game_FormClosing(object sender, FormClosingEventArgs e) {
+        //    Menu menu = new Menu();
+        //    menu.StartPosition = FormStartPosition.Manual;
+        //    menu.Location = new Point(this.Location.X, this.Location.Y);
+        //    menu.Show();
+        //    this.Hide();
+        //}
+
+        private void drawCircles() {
+            System.Drawing.Graphics graphics = this.CreateGraphics();
+            System.Drawing.Rectangle rectangle = new System.Drawing.Rectangle(75, 75, 100, 100);
+            graphics.DrawEllipse(System.Drawing.Pens.Black, rectangle);
+            graphics.DrawRectangle(System.Drawing.Pens.Red, rectangle);
         }
         #endregion
-
-        private void Game_FormClosing(object sender, FormClosingEventArgs e) {
-            Menu menu = new Menu();
-            menu.StartPosition = FormStartPosition.Manual;
-            menu.Location = new Point(this.Location.X, this.Location.Y);
-            menu.Show();
-            this.Hide();
-        }
     }
 }

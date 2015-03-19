@@ -28,28 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblWelkom = new System.Windows.Forms.Label();
-            this.txtName = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
             this.pnlGame = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnDrawGrid = new System.Windows.Forms.Button();
+            this.picBoxBanner = new System.Windows.Forms.PictureBox();
+            this.lblPlayer1 = new System.Windows.Forms.Label();
+            this.lblPlayer2 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxBanner)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lblWelkom
-            // 
-            this.lblWelkom.AutoSize = true;
-            this.lblWelkom.Location = new System.Drawing.Point(349, 13);
-            this.lblWelkom.Name = "lblWelkom";
-            this.lblWelkom.Size = new System.Drawing.Size(46, 13);
-            this.lblWelkom.TabIndex = 0;
-            this.lblWelkom.Text = "Welkom";
-            // 
-            // txtName
-            // 
-            this.txtName.Location = new System.Drawing.Point(420, 10);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(165, 20);
-            this.txtName.TabIndex = 1;
             // 
             // lblName
             // 
@@ -61,20 +47,56 @@
             // 
             // pnlGame
             // 
-            this.pnlGame.Location = new System.Drawing.Point(12, 52);
+            this.pnlGame.BackColor = System.Drawing.Color.White;
+            this.pnlGame.Location = new System.Drawing.Point(12, 157);
             this.pnlGame.Name = "pnlGame";
-            this.pnlGame.Size = new System.Drawing.Size(910, 452);
+            this.pnlGame.Size = new System.Drawing.Size(1537, 634);
             this.pnlGame.TabIndex = 4;
             // 
-            // button1
+            // btnDrawGrid
             // 
-            this.button1.Location = new System.Drawing.Point(442, 510);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnDrawGrid.Location = new System.Drawing.Point(743, 808);
+            this.btnDrawGrid.Name = "btnDrawGrid";
+            this.btnDrawGrid.Size = new System.Drawing.Size(75, 23);
+            this.btnDrawGrid.TabIndex = 5;
+            this.btnDrawGrid.Text = "Draw Grid";
+            this.btnDrawGrid.UseVisualStyleBackColor = true;
+            this.btnDrawGrid.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // picBoxBanner
+            // 
+            this.picBoxBanner.BackColor = System.Drawing.Color.Transparent;
+            this.picBoxBanner.Image = global::ConnectXLibrary.Properties.Resources.banner1;
+            this.picBoxBanner.Location = new System.Drawing.Point(549, 12);
+            this.picBoxBanner.Name = "picBoxBanner";
+            this.picBoxBanner.Size = new System.Drawing.Size(463, 72);
+            this.picBoxBanner.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBoxBanner.TabIndex = 7;
+            this.picBoxBanner.TabStop = false;
+            // 
+            // lblPlayer1
+            // 
+            this.lblPlayer1.AutoSize = true;
+            this.lblPlayer1.BackColor = System.Drawing.Color.Transparent;
+            this.lblPlayer1.Font = new System.Drawing.Font("Century Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlayer1.ForeColor = System.Drawing.Color.White;
+            this.lblPlayer1.Location = new System.Drawing.Point(64, 28);
+            this.lblPlayer1.Name = "lblPlayer1";
+            this.lblPlayer1.Size = new System.Drawing.Size(160, 44);
+            this.lblPlayer1.TabIndex = 8;
+            this.lblPlayer1.Text = "Player 1";
+            // 
+            // lblPlayer2
+            // 
+            this.lblPlayer2.AutoSize = true;
+            this.lblPlayer2.BackColor = System.Drawing.Color.Transparent;
+            this.lblPlayer2.Font = new System.Drawing.Font("Century Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlayer2.ForeColor = System.Drawing.Color.White;
+            this.lblPlayer2.Location = new System.Drawing.Point(1304, 28);
+            this.lblPlayer2.Name = "lblPlayer2";
+            this.lblPlayer2.Size = new System.Drawing.Size(160, 44);
+            this.lblPlayer2.TabIndex = 9;
+            this.lblPlayer2.Text = "Player 2";
             // 
             // Game
             // 
@@ -82,17 +104,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::ConnectXLibrary.Properties.Resources._128_184;
             this.ClientSize = new System.Drawing.Size(1561, 843);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.lblPlayer2);
+            this.Controls.Add(this.lblPlayer1);
+            this.Controls.Add(this.picBoxBanner);
+            this.Controls.Add(this.btnDrawGrid);
             this.Controls.Add(this.pnlGame);
             this.Controls.Add(this.lblName);
-            this.Controls.Add(this.txtName);
-            this.Controls.Add(this.lblWelkom);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1577, 882);
             this.MinimumSize = new System.Drawing.Size(1577, 882);
             this.Name = "Game";
             this.Text = "Game";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Game_FormClosing);
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxBanner)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -100,10 +123,11 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblWelkom;
-        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnDrawGrid;
         public System.Windows.Forms.Panel pnlGame;
+        private System.Windows.Forms.PictureBox picBoxBanner;
+        private System.Windows.Forms.Label lblPlayer1;
+        private System.Windows.Forms.Label lblPlayer2;
     }
 }

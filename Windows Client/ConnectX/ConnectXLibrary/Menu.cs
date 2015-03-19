@@ -30,7 +30,7 @@ namespace ConnectXLibrary
             Game game = new Game();
             game.StartPosition = FormStartPosition.Manual;
             game.Location = new Point(this.Location.X, this.Location.Y);
-            this.Hide();
+            //this.Hide();
             game.Show();
         }
     }

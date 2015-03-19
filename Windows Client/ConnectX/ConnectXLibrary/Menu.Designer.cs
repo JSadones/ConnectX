@@ -35,8 +35,8 @@
             this.btnSettings = new System.Windows.Forms.Button();
             this.btnPlayCPU = new System.Windows.Forms.Button();
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.btnMultiplayer = new System.Windows.Forms.Button();
             this.picBoxBanner = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxBanner)).BeginInit();
             this.SuspendLayout();
@@ -106,7 +106,7 @@
             // pnlMenu
             // 
             this.pnlMenu.BackColor = System.Drawing.Color.Transparent;
-            this.pnlMenu.Controls.Add(this.button1);
+            this.pnlMenu.Controls.Add(this.btnMultiplayer);
             this.pnlMenu.Controls.Add(this.btnPlayCPU);
             this.pnlMenu.Controls.Add(this.btnSettings);
             this.pnlMenu.Controls.Add(this.btnQuit);
@@ -114,6 +114,18 @@
             this.pnlMenu.Name = "pnlMenu";
             this.pnlMenu.Size = new System.Drawing.Size(1552, 562);
             this.pnlMenu.TabIndex = 5;
+            // 
+            // btnMultiplayer
+            // 
+            this.btnMultiplayer.BackColor = System.Drawing.SystemColors.Control;
+            this.btnMultiplayer.Font = new System.Drawing.Font("Century Gothic", 48F, System.Drawing.FontStyle.Bold);
+            this.btnMultiplayer.Location = new System.Drawing.Point(430, 166);
+            this.btnMultiplayer.Name = "btnMultiplayer";
+            this.btnMultiplayer.Size = new System.Drawing.Size(680, 100);
+            this.btnMultiplayer.TabIndex = 5;
+            this.btnMultiplayer.Text = "MULTIPLAYER\r";
+            this.btnMultiplayer.UseVisualStyleBackColor = false;
+            this.btnMultiplayer.Click += new System.EventHandler(this.button1_Click);
             // 
             // picBoxBanner
             // 
@@ -124,18 +136,6 @@
             this.picBoxBanner.Size = new System.Drawing.Size(927, 144);
             this.picBoxBanner.TabIndex = 6;
             this.picBoxBanner.TabStop = false;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.SystemColors.Control;
-            this.button1.Font = new System.Drawing.Font("Century Gothic", 48F, System.Drawing.FontStyle.Bold);
-            this.button1.Location = new System.Drawing.Point(430, 166);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(680, 100);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "MULTIPLAYER\r";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Menu
             // 
@@ -174,7 +174,7 @@
         private System.Windows.Forms.Button btnPlayCPU;
         private System.Windows.Forms.Panel pnlMenu;
         private System.Windows.Forms.PictureBox picBoxBanner;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnMultiplayer;
     }
 }
 
