@@ -19,5 +19,13 @@ namespace ConnectXUnitTest
             gameInterface.newGame();
             Assert.IsTrue(gameInterface.gameRunning());
         }
+
+        [TestMethod]
+        public void TestGetScorePlayer1()
+        {
+            gameInterface.setScorePlayer1(1);
+            // Parameter == player number
+            Assert.IsTrue(gameInterface.getScore(1) == 1);
+        }
     }
 }
