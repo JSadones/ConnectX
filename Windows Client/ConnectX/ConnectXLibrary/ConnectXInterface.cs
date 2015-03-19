@@ -67,8 +67,7 @@
 
 		public bool insertToken(int column, int player) {
 			if (player == playerAtPlay) {
-				if (game.insertToken(column, player))
-				{
+				if (game.insertToken(column, player)) {
 					switchPlayerAtPlay();
 					return true;
 				}
@@ -78,8 +77,7 @@
 			
 		}
 
-		public void switchPlayerAtPlay()
-		{
+		public void switchPlayerAtPlay() {
 			if (playerAtPlay == 1) playerAtPlay = 2;
 			else playerAtPlay = 1;
 		}

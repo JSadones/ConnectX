@@ -50,10 +50,10 @@
             this.lblLinkWebclient.LinkColor = System.Drawing.Color.White;
             this.lblLinkWebclient.Location = new System.Drawing.Point(278, 148);
             this.lblLinkWebclient.Name = "lblLinkWebclient";
-            this.lblLinkWebclient.Size = new System.Drawing.Size(307, 24);
+            this.lblLinkWebclient.Size = new System.Drawing.Size(293, 24);
             this.lblLinkWebclient.TabIndex = 2;
             this.lblLinkWebclient.TabStop = true;
-            this.lblLinkWebclient.Text = "Also play with our webclient !";
+            this.lblLinkWebclient.Text = "Also play on our webclient !";
             // 
             // lblSideInfo
             // 
@@ -156,6 +156,7 @@
             this.Name = "Menu";
             this.Padding = new System.Windows.Forms.Padding(4, 4, 4, 26);
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Connect X";
             this.Load += new System.EventHandler(this.Menu_Load);
             this.pnlMenu.ResumeLayout(false);
