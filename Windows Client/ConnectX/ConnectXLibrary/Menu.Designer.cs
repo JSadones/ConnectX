@@ -129,7 +129,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.BackgroundImage = global::ConnectX.Properties.Resources.bg;
+            this.BackgroundImage = global::ConnectXLibrary.Properties.Resources.bg;
             this.ClientSize = new System.Drawing.Size(902, 489);
             this.Controls.Add(this.pnlMenu);
             this.Controls.Add(this.pnlGameCpu);
