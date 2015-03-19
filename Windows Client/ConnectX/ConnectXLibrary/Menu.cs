@@ -18,16 +18,17 @@ namespace ConnectXLibrary
         private void btnPlayCPU_Click(object sender, EventArgs e) {
             pnlMenu.Visible = false;
             pnlGameCpu.Visible = true;
+            Game game = new Game();
+            game.Show();
         }
 
-        private void lblSettings_Click(object sender, EventArgs e) {
+        private void Menu_Load(object sender, EventArgs e) {
+
+        }
+
+        private void btnSettings_Click(object sender, EventArgs e) {
             pnlMenu.Visible = false;
             pnlSettings.Visible = true;
-        }
-
-        private void Menu_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

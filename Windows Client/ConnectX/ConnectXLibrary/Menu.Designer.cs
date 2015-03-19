@@ -33,7 +33,7 @@
             this.btnQuit = new System.Windows.Forms.Button();
             this.lblLinkWebclient = new System.Windows.Forms.LinkLabel();
             this.lblSideInfo = new System.Windows.Forms.Label();
-            this.lblSettings = new System.Windows.Forms.Button();
+            this.btnSettings = new System.Windows.Forms.Button();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.pnlSettings = new System.Windows.Forms.Panel();
             this.pnlGameCpu = new System.Windows.Forms.Panel();
@@ -83,15 +83,15 @@
             this.lblSideInfo.TabIndex = 3;
             this.lblSideInfo.Text = "Connect X ";
             // 
-            // lblSettings
+            // btnSettings
             // 
-            this.lblSettings.Location = new System.Drawing.Point(340, 189);
-            this.lblSettings.Name = "lblSettings";
-            this.lblSettings.Size = new System.Drawing.Size(222, 68);
-            this.lblSettings.TabIndex = 4;
-            this.lblSettings.Text = "Settings";
-            this.lblSettings.UseVisualStyleBackColor = true;
-            this.lblSettings.Click += new System.EventHandler(this.lblSettings_Click);
+            this.btnSettings.Location = new System.Drawing.Point(340, 189);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(222, 68);
+            this.btnSettings.TabIndex = 4;
+            this.btnSettings.Text = "Settings";
+            this.btnSettings.UseVisualStyleBackColor = true;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
             // pnlMenu
             // 
@@ -108,7 +108,7 @@
             this.pnlSettings.Controls.Add(this.lblSideInfo);
             this.pnlSettings.Controls.Add(this.lblLinkWebclient);
             this.pnlSettings.Controls.Add(this.btnPlayCPU);
-            this.pnlSettings.Controls.Add(this.lblSettings);
+            this.pnlSettings.Controls.Add(this.btnSettings);
             this.pnlSettings.Controls.Add(this.btnQuit);
             this.pnlSettings.Location = new System.Drawing.Point(0, 0);
             this.pnlSettings.Name = "pnlSettings";
@@ -156,7 +156,7 @@
         private System.Windows.Forms.Button btnQuit;
         private System.Windows.Forms.LinkLabel lblLinkWebclient;
         private System.Windows.Forms.Label lblSideInfo;
-        private System.Windows.Forms.Button lblSettings;
+        private System.Windows.Forms.Button btnSettings;
         private System.Windows.Forms.Panel pnlMenu;
         private System.Windows.Forms.Panel pnlSettings;
         private System.Windows.Forms.Panel pnlGameCpu;

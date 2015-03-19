@@ -11,8 +11,6 @@ namespace ConnectXLibrary
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Menu());
-
-            ConnectX game = new ConnectX();
         }
     }
 }
