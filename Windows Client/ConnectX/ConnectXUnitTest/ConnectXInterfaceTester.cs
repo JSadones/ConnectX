@@ -21,9 +21,8 @@ namespace ConnectXUnitTest
         }
 
         [TestMethod]
-        public void TestGetScorePlayer1()
-        {
-            gameInterface.setScorePlayer1(1);
+        public void TestGetScorePlayer1() {
+            gameInterface.setScorePlayer(1);
             // Parameter == player number
             Assert.IsTrue(gameInterface.getScore(1) == 1);
         }
