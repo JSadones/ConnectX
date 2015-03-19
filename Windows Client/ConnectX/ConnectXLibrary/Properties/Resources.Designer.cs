@@ -73,6 +73,16 @@ namespace ConnectXLibrary.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _128_184_left {
+            get {
+                object obj = ResourceManager.GetObject("128-184-left", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _128_191 {
             get {
                 object obj = ResourceManager.GetObject("128-191", resourceCulture);
@@ -116,6 +126,16 @@ namespace ConnectXLibrary.Properties {
         internal static System.Drawing.Bitmap bg {
             get {
                 object obj = ResourceManager.GetObject("bg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bg_left {
+            get {
+                object obj = ResourceManager.GetObject("bg_left", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

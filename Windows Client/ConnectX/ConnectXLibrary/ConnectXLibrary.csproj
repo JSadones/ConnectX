@@ -87,18 +87,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -129,12 +129,14 @@
   <ItemGroup>
     <Content Include="media\banner.png" />
     <Content Include="media\bg.png" />
+    <None Include="Resources\128-184-left.jpg" />
+    <None Include="Resources\bg_left.jpg" />
+    <Content Include="Resources\128-191.jpg" />
+    <Content Include="Resources\128-193.jpg" />
+    <Content Include="Resources\banner.png" />
     <Content Include="Resources\chip-icon.ico" />
     <None Include="Resources\banner1.png" />
-    <None Include="Resources\128-193.jpg" />
     <None Include="Resources\128-184.jpg" />
-    <None Include="Resources\128-191.jpg" />
-    <None Include="Resources\banner.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
