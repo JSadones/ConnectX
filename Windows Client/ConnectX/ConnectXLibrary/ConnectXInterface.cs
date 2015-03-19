@@ -93,5 +93,25 @@
 			// ToDo: breng terug naar startscherm
         }
         #endregion
-	}
+
+        public bool isColumnFull(int p)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public int getToken(int p1, int p2)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public string getName(int p)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void setName(int p1, string p2)
+        {
+            throw new System.NotImplementedException();
+        }
+    }
 }
