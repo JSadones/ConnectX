@@ -36,6 +36,28 @@ namespace ConnectXUnitTest
         }
 
         [TestMethod]
+        public void TestNewGame1HumanPlayerWith9RowsAnd11Columns()
+        {
+            Assert.IsFalse(gameInterface.gameRunning());
+            gameInterface.newGame(1, 9, 11);
+            Assert.IsTrue(gameInterface.gameRunning());
+        }
+
+        [TestMethod]
+        public void TestResetGame()
+        {
+            gameInterface.newGame(2, 9, 11);
+            gameInterface.setScorePlayer(1);
+            gameInterface.setScorePlayer(2);
+            Assert.IsTrue(gameInterface.gameRunning());
+            gameInterface.reset();
+            Assert.IsFalse(gameInterface.gameRunning());
+            Assert.IsTrue(gameInterface.getScore(1) == 0);
+            Assert.IsTrue(gameInterface.getScore(2) == 0);
+
+        }
+
+        [TestMethod]
         public void TestGetPlayerAtPlay()
         {
             gameInterface.setPlayerAtPlay(1);
