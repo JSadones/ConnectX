@@ -36,6 +36,14 @@ namespace ConnectXUnitTest
         }
 
         [TestMethod]
+        public void TestNewGame2HumanPlayersWith9RowsAnd5Streak()
+        {
+            Assert.IsFalse(gameInterface.gameRunning());
+            gameInterface.newGame(2, 9, 11,5);
+            Assert.IsTrue(gameInterface.gameRunning());
+        }
+
+        [TestMethod]
         public void TestNewGame1HumanPlayerWith9RowsAnd11Columns()
         {
             Assert.IsFalse(gameInterface.gameRunning());
@@ -54,6 +62,28 @@ namespace ConnectXUnitTest
             Assert.IsFalse(gameInterface.gameRunning());
             Assert.IsTrue(gameInterface.getScore(1) == 0);
             Assert.IsTrue(gameInterface.getScore(2) == 0);
+
+        }
+
+        [TestMethod]
+        public void TestCurrentGameWon()
+        {
+            gameInterface.newGame();
+            
+            Assert.IsTrue(gameInterface.isCurrentGameWon == false);
+
+            gameInterface.insertToken(1, 1);
+            gameInterface.insertToken(2, 2);
+
+            gameInterface.insertToken(1, 1);
+            gameInterface.insertToken(2, 3);
+
+            gameInterface.insertToken(1, 1);
+            gameInterface.insertToken(2, 4);
+
+            gameInterface.insertToken(1, 1);
+
+            Assert.IsTrue(gameInterface.isCurrentGameWon == true);
 
         }
 
