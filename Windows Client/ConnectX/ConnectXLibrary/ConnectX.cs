@@ -22,6 +22,9 @@ namespace ConnectXLibrary
 		{
 		}
 
+        public ConnectX(int rows, int columns): this (rows, columns, 4) {
+        }
+
         public ConnectX(int rows, int columns, int tokenStreak) {
             this.rows = rows;
             this.columns = columns;

@@ -48,6 +48,7 @@
 			else return scorePlayer2;
 		}
 
+<<<<<<< HEAD
 		public void setPlayerAtPlay(int playerAtPlay)
 		{
 			this.playerAtPlay = playerAtPlay;
@@ -64,4 +65,26 @@
 			} else return false;
 		}
 	}
+=======
+        public void newGame(int p1, int p2, int p3)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void setPlayerAtPlay(int p)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool insertToken(int p1, int p2)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public int getPlayerAtPlay()
+        {
+            throw new System.NotImplementedException();
+        }
+    }
+>>>>>>> 5a2d9398649518b684d7112f323799d6de8d1fd3
 }
