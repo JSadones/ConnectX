@@ -39,5 +39,25 @@
 			}
 			else return scorePlayer2;
 		}
-	}
+
+        public void newGame(int p1, int p2, int p3)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void setPlayerAtPlay(int p)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool insertToken(int p1, int p2)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public int getPlayerAtPlay()
+        {
+            throw new System.NotImplementedException();
+        }
+    }
 }

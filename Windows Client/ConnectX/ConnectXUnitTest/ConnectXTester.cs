@@ -302,8 +302,7 @@ namespace ConnectXUnitTest
         }
 
         [TestMethod]
-        public void TestWhichPlayerPlaysNextTurn()
-        {
+        public void TestWhichPlayerPlaysNextTurn() {
             game.insertToken(0, 1);
             Assert.IsTrue(game.getPlayerAtTurn() == 2);
         }

@@ -28,14 +28,14 @@ namespace ConnectXUnitTest
         }
 
         [TestMethod]
-        public void TestNewGame2HumanPlayersWith9RowsAnd11Columns()
-        {
+        public void TestNewGame2HumanPlayersWith9RowsAnd11Columns() {
             Assert.IsFalse(gameInterface.gameRunning());
             gameInterface.newGame(2, 9, 11);
             Assert.IsTrue(gameInterface.gameRunning());
         }
 
         [TestMethod]
+<<<<<<< Updated upstream
         public void TestNewGame2HumanPlayersWith9RowsAnd5Streak()
         {
             Assert.IsFalse(gameInterface.gameRunning());
@@ -99,14 +99,16 @@ namespace ConnectXUnitTest
         [TestMethod]
         public void TestGetPlayerAtPlay()
         {
+=======
+        public void TestGetPlayerAtPlay() {
+>>>>>>> Stashed changes
             gameInterface.setPlayerAtPlay(1);
             // Parameter == player number
             Assert.IsTrue(gameInterface.getPlayerAtPlay() == 1);
         }
 
         [TestMethod]
-        public void TestInsertTokenInColumn2ByPlayer1()
-        {
+        public void TestInsertTokenInColumn2ByPlayer1() {
             gameInterface.setPlayerAtPlay(1);
             
             // insertToken returns true if token is successfully inserted
