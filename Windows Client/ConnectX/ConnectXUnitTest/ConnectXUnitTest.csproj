@@ -53,6 +53,7 @@
     <Compile Include="ConnectXInterfaceTester.cs" />
     <Compile Include="ConnectXTester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ConnectXSlicesTester.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ConnectXLibrary\ConnectXLibrary.csproj">
