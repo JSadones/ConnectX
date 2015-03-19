@@ -4,8 +4,7 @@ using ConnectXLibrary;
 namespace ConnectXUnitTest
 {
     [TestClass]
-    public class ConnectXInterfaceTester
-    {
+    public class ConnectXInterfaceTester {
         ConnectXInterface gameInterface;
 
         [TestInitialize]
@@ -34,9 +33,6 @@ namespace ConnectXUnitTest
             Assert.IsTrue(gameInterface.gameRunning());
         }
 
-<<<<<<< HEAD
-		[TestMethod]
-=======
         [TestMethod]
         public void TestNewGame2HumanPlayersWith9RowsAnd5Streak() {
             Assert.IsFalse(gameInterface.gameRunning());
@@ -45,16 +41,14 @@ namespace ConnectXUnitTest
         }
 
         [TestMethod]
-        public void TestNewGame1HumanPlayerWith9RowsAnd11Columns()
-        {
+        public void TestNewGame1HumanPlayerWith9RowsAnd11Columns() {
             Assert.IsFalse(gameInterface.gameRunning());
             gameInterface.newGame(1, 9, 11);
             Assert.IsTrue(gameInterface.gameRunning());
         }
 
         [TestMethod]
-        public void TestResetGame()
-        {
+        public void TestResetGame() {
             gameInterface.newGame(2, 9, 11);
             gameInterface.setScorePlayer(1);
             gameInterface.setScorePlayer(2);
@@ -95,42 +89,21 @@ namespace ConnectXUnitTest
 
         }
 
-<<<<<<< Updated upstream
-        [TestMethod]
-<<<<<<< Updated upstream
->>>>>>> 5a2d9398649518b684d7112f323799d6de8d1fd3
-        public void TestGetPlayerAtPlay()
-        {
-=======
-        public void TestGetPlayerAtPlay() {
->>>>>>> Stashed changes
-=======
-        public void TestGetPlayerAtPlay() {
->>>>>>> Stashed changes
-=======
-=======
->>>>>>> Stashed changes
         public void TestGetPlayerAtPlay() {
             gameInterface.setPlayerAtPlay(1);
             // Parameter == player number
             Assert.IsTrue(gameInterface.getPlayerAtPlay() == 1);
         }
-		
+
         [TestMethod]
-<<<<<<< HEAD
-       public void TestInsertTokenInColumn2ByPlayer1() {
-			gameInterface.newGame();
-			gameInterface.setPlayerAtPlay(1);
-=======
         public void TestInsertTokenInColumn2ByPlayer1() {
+            gameInterface.newGame();
             gameInterface.setPlayerAtPlay(1);
->>>>>>> 5a2d9398649518b684d7112f323799d6de8d1fd3
             
             // insertToken returns true if token is successfully inserted
             Assert.IsTrue(gameInterface.insertToken(2,1));
             // return false if it is not his turn
             Assert.IsFalse(gameInterface.insertToken(2, 2));
         }
-	   
 	}
 }

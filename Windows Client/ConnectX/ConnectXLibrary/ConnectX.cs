@@ -18,9 +18,6 @@ namespace ConnectXLibrary
         #region Constructor
         public ConnectX(): this(6, 7, 4) {
         }
-		public ConnectX(int rows, int columns): this(rows, columns, 4)
-		{
-		}
 
         public ConnectX(int rows, int columns): this (rows, columns, 4) {
         }
