@@ -80,17 +80,19 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(934, 545);
+            this.BackgroundImage = global::ConnectXLibrary.Properties.Resources._128_184;
+            this.ClientSize = new System.Drawing.Size(1561, 843);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pnlGame);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.lblWelkom);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(950, 584);
-            this.MinimumSize = new System.Drawing.Size(950, 584);
+            this.MaximumSize = new System.Drawing.Size(1577, 882);
+            this.MinimumSize = new System.Drawing.Size(1577, 882);
             this.Name = "Game";
             this.Text = "Game";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Game_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

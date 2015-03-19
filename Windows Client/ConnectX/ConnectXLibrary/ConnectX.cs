@@ -301,11 +301,9 @@ namespace ConnectXLibrary
 
         public bool insertToken(int column, int player) {
 
-			if (1 <= player && player <= 2)
-			{
+			if (1 <= player && player <= 2) {
 				int row = 0;
-				while (row < rows)
-				{
+				while (row < rows) {
 					if (raster[row, column] == 0)
 					{
 						raster[row, column] = player;
@@ -314,8 +312,7 @@ namespace ConnectXLibrary
 					row++;
 				}
 
-				if (player == 1)
-				{
+				if (player == 1) {
 					playerAtTurn = 2;
 				}
 				else playerAtTurn = 1;

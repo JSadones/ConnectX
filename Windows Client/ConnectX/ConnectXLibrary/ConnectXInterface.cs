@@ -14,10 +14,14 @@
         }
         #endregion
 
+        #region Properties
+        #endregion
+
+        #region Methods
         public void newGame(int players, int rows, int columns) {
             game = new ConnectX(rows, columns);
         }
-        #region Methods
+
         public void newGame() {
             game = new ConnectX();
         }

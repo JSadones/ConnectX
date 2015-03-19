@@ -46,6 +46,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\chip-icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -124,8 +127,14 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="media\banner.png" />
     <Content Include="media\bg.png" />
-    <Content Include="media\chip-icon.ico" />
+    <Content Include="Resources\chip-icon.ico" />
+    <None Include="Resources\banner1.png" />
+    <None Include="Resources\128-193.jpg" />
+    <None Include="Resources\128-184.jpg" />
+    <None Include="Resources\128-191.jpg" />
+    <None Include="Resources\banner.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

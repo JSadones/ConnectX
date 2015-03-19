@@ -65,5 +65,13 @@ namespace ConnectXLibrary
             }
         }
         #endregion
+
+        private void Game_FormClosing(object sender, FormClosingEventArgs e) {
+            Menu menu = new Menu();
+            menu.StartPosition = FormStartPosition.Manual;
+            menu.Location = new Point(this.Location.X, this.Location.Y);
+            menu.Show();
+            this.Hide();
+        }
     }
 }

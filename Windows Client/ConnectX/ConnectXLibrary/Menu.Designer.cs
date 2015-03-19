@@ -29,137 +29,152 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
-            this.btnPlayCPU = new System.Windows.Forms.Button();
-            this.btnQuit = new System.Windows.Forms.Button();
             this.lblLinkWebclient = new System.Windows.Forms.LinkLabel();
             this.lblSideInfo = new System.Windows.Forms.Label();
+            this.btnQuit = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
+            this.btnPlayCPU = new System.Windows.Forms.Button();
             this.pnlMenu = new System.Windows.Forms.Panel();
-            this.pnlSettings = new System.Windows.Forms.Panel();
-            this.pnlGameCpu = new System.Windows.Forms.Panel();
+            this.picBoxBanner = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.pnlMenu.SuspendLayout();
-            this.pnlSettings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxBanner)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnPlayCPU
-            // 
-            this.btnPlayCPU.BackColor = System.Drawing.SystemColors.Control;
-            this.btnPlayCPU.Location = new System.Drawing.Point(340, 66);
-            this.btnPlayCPU.Name = "btnPlayCPU";
-            this.btnPlayCPU.Size = new System.Drawing.Size(222, 67);
-            this.btnPlayCPU.TabIndex = 0;
-            this.btnPlayCPU.Text = "Play against CPU";
-            this.btnPlayCPU.UseVisualStyleBackColor = false;
-            this.btnPlayCPU.Click += new System.EventHandler(this.btnPlayCPU_Click);
-            // 
-            // btnQuit
-            // 
-            this.btnQuit.Location = new System.Drawing.Point(340, 315);
-            this.btnQuit.Name = "btnQuit";
-            this.btnQuit.Size = new System.Drawing.Size(222, 69);
-            this.btnQuit.TabIndex = 1;
-            this.btnQuit.Text = "Quit";
-            this.btnQuit.UseVisualStyleBackColor = true;
-            this.btnQuit.Click += new System.EventHandler(this.btnSluiten_Click);
             // 
             // lblLinkWebclient
             // 
             this.lblLinkWebclient.AutoSize = true;
             this.lblLinkWebclient.BackColor = System.Drawing.Color.Transparent;
-            this.lblLinkWebclient.Location = new System.Drawing.Point(10, 445);
+            this.lblLinkWebclient.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLinkWebclient.ForeColor = System.Drawing.Color.White;
+            this.lblLinkWebclient.LinkColor = System.Drawing.Color.White;
+            this.lblLinkWebclient.Location = new System.Drawing.Point(278, 148);
             this.lblLinkWebclient.Name = "lblLinkWebclient";
-            this.lblLinkWebclient.Size = new System.Drawing.Size(88, 13);
+            this.lblLinkWebclient.Size = new System.Drawing.Size(307, 24);
             this.lblLinkWebclient.TabIndex = 2;
             this.lblLinkWebclient.TabStop = true;
-            this.lblLinkWebclient.Text = "Webserver Client";
+            this.lblLinkWebclient.Text = "Also play with our webclient !";
             // 
             // lblSideInfo
             // 
             this.lblSideInfo.AutoSize = true;
             this.lblSideInfo.BackColor = System.Drawing.Color.Transparent;
-            this.lblSideInfo.Location = new System.Drawing.Point(829, 445);
+            this.lblSideInfo.ForeColor = System.Drawing.Color.White;
+            this.lblSideInfo.Location = new System.Drawing.Point(7, 808);
             this.lblSideInfo.Name = "lblSideInfo";
-            this.lblSideInfo.Size = new System.Drawing.Size(60, 13);
+            this.lblSideInfo.Size = new System.Drawing.Size(476, 26);
             this.lblSideInfo.TabIndex = 3;
-            this.lblSideInfo.Text = "Connect X ";
+            this.lblSideInfo.Text = "Connect X\r\nHowest TI-S2 Project - Groep 30 : Shane Deconinck, Matthias Haelman, L" +
+    "ucas Pirard, Jel Sadones";
+            // 
+            // btnQuit
+            // 
+            this.btnQuit.Font = new System.Drawing.Font("Century Gothic", 48F, System.Drawing.FontStyle.Bold);
+            this.btnQuit.Location = new System.Drawing.Point(430, 440);
+            this.btnQuit.Name = "btnQuit";
+            this.btnQuit.Size = new System.Drawing.Size(680, 100);
+            this.btnQuit.TabIndex = 1;
+            this.btnQuit.Text = "QUIT";
+            this.btnQuit.UseVisualStyleBackColor = true;
+            this.btnQuit.Click += new System.EventHandler(this.btnSluiten_Click);
             // 
             // btnSettings
             // 
-            this.btnSettings.Location = new System.Drawing.Point(340, 189);
+            this.btnSettings.Enabled = false;
+            this.btnSettings.Font = new System.Drawing.Font("Century Gothic", 48F, System.Drawing.FontStyle.Bold);
+            this.btnSettings.Location = new System.Drawing.Point(430, 303);
             this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(222, 68);
+            this.btnSettings.Size = new System.Drawing.Size(680, 100);
             this.btnSettings.TabIndex = 4;
-            this.btnSettings.Text = "Settings";
+            this.btnSettings.Text = "SETTINGS";
             this.btnSettings.UseVisualStyleBackColor = true;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
+            // 
+            // btnPlayCPU
+            // 
+            this.btnPlayCPU.BackColor = System.Drawing.SystemColors.Control;
+            this.btnPlayCPU.Enabled = false;
+            this.btnPlayCPU.Font = new System.Drawing.Font("Century Gothic", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPlayCPU.Location = new System.Drawing.Point(430, 29);
+            this.btnPlayCPU.Name = "btnPlayCPU";
+            this.btnPlayCPU.Size = new System.Drawing.Size(680, 100);
+            this.btnPlayCPU.TabIndex = 0;
+            this.btnPlayCPU.Text = "PLAY AGAINST CPU";
+            this.btnPlayCPU.UseVisualStyleBackColor = false;
+            this.btnPlayCPU.Click += new System.EventHandler(this.btnPlayCPU_Click);
             // 
             // pnlMenu
             // 
             this.pnlMenu.BackColor = System.Drawing.Color.Transparent;
-            this.pnlMenu.Controls.Add(this.pnlSettings);
-            this.pnlMenu.Location = new System.Drawing.Point(2, 1);
+            this.pnlMenu.Controls.Add(this.button1);
+            this.pnlMenu.Controls.Add(this.btnPlayCPU);
+            this.pnlMenu.Controls.Add(this.btnSettings);
+            this.pnlMenu.Controls.Add(this.btnQuit);
+            this.pnlMenu.Location = new System.Drawing.Point(2, 179);
             this.pnlMenu.Name = "pnlMenu";
-            this.pnlMenu.Size = new System.Drawing.Size(903, 489);
+            this.pnlMenu.Size = new System.Drawing.Size(1552, 562);
             this.pnlMenu.TabIndex = 5;
             // 
-            // pnlSettings
+            // picBoxBanner
             // 
-            this.pnlSettings.BackColor = System.Drawing.Color.Transparent;
-            this.pnlSettings.Controls.Add(this.lblSideInfo);
-            this.pnlSettings.Controls.Add(this.lblLinkWebclient);
-            this.pnlSettings.Controls.Add(this.btnPlayCPU);
-            this.pnlSettings.Controls.Add(this.btnSettings);
-            this.pnlSettings.Controls.Add(this.btnQuit);
-            this.pnlSettings.Location = new System.Drawing.Point(0, 0);
-            this.pnlSettings.Name = "pnlSettings";
-            this.pnlSettings.Size = new System.Drawing.Size(903, 489);
-            this.pnlSettings.TabIndex = 5;
+            this.picBoxBanner.BackColor = System.Drawing.Color.Transparent;
+            this.picBoxBanner.Image = global::ConnectXLibrary.Properties.Resources.banner1;
+            this.picBoxBanner.Location = new System.Drawing.Point(317, 7);
+            this.picBoxBanner.Name = "picBoxBanner";
+            this.picBoxBanner.Size = new System.Drawing.Size(927, 144);
+            this.picBoxBanner.TabIndex = 6;
+            this.picBoxBanner.TabStop = false;
             // 
-            // pnlGameCpu
+            // button1
             // 
-            this.pnlGameCpu.BackColor = System.Drawing.Color.Transparent;
-            this.pnlGameCpu.Location = new System.Drawing.Point(2, 1);
-            this.pnlGameCpu.Name = "pnlGameCpu";
-            this.pnlGameCpu.Size = new System.Drawing.Size(903, 489);
-            this.pnlGameCpu.TabIndex = 5;
-            this.pnlGameCpu.Visible = false;
+            this.button1.BackColor = System.Drawing.SystemColors.Control;
+            this.button1.Font = new System.Drawing.Font("Century Gothic", 48F, System.Drawing.FontStyle.Bold);
+            this.button1.Location = new System.Drawing.Point(430, 166);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(680, 100);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "MULTIPLAYER\r";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.BackgroundImage = global::ConnectXLibrary.Properties.Resources.bg;
-            this.ClientSize = new System.Drawing.Size(902, 489);
+            this.BackgroundImage = global::ConnectXLibrary.Properties.Resources._128_184;
+            this.ClientSize = new System.Drawing.Size(1561, 843);
+            this.Controls.Add(this.picBoxBanner);
             this.Controls.Add(this.pnlMenu);
-            this.Controls.Add(this.pnlGameCpu);
+            this.Controls.Add(this.lblSideInfo);
+            this.Controls.Add(this.lblLinkWebclient);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(918, 528);
-            this.MinimumSize = new System.Drawing.Size(918, 528);
+            this.MaximumSize = new System.Drawing.Size(1577, 882);
+            this.MinimumSize = new System.Drawing.Size(1577, 882);
             this.Name = "Menu";
             this.Padding = new System.Windows.Forms.Padding(4, 4, 4, 26);
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Connect X";
             this.Load += new System.EventHandler(this.Menu_Load);
             this.pnlMenu.ResumeLayout(false);
-            this.pnlSettings.ResumeLayout(false);
-            this.pnlSettings.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxBanner)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button btnPlayCPU;
-        private System.Windows.Forms.Button btnQuit;
         private System.Windows.Forms.LinkLabel lblLinkWebclient;
         private System.Windows.Forms.Label lblSideInfo;
+        private System.Windows.Forms.Button btnQuit;
         private System.Windows.Forms.Button btnSettings;
+        private System.Windows.Forms.Button btnPlayCPU;
         private System.Windows.Forms.Panel pnlMenu;
-        private System.Windows.Forms.Panel pnlSettings;
-        private System.Windows.Forms.Panel pnlGameCpu;
+        private System.Windows.Forms.PictureBox picBoxBanner;
+        private System.Windows.Forms.Button button1;
     }
 }
 
