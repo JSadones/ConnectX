@@ -10,6 +10,7 @@
 
         #region Constructor
         public ConnectXInterface() {
+			playerAtPlay = 1;
         }
         #endregion
 
@@ -20,6 +21,11 @@
         public void newGame() {
             game = new ConnectX();
         }
+
+		public void newGame(int players, int rows, int columns, int tokenStreak)
+		{
+			game = new ConnectX(rows, columns, tokenStreak);
+		}
 
         public bool gameRunning() {
             if (game != null) {
@@ -57,24 +63,32 @@
 
 		public bool insertToken(int column, int player) {
 			if (player == playerAtPlay) {
-				return game.insertToken(column, player);
+				if (game.insertToken(column, player))
+				{
+					switchPlayerAtPlay();
+					return true;
+				}
+				else return false;
 			} else return false;
+
+			
 		}
 
-        public void finish() {
-            throw new System.NotImplementedException();
-        }
-
-        public bool isFinished { get; set; }
-
-        public bool isCurrentGameWon { get; set; }
-
-        public void newGame(int p1, int p2, int p3, int p4) {
-            throw new System.NotImplementedException();
-        }
+		public void switchPlayerAtPlay()
+		{
+			if (playerAtPlay == 1) playerAtPlay = 2;
+			else playerAtPlay = 1;
+		}
+		
+        public bool isCurrentGameWon() {
+			return game.isWon();
+		}
 
         public void reset() {
-            throw new System.NotImplementedException();
+			game = null;
+			scorePlayer1 = 0;
+			scorePlayer2 = 0;
+			// ToDo: breng terug naar startscherm
         }
         #endregion
     }

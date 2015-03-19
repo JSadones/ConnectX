@@ -36,7 +36,7 @@ namespace ConnectXUnitTest
         [TestMethod]
         public void TestNewGame2HumanPlayersWith9RowsAnd5Streak() {
             Assert.IsFalse(gameInterface.gameRunning());
-            gameInterface.newGame(2, 9, 11,5);
+            gameInterface.newGame(2, 9, 11, 5);
             Assert.IsTrue(gameInterface.gameRunning());
         }
 
@@ -54,38 +54,30 @@ namespace ConnectXUnitTest
             gameInterface.setScorePlayer(2);
             Assert.IsTrue(gameInterface.gameRunning());
             gameInterface.reset();
-            Assert.IsFalse(gameInterface.gameRunning());
+			Assert.IsFalse(gameInterface.gameRunning());
             Assert.IsTrue(gameInterface.getScore(1) == 0);
             Assert.IsTrue(gameInterface.getScore(2) == 0);
 
         }
-
+		
         [TestMethod]
         public void TestCurrentGameWon() {
             gameInterface.newGame();
             
-            Assert.IsTrue(gameInterface.isCurrentGameWon == false);
+            Assert.IsTrue(gameInterface.isCurrentGameWon() == false);
 
             gameInterface.insertToken(1, 1);
             gameInterface.insertToken(2, 2);
 
             gameInterface.insertToken(1, 1);
-            gameInterface.insertToken(2, 3);
+            gameInterface.insertToken(3, 2);
 
             gameInterface.insertToken(1, 1);
-            gameInterface.insertToken(2, 4);
+            gameInterface.insertToken(4, 2);
 
             gameInterface.insertToken(1, 1);
 
-            Assert.IsTrue(gameInterface.isCurrentGameWon == true);
-
-        }
-
-        [TestMethod]
-        public void TestFinishOverallGame() {
-            Assert.IsTrue(gameInterface.isFinished == false);
-            gameInterface.finish();
-            Assert.IsTrue(gameInterface.isFinished == true);
+			Assert.IsTrue(gameInterface.isCurrentGameWon() == true);
 
         }
 
@@ -103,7 +95,7 @@ namespace ConnectXUnitTest
             // insertToken returns true if token is successfully inserted
             Assert.IsTrue(gameInterface.insertToken(2,1));
             // return false if it is not his turn
-            Assert.IsFalse(gameInterface.insertToken(2, 2));
+            Assert.IsTrue(gameInterface.insertToken(2, 2));
         }
 	}
 }

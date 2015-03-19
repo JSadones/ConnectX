@@ -6,7 +6,6 @@ namespace ConnectXLibrary
     public class ConnectX
     {
         #region State
-        private bool won;
         private int[,] raster;
         private int rows;
         private int columns;
@@ -27,7 +26,6 @@ namespace ConnectXLibrary
             this.columns = columns;
             this.tokenStreak = tokenStreak;
 
-            won = false;
             raster = new int[rows, columns];
             clearRaster();
         }
