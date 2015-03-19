@@ -30,6 +30,7 @@ namespace ConnectXUnitTest
         [TestMethod]
         public void TestNewGame2HumanPlayersWith9RowsAnd11Columns() {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             Assert.IsFalse(gameInterface.gameRunning());
             gameInterface.newGame(2, 9, 11);
             Assert.IsTrue(gameInterface.gameRunning());
@@ -39,6 +40,8 @@ namespace ConnectXUnitTest
 <<<<<<< Updated upstream
         public void TestNewGame2HumanPlayersWith9RowsAnd5Streak()
         {
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
             Assert.IsFalse(gameInterface.gameRunning());
@@ -69,6 +72,7 @@ namespace ConnectXUnitTest
         }
 
         [TestMethod]
+<<<<<<< Updated upstream
         public void TestCurrentGameWon()
         {
             gameInterface.newGame();
@@ -103,6 +107,9 @@ namespace ConnectXUnitTest
 <<<<<<< Updated upstream
         public void TestGetPlayerAtPlay()
         {
+=======
+        public void TestGetPlayerAtPlay() {
+>>>>>>> Stashed changes
 =======
         public void TestGetPlayerAtPlay() {
 >>>>>>> Stashed changes
