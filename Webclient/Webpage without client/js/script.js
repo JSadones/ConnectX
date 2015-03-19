@@ -5,13 +5,11 @@ $(document).ready(function () {
         $(this).animate({
             height: '+=10px'
         });
-        $('h1').addClass(".bigger");
     });
     $('div.container-nav').mouseleave(function () {
         $(this).animate({
             height: '-=10px'
         });
-        $('h1').removeClass(".bigger");
     });
     $('div.container-footer').mouseenter(function () {
         $(this).animate({
