@@ -9,6 +9,8 @@ namespace ConnectXLibrary
         #region State
         private int rows;
         private int columns;
+        private float size = 80;
+        ConnectX game = new ConnectX();
         #endregion
 
         #region Constructor
@@ -16,21 +18,66 @@ namespace ConnectXLibrary
             InitializeComponent();
 
             Graphics gr = pnlGame.CreateGraphics();
-            ConnectX game = new ConnectX();
             rows = game.getRows();
             columns = game.getColumns();
         }
         #endregion
 
         #region Methods
-        private void button1_Click(object sender, EventArgs e)
-        {
+
+        //###### IN GAME.DESIGNER DIT OOK UNCOMMENTEN ######
+        //private void Game_FormClosing(object sender, FormClosingEventArgs e) {
+        //    Menu menu = new Menu();
+        //    menu.StartPosition = FormStartPosition.Manual;
+        //    menu.Location = new Point(this.Location.X, this.Location.Y);
+        //    menu.Show();
+        //    this.Hide();
+        //}
+
+        //private void drawCircles() {
+        //    System.Drawing.Graphics graphics = this.CreateGraphics();
+        //    System.Drawing.Rectangle rectangle = new System.Drawing.Rectangle(75, 75, 100, 100);
+        //    graphics.DrawEllipse(System.Drawing.Pens.Black, rectangle);
+        //    graphics.DrawRectangle(System.Drawing.Pens.Red, rectangle);
+        //}
+        #endregion
+
+        private void pnlGame_MouseClick(object sender, MouseEventArgs e) {
+            //MessageBox.Show("X : " + e.X);
+            //Zorgen dat dynamisch is en niet hardgecodeerd
+            if (e.X >= 0 && e.X <= 80) {
+                game.insertToken(0, 1);
+            }
+            else if (e.X >= 80 && e.X <= 160) {
+                game.insertToken(1, 1);
+            }
+            else if (e.X >= 160 && e.X <= 240) {
+                game.insertToken(2, 1);
+            }
+            else if (e.X >= 240 && e.X <= 320) {
+                game.insertToken(3, 1);
+            }
+            else if (e.X >= 320 && e.X <= 400) {
+                game.insertToken(4, 1);
+            }
+            else if (e.X >= 400 && e.X <= 480) {
+                game.insertToken(5, 1);
+            }
+            else if (e.X >= 480 && e.X <= 560) {
+                game.insertToken(6, 1);
+            }
+
+            //pnlGame.Invalidate();
+            drawGrid();
+        }
+        private void drawGrid() {
+            //TODO : Array wordt van boven naar beneden gerenderd
             Graphics gr = pnlGame.CreateGraphics();
             Pen myPen = new Pen(Brushes.Black, 1);
-            
-            float x = 0f;
-            float y = 0f;
-            float size = 80;
+
+            float x = 0;
+            float y = 0;
+
 
             Font myFont = new Font("Arial", (pnlGame.Width <= pnlGame.Height) ? size / 3 : size / 3);
 
@@ -51,36 +98,25 @@ namespace ConnectXLibrary
             y = 0f;
             int counter = 1;
 
-            for (int r = 0; r < rows; r++)
-            {
-                for (int c = 0; c < columns; c++)
-                {
-                    gr.DrawString(Convert.ToString(counter), myFont, Brushes.Black, x + myFont.Size, y + myFont.Size);
+            //Counter
+            int[,] raster = game.getRaster();
+
+            y = size * rows;
+            for (int r = 0; r < rows; r++) {
+                for (int c = 0; c < columns; c++) {
+                    gr.DrawString(Convert.ToString(raster[r, c]), myFont, Brushes.Black, x + myFont.Size, y + myFont.Size);
                     x += size;
                     counter++;
                 }
-                y += size;
+                y -= size;
                 x = 0;
             }
 
-            drawCircles();
+            //drawCircles();
         }
 
-        //###### IN GAME.DESIGNER DIT OOK UNCOMMENTEN ######
-        //private void Game_FormClosing(object sender, FormClosingEventArgs e) {
-        //    Menu menu = new Menu();
-        //    menu.StartPosition = FormStartPosition.Manual;
-        //    menu.Location = new Point(this.Location.X, this.Location.Y);
-        //    menu.Show();
-        //    this.Hide();
-        //}
-
-        private void drawCircles() {
-            System.Drawing.Graphics graphics = this.CreateGraphics();
-            System.Drawing.Rectangle rectangle = new System.Drawing.Rectangle(75, 75, 100, 100);
-            graphics.DrawEllipse(System.Drawing.Pens.Black, rectangle);
-            graphics.DrawRectangle(System.Drawing.Pens.Red, rectangle);
+        private void btnDrawGrid_Click(object sender, EventArgs e) {
+            drawGrid();
         }
-        #endregion
     }
 }

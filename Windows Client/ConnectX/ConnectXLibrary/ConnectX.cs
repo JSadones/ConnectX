@@ -43,6 +43,10 @@ namespace ConnectXLibrary
         public int getStreakToReach() {
             return tokenStreak;
         }
+
+        public int[,] getRaster() {
+            return raster;
+        }
         #endregion
 
         #region Methods
@@ -300,12 +304,10 @@ namespace ConnectXLibrary
         }
 
         public bool insertToken(int column, int player) {
-
 			if (1 <= player && player <= 2) {
 				int row = 0;
 				while (row < rows) {
-					if (raster[row, column] == 0)
-					{
+					if (raster[row, column] == 0) {
 						raster[row, column] = player;
 						break;
 					}
@@ -316,7 +318,6 @@ namespace ConnectXLibrary
 					playerAtTurn = 2;
 				}
 				else playerAtTurn = 1;
-
 				return true;
 			}
 			else return false;
