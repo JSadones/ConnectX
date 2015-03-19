@@ -35,23 +35,24 @@ namespace ConnectXUnitTest
             Assert.IsTrue(gameInterface.gameRunning());
         }
 
-        [TestMethod]
+		[TestMethod]
         public void TestGetPlayerAtPlay()
         {
             gameInterface.setPlayerAtPlay(1);
             // Parameter == player number
             Assert.IsTrue(gameInterface.getPlayerAtPlay() == 1);
         }
-
+		
         [TestMethod]
-        public void TestInsertTokenInColumn2ByPlayer1()
-        {
-            gameInterface.setPlayerAtPlay(1);
+       public void TestInsertTokenInColumn2ByPlayer1() {
+			gameInterface.newGame();
+			gameInterface.setPlayerAtPlay(1);
             
             // insertToken returns true if token is successfully inserted
             Assert.IsTrue(gameInterface.insertToken(2,1));
             // return false if it is not his turn
             Assert.IsFalse(gameInterface.insertToken(2, 2));
         }
-    }
+	   
+	}
 }

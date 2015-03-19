@@ -18,6 +18,9 @@ namespace ConnectXLibrary
         #region Constructor
         public ConnectX(): this(6, 7, 4) {
         }
+		public ConnectX(int rows, int columns): this(rows, columns, 4)
+		{
+		}
 
         public ConnectX(int rows, int columns, int tokenStreak) {
             this.rows = rows;
@@ -298,19 +301,30 @@ namespace ConnectXLibrary
             return empySpots;
         }
 
-        public void insertToken(int column, int player) {
-            int row = 0;
-            while (row < rows) {
-                if (raster[row, column] == 0) {
-                    raster[row, column] = player;
-                    break;
-                }
-                row++;
-            }
+        public bool insertToken(int column, int player) {
 
-			if (player == 1) {
-				playerAtTurn = 2;
-			} else playerAtTurn = 1;
+			if (1 <= player && player <= 2)
+			{
+				int row = 0;
+				while (row < rows)
+				{
+					if (raster[row, column] == 0)
+					{
+						raster[row, column] = player;
+						break;
+					}
+					row++;
+				}
+
+				if (player == 1)
+				{
+					playerAtTurn = 2;
+				}
+				else playerAtTurn = 1;
+
+				return true;
+			}
+			else return false;
         }
 
         public bool hasNotCrashed() {

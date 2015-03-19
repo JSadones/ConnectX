@@ -4,14 +4,22 @@
     {
 		private int scorePlayer1 = 0;
 		private int scorePlayer2 = 0;
+		private int playerAtPlay;
 
         private ConnectX game;
 
         public ConnectXInterface() {
         }
 
-        public void newGame() {
-            game = new ConnectX();
+		public void newGame()
+		{
+			game = new ConnectX();
+
+		}
+        public void newGame(int players, int rows, int columns) 
+		{
+            game = new ConnectX(rows, columns);
+
         }
 
         public bool gameRunning() {
@@ -38,6 +46,22 @@
 				return scorePlayer1;
 			}
 			else return scorePlayer2;
+		}
+
+		public void setPlayerAtPlay(int playerAtPlay)
+		{
+			this.playerAtPlay = playerAtPlay;
+		}
+
+		public int getPlayerAtPlay() {
+			return playerAtPlay;
+		}
+
+		public bool insertToken(int column, int player)
+		{
+			if (player == playerAtPlay) {
+				return game.insertToken(column, player);
+			} else return false;
 		}
 	}
 }
