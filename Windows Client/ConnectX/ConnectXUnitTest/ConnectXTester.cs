@@ -17,6 +17,7 @@ namespace ConnectXUnitTest
         private ConnectX gameWithNotWonRaster;
         private ConnectX gameWithFullRaster;
         private ConnectX gameWithOneTokenBeforeFullRaster;
+		private ConnectX gameWithout45Degree;
 
         [TestInitialize]
         public void setup() {
@@ -74,6 +75,40 @@ namespace ConnectXUnitTest
 			gameWith45DegreeStartingAtColumn0Row1WonRaster.insertToken(3, 1);
 			gameWith45DegreeStartingAtColumn0Row1WonRaster.insertToken(3, 2);
 			gameWith45DegreeStartingAtColumn0Row1WonRaster.insertToken(3, 2);
+
+			// #####DEBUG#####
+			// Game in raster without diagonal 45° where game is won anyway. 
+			gameWithout45Degree = new ConnectX();
+			gameWithout45Degree.insertToken(0, 1);
+			gameWithout45Degree.insertToken(0, 2);
+			gameWithout45Degree.insertToken(0, 1);
+			gameWithout45Degree.insertToken(0, 2);
+			gameWithout45Degree.insertToken(1, 2);
+			gameWithout45Degree.insertToken(1, 1);
+			gameWithout45Degree.insertToken(1, 1);
+			gameWithout45Degree.insertToken(1, 1);
+			gameWithout45Degree.insertToken(2, 1);
+			gameWithout45Degree.insertToken(2, 2);
+			gameWithout45Degree.insertToken(2, 2);
+			gameWithout45Degree.insertToken(2, 2);
+			gameWithout45Degree.insertToken(2, 1);
+			gameWithout45Degree.insertToken(3, 2);
+			gameWithout45Degree.insertToken(3, 1);
+			gameWithout45Degree.insertToken(3, 1);
+			gameWithout45Degree.insertToken(3, 2);
+			gameWithout45Degree.insertToken(4, 1);
+			gameWithout45Degree.insertToken(4, 2);
+			gameWithout45Degree.insertToken(4, 2);
+			gameWithout45Degree.insertToken(4, 1);
+			gameWithout45Degree.insertToken(5, 2);
+			gameWithout45Degree.insertToken(5, 1);
+			gameWithout45Degree.insertToken(5, 1);
+			gameWithout45Degree.insertToken(5, 2);
+			gameWithout45Degree.insertToken(6, 1);
+			gameWithout45Degree.insertToken(6, 2);
+			gameWithout45Degree.insertToken(6, 2);
+			gameWithout45Degree.insertToken(6, 1);
+
 
 			// Game in raster where diagonal 135° can be found starting from column 0 row 0
 			gameWith135DegreeStartingAtColumn0Row0WonRaster = new ConnectX();
@@ -259,8 +294,9 @@ namespace ConnectXUnitTest
 
         [TestMethod]
         public void TestGiven45DegreeWonGameIfIsWon() {
-            Assert.IsTrue(gameWith45DegreeStartingAtColumn0Row0WonRaster.isWonDiagonal45());
-			Assert.IsTrue(gameWith45DegreeStartingAtColumn0Row1WonRaster.isWonDiagonal45());
+         //   Assert.IsTrue(gameWith45DegreeStartingAtColumn0Row0WonRaster.isWonDiagonal45());
+		//	Assert.IsTrue(gameWith45DegreeStartingAtColumn0Row1WonRaster.isWonDiagonal45());
+			Assert.IsFalse(gameWithout45Degree.isWonDiagonal45());
         }
 
 		[TestMethod]
