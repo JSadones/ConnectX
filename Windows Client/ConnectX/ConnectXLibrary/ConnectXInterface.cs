@@ -4,7 +4,6 @@
         #region State
         private int scorePlayer1 = 0;
 		private int scorePlayer2 = 0;
-		private int playerAtPlay;
 		private string namePlayer1;
 		private string namePlayer2;
         private ConnectX game;
@@ -12,7 +11,6 @@
 
         #region Constructor
         public ConnectXInterface() {
-			playerAtPlay = 1;
         }
         #endregion
 
@@ -74,18 +72,17 @@
             return game.getColumns();
         }
 
-		public void setPlayerAtPlay(int playerAtPlay) {
-			this.playerAtPlay = playerAtPlay;
-		}
-
 		public int getPlayerAtPlay() {
-			return playerAtPlay;
+			return game.getPlayerAtTurn();
 		}
 
 		public bool insertToken(int column, int player) {
-			if (player == playerAtPlay) {
+			if (player == game.getPlayerAtTurn()) {
 				if (game.insertToken(column, player)) {
-					switchPlayerAtPlay();
+                    if (game.isWon())
+                    {
+                        setScorePlayer(game.getWonPlayer());
+                    }
 					return true;
 				}
 				else return false;
@@ -94,10 +91,6 @@
 			
 		}
 
-		public void switchPlayerAtPlay() {
-			if (playerAtPlay == 1) playerAtPlay = 2;
-			else playerAtPlay = 1;
-		}
 		
         public bool isCurrentGameWon() {
 			return game.isWon();
@@ -106,6 +99,11 @@
         public bool isColumnFull(int column)
         {
             return game.isColumnFull(column);
+        }
+
+        public bool isRasterFull()
+        {
+            return game.rasterIsFull();
         }
 
         public void reset() {

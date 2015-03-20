@@ -25,6 +25,7 @@ namespace ConnectXLibrary
             this.rows = rows;
             this.columns = columns;
             this.tokenStreak = tokenStreak;
+            playerAtTurn = 1;
 
             raster = new int[rows, columns];
             clearRaster();
@@ -70,7 +71,9 @@ namespace ConnectXLibrary
         }
 
         public bool isWon() {
-            if (isWonVertical() || isWonDiagonal45() || isWonDiagonal135() || isWonHorizontal()) {
+         if (isWonVertical() || isWonDiagonal45() || isWonDiagonal135() || isWonHorizontal()) 
+            {
+    
                 return true;
             }
             return false;
@@ -81,11 +84,14 @@ namespace ConnectXLibrary
             int counterPlayer2 = 0;
 
             for (int i = 0; i < columns; i++) {
-                for (int j = 0; j < rows; j++) {
-                    // TODO: Code moet netter, zodat we meteen naar de volgende kolom kunnen
-                    if (raster[j, i] == 0) {
-                        break;
-                    }
+
+                int j = 0;
+                counterPlayer1 = 0;
+                counterPlayer2 = 0;
+
+                while (j < rows && raster[j,i] != 0) {
+
+                   
                     if (raster[j, i] == 1) {
                         counterPlayer1++;
                     } else counterPlayer1 = 0;
@@ -93,16 +99,18 @@ namespace ConnectXLibrary
                     if (raster[j, i] == 2) {
                         counterPlayer2++;
                     } else counterPlayer2 = 0;
+
                     if (counterPlayer1 == tokenStreak) {
                         winningPlayer = 1;
                         return true;
-                        // TODO: Score speler 1 verhogen
                     }
+
                     if (counterPlayer2 == tokenStreak) {
                         winningPlayer = 2;
                         return true;
-                        // TODO: Score speler 2 verhogen
                     }
+
+                    j++;
                 }
             }
             return false;
@@ -114,9 +122,6 @@ namespace ConnectXLibrary
 
 			for (int i = 0; i < rows; i++) {
 				for (int j = 0; j < columns; j++) {
-					if (raster[i, j] == 0)  {
-						break;
-					}
 
 					if (raster[i, j] == 1) {
 						counterPlayer1++;
