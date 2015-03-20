@@ -237,8 +237,8 @@ namespace ConnectXLibrary
 				counterRow = 0;
 				counterColumn = i;
 
-				int counterPlayer1 = 0;
-				int counterPlayer2 = 0;
+				counterPlayer1 = 0;
+				counterPlayer2 = 0;
 
 				while (counterColumn > 0 && counterRow < rows) {
 					// Als er een token van player1 gevonden wordt, teller van player2 vermeerderen met 1
@@ -275,8 +275,8 @@ namespace ConnectXLibrary
 				counterRow = i;
 				counterColumn = columns - 1;
 
-				int counterPlayer1 = 0;
-				int counterPlayer2 = 0;
+				counterPlayer1 = 0;
+				counterPlayer2 = 0;
 
 				while (counterColumn < columns && counterRow < rows) {
 					if (raster[counterRow, counterColumn] == 1) {
