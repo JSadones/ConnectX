@@ -36,7 +36,6 @@ namespace ConnectXLibrary
             game.newGame();
             rows = game.getRows();
             columns = game.getColumns();
-            drawGrid();
         }
         #endregion
 
@@ -133,22 +132,27 @@ namespace ConnectXLibrary
 
             if (game.isCurrentGameWon() || game.isRasterFull())
             {
-             //   gr.Clear(Color.White);
+                gr.Clear(Color.White);
                 updateScores();
 
                 DialogResult dialogResult = MessageBox.Show("Play another game?", "?", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
                     game.newGame();
+                    drawGrid();
                 }
                 else if (dialogResult == DialogResult.No)
                 {
-                    DialogResult dialogResult2 = MessageBox.Show(game.getName(game.getOverallWonPlayer()) + " won the game!", "YeeHOO", MessageBoxButtons.OK);
+                    string message;
+                    if (game.getOverallWonPlayer() == 0)
+                        message = "It's a tie!";
+                    else
+                        message = game.getName(game.getOverallWonPlayer()) + " won the game!";
+
+                    DialogResult dialogResult2 = MessageBox.Show(message, "YeeHOO", MessageBoxButtons.OK);
 
                     if (dialogResult2 == DialogResult.OK)
                     {
-
-                        newSession();
                         this.Hide();
                     }
                 }
