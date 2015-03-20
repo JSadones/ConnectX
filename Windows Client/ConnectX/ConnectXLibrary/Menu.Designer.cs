@@ -54,6 +54,7 @@
             this.lblLinkWebclient.TabIndex = 2;
             this.lblLinkWebclient.TabStop = true;
             this.lblLinkWebclient.Text = "Also play on our webclient !";
+            this.lblLinkWebclient.Visible = false;
             // 
             // lblSideInfo
             // 
@@ -88,6 +89,7 @@
             this.btnSettings.TabIndex = 4;
             this.btnSettings.Text = "SETTINGS";
             this.btnSettings.UseVisualStyleBackColor = true;
+            this.btnSettings.Visible = false;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
             // btnPlayCPU
@@ -101,6 +103,7 @@
             this.btnPlayCPU.TabIndex = 0;
             this.btnPlayCPU.Text = "PLAY AGAINST CPU";
             this.btnPlayCPU.UseVisualStyleBackColor = false;
+            this.btnPlayCPU.Visible = false;
             this.btnPlayCPU.Click += new System.EventHandler(this.btnPlayCPU_Click);
             // 
             // pnlMenu
@@ -123,7 +126,7 @@
             this.btnMultiplayer.Name = "btnMultiplayer";
             this.btnMultiplayer.Size = new System.Drawing.Size(680, 100);
             this.btnMultiplayer.TabIndex = 5;
-            this.btnMultiplayer.Text = "MULTIPLAYER\r";
+            this.btnMultiplayer.Text = "PLAY";
             this.btnMultiplayer.UseVisualStyleBackColor = false;
             this.btnMultiplayer.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -143,7 +146,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackgroundImage = global::ConnectXLibrary.Properties.Resources._128_184;
-            this.ClientSize = new System.Drawing.Size(1561, 843);
+            this.ClientSize = new System.Drawing.Size(1561, 844);
             this.Controls.Add(this.picBoxBanner);
             this.Controls.Add(this.pnlMenu);
             this.Controls.Add(this.lblSideInfo);

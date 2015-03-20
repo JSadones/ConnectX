@@ -20,7 +20,7 @@ namespace ConnectXUnitTest
 
         [TestMethod]
         public void TestGetScorePlayer1() {
-            gameInterface.setScorePlayer(1);
+            gameInterface.incrementScorePlayer(1);
             // Parameter == player number
             Assert.IsTrue(gameInterface.getScore(1) == 1);
         }
@@ -28,14 +28,14 @@ namespace ConnectXUnitTest
         [TestMethod]
         public void TestGetOverallWonPlayer()
         {
-            gameInterface.setScorePlayer(1);
-            gameInterface.setScorePlayer(2);
+            gameInterface.incrementScorePlayer(1);
+            gameInterface.incrementScorePlayer(2);
             // Parameter == player number
             Assert.IsTrue(gameInterface.getOverallWonPlayer() == 0);
-            gameInterface.setScorePlayer(1);
+            gameInterface.incrementScorePlayer(1);
             Assert.IsTrue(gameInterface.getOverallWonPlayer() == 1);
-            gameInterface.setScorePlayer(2);
-            gameInterface.setScorePlayer(2);
+            gameInterface.incrementScorePlayer(2);
+            gameInterface.incrementScorePlayer(2);
             Assert.IsTrue(gameInterface.getOverallWonPlayer() == 2);
         }
 
@@ -60,8 +60,8 @@ namespace ConnectXUnitTest
         [TestMethod]
         public void TestResetGame() {
             gameInterface.newGame(2, 9, 11);
-            gameInterface.setScorePlayer(1);
-            gameInterface.setScorePlayer(2);
+            gameInterface.incrementScorePlayer(1);
+            gameInterface.incrementScorePlayer(2);
             Assert.IsTrue(gameInterface.gameRunning());
             gameInterface.reset();
 			Assert.IsFalse(gameInterface.gameRunning());
