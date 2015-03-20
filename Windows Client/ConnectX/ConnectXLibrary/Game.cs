@@ -143,7 +143,14 @@ namespace ConnectXLibrary
                 }
                 else if (dialogResult == DialogResult.No)
                 {
-                    newSession();
+                    DialogResult dialogResult2 = MessageBox.Show(game.getName(game.getWonPlayer()) + " won the game!", "YeeHOO", MessageBoxButtons.OK);
+
+                    if (dialogResult2 == DialogResult.OK)
+                    {
+
+                        newSession();
+                        this.Hide();
+                    }
                 }
 
             }
