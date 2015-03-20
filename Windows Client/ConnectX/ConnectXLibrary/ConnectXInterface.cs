@@ -142,7 +142,13 @@
 
 		public int getOverallWonPlayer()
 		{
-			
+			if (scorePlayer1 > scorePlayer2) {
+				return 1;
+			} else if (scorePlayer1 < scorePlayer2) {
+				return 2;
+			} else {
+				return 0;
+			}
 		}
 
 		#endregion
