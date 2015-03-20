@@ -105,10 +105,7 @@ namespace ConnectXUnitTest
         [TestMethod]
         public void TestSlice2_5AskForNewGame()
         {
-            gameInterface.newGame();
-            gameInterface.insertToken(1, 1);
-            gameInterface.newGame();
-            Assert.IsTrue(gameInterface.getToken(1,0) == 0);
+            // Komt nog
         }
 
         [TestMethod]
@@ -118,6 +115,20 @@ namespace ConnectXUnitTest
             gameInterface.insertToken(1, 1);
             gameInterface.newGame();
             Assert.IsTrue(gameInterface.getToken(1, 0) == 0);
+        }
+
+        [TestMethod]
+        public void TestSlice3_1ShowWinner()
+        {
+            gameInterface.newGame();
+            gameInterface.insertToken(1, 1);
+            gameInterface.insertToken(2, 2);
+            gameInterface.insertToken(1, 1);
+            gameInterface.insertToken(2, 2);
+            gameInterface.insertToken(1, 1);
+            gameInterface.insertToken(2, 2);
+            gameInterface.insertToken(1, 1);
+            Assert.IsTrue(gameInterface.getWonPlayer() == 1);
         }
     }
 }
