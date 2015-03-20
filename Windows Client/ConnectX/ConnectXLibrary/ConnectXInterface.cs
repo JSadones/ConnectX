@@ -113,11 +113,11 @@
 				namePlayer2 = playerName;
 			}
 		}
-        public string getName(int p)
+        public string getName(int player)
         {
-			if (playerAtPlay == 1) {
+			if (player == 1) {
 				return namePlayer1;
-			} else if (playerAtPlay == 2) {
+			} else if (player == 2) {
 				return namePlayer2;
 			} else return "";
         }

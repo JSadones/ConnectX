@@ -21,7 +21,7 @@ namespace ConnectXUnitTest
             gameInterface = new ConnectXInterface();
 
             gameInterface.setName(1, "Player 1");
-            gameInterface.setName(1, "Player 2");
+            gameInterface.setName(2, "Player 2");
 
             Assert.IsTrue(gameInterface.getName(1) == "Player 1");
             Assert.IsTrue(gameInterface.getName(2) == "Player 2");
