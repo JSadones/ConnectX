@@ -82,7 +82,6 @@ namespace ConnectXUnitTest
         }
 
         public void TestGetPlayerAtPlay() {
-            gameInterface.setPlayerAtPlay(1);
             // Parameter == player number
             Assert.IsTrue(gameInterface.getPlayerAtPlay() == 1);
         }
@@ -90,7 +89,6 @@ namespace ConnectXUnitTest
         [TestMethod]
         public void TestInsertTokenInColumn2ByPlayer1() {
             gameInterface.newGame();
-            gameInterface.setPlayerAtPlay(1);
             
             // insertToken returns true if token is successfully inserted
             Assert.IsTrue(gameInterface.insertToken(2,1));
