@@ -39,7 +39,7 @@
             else return false;
         }
 
-		public void setScorePlayer(int player) {
+		public void incrementScorePlayer(int player) {
 			switch (player) {
 				case 1:
 					scorePlayer1++;
@@ -82,7 +82,7 @@
 				if (game.insertToken(column, player)) {
                     if (game.isWon())
                     {
-                        setScorePlayer(game.getCurrentGameWonPlayer());
+                        incrementScorePlayer(game.getCurrentGameWonPlayer());
                     }
 					return true;
 				}
@@ -140,6 +140,13 @@
 			} else return "";
 		}
 
+		public int getOverallWonPlayer()
+		{
+			
+		}
+
 		#endregion
+
+		
 	}
 }

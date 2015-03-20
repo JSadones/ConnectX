@@ -85,19 +85,19 @@ namespace ConnectXUnitTest
         public void TestSlice2_4IncrementScoreWinningPlayer()
         {
             // TODO: rename to incrementScorePlayer(int player)
-            gameInterface.setScorePlayer(1);
+            gameInterface.incrementScorePlayer(1);
 
             Assert.IsTrue(gameInterface.getScore(1) == 1);
 
-            gameInterface.setScorePlayer(2);
+            gameInterface.incrementScorePlayer(2);
 
             Assert.IsTrue(gameInterface.getScore(2) == 1);
 
-            gameInterface.setScorePlayer(1);
+            gameInterface.incrementScorePlayer(1);
 
             Assert.IsTrue(gameInterface.getScore(1) == 2);
 
-            gameInterface.setScorePlayer(2);
+            gameInterface.incrementScorePlayer(2);
 
             Assert.IsTrue(gameInterface.getScore(2) == 2);
         }
