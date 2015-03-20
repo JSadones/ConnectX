@@ -71,7 +71,7 @@ namespace ConnectXLibrary
         }
 
         public bool isWon() {
-         if (isWonVertical() || isWonDiagonal45() || isWonDiagonal135() || isWonHorizontal()) 
+			if (isWonVertical() || isWonDiagonal45() || isWonDiagonal135() || isWonHorizontal()) 
             {
     
                 return true;
