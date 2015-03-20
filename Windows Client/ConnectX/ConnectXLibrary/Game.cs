@@ -83,7 +83,7 @@ namespace ConnectXLibrary
 
             if (game.isCurrentGameWon() || game.isRasterFull())
             {
-                gr.Clear(Color.White);
+             //   gr.Clear(Color.White);
                 lblPointsPlayer1.Text = game.getScore(1).ToString();
                 lblPointsPlayer2.Text = game.getScore(2).ToString();
                 game.newGame();
