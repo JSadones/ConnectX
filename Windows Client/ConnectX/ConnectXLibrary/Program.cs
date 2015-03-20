@@ -12,5 +12,6 @@ namespace ConnectXLibrary
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Menu());
         }
+
     }
 }

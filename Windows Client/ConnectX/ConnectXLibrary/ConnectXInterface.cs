@@ -59,6 +59,21 @@
 			else return scorePlayer2;
 		}
 
+        public int[,] getRaster()
+        {
+            return game.getRaster();
+        }
+
+        public int getRows()
+        {
+            return game.getRows();
+        }
+
+        public int getColumns()
+        {
+            return game.getColumns();
+        }
+
 		public void setPlayerAtPlay(int playerAtPlay) {
 			this.playerAtPlay = playerAtPlay;
 		}

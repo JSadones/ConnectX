@@ -10,7 +10,7 @@ namespace ConnectXLibrary
         private int rows;
         private int columns;
         private float size = 80;
-        ConnectX game = new ConnectX();
+        ConnectXInterface game;
         #endregion
 
         #region Constructor
@@ -18,6 +18,9 @@ namespace ConnectXLibrary
             InitializeComponent();
 
             Graphics gr = pnlGame.CreateGraphics();
+
+            game = new ConnectXInterface();
+            game.newGame();
             rows = game.getRows();
             columns = game.getColumns();
         }
