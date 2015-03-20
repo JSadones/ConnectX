@@ -5,6 +5,8 @@
         private int scorePlayer1 = 0;
 		private int scorePlayer2 = 0;
 		private int playerAtPlay;
+		private string namePlayer1;
+		private string namePlayer2;
         private ConnectX game;
         #endregion
 
@@ -103,15 +105,23 @@
         {
             throw new System.NotImplementedException();
         }
-
-        public string getName(int p)
+		public void setName(int playerNumber, string playerName)
+		{
+			if (playerNumber == 1) {
+				namePlayer1 = playerName;
+			} else if (playerNumber == 2) {
+				namePlayer2 = playerName;
+			}
+		}
+        public string getName(int player)
         {
-            throw new System.NotImplementedException();
+			if (player == 1) {
+				return namePlayer1;
+			} else if (player == 2) {
+				return namePlayer2;
+			} else return "";
         }
 
-        public void setName(int p1, string p2)
-        {
-            throw new System.NotImplementedException();
-        }
+       
     }
 }
