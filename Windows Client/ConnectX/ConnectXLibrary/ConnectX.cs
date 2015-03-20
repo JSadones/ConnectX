@@ -362,6 +362,18 @@ namespace ConnectXLibrary
 		public int getPlayerAtTurn() {
 			return playerAtTurn;
 		}
+
+        public bool isColumnFull(int column)
+        {
+            if (raster[rows - 1, column] != 0)
+            {
+                return true;
+            }
+            else { return false; }
+        }
+
         #endregion
+
+
     }
 }
