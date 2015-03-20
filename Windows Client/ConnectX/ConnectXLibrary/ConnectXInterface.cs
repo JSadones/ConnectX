@@ -105,6 +105,12 @@
         {
             throw new System.NotImplementedException();
         }
+
+        public int getWonPlayer()
+        {
+            return game.getWonPlayer();
+        }
+
 		public void setName(int playerNumber, string playerName)
 		{
 			if (playerNumber == 1) {
