@@ -86,6 +86,11 @@
 			return game.isWon();
 		}
 
+        public bool isColumnFull(int column)
+        {
+            return game.isColumnFull(column);
+        }
+
         public void reset() {
 			game = null;
 			scorePlayer1 = 0;
@@ -93,11 +98,6 @@
 			// ToDo: breng terug naar startscherm
         }
         #endregion
-
-        public bool isColumnFull(int p)
-        {
-            throw new System.NotImplementedException();
-        }
 
         public int getToken(int p1, int p2)
         {
