@@ -26,6 +26,20 @@ namespace ConnectXUnitTest
         }
 
         [TestMethod]
+        public void TestGetOverallWonPlayer()
+        {
+            gameInterface.setScorePlayer(1);
+            gameInterface.setScorePlayer(2);
+            // Parameter == player number
+            Assert.IsTrue(gameInterface.getOverallWonPlayer() == 0);
+            gameInterface.setScorePlayer(1);
+            Assert.IsTrue(gameInterface.getOverallWonPlayer() == 1);
+            gameInterface.setScorePlayer(2);
+            gameInterface.setScorePlayer(2);
+            Assert.IsTrue(gameInterface.getOverallWonPlayer() == 2);
+        }
+
+        [TestMethod]
         public void TestNewGame2HumanPlayersWith9RowsAnd11Columns() {
             gameInterface.newGame(2, 9, 11);
             Assert.IsTrue(gameInterface.gameRunning());
