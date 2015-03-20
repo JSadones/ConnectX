@@ -312,10 +312,6 @@ namespace ConnectXLibrary
 			return false;
 		}
 
-        public bool TestTrueIsWonAndFalseIsNotWon() {
-            return false;
-        }
-
         private List<byte> checkEmptySpotInColumn() {
             List<byte> empySpots = new List<byte>();
 
