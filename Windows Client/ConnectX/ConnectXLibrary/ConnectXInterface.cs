@@ -101,9 +101,16 @@
         }
         #endregion
 
+
         public int getToken(int row, int column) {
 			return game.getToken(row, column);
 		}
+
+        public int getWonPlayer()
+        {
+            return game.getWonPlayer();
+        }
+
 		public void setName(int playerNumber, string playerName)
 		{
 			if (playerNumber == 1) {
