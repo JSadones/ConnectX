@@ -82,7 +82,7 @@
 				if (game.insertToken(column, player)) {
                     if (game.isWon())
                     {
-                        setScorePlayer(game.getWonPlayer());
+                        setScorePlayer(game.getCurrentGameWonPlayer());
                     }
 					return true;
 				}
@@ -118,9 +118,9 @@
 			return game.getToken(row, column);
 		}
 
-        public int getWonPlayer()
+        public int getCurrentGameWonPlayer()
         {
-            return game.getWonPlayer();
+            return game.getCurrentGameWonPlayer();
         }
 
 		public void setName(int playerNumber, string playerName)

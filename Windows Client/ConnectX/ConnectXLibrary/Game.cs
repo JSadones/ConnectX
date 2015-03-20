@@ -143,7 +143,7 @@ namespace ConnectXLibrary
                 }
                 else if (dialogResult == DialogResult.No)
                 {
-                    DialogResult dialogResult2 = MessageBox.Show(game.getName(game.getWonPlayer()) + " won the game!", "YeeHOO", MessageBoxButtons.OK);
+                    DialogResult dialogResult2 = MessageBox.Show(game.getName(game.getOverallWonPlayer()) + " won the game!", "YeeHOO", MessageBoxButtons.OK);
 
                     if (dialogResult2 == DialogResult.OK)
                     {

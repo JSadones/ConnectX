@@ -381,7 +381,7 @@ namespace ConnectXLibrary
             insertToken(emptySpots[spot], 2);
         }
         
-        public int getWonPlayer() {
+        public int getCurrentGameWonPlayer() {
             return winningPlayer;
         }
 
