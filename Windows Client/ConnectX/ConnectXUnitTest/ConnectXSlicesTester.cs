@@ -108,7 +108,7 @@ namespace ConnectXUnitTest
             gameInterface.newGame();
             gameInterface.insertToken(1, 1);
             gameInterface.newGame();
-            Assert.IsTrue(gameInterface.getToken(1,0) == 0);
+            Assert.IsTrue(gameInterface.getToken(0,1) == 0);
         }
 
         [TestMethod]
