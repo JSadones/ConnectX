@@ -309,21 +309,31 @@ namespace ConnectXLibrary
             return empySpots;
         }
 
+        private int getRowIndexOfLowestEmptyTokenInColumn(int column)
+        {
+            int row = 0;
+            while (row < rows)
+            {
+                if (raster[row, column] == 0) return row;
+                row++;
+            }
+            return -1;
+        }
+
+        public void switchPlayerAtTurn()
+        {
+            if (playerAtTurn == 1) playerAtTurn = 2;
+            else playerAtTurn = 1;
+        }
+
         public bool insertToken(int column, int player) {
 			if (1 <= player && player <= 2) {
-				int row = 0;
-				while (row < rows) {
-					if (raster[row, column] == 0) {
-						raster[row, column] = player;
-						break;
-					}
-					row++;
-				}
 
-				if (player == 1) {
-					playerAtTurn = 2;
-				}
-				else playerAtTurn = 1;
+                if (getRowIndexOfLowestEmptyTokenInColumn(column) != -1) {
+                    raster[getRowIndexOfLowestEmptyTokenInColumn(column), column] = player;
+
+                    switchPlayerAtTurn();
+                }
 				return true;
 			}
 			else return false;

@@ -26,13 +26,13 @@ namespace ConnectXLibrary
 
             namePlayer1 = showDialog("Naam Speler 1","");
             namePlayer2 = showDialog("Naam Speler 2", "");
-            lblPlayer1.Text = namePlayer1;
-            lblPlayer2.Text = namePlayer2;
+
             gr = pnlGame.CreateGraphics();
             myPen = new Pen(Brushes.Black, 1);
             myFont = new Font("Arial", (pnlGame.Width <= pnlGame.Height) ? size / 3 : size / 3);
 
-            game = new ConnectXInterface();
+            newSession();
+
             game.newGame();
             rows = game.getRows();
             columns = game.getColumns();
@@ -58,6 +58,27 @@ namespace ConnectXLibrary
         //    graphics.DrawRectangle(System.Drawing.Pens.Red, rectangle);
         //}
         #endregion
+
+        private void updateScores()
+        {
+            lblPointsPlayer1.Text = game.getScore(1).ToString();
+            lblPointsPlayer2.Text = game.getScore(2).ToString();
+        }
+
+        private void newSession()
+        {
+
+            game = new ConnectXInterface();
+            game.setName(1, namePlayer1);
+            game.setName(2, namePlayer2);
+
+            lblPlayer1.Text = game.getName(1);
+            lblPlayer2.Text = game.getName(2);
+
+            updateScores();
+            
+        }
+
 
 
         private string showDialog(string text, string caption)
@@ -85,6 +106,7 @@ namespace ConnectXLibrary
             //Zorgen dat dynamisch is en niet hardgecodeerd
             int playerAtPlay = game.getPlayerAtPlay();
             if (e.X >= 0 && e.X <= 80) {
+
                 game.insertToken(0, playerAtPlay);
             }
             else if (e.X >= 80 && e.X <= 160) {
@@ -112,9 +134,18 @@ namespace ConnectXLibrary
             if (game.isCurrentGameWon() || game.isRasterFull())
             {
              //   gr.Clear(Color.White);
-                lblPointsPlayer1.Text = game.getScore(1).ToString();
-                lblPointsPlayer2.Text = game.getScore(2).ToString();
-                game.newGame();
+                updateScores();
+
+                DialogResult dialogResult = MessageBox.Show("Play another game?", "?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    game.newGame();
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    newSession();
+                }
+
             }
 
         }
