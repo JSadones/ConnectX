@@ -157,6 +157,10 @@ namespace ConnectXLibrary
 			for (int i = columns - 1; i >= 0; i--) {
 				counterRow = 0;
 				counterColumn = i;
+
+				counterPlayer1 = 0;
+				counterPlayer2 = 0;
+
 				while (counterColumn < columns && counterRow < rows) {
                     if (raster[counterRow, counterColumn] == 1) {
 						counterPlayer1++;
@@ -190,6 +194,9 @@ namespace ConnectXLibrary
 				counterRow = i;
 				counterColumn = 0;
 
+				counterPlayer1 = 0;
+				counterPlayer2 = 0;
+
 				while (counterColumn < columns && counterRow < rows) {
 					if (raster[counterRow, counterColumn] == 1) {
 						counterPlayer1++;
@@ -220,15 +227,19 @@ namespace ConnectXLibrary
 
 		public bool isWonDiagonal135() {
 			// De tellers voor de streaks te zoeken, voor elk van de spelers afzonderlijk
-			int counterPlayer1 = 0;
-			int counterPlayer2 = 0;
 			int counterRow;
 			int counterColumn;
+			int counterPlayer1 = 0;
+			int counterPlayer2 = 0;
 
 			// 135°: De kolommen worden afgelopen van links naar rechts
 			for (int i = 0; i < columns; i++) {
 				counterRow = 0;
 				counterColumn = i;
+
+				int counterPlayer1 = 0;
+				int counterPlayer2 = 0;
+
 				while (counterColumn > 0 && counterRow < rows) {
 					// Als er een token van player1 gevonden wordt, teller van player2 vermeerderen met 1
 					if (raster[counterRow, counterColumn] == 1) {
@@ -263,6 +274,9 @@ namespace ConnectXLibrary
 			for (int i = 1; i < rows; i++) {
 				counterRow = i;
 				counterColumn = columns - 1;
+
+				int counterPlayer1 = 0;
+				int counterPlayer2 = 0;
 
 				while (counterColumn < columns && counterRow < rows) {
 					if (raster[counterRow, counterColumn] == 1) {
