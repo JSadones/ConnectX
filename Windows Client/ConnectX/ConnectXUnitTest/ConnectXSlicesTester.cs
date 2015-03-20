@@ -103,12 +103,21 @@ namespace ConnectXUnitTest
         }
 
         [TestMethod]
-        public void TestSlice2_5PlayNewGame()
+        public void TestSlice2_5AskForNewGame()
         {
             gameInterface.newGame();
             gameInterface.insertToken(1, 1);
             gameInterface.newGame();
             Assert.IsTrue(gameInterface.getToken(1,0) == 0);
+        }
+
+        [TestMethod]
+        public void TestSlice2_6PlayNewGame()
+        {
+            gameInterface.newGame();
+            gameInterface.insertToken(1, 1);
+            gameInterface.newGame();
+            Assert.IsTrue(gameInterface.getToken(1, 0) == 0);
         }
     }
 }
