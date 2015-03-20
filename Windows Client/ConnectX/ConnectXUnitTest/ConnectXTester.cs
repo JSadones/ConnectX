@@ -334,7 +334,7 @@ namespace ConnectXUnitTest
         [TestMethod]
         public void TestGetWinningPlayerGivenWonGame() {
             gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.isWon();
-            Assert.IsTrue(gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.getWonPlayer() == 1);
+            Assert.IsTrue(gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.getCurrentGameWonPlayer() == 1);
         }
 
         [TestMethod]
