@@ -240,7 +240,7 @@ namespace ConnectXLibrary
 				counterPlayer1 = 0;
 				counterPlayer2 = 0;
 
-				while (counterColumn > 0 && counterRow < rows) {
+				while (counterColumn >= 0 && counterRow < rows) {
 					// Als er een token van player1 gevonden wordt, teller van player2 vermeerderen met 1
 					if (raster[counterRow, counterColumn] == 1) {
 						counterPlayer1++;
@@ -269,7 +269,7 @@ namespace ConnectXLibrary
 					}
 				}
 			}
-
+            
 			// 135°: De rijen worden afgelopen vanaf de tweede rij, laatste kolom naar boven
 			for (int i = 1; i < rows; i++) {
 				counterRow = i;
