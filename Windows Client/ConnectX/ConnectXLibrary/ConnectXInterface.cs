@@ -99,8 +99,6 @@
 			scorePlayer2 = 0;
 			// ToDo: breng terug naar startscherm
         }
-        #endregion
-
 
         public int getToken(int row, int column) {
 			return game.getToken(row, column);
@@ -126,8 +124,8 @@
 			} else if (player == 2) {
 				return namePlayer2;
 			} else return "";
-        }
+		}
 
-       
-    }
+		#endregion
+	}
 }
