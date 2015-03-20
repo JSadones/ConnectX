@@ -129,7 +129,7 @@ namespace ConnectXUnitTest
             gameInterface.insertToken(2, 2);
             gameInterface.insertToken(1, 1);
             gameInterface.isCurrentGameWon();
-            Assert.IsTrue(gameInterface.getWonPlayer() == 1);
+            Assert.IsTrue(gameInterface.getCurrentGameWonPlayer() == 1);
         }
     }
 }
