@@ -105,14 +105,7 @@ namespace ConnectXUnitTest
         [TestMethod]
         public void TestSlice2_5AskForNewGame()
         {
-<<<<<<< HEAD
             // Komt nog
-=======
-            gameInterface.newGame();
-            gameInterface.insertToken(1, 1);
-            gameInterface.newGame();
-            Assert.IsTrue(gameInterface.getToken(0,1) == 0);
->>>>>>> 00dfe8c969cebe684c83fae62fe6bc5a12ea2665
         }
 
         [TestMethod]
