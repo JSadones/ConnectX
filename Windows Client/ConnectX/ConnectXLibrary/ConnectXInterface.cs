@@ -101,7 +101,7 @@
         }
         #endregion
 
-        public int getToken(int p1, int p2)
+        public int getToken(int rows, int columns)
         {
             throw new System.NotImplementedException();
         }
