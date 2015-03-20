@@ -372,6 +372,10 @@ namespace ConnectXLibrary
             else { return false; }
         }
 
+		public int getToken(int row, int column) {
+			return raster[row, column];
+		}
+
         #endregion
 
 
