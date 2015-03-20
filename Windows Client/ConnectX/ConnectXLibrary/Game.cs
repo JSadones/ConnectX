@@ -25,7 +25,7 @@ namespace ConnectXLibrary
             InitializeComponent();
 
             namePlayer1 = showDialog("Naam Speler 1","");
-            namePlayer2 = showDialog("Naam Speler 1", "");
+            namePlayer2 = showDialog("Naam Speler 2", "");
             lblPlayer1.Text = namePlayer1;
             lblPlayer2.Text = namePlayer2;
             gr = pnlGame.CreateGraphics();
