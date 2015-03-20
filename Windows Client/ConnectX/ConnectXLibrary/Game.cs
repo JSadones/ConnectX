@@ -16,20 +16,27 @@ namespace ConnectXLibrary
         Pen myPen;
         Font myFont;
 
+        string namePlayer1, namePlayer2;
+
         #endregion
 
         #region Constructor
         public Game() {
             InitializeComponent();
 
+            namePlayer1 = showDialog("Naam Speler 1","");
+            namePlayer2 = showDialog("Naam Speler 2", "");
+
             gr = pnlGame.CreateGraphics();
             myPen = new Pen(Brushes.Black, 1);
             myFont = new Font("Arial", (pnlGame.Width <= pnlGame.Height) ? size / 3 : size / 3);
 
-            game = new ConnectXInterface();
+            newSession();
+
             game.newGame();
             rows = game.getRows();
             columns = game.getColumns();
+            drawGrid();
         }
         #endregion
 
@@ -52,11 +59,54 @@ namespace ConnectXLibrary
         //}
         #endregion
 
+        private void updateScores()
+        {
+            lblPointsPlayer1.Text = game.getScore(1).ToString();
+            lblPointsPlayer2.Text = game.getScore(2).ToString();
+        }
+
+        private void newSession()
+        {
+
+            game = new ConnectXInterface();
+            game.setName(1, namePlayer1);
+            game.setName(2, namePlayer2);
+
+            lblPlayer1.Text = game.getName(1);
+            lblPlayer2.Text = game.getName(2);
+
+            updateScores();
+            
+        }
+
+
+
+        private string showDialog(string text, string caption)
+        {
+            Form prompt = new Form();
+            prompt.Width = 500;
+            prompt.Height = 150;
+            prompt.FormBorderStyle = FormBorderStyle.FixedDialog;
+            prompt.Text = caption;
+            prompt.StartPosition = FormStartPosition.CenterScreen;
+            Label textLabel = new Label() { Left = 50, Top = 20, Text = text };
+            TextBox textBox = new TextBox() { Left = 50, Top = 50, Width = 400 };
+            Button confirmation = new Button() { Text = "Ok", Left = 350, Width = 100, Top = 70 };
+            confirmation.Click += (sender, e) => { prompt.Close(); };
+            prompt.Controls.Add(textBox);
+            prompt.Controls.Add(confirmation);
+            prompt.Controls.Add(textLabel);
+            prompt.AcceptButton = confirmation;
+            prompt.ShowDialog();
+            return textBox.Text;
+        }
+
         private void pnlGame_MouseClick(object sender, MouseEventArgs e) {
             //MessageBox.Show("X : " + e.X);
             //Zorgen dat dynamisch is en niet hardgecodeerd
             int playerAtPlay = game.getPlayerAtPlay();
             if (e.X >= 0 && e.X <= 80) {
+
                 game.insertToken(0, playerAtPlay);
             }
             else if (e.X >= 80 && e.X <= 160) {
@@ -84,9 +134,18 @@ namespace ConnectXLibrary
             if (game.isCurrentGameWon() || game.isRasterFull())
             {
              //   gr.Clear(Color.White);
-                lblPointsPlayer1.Text = game.getScore(1).ToString();
-                lblPointsPlayer2.Text = game.getScore(2).ToString();
-                game.newGame();
+                updateScores();
+
+                DialogResult dialogResult = MessageBox.Show("Play another game?", "?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    game.newGame();
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    newSession();
+                }
+
             }
 
         }

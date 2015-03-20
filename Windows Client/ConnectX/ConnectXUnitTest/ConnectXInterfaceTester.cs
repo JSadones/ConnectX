@@ -14,7 +14,6 @@ namespace ConnectXUnitTest
 
         [TestMethod]
         public void TestNewGameStarted() {
-            Assert.IsFalse(gameInterface.gameRunning());
             gameInterface.newGame();
             Assert.IsTrue(gameInterface.gameRunning());
         }
@@ -28,21 +27,18 @@ namespace ConnectXUnitTest
 
         [TestMethod]
         public void TestNewGame2HumanPlayersWith9RowsAnd11Columns() {
-            Assert.IsFalse(gameInterface.gameRunning());
             gameInterface.newGame(2, 9, 11);
             Assert.IsTrue(gameInterface.gameRunning());
         }
 
         [TestMethod]
         public void TestNewGame2HumanPlayersWith9RowsAnd5Streak() {
-            Assert.IsFalse(gameInterface.gameRunning());
             gameInterface.newGame(2, 9, 11, 5);
             Assert.IsTrue(gameInterface.gameRunning());
         }
 
         [TestMethod]
         public void TestNewGame1HumanPlayerWith9RowsAnd11Columns() {
-            Assert.IsFalse(gameInterface.gameRunning());
             gameInterface.newGame(1, 9, 11);
             Assert.IsTrue(gameInterface.gameRunning());
         }
@@ -82,7 +78,6 @@ namespace ConnectXUnitTest
         }
 
         public void TestGetPlayerAtPlay() {
-            gameInterface.setPlayerAtPlay(1);
             // Parameter == player number
             Assert.IsTrue(gameInterface.getPlayerAtPlay() == 1);
         }
@@ -90,7 +85,6 @@ namespace ConnectXUnitTest
         [TestMethod]
         public void TestInsertTokenInColumn2ByPlayer1() {
             gameInterface.newGame();
-            gameInterface.setPlayerAtPlay(1);
             
             // insertToken returns true if token is successfully inserted
             Assert.IsTrue(gameInterface.insertToken(2,1));

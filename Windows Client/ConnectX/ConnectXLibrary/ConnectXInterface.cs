@@ -11,6 +11,7 @@
 
         #region Constructor
         public ConnectXInterface() {
+            newGame();
         }
         #endregion
 
