@@ -78,8 +78,6 @@ namespace ConnectXLibrary
             
         }
 
-
-
         private string showDialog(string text, string caption)
         {
             Form prompt = new Form();
@@ -160,6 +158,7 @@ namespace ConnectXLibrary
             }
 
         }
+
         private void drawGrid() {
             //TODO : Array wordt van boven naar beneden gerenderd
 
