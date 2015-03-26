@@ -159,6 +159,7 @@
             // 
             // btnStart
             // 
+            this.btnStart.Enabled = false;
             this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStart.Location = new System.Drawing.Point(475, 371);
             this.btnStart.Name = "btnStart";
@@ -170,7 +171,6 @@
             // 
             // lstBoxLength
             // 
-            this.lstBoxLength.Enabled = false;
             this.lstBoxLength.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstBoxLength.FormattingEnabled = true;
             this.lstBoxLength.ItemHeight = 42;
@@ -212,7 +212,6 @@
             // 
             // lstBoxWidth
             // 
-            this.lstBoxWidth.Enabled = false;
             this.lstBoxWidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstBoxWidth.FormattingEnabled = true;
             this.lstBoxWidth.ItemHeight = 42;
@@ -243,12 +242,12 @@
             // 
             // txtBoxPlayer2Name
             // 
-            this.txtBoxPlayer2Name.Enabled = false;
             this.txtBoxPlayer2Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBoxPlayer2Name.Location = new System.Drawing.Point(570, 103);
             this.txtBoxPlayer2Name.Name = "txtBoxPlayer2Name";
             this.txtBoxPlayer2Name.Size = new System.Drawing.Size(381, 49);
             this.txtBoxPlayer2Name.TabIndex = 4;
+            this.txtBoxPlayer2Name.TextChanged += new System.EventHandler(this.txtBoxPlayer2Name_TextChanged);
             // 
             // lblPlayer2Name
             // 
@@ -274,12 +273,12 @@
             // 
             // txtBoxPlayer1Name
             // 
-            this.txtBoxPlayer1Name.Enabled = false;
             this.txtBoxPlayer1Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBoxPlayer1Name.Location = new System.Drawing.Point(570, 28);
             this.txtBoxPlayer1Name.Name = "txtBoxPlayer1Name";
             this.txtBoxPlayer1Name.Size = new System.Drawing.Size(381, 49);
             this.txtBoxPlayer1Name.TabIndex = 0;
+            this.txtBoxPlayer1Name.TextChanged += new System.EventHandler(this.txtBoxPlayer1Name_TextChanged);
             // 
             // picBoxBanner
             // 
