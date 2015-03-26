@@ -48,6 +48,8 @@
             this.lblPlayer1Name = new System.Windows.Forms.Label();
             this.txtBoxPlayer1Name = new System.Windows.Forms.TextBox();
             this.picBoxBanner = new System.Windows.Forms.PictureBox();
+            this.txtBoxWidth = new System.Windows.Forms.TextBox();
+            this.txtBoxLength = new System.Windows.Forms.TextBox();
             this.pnlMenu.SuspendLayout();
             this.pnlEnterData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxBanner)).BeginInit();
@@ -141,6 +143,8 @@
             // pnlEnterData
             // 
             this.pnlEnterData.BackColor = System.Drawing.Color.Transparent;
+            this.pnlEnterData.Controls.Add(this.txtBoxLength);
+            this.pnlEnterData.Controls.Add(this.txtBoxWidth);
             this.pnlEnterData.Controls.Add(this.btnStart);
             this.pnlEnterData.Controls.Add(this.lstBoxLength);
             this.pnlEnterData.Controls.Add(this.lblLength);
@@ -291,6 +295,20 @@
             this.picBoxBanner.TabIndex = 6;
             this.picBoxBanner.TabStop = false;
             // 
+            // txtBoxWidth
+            // 
+            this.txtBoxWidth.Location = new System.Drawing.Point(567, 329);
+            this.txtBoxWidth.Name = "txtBoxWidth";
+            this.txtBoxWidth.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxWidth.TabIndex = 11;
+            // 
+            // txtBoxLength
+            // 
+            this.txtBoxLength.Location = new System.Drawing.Point(762, 329);
+            this.txtBoxLength.Name = "txtBoxLength";
+            this.txtBoxLength.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxLength.TabIndex = 12;
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -343,6 +361,8 @@
         private System.Windows.Forms.Label lblLength;
         private System.Windows.Forms.Label lblWidth;
         private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.TextBox txtBoxLength;
+        private System.Windows.Forms.TextBox txtBoxWidth;
     }
 }
 

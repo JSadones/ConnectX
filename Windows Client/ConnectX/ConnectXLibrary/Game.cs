@@ -19,11 +19,13 @@ namespace ConnectXLibrary
         #endregion
 
         #region Constructor
-        public Game(string namePlayer1, string namePlayer2) {
+        public Game(string namePlayer1, string namePlayer2, int columns, int rows) {
             InitializeComponent();
 
             this.namePlayer1 = namePlayer1;
             this.namePlayer2 = namePlayer2;
+            this.rows = rows;
+            this.columns = columns;
 
             newSession();
             session.newGame();
