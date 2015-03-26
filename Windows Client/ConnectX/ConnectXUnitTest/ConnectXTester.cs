@@ -444,7 +444,6 @@ namespace ConnectXUnitTest
             Assert.IsFalse(game.isRasterInitializedWithZeros());
         }
 
-
         [TestMethod]
         public void Test10Rows14ColumnsInsertTokenInRasterAndAssertThatRasterIsNotZero()
         {

@@ -57,17 +57,44 @@
             else return false;
         }
 
-		public void incrementScorePlayer(int player) {
-			switch (player) {
-				case 1:
-					scorePlayer1++;
-					break;
+        public string getName(int player)
+        {
+            if (player == 1)
+            {
+                return namePlayer1;
+            }
+            else if (player == 2)
+            {
+                return namePlayer2;
+            }
+            else return "";
+        }
 
-				case 2:
-					scorePlayer2++;
-					break;
-			}
-		}
+        public int getOverallWonPlayer()
+        {
+            if (scorePlayer1 > scorePlayer2)
+            {
+                return 1;
+            }
+            else if (scorePlayer1 < scorePlayer2)
+            {
+                return 2;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        
+        public int getToken(int row, int column)
+        {
+            return game.getToken(row, column);
+        }
+
+        public int getCurrentGameWonPlayer()
+        {
+            return game.getCurrentGameWonPlayer();
+        }
 
 		public int getScore(int player) {
 			if (player == 1) {
@@ -95,6 +122,33 @@
 			return game.getPlayerAtTurn();
 		}
 
+        public void setName(int playerNumber, string playerName)
+        {
+            if (playerNumber == 1)
+            {
+                namePlayer1 = playerName;
+            }
+            else if (playerNumber == 2)
+            {
+                namePlayer2 = playerName;
+            }
+        }
+
+        public bool isCurrentGameWon()
+        {
+            return game.isWon();
+        }
+
+        public bool isColumnFull(int column)
+        {
+            return game.isColumnFull(column);
+        }
+
+        public bool isRasterFull()
+        {
+            return game.rasterIsFull();
+        }
+
 		public bool insertToken(int column, int player) {
 			if (player == game.getPlayerAtTurn()) {
 				if (game.insertToken(column, player)) {
@@ -108,64 +162,19 @@
 			} else return false;			
 		}
 
-		
-        public bool isCurrentGameWon() {
-			return game.isWon();
-		}
-
-        public bool isColumnFull(int column)
+        public void incrementScorePlayer(int player)
         {
-            return game.isColumnFull(column);
+            switch (player)
+            {
+                case 1:
+                    scorePlayer1++;
+                    break;
+
+                case 2:
+                    scorePlayer2++;
+                    break;
+            }
         }
-
-        public bool isRasterFull()
-        {
-            return game.rasterIsFull();
-        }
-
-        public void reset() {
-			game = null;
-			scorePlayer1 = 0;
-			scorePlayer2 = 0;
-			// ToDo: breng terug naar startscherm
-        }
-
-        public int getToken(int row, int column) {
-			return game.getToken(row, column);
-		}
-
-        public int getCurrentGameWonPlayer()
-        {
-            return game.getCurrentGameWonPlayer();
-        }
-
-		public void setName(int playerNumber, string playerName)
-		{
-			if (playerNumber == 1) {
-				namePlayer1 = playerName;
-			} else if (playerNumber == 2) {
-				namePlayer2 = playerName;
-			}
-		}
-        public string getName(int player)
-        {
-			if (player == 1) {
-				return namePlayer1;
-			} else if (player == 2) {
-				return namePlayer2;
-			} else return "";
-		}
-
-		public int getOverallWonPlayer()
-		{
-			if (scorePlayer1 > scorePlayer2) {
-				return 1;
-			} else if (scorePlayer1 < scorePlayer2) {
-				return 2;
-			} else {
-				return 0;
-			}
-		}
 
 		#endregion
 	}
