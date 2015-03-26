@@ -7,128 +7,66 @@ namespace ConnectXLibrary
     public partial class Game : Form
     {
         #region State
-        private int rows;
-        private int columns;
-        private float size = 80;
-        ConnectXInterface game;
+        private int rows, columns;
+        private string namePlayer1, namePlayer2;
+        private float size = 60;
+
+        ConnectXInterface session;
 
         Graphics gr;
         Pen myPen;
         Font myFont;
-
-        string namePlayer1, namePlayer2;
-
         #endregion
 
         #region Constructor
         public Game() {
             InitializeComponent();
 
-            namePlayer1 = showDialog("Naam Speler 1","");
-            namePlayer2 = showDialog("Naam Speler 2", "");
-
-            gr = pnlGame.CreateGraphics();
-            myPen = new Pen(Brushes.Black, 1);
-            myFont = new Font("Arial", (pnlGame.Width <= pnlGame.Height) ? size / 3 : size / 3);
+            namePlayer1 = "test";
+            namePlayer2 = "test2";
 
             newSession();
-
-            game.newGame();
-            rows = game.getRows();
-            columns = game.getColumns();
+            session.newGame();
+            rows = session.getRows();
+            columns = session.getColumns();
         }
         #endregion
 
         #region Methods
-
-        //###### IN GAME.DESIGNER DIT OOK UNCOMMENTEN ######
-        //private void Game_FormClosing(object sender, FormClosingEventArgs e) {
-        //    Menu menu = new Menu();
-        //    menu.StartPosition = FormStartPosition.Manual;
-        //    menu.Location = new Point(this.Location.X, this.Location.Y);
-        //    menu.Show();
-        //    this.Hide();
-        //}
-
-        //private void drawCircles() {
-        //    System.Drawing.Graphics graphics = this.CreateGraphics();
-        //    System.Drawing.Rectangle rectangle = new System.Drawing.Rectangle(75, 75, 100, 100);
-        //    graphics.DrawEllipse(System.Drawing.Pens.Black, rectangle);
-        //    graphics.DrawRectangle(System.Drawing.Pens.Red, rectangle);
-        //}
-        #endregion
-
         private void updateScores()
         {
-            lblPointsPlayer1.Text = game.getScore(1).ToString();
-            lblPointsPlayer2.Text = game.getScore(2).ToString();
+            lblPointsPlayer1.Text = session.getScore(1).ToString();
+            lblPointsPlayer2.Text = session.getScore(2).ToString();
         }
 
-        private void newSession()
-        {
+        private void newSession() {
 
-            game = new ConnectXInterface();
-            game.setName(1, namePlayer1);
-            game.setName(2, namePlayer2);
+            session = new ConnectXInterface();
+            session.setName(1, namePlayer1);
+            session.setName(2, namePlayer2);
 
-            lblPlayer1.Text = game.getName(1);
-            lblPlayer2.Text = game.getName(2);
+            lblPlayer1.Text = session.getName(1);
+            lblPlayer2.Text = session.getName(2);
 
             updateScores();
             
         }
 
-        private string showDialog(string text, string caption)
-        {
-            Form prompt = new Form();
-            prompt.Width = 500;
-            prompt.Height = 150;
-            prompt.FormBorderStyle = FormBorderStyle.FixedDialog;
-            prompt.Text = caption;
-            prompt.StartPosition = FormStartPosition.CenterScreen;
-            Label textLabel = new Label() { Left = 50, Top = 20, Text = text };
-            TextBox textBox = new TextBox() { Left = 50, Top = 50, Width = 400 };
-            Button confirmation = new Button() { Text = "Ok", Left = 350, Width = 100, Top = 70 };
-            confirmation.Click += (sender, e) => { prompt.Close(); };
-            prompt.Controls.Add(textBox);
-            prompt.Controls.Add(confirmation);
-            prompt.Controls.Add(textLabel);
-            prompt.AcceptButton = confirmation;
-            prompt.ShowDialog();
-            return textBox.Text;
-        }
-
         private void pnlGame_MouseClick(object sender, MouseEventArgs e) {
-            //MessageBox.Show("X : " + e.X);
-            //Zorgen dat dynamisch is en niet hardgecodeerd
-            int playerAtPlay = game.getPlayerAtPlay();
-            if (e.X >= 0 && e.X <= 80) {
+            int playerAtPlay = session.getPlayerAtPlay();
 
-                game.insertToken(0, playerAtPlay);
+            for (int i = 0; i < columns; i++) { 
+                if(e.X >= i * size && e.X <= size * (i + 1)){
+                    session.insertToken(i, playerAtPlay);
+                }
             }
-            else if (e.X >= 80 && e.X <= 160) {
-                game.insertToken(1, playerAtPlay);
-            }
-            else if (e.X >= 160 && e.X <= 240) {
-                game.insertToken(2, playerAtPlay);
-            }
-            else if (e.X >= 240 && e.X <= 320) {
-                game.insertToken(3, playerAtPlay);
-            }
-            else if (e.X >= 320 && e.X <= 400) {
-                game.insertToken(4, playerAtPlay);
-            }
-            else if (e.X >= 400 && e.X <= 480) {
-                game.insertToken(5, playerAtPlay);
-            }
-            else if (e.X >= 480 && e.X <= 560) {
-                game.insertToken(6, playerAtPlay);
-            }
+
 
             //pnlGame.Invalidate();
+            //gr.Clear(Color.White);
             drawGrid();
 
-            if (game.isCurrentGameWon() || game.isRasterFull())
+            if (session.isCurrentGameWon() || session.isRasterFull())
             {
                 gr.Clear(Color.White);
                 updateScores();
@@ -136,16 +74,14 @@ namespace ConnectXLibrary
                 DialogResult dialogResult = MessageBox.Show("Play another game?", "?", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    game.newGame();
+                    session.newGame();
                     drawGrid();
-                }
-                else if (dialogResult == DialogResult.No)
-                {
+                } else if (dialogResult == DialogResult.No) {
                     string message;
-                    if (game.getOverallWonPlayer() == 0)
+                    if (session.getOverallWonPlayer() == 0)
                         message = "It's a tie!";
                     else
-                        message = game.getName(game.getOverallWonPlayer()) + " won the game!";
+                        message = session.getName(session.getOverallWonPlayer()) + " won the game!";
 
                     DialogResult dialogResult2 = MessageBox.Show(message, "YeeHOO", MessageBoxButtons.OK);
 
@@ -160,24 +96,24 @@ namespace ConnectXLibrary
         }
 
         private void drawGrid() {
-            //TODO : Array wordt van boven naar beneden gerenderd
-
+            gr = pnlGame.CreateGraphics();
             gr.Clear(Color.White);
-
             float x = 0;
             float y = 0;
-
+            
+            myPen = new Pen(Brushes.Black, 1);
+            myFont = new Font("Arial", 10);
 
 
             //Vertical lines
-            for (int i = 0; i < columns + 1; i++) {
+            for (int i = 0; i < columns; i++) {
                 gr.DrawLine(myPen, x, y, x, size * columns);
                 x += size;
             }
 
-            x = 0f;
+            x = 0;
             //Horizontal lines
-            for (int i = 0; i < rows + 1; i++) {
+            for (int i = 0; i < rows; i++) {
                 gr.DrawLine(myPen, x, y, size * columns, y);
                 y += size;
             }
@@ -187,11 +123,13 @@ namespace ConnectXLibrary
             int counter = 1;
 
             //Counter
-            int[,] raster = game.getRaster();
+            int[,] raster = session.getRaster();
 
             y = size * rows;
-            for (int r = 0; r < rows; r++) {
-                for (int c = 0; c < columns; c++) {
+            for (int r = 0; r < rows; r++)
+            {
+                for (int c = 0; c < columns; c++)
+                {
                     gr.DrawString(Convert.ToString(raster[r, c]), myFont, Brushes.Black, x + myFont.Size, y + myFont.Size);
                     x += size;
                     counter++;
@@ -206,5 +144,6 @@ namespace ConnectXLibrary
         private void btnDrawGrid_Click(object sender, EventArgs e) {
             drawGrid();
         }
+        #endregion
     }
 }

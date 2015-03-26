@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Connect4_Algorithm
 {
     class Algorithm
     {
-        public bool haswon(int board)
+        public bool haswon(int[,] board)
         {
-            y = board & (board >> 7);
+            Int64 y = board & (board >> 7);
             if (y & (y >> 2 * 7)) // check \ diagonal
                 return true;
             y = board & (board >> 8);

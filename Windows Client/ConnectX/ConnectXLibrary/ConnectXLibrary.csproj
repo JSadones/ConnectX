@@ -62,7 +62,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConnectXDrawing.cs" />
     <Compile Include="Game.cs">
       <SubType>Form</SubType>
     </Compile>

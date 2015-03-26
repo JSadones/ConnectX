@@ -91,9 +91,7 @@ namespace ConnectXLibrary
         }
 
         public bool isWon() {
-			if (isWonVertical() || isWonDiagonal45() || isWonDiagonal135() || isWonHorizontal()) 
-            {
-    
+			if (isWonVertical() || isWonDiagonal45() || isWonDiagonal135() || isWonHorizontal()) {
                 return true;
             }
             return false;
@@ -304,19 +302,16 @@ namespace ConnectXLibrary
             return empySpots;
         }
 
-        private int getRowIndexOfLowestEmptyTokenInColumn(int column)
-        {
+        private int getRowIndexOfLowestEmptyTokenInColumn(int column) {
             int row = 0;
-            while (row < rows)
-            {
+            while (row < rows) {
                 if (raster[row, column] == 0) return row;
                 row++;
             }
             return -1;
         }
 
-        public void switchPlayerAtTurn()
-        {
+        public void switchPlayerAtTurn() {
             if (playerAtTurn == 1) playerAtTurn = 2;
             else playerAtTurn = 1;
         }
@@ -374,10 +369,8 @@ namespace ConnectXLibrary
 			return playerAtTurn;
 		}
 
-        public bool isColumnFull(int column)
-        {
-            if (raster[rows - 1, column] != 0)
-            {
+        public bool isColumnFull(int column) {
+            if (raster[rows - 1, column] != 0) {
                 return true;
             }
             else { return false; }
@@ -386,10 +379,6 @@ namespace ConnectXLibrary
 		public int getToken(int row, int column) {
 			return raster[row, column];
 		}
-
         #endregion
-
-
     }
-
 }
