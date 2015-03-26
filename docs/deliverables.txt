@@ -1,0 +1,2 @@
+Deliverable 1: Speelbare WindowsClient 2 Humans Fixed Grid
+Deliverable 2: Speelbare WindowsClient 2 Humans Modular Grid
