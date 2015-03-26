@@ -229,7 +229,20 @@ namespace ConnectXUnitTest
 			gameWith135DegreeStartingAtColumn0Row0WonRaster.insertToken(1, 2);
 			gameWith135DegreeStartingAtColumn0Row0WonRaster.insertToken(2, 1);
 			gameWith135DegreeStartingAtColumn0Row0WonRaster.insertToken(2, 2);
-			gameWith135DegreeStartingAtColumn0Row0WonRaster.insertToken(3, 2);
+            gameWith135DegreeStartingAtColumn0Row0WonRaster.insertToken(3, 2);
+
+            // Game in raster where diagonal 135° can be found starting from column 0 row 0
+            game10Rows14ColumnsWith135DegreeStartingAtColumn0Row0WonRaster = new ConnectX();
+            game10Rows14ColumnsWith135DegreeStartingAtColumn0Row0WonRaster.insertToken(0, 1);
+            game10Rows14ColumnsWith135DegreeStartingAtColumn0Row0WonRaster.insertToken(0, 2);
+            game10Rows14ColumnsWith135DegreeStartingAtColumn0Row0WonRaster.insertToken(0, 1);
+            game10Rows14ColumnsWith135DegreeStartingAtColumn0Row0WonRaster.insertToken(0, 2);
+            game10Rows14ColumnsWith135DegreeStartingAtColumn0Row0WonRaster.insertToken(1, 1);
+            game10Rows14ColumnsWith135DegreeStartingAtColumn0Row0WonRaster.insertToken(1, 2);
+            game10Rows14ColumnsWith135DegreeStartingAtColumn0Row0WonRaster.insertToken(1, 2);
+            game10Rows14ColumnsWith135DegreeStartingAtColumn0Row0WonRaster.insertToken(2, 1);
+            game10Rows14ColumnsWith135DegreeStartingAtColumn0Row0WonRaster.insertToken(2, 2);
+            game10Rows14ColumnsWith135DegreeStartingAtColumn0Row0WonRaster.insertToken(3, 2);
 
 			// Game in raster where diagonal 135° can be found starting from column x row 1
 			gameWith135DegreeStartingAtColumnXRow1WonRaster = new ConnectX();
@@ -411,7 +424,7 @@ namespace ConnectXUnitTest
         }
         
         [TestMethod]
-        public void TestIs10Rows14ColumnsRasterInitializedWithZeros()
+        public void Test10Rows14ColumnsIsRasterInitializedWithZeros()
         {
             Assert.IsTrue(game10Rows14Columns.isRasterInitializedWithZeros());
 
@@ -520,7 +533,6 @@ namespace ConnectXUnitTest
         {
             Assert.IsTrue(game10Rows14ColumnsWith45DegreeStartingAtColumn0Row0WonRaster.isWonDiagonal45());
             Assert.IsTrue(game10Rows14ColumnsWith45DegreeStartingAtColumn0Row1WonRaster.isWonDiagonal45());
-            Assert.IsFalse(game10Rows14ColumnsWithout45Degree.isWonDiagonal45());
         }
 
 		[TestMethod]
