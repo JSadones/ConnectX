@@ -61,19 +61,6 @@ namespace ConnectXUnitTest
 			gameInterface10Rows14Columns.newGame();
             Assert.IsTrue(gameInterface.gameRunning());
         }
-
-        [TestMethod]
-        public void TestResetGame() {
-			gameInterface10Rows14Columns.newGame();
-			gameInterface10Rows14Columns.incrementScorePlayer(1);
-			gameInterface10Rows14Columns.incrementScorePlayer(2);
-			Assert.IsTrue(gameInterface10Rows14Columns.gameRunning());
-			gameInterface10Rows14Columns.reset();
-			Assert.IsFalse(gameInterface10Rows14Columns.gameRunning());
-			Assert.IsTrue(gameInterface10Rows14Columns.getScore(1) == 0);
-			Assert.IsTrue(gameInterface10Rows14Columns.getScore(2) == 0);
-
-        }
 		
         [TestMethod]
         public void TestCurrentGameWon() {
