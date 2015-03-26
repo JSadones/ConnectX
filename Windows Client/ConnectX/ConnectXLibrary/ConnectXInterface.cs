@@ -46,6 +46,9 @@
             game = new ConnectX(rows, columns, streak);
         }
 
+		public void newGame(int players, int rows, int columns, int tokenStreak) {
+			game = new ConnectX(rows, columns, tokenStreak);
+		}
 
         public bool gameRunning() {
             if (game != null) {

@@ -1,4 +1,5 @@
-﻿namespace Connect4_Algorithm
+﻿using System;
+namespace Connect4_Algorithm
 {
     class Program
     {
