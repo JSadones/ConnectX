@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Game));
             this.lblName = new System.Windows.Forms.Label();
             this.pnlGame = new System.Windows.Forms.Panel();
             this.btnDrawGrid = new System.Windows.Forms.Button();
@@ -38,6 +39,7 @@
             this.lblPointsPlayer1 = new System.Windows.Forms.Label();
             this.lblPointsPlayer2 = new System.Windows.Forms.Label();
             this.lblDividerPlayer2 = new System.Windows.Forms.Label();
+            this.lblTurn = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxBanner)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,13 +56,13 @@
             this.pnlGame.BackColor = System.Drawing.Color.White;
             this.pnlGame.Location = new System.Drawing.Point(12, 157);
             this.pnlGame.Name = "pnlGame";
-            this.pnlGame.Size = new System.Drawing.Size(1537, 634);
+            this.pnlGame.Size = new System.Drawing.Size(1189, 450);
             this.pnlGame.TabIndex = 4;
             this.pnlGame.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pnlGame_MouseClick);
             // 
             // btnDrawGrid
             // 
-            this.btnDrawGrid.Location = new System.Drawing.Point(743, 808);
+            this.btnDrawGrid.Location = new System.Drawing.Point(569, 626);
             this.btnDrawGrid.Name = "btnDrawGrid";
             this.btnDrawGrid.Size = new System.Drawing.Size(75, 23);
             this.btnDrawGrid.TabIndex = 5;
@@ -72,9 +74,9 @@
             // 
             this.picBoxBanner.BackColor = System.Drawing.Color.Transparent;
             this.picBoxBanner.Image = global::ConnectXLibrary.Properties.Resources.banner1;
-            this.picBoxBanner.Location = new System.Drawing.Point(549, 12);
+            this.picBoxBanner.Location = new System.Drawing.Point(833, 12);
             this.picBoxBanner.Name = "picBoxBanner";
-            this.picBoxBanner.Size = new System.Drawing.Size(463, 72);
+            this.picBoxBanner.Size = new System.Drawing.Size(368, 52);
             this.picBoxBanner.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picBoxBanner.TabIndex = 7;
             this.picBoxBanner.TabStop = false;
@@ -85,7 +87,7 @@
             this.lblPlayer1.BackColor = System.Drawing.Color.Transparent;
             this.lblPlayer1.Font = new System.Drawing.Font("Century Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPlayer1.ForeColor = System.Drawing.Color.White;
-            this.lblPlayer1.Location = new System.Drawing.Point(121, 28);
+            this.lblPlayer1.Location = new System.Drawing.Point(126, 20);
             this.lblPlayer1.Name = "lblPlayer1";
             this.lblPlayer1.Size = new System.Drawing.Size(160, 44);
             this.lblPlayer1.TabIndex = 8;
@@ -98,7 +100,7 @@
             this.lblPlayer2.BackColor = System.Drawing.Color.Transparent;
             this.lblPlayer2.Font = new System.Drawing.Font("Century Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPlayer2.ForeColor = System.Drawing.Color.White;
-            this.lblPlayer2.Location = new System.Drawing.Point(1281, 28);
+            this.lblPlayer2.Location = new System.Drawing.Point(126, 82);
             this.lblPlayer2.Name = "lblPlayer2";
             this.lblPlayer2.Size = new System.Drawing.Size(160, 44);
             this.lblPlayer2.TabIndex = 9;
@@ -110,7 +112,7 @@
             this.lblDividerPlayer1.BackColor = System.Drawing.Color.Transparent;
             this.lblDividerPlayer1.Font = new System.Drawing.Font("Century Gothic", 27.75F);
             this.lblDividerPlayer1.ForeColor = System.Drawing.Color.White;
-            this.lblDividerPlayer1.Location = new System.Drawing.Point(287, 28);
+            this.lblDividerPlayer1.Location = new System.Drawing.Point(75, 20);
             this.lblDividerPlayer1.Name = "lblDividerPlayer1";
             this.lblDividerPlayer1.Size = new System.Drawing.Size(45, 44);
             this.lblDividerPlayer1.TabIndex = 10;
@@ -122,7 +124,7 @@
             this.lblPointsPlayer1.BackColor = System.Drawing.Color.Transparent;
             this.lblPointsPlayer1.Font = new System.Drawing.Font("Century Gothic", 27.75F);
             this.lblPointsPlayer1.ForeColor = System.Drawing.Color.White;
-            this.lblPointsPlayer1.Location = new System.Drawing.Point(338, 28);
+            this.lblPointsPlayer1.Location = new System.Drawing.Point(28, 20);
             this.lblPointsPlayer1.Name = "lblPointsPlayer1";
             this.lblPointsPlayer1.Size = new System.Drawing.Size(41, 44);
             this.lblPointsPlayer1.TabIndex = 11;
@@ -134,7 +136,7 @@
             this.lblPointsPlayer2.BackColor = System.Drawing.Color.Transparent;
             this.lblPointsPlayer2.Font = new System.Drawing.Font("Century Gothic", 27.75F);
             this.lblPointsPlayer2.ForeColor = System.Drawing.Color.White;
-            this.lblPointsPlayer2.Location = new System.Drawing.Point(1183, 28);
+            this.lblPointsPlayer2.Location = new System.Drawing.Point(28, 82);
             this.lblPointsPlayer2.Name = "lblPointsPlayer2";
             this.lblPointsPlayer2.Size = new System.Drawing.Size(41, 44);
             this.lblPointsPlayer2.TabIndex = 12;
@@ -146,18 +148,32 @@
             this.lblDividerPlayer2.BackColor = System.Drawing.Color.Transparent;
             this.lblDividerPlayer2.Font = new System.Drawing.Font("Century Gothic", 27.75F);
             this.lblDividerPlayer2.ForeColor = System.Drawing.Color.White;
-            this.lblDividerPlayer2.Location = new System.Drawing.Point(1230, 28);
+            this.lblDividerPlayer2.Location = new System.Drawing.Point(75, 82);
             this.lblDividerPlayer2.Name = "lblDividerPlayer2";
             this.lblDividerPlayer2.Size = new System.Drawing.Size(45, 44);
             this.lblDividerPlayer2.TabIndex = 13;
             this.lblDividerPlayer2.Text = "|";
+            // 
+            // lblTurn
+            // 
+            this.lblTurn.AutoSize = true;
+            this.lblTurn.BackColor = System.Drawing.Color.Transparent;
+            this.lblTurn.Font = new System.Drawing.Font("Century Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTurn.ForeColor = System.Drawing.Color.White;
+            this.lblTurn.Location = new System.Drawing.Point(550, 20);
+            this.lblTurn.Name = "lblTurn";
+            this.lblTurn.Size = new System.Drawing.Size(112, 44);
+            this.lblTurn.TabIndex = 14;
+            this.lblTurn.Text = "Turn :";
+            this.lblTurn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::ConnectXLibrary.Properties.Resources._128_184;
-            this.ClientSize = new System.Drawing.Size(1561, 843);
+            this.ClientSize = new System.Drawing.Size(1213, 661);
+            this.Controls.Add(this.lblTurn);
             this.Controls.Add(this.lblDividerPlayer2);
             this.Controls.Add(this.lblPointsPlayer2);
             this.Controls.Add(this.lblPointsPlayer1);
@@ -168,9 +184,10 @@
             this.Controls.Add(this.btnDrawGrid);
             this.Controls.Add(this.pnlGame);
             this.Controls.Add(this.lblName);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1577, 882);
-            this.MinimumSize = new System.Drawing.Size(1577, 882);
+            this.MaximumSize = new System.Drawing.Size(1229, 700);
+            this.MinimumSize = new System.Drawing.Size(1229, 700);
             this.Name = "Game";
             this.Text = "Game";
             ((System.ComponentModel.ISupportInitialize)(this.picBoxBanner)).EndInit();
@@ -191,5 +208,6 @@
         private System.Windows.Forms.Label lblPointsPlayer1;
         private System.Windows.Forms.Label lblPointsPlayer2;
         private System.Windows.Forms.Label lblDividerPlayer2;
+        private System.Windows.Forms.Label lblTurn;
     }
 }
