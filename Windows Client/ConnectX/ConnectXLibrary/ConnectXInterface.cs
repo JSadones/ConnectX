@@ -6,16 +6,22 @@
 		private int scorePlayer2 = 0;
 		private string namePlayer1;
 		private string namePlayer2;
+		private int rows;
+		private int columns;
         private ConnectX game;
         #endregion
 
         #region Constructor
-        public ConnectXInterface() {
+        public ConnectXInterface(int rows, int columns) {
+			this.rows = rows;
+			this.columns = columns;
             newGame();
         }
 
-		public ConnectXInterface(int rows, int columns) {
+		public ConnectXInterface() {
+
 			newGame();
+
 		}
         #endregion
 
@@ -23,22 +29,9 @@
         #endregion
 
         #region Methods
-        public void newGame(int rows, int columns) {
+        public void newGame() {
             game = new ConnectX(rows, columns);
         }
-
-        public void newGame() {
-            game = new ConnectX();
-        }
-
-		public void newGame(int rows, int columns, int tokenStreak, int players)
-		{
-			game = new ConnectX(rows, columns, tokenStreak);
-		}
-
-		public void newGame(int rows, int columns, int tokenStreak) {
-			game = new ConnectX(rows, columns, tokenStreak);
-		}
 
 
         public bool gameRunning() {

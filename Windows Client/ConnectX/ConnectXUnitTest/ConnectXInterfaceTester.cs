@@ -46,14 +46,14 @@ namespace ConnectXUnitTest
         }
 
         [TestMethod]
-        public void TestNewGame2HumanPlayersWith10RowsAnd5Streak() {
+        public void TestNewGameWith10Rows14ColumnsAnd5Streak() {
             gameInterface.newGame(10, 14, 5);
             Assert.IsTrue(gameInterface.gameRunning());
         }
 
         [TestMethod]
-        public void TestNewGame1HumanPlayerWith10RowsAnd14Columns() {
-            gameInterface.newGame(10, 14, 1);
+        public void TestNewGameWith10RowsAnd14Columns() {
+            gameInterface.newGame(10, 14, 4);
             Assert.IsTrue(gameInterface.gameRunning());
         }
 
