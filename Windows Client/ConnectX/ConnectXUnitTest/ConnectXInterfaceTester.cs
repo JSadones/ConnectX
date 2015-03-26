@@ -6,10 +6,15 @@ namespace ConnectXUnitTest
     [TestClass]
     public class ConnectXInterfaceTester {
         ConnectXInterface gameInterface;
+		ConnectXInterface gameInterface10Rows14Columns;
+		ConnectXInterface gameInterface10Rows14Columns5Streak;
 
         [TestInitialize]
         public void setup() {
-            gameInterface = new ConnectXInterface(10,14);
+            gameInterface = new ConnectXInterface();
+			gameInterface10Rows14Columns = new ConnectXInterface(10, 14);
+			gameInterface10Rows14Columns5Streak = new ConnectXInterface(10, 14, 5);
+
         }
 
         [TestMethod]
@@ -41,32 +46,32 @@ namespace ConnectXUnitTest
 
         [TestMethod]
         public void TestNewGame2HumanPlayersWith10RowsAnd14Columns() {
-            gameInterface.newGame(10,14);
-            Assert.IsTrue(gameInterface.gameRunning());
+            gameInterface.newGame();
+            Assert.IsTrue(gameInterface10Rows14Columns.gameRunning());
         }
 
         [TestMethod]
         public void TestNewGameWith10Rows14ColumnsAnd5Streak() {
-            gameInterface.newGame(10, 14, 5);
+			gameInterface10Rows14Columns5Streak.newGame();
             Assert.IsTrue(gameInterface.gameRunning());
         }
 
         [TestMethod]
         public void TestNewGameWith10RowsAnd14Columns() {
-            gameInterface.newGame(10, 14, 4);
+			gameInterface10Rows14Columns.newGame();
             Assert.IsTrue(gameInterface.gameRunning());
         }
 
         [TestMethod]
         public void TestResetGame() {
-            gameInterface.newGame(10, 14);
-            gameInterface.incrementScorePlayer(1);
-            gameInterface.incrementScorePlayer(2);
-            Assert.IsTrue(gameInterface.gameRunning());
-            gameInterface.reset();
-			Assert.IsFalse(gameInterface.gameRunning());
-            Assert.IsTrue(gameInterface.getScore(1) == 0);
-            Assert.IsTrue(gameInterface.getScore(2) == 0);
+			gameInterface10Rows14Columns.newGame();
+			gameInterface10Rows14Columns.incrementScorePlayer(1);
+			gameInterface10Rows14Columns.incrementScorePlayer(2);
+			Assert.IsTrue(gameInterface10Rows14Columns.gameRunning());
+			gameInterface10Rows14Columns.reset();
+			Assert.IsFalse(gameInterface10Rows14Columns.gameRunning());
+			Assert.IsTrue(gameInterface10Rows14Columns.getScore(1) == 0);
+			Assert.IsTrue(gameInterface10Rows14Columns.getScore(2) == 0);
 
         }
 		

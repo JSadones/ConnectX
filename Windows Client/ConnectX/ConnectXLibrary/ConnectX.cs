@@ -15,13 +15,14 @@ namespace ConnectXLibrary
         private int winningPlayer;
 		private static int defaultRows = 6;
 		private static int defaultColumns = 7;
+		private static int defaultStreak = 4;
         #endregion State
 
         #region Constructor
-        public ConnectX(): this(defaultRows, defaultColumns, 4) {
+        public ConnectX(): this(defaultRows, defaultColumns, defaultStreak) {
         }
 
-        public ConnectX(int rows, int columns): this (rows, columns, 4) {
+        public ConnectX(int rows, int columns): this (rows, columns, defaultStreak) {
         }
 
         public ConnectX(int rows, int columns, int tokenStreak) {
@@ -60,6 +61,11 @@ namespace ConnectXLibrary
 		public static int GetDefaultNumberOfColumns()
 		{
 			return defaultColumns;
+		}
+
+		public static int GetDefaultStreak()
+		{
+			return defaultStreak;
 		}
 		
 		#endregion

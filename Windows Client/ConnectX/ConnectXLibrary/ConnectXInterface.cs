@@ -8,6 +8,7 @@
 		private string namePlayer2;
 		private int rows;
 		private int columns;
+		private int streak;
         private ConnectX game;
         #endregion
 
@@ -15,13 +16,25 @@
         public ConnectXInterface(int rows, int columns) {
 			this.rows = rows;
 			this.columns = columns;
+			this.streak = ConnectX.GetDefaultStreak();
             newGame();
         }
 
-		public ConnectXInterface() {
+		public ConnectXInterface()
+		{
+			this.rows = ConnectX.GetDefaultNumberOfRows();
+			this.columns = ConnectX.GetDefaultNumberOfColumns();
+			this.streak = ConnectX.GetDefaultStreak();
 
 			newGame();
 
+		}
+
+		public ConnectXInterface(int rows, int columns, int streak)
+		{
+			this.rows = rows;
+			this.columns = columns;
+			this.streak = streak;
 		}
         #endregion
 
@@ -30,7 +43,7 @@
 
         #region Methods
         public void newGame() {
-            game = new ConnectX(rows, columns);
+            game = new ConnectX(rows, columns, streak);
         }
 
 
