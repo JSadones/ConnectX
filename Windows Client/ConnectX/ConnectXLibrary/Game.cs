@@ -42,7 +42,7 @@ namespace ConnectXLibrary
 
         private void newSession() {
 
-            session = new ConnectXInterface();
+            session = new ConnectXInterface(rows,columns);
             session.setName(1, namePlayer1);
             session.setName(2, namePlayer2);
 
