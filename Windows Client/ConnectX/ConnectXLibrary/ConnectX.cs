@@ -224,14 +224,13 @@ namespace ConnectXLibrary
                 if (counterPlayer1 == tokenStreak)
                 {
                     return 1;
-                    // TODO: Score speler 1 verhogen
+                    
                 }
 
-                // Indien speler 2 de streak behaald heeft, is het spel gewonnen
                 else if (counterPlayer2 == tokenStreak)
                 {
                     return 2;
-                    // TODO: Score speler 2 verhogen
+                    
                 }
                
             }
