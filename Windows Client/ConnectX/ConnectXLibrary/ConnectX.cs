@@ -168,10 +168,7 @@ namespace ConnectXLibrary
 		}
 
         public bool isWonDiagonal45() {
-			// De tellers voor de streaks te zoeken, voor elk van de spelers afzonderlijk
 
-
-			// 45°: De kolommen worden afgelopen van rechts naar links
 			for (int i = columns - 1; i >= 0; i--) {
                 int winner = getStreakWinnerDiagonal45(0, i);
                 if (1 <= winner && winner <= 2)
@@ -182,7 +179,6 @@ namespace ConnectXLibrary
                 
 			}
 
-			// 45°: De rijen worden afgelopen vanaf de tweede rij, eerste kolom naar boven
 			for (int i = 1; i < rows; i++) {
 
                 int winner = getStreakWinnerDiagonal45(i, 0);
@@ -194,7 +190,6 @@ namespace ConnectXLibrary
                 
                 
 			}
-			// Indien we hier belanden, is het spel niet gewonnen.
 			return false;
         }
 
@@ -235,88 +230,66 @@ namespace ConnectXLibrary
             return 0;
         }
 
-		public bool isWonDiagonal135() {
-			// De tellers voor de streaks te zoeken, voor elk van de spelers afzonderlijk
-			int counterRow;
-			int counterColumn;
-			int counterPlayer1 = 0;
-			int counterPlayer2 = 0;
+        public bool isWonDiagonal135()
+        {
 
-			// 135°: De kolommen worden afgelopen van links naar rechts
-			for (int i = 0; i < columns; i++) {
-				counterRow = 0;
-				counterColumn = i;
+            for (int i = 0; i < columns; i++)
+            {
 
-				counterPlayer1 = 0;
-				counterPlayer2 = 0;
+                int winner = getStreakWinnerDiagonal135(0, i);
+                if (1 <= winner && winner <= 2)
+                {
+                    winningPlayer = winner;
+                    return true;
+                }
 
-				while (counterColumn >= 0 && counterRow < rows) {
-					// Als er een token van player1 gevonden wordt, teller van player2 vermeerderen met 1
-					if (raster[counterRow, counterColumn] == 1) {
-						counterPlayer1++;
-					} else counterPlayer1 = 0;
+            }
 
-					// Als er een token van player2 gevonden wordt, teller van player2 vermeerderen met 1
-					if (raster[counterRow, counterColumn] == 2) {
-						counterPlayer2++;
-					} else counterPlayer2 = 0;
+            for (int i = 1; i < rows; i++)
+            {
+                int winner = getStreakWinnerDiagonal135(i, columns - 1);
+                if (1 <= winner && winner <= 2)
+                {
+                    winningPlayer = winner;
+                    return true;
+                }
+            }
+            return false;
+        }
 
-					counterRow++;
-					counterColumn--;
+        public int getStreakWinnerDiagonal135(int counterRow, int counterColumn)
+        {
+            int counterPlayer1 = 0;
+            int counterPlayer2 = 0;
+            while (counterColumn >= 0 && counterRow < rows)
+            {
+                if (raster[counterRow, counterColumn] == 1)
+                {
+                    counterPlayer1++;
+                }
+                else counterPlayer1 = 0;
 
-					// Indien speler 1 de streak behaald heeft, is het spel gewonnen
-					if (counterPlayer1 == tokenStreak) {
-                        winningPlayer = 1;
-						return true;
-						// TODO: Score speler 1 verhogen
-					}
+                if (raster[counterRow, counterColumn] == 2)
+                {
+                    counterPlayer2++;
+                }
+                else counterPlayer2 = 0;
 
-					// Indien speler 2 de streak behaald heeft, is het spel gewonnen
-					if (counterPlayer2 == tokenStreak) {
-                        winningPlayer = 2;
-                        return true;
-						// TODO: Score speler 2 verhogen
-					}
-				}
-			}
-            
-			// 135°: De rijen worden afgelopen vanaf de tweede rij, laatste kolom naar boven
-			for (int i = 1; i < rows; i++) {
-				counterRow = i;
-				counterColumn = columns - 1;
+                counterRow++;
+                counterColumn--;
 
-				counterPlayer1 = 0;
-				counterPlayer2 = 0;
+                if (counterPlayer1 == tokenStreak)
+                {
+                    return 1;
+                }
 
-				while (counterColumn < columns && counterRow < rows) {
-					if (raster[counterRow, counterColumn] == 1) {
-						counterPlayer1++;
-					} else counterPlayer1 = 0;
-
-					if (raster[counterRow, counterColumn] == 2) {
-						counterPlayer2++;
-					} else counterPlayer2 = 0;
-
-					counterRow++;
-					counterColumn--;
-
-					if (counterPlayer1 == tokenStreak) {
-                        winningPlayer = 1;
-                        return true;
-						// TODO: Score speler 1 verhogen
-					}
-
-					// Indien speler 2 de streak behaald heeft, is het spel gewonnen
-					if (counterPlayer2 == tokenStreak) {
-                        winningPlayer = 2;
-                        return true;
-						// TODO: Score speler 2 verhogen
-					}
-				}
-			}
- 
-			return false;
-		}
+                if (counterPlayer2 == tokenStreak)
+                {
+                    return 2;
+                }
+            }
+            return 0;
+        }
 
         private List<byte> checkEmptySpotInColumn() {
             List<byte> empySpots = new List<byte>();
