@@ -9,7 +9,7 @@ namespace ConnectXUnitTest
 
         [TestInitialize]
         public void setup() {
-            gameInterface = new ConnectXInterface();
+            gameInterface = new ConnectXInterface(10,14);
         }
 
         [TestMethod]
@@ -40,26 +40,26 @@ namespace ConnectXUnitTest
         }
 
         [TestMethod]
-        public void TestNewGame2HumanPlayersWith9RowsAnd11Columns() {
-            gameInterface.newGame(2, 9, 11);
+        public void TestNewGame2HumanPlayersWith10RowsAnd14Columns() {
+            gameInterface.newGame(10,14);
             Assert.IsTrue(gameInterface.gameRunning());
         }
 
         [TestMethod]
-        public void TestNewGame2HumanPlayersWith9RowsAnd5Streak() {
-            gameInterface.newGame(2, 9, 11, 5);
+        public void TestNewGame2HumanPlayersWith10RowsAnd5Streak() {
+            gameInterface.newGame(10, 14, 5);
             Assert.IsTrue(gameInterface.gameRunning());
         }
 
         [TestMethod]
-        public void TestNewGame1HumanPlayerWith9RowsAnd11Columns() {
-            gameInterface.newGame(1, 9, 11);
+        public void TestNewGame1HumanPlayerWith10RowsAnd14Columns() {
+            gameInterface.newGame(10, 14, 1);
             Assert.IsTrue(gameInterface.gameRunning());
         }
 
         [TestMethod]
         public void TestResetGame() {
-            gameInterface.newGame(2, 9, 11);
+            gameInterface.newGame(10, 14);
             gameInterface.incrementScorePlayer(1);
             gameInterface.incrementScorePlayer(2);
             Assert.IsTrue(gameInterface.gameRunning());

@@ -13,13 +13,17 @@
         public ConnectXInterface() {
             newGame();
         }
+
+		public ConnectXInterface(int rows, int columns) {
+			newGame();
+		}
         #endregion
 
         #region Properties
         #endregion
 
         #region Methods
-        public void newGame(int players, int rows, int columns) {
+        public void newGame(int rows, int columns) {
             game = new ConnectX(rows, columns);
         }
 
@@ -27,10 +31,15 @@
             game = new ConnectX();
         }
 
-		public void newGame(int players, int rows, int columns, int tokenStreak)
+		public void newGame(int rows, int columns, int tokenStreak, int players)
 		{
 			game = new ConnectX(rows, columns, tokenStreak);
 		}
+
+		public void newGame(int rows, int columns, int tokenStreak) {
+			game = new ConnectX(rows, columns, tokenStreak);
+		}
+
 
         public bool gameRunning() {
             if (game != null) {
