@@ -27,8 +27,7 @@
             game = new ConnectX();
         }
 
-		public void newGame(int players, int rows, int columns, int tokenStreak)
-		{
+		public void newGame(int players, int rows, int columns, int tokenStreak) {
 			game = new ConnectX(rows, columns, tokenStreak);
 		}
 
@@ -152,7 +151,5 @@
 		}
 
 		#endregion
-
-		
 	}
 }

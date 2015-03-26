@@ -4,34 +4,33 @@ using System.Windows.Forms;
 
 namespace ConnectXLibrary
 {
-    public partial class Menu : Form {
+    public partial class Menu : Form
+    {
+        #region Constructor
         public Menu() {
             InitializeComponent();
             ConnectX game = new ConnectX();
         }
+        #endregion
 
+        #region Methods
         private void btnSluiten_Click(object sender, EventArgs e) {
             this.Close();
         }
 
-        private void btnPlayCPU_Click(object sender, EventArgs e) {
-            
-        }
-
-        private void btnSettings_Click(object sender, EventArgs e) {
+        private void btnMultiplayer_Click(object sender, EventArgs e) {
+            pnlEnterData.Visible = true;
             pnlMenu.Visible = false;
         }
 
-        private void Menu_Load(object sender, EventArgs e) {
+        private void btnStart_Click(object sender, EventArgs e) {
+            pnlEnterData.Visible = false;
             pnlMenu.Visible = true;
+            Game gameForm = new Game();
+            gameForm.StartPosition = FormStartPosition.Manual;
+            gameForm.Location = new Point(this.Location.X, this.Location.Y);
+            gameForm.Show();
         }
-
-        private void button1_Click(object sender, EventArgs e) {
-            Game game = new Game();
-            game.StartPosition = FormStartPosition.Manual;
-            game.Location = new Point(this.Location.X, this.Location.Y);
-            //this.Hide();
-            game.Show();
-        }
+        #endregion
     }
 }
