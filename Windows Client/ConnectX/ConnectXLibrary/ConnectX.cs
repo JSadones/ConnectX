@@ -91,13 +91,21 @@ namespace ConnectXLibrary
         }
 
         public bool isWon() {
-			if (isWonVertical() || isWonDiagonal45() || isWonDiagonal135() || isWonHorizontal()) {
+            if (isWonVertical() == 1 || isWonHorizontal() == 1 || isWonDiagonal45() ==1 || isWonDiagonal135() == 1) {
+                winningPlayer = 1;
                 return true;
             }
+
+            if (isWonVertical() == 2 || isWonHorizontal() == 2 || isWonDiagonal45() == 2 || isWonDiagonal135() == 2)
+            {
+                winningPlayer = 2;
+                return true;
+            }
+
             return false;
         }
 
-        public bool isWonVertical() {
+        public int isWonVertical() {
             int counterPlayer1 = 0;
             int counterPlayer2 = 0;
 
@@ -119,22 +127,21 @@ namespace ConnectXLibrary
                     } else counterPlayer2 = 0;
 
                     if (counterPlayer1 == tokenStreak) {
-                        winningPlayer = 1;
-                        return true;
+                       
+                        return 1;
                     }
 
                     if (counterPlayer2 == tokenStreak) {
-                        winningPlayer = 2;
-                        return true;
+                        return 2;
                     }
 
                     j++;
                 }
             }
-            return false;
+            return 0;
         }
 
-		public bool isWonHorizontal() {
+		public int isWonHorizontal() {
 			int counterPlayer1 = 0;
 			int counterPlayer2 = 0;
 
@@ -154,27 +161,24 @@ namespace ConnectXLibrary
 					} else counterPlayer2 = 0;
 
 					if (counterPlayer1 == tokenStreak) {
-                        winningPlayer = 1;
-						return true;
+                        return 1;
 					}
 
 					if (counterPlayer2 == tokenStreak) {
-                        winningPlayer = 2;
-						return true;
+                        return 2;
 					}
 				}
 			}
-			return false;
+            return 0;
 		}
 
-        public bool isWonDiagonal45() {
+        public int isWonDiagonal45() {
 
 			for (int i = columns - 1; i >= 0; i--) {
                 int winner = getStreakWinnerDiagonal45(0, i);
                 if (1 <= winner && winner <= 2)
                 {
-                    winningPlayer = winner;
-                    return true;
+                    return winner;
                 }
                 
 			}
@@ -184,16 +188,15 @@ namespace ConnectXLibrary
                 int winner = getStreakWinnerDiagonal45(i, 0);
                 if (1 <= winner && winner <= 2)
                 {
-                    winningPlayer = winner;
-                    return true;
+                    return winner;
                 }
                 
                 
 			}
-			return false;
+			return 0;
         }
 
-        public int getStreakWinnerDiagonal45(int counterRow, int counterColumn)
+        private int getStreakWinnerDiagonal45(int counterRow, int counterColumn)
         {
             int counterPlayer1 = 0;
             int counterPlayer2 = 0;
@@ -230,7 +233,7 @@ namespace ConnectXLibrary
             return 0;
         }
 
-        public bool isWonDiagonal135()
+        public int isWonDiagonal135()
         {
 
             for (int i = 0; i < columns; i++)
@@ -239,8 +242,7 @@ namespace ConnectXLibrary
                 int winner = getStreakWinnerDiagonal135(0, i);
                 if (1 <= winner && winner <= 2)
                 {
-                    winningPlayer = winner;
-                    return true;
+                    return winner;
                 }
 
             }
@@ -250,14 +252,13 @@ namespace ConnectXLibrary
                 int winner = getStreakWinnerDiagonal135(i, columns - 1);
                 if (1 <= winner && winner <= 2)
                 {
-                    winningPlayer = winner;
-                    return true;
+                    return winner;
                 }
             }
-            return false;
+            return 0;
         }
 
-        public int getStreakWinnerDiagonal135(int counterRow, int counterColumn)
+        private int getStreakWinnerDiagonal135(int counterRow, int counterColumn)
         {
             int counterPlayer1 = 0;
             int counterPlayer2 = 0;

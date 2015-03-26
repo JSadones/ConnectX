@@ -424,7 +424,6 @@ namespace ConnectXUnitTest
 		public void TestNewGameWithParameters() {
 			// New game with 10 rows, 12 columns, tokenStreak of 7
 			ConnectX gameWithParameters = new ConnectX(10, 12, 7);
-
 			Assert.IsTrue(gameWithParameters.getRows() == 10);
 			Assert.IsTrue(gameWithParameters.getColumns() == 12);
 			Assert.IsTrue(gameWithParameters.getStreakToReach() == 7);
@@ -438,12 +437,12 @@ namespace ConnectXUnitTest
 			Assert.IsFalse(game.isRasterInitializedWithZeros());
 		}
 
-		[TestMethod]
+        [TestMethod]
 		public void Test10Rows14ColumnsInsertTokenInRasterAndAssertThatRasterIsNotZero() {
 			// Insert token for column 0 for player 1
 			game10Rows14Columns.insertToken(0, 1);
 			Assert.IsFalse(game10Rows14Columns.isRasterInitializedWithZeros());
-		}
+        }
 
 		[TestMethod]
 		public void TestWhichPlayerPlaysNextTurn() {
@@ -489,50 +488,53 @@ namespace ConnectXUnitTest
 			Assert.IsFalse(game10Rows14ColumnsWithNotWonRaster.isWon());
 		}
 
-		[TestMethod]
-		public void TestGivenVerticalWonGameIfIsWon(){
-			Assert.IsTrue(gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.isWonVertical());
-		}
-
-		[TestMethod]
-		public void Test10Rows14ColumnsGivenVerticalWonGameIfIsWon(){
-			Assert.IsTrue(game10Rows14ColumnsWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.isWonVertical());
-		}
+        [TestMethod]
+        public void TestGivenVerticalWonGameIfIsWon() {
+            Assert.IsTrue(gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.isWonVertical() == 1);
+        }
+     
+        [TestMethod]
+        public void Test10Rows14ColumnsGivenVerticalWonGameIfIsWon() {
+            Assert.IsTrue(game10Rows14ColumnsWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.isWonVertical() == 1);
+        }
 
 		[TestMethod]
 		public void TestGivenHorizontalWonGameIfIsWon() {
-			Assert.IsTrue(gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon.isWonHorizontal());
+			Assert.IsTrue(gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon.isWonHorizontal() == 1);
 		}
 
-		[TestMethod]
-		public void Test10Rows14ColumnsGivenHorizontalWonGameIfIsWon() {
-			Assert.IsTrue(game10Rows14ColumnsWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon.isWonHorizontal());
-		}
+        [TestMethod]
+        public void Test10Rows14ColumnsGivenHorizontalWonGameIfIsWon()
+        {
+            Assert.IsTrue(game10Rows14ColumnsWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon.isWonHorizontal() ==1);
+        }
+        
+        [TestMethod]
+        public void TestGiven45DegreeWonGameIfIsWon() {
+            Assert.IsTrue(gameWith45DegreeStartingAtColumn0Row0WonRaster.isWonDiagonal45() == 1);
+			Assert.IsTrue(gameWith45DegreeStartingAtColumn0Row1WonRaster.isWonDiagonal45() == 2);
+			Assert.IsTrue(gameWithout45Degree.isWonDiagonal45() == 0);
+        }
 
-		[TestMethod]
-		public void TestGiven45DegreeWonGameIfIsWon() {
-			Assert.IsTrue(gameWith45DegreeStartingAtColumn0Row0WonRaster.isWonDiagonal45());
-			Assert.IsTrue(gameWith45DegreeStartingAtColumn0Row1WonRaster.isWonDiagonal45());
-			Assert.IsFalse(gameWithout45Degree.isWonDiagonal45());
-		}
+        [TestMethod]
+        public void Test10Rows14ColumnsGiven45DegreeWonGameIfIsWon()
+        {
+            Assert.IsTrue(game10Rows14ColumnsWith45DegreeStartingAtColumn0Row0WonRaster.isWonDiagonal45() == 1);
+            Assert.IsTrue(game10Rows14ColumnsWith45DegreeStartingAtColumn0Row1WonRaster.isWonDiagonal45() == 2);
+        }
 
-		[TestMethod]
-		public void Test10Rows14ColumnsGiven45DegreeWonGameIfIsWon() {
-			Assert.IsTrue(game10Rows14ColumnsWith45DegreeStartingAtColumn0Row0WonRaster.isWonDiagonal45());
-			Assert.IsTrue(game10Rows14ColumnsWith45DegreeStartingAtColumn0Row1WonRaster.isWonDiagonal45());
-		}
 
 		[TestMethod]
 		public void TestGiven135DegreeWonGameIfIsWon() {
-			Assert.IsTrue(gameWith135DegreeStartingAtColumn0Row0WonRaster.isWonDiagonal135());
-			Assert.IsTrue(gameWith135DegreeStartingAtColumnXRow1WonRaster.isWonDiagonal135());
+			Assert.IsTrue(gameWith135DegreeStartingAtColumn0Row0WonRaster.isWonDiagonal135() == 2);
+			Assert.IsTrue(gameWith135DegreeStartingAtColumnXRow1WonRaster.isWonDiagonal135() == 2);
 		}
 
-		[TestMethod]
-		public void Test10Rows14ColumnsGiven135DegreeWonGameIfIsWon() {
-			Assert.IsTrue(game10Rows14ColumnsWith135DegreeStartingAtColumn0Row0WonRaster.isWonDiagonal135());
-			Assert.IsTrue(game10Rows14ColumnsWith135DegreeStartingAtColumnXRow1WonRaster.isWonDiagonal135());
-		}
+        [TestMethod]
+        public void Test10Rows14ColumnsGiven135DegreeWonGameIfIsWon() {
+            Assert.IsTrue(game10Rows14ColumnsWith135DegreeStartingAtColumn0Row0WonRaster.isWonDiagonal135() == 2);
+            Assert.IsTrue(game10Rows14ColumnsWith135DegreeStartingAtColumnXRow1WonRaster.isWonDiagonal135() == 2);
+        }
 
         [TestMethod]
         public void TestGame10Rows14ColumnsGetRowsColumnsAndStreak()
