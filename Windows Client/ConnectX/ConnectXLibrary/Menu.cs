@@ -27,9 +27,12 @@ namespace ConnectXLibrary
             MessageBox.Show((string)lstBoxLength.SelectedItem);
             string namePlayer1 = txtBoxPlayer1Name.Text;
             string namePlayer2 = txtBoxPlayer2Name.Text;
+            int width = int.Parse(txtBoxWidth.Text);
+            int length = int.Parse(txtBoxLength.Text);
+
             pnlEnterData.Visible = false;
             pnlMenu.Visible = true;
-            Game gameForm = new Game(namePlayer1, namePlayer2);
+            Game gameForm = new Game(namePlayer1, namePlayer2, width, length);
             gameForm.StartPosition = FormStartPosition.Manual;
             gameForm.Location = new Point(this.Location.X, this.Location.Y);
             gameForm.Show();
