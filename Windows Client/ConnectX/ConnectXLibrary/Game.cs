@@ -19,11 +19,11 @@ namespace ConnectXLibrary
         #endregion
 
         #region Constructor
-        public Game() {
+        public Game(string namePlayer1, string namePlayer2) {
             InitializeComponent();
 
-            namePlayer1 = "test";
-            namePlayer2 = "test2";
+            this.namePlayer1 = namePlayer1;
+            this.namePlayer2 = namePlayer2;
 
             newSession();
             session.newGame();
@@ -33,8 +33,7 @@ namespace ConnectXLibrary
         #endregion
 
         #region Methods
-        private void updateScores()
-        {
+        private void updateScores() {
             lblPointsPlayer1.Text = session.getScore(1).ToString();
             lblPointsPlayer2.Text = session.getScore(2).ToString();
         }
