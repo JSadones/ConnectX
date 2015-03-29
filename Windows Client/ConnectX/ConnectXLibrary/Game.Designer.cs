@@ -40,6 +40,8 @@
             this.lblPointsPlayer2 = new System.Windows.Forms.Label();
             this.lblDividerPlayer2 = new System.Windows.Forms.Label();
             this.lblTurn = new System.Windows.Forms.Label();
+            this.lblMouseX = new System.Windows.Forms.Label();
+            this.lblMouseY = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxBanner)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,6 +61,7 @@
             this.pnlGame.Size = new System.Drawing.Size(1189, 450);
             this.pnlGame.TabIndex = 4;
             this.pnlGame.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pnlGame_MouseClick);
+            this.pnlGame.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlGame_MouseMove);
             // 
             // btnDrawGrid
             // 
@@ -167,12 +170,30 @@
             this.lblTurn.Text = "Turn :";
             this.lblTurn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // lblMouseX
+            // 
+            this.lblMouseX.AutoSize = true;
+            this.lblMouseX.Location = new System.Drawing.Point(356, 50);
+            this.lblMouseX.Name = "lblMouseX";
+            this.lblMouseX.Size = new System.Drawing.Size(0, 13);
+            this.lblMouseX.TabIndex = 15;
+            // 
+            // lblMouseY
+            // 
+            this.lblMouseY.AutoSize = true;
+            this.lblMouseY.Location = new System.Drawing.Point(359, 82);
+            this.lblMouseY.Name = "lblMouseY";
+            this.lblMouseY.Size = new System.Drawing.Size(0, 13);
+            this.lblMouseY.TabIndex = 16;
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::ConnectXLibrary.Properties.Resources._128_184;
             this.ClientSize = new System.Drawing.Size(1213, 661);
+            this.Controls.Add(this.lblMouseY);
+            this.Controls.Add(this.lblMouseX);
             this.Controls.Add(this.lblTurn);
             this.Controls.Add(this.lblDividerPlayer2);
             this.Controls.Add(this.lblPointsPlayer2);
@@ -189,7 +210,7 @@
             this.MaximumSize = new System.Drawing.Size(1229, 700);
             this.MinimumSize = new System.Drawing.Size(1229, 700);
             this.Name = "Game";
-            this.Text = "Game";
+            this.Text = "Connect X";
             ((System.ComponentModel.ISupportInitialize)(this.picBoxBanner)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -209,5 +230,7 @@
         private System.Windows.Forms.Label lblPointsPlayer2;
         private System.Windows.Forms.Label lblDividerPlayer2;
         private System.Windows.Forms.Label lblTurn;
+        private System.Windows.Forms.Label lblMouseX;
+        private System.Windows.Forms.Label lblMouseY;
     }
 }

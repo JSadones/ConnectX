@@ -10,10 +10,13 @@ namespace ConnectXLibrary
         private int rows, columns;
         private string namePlayer1, namePlayer2;
         private float size = 60;
+        Bitmap I;
+        Graphics gr;
+        Graphics hr;
 
         ConnectXInterface session;
 
-        Graphics gr;
+
         Pen myPen;
         Font myFont;
         #endregion
@@ -97,36 +100,41 @@ namespace ConnectXLibrary
         }
 
         private void drawGrid() {
+            I = new Bitmap(columns, rows);
+            gr = Graphics.FromImage(I);
+
             gr = pnlGame.CreateGraphics();
-            gr.Clear(Color.White);
-            float x = 0;
-            float y = 0;
-            
+            hr = pnlGame.CreateGraphics();
+            hr.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            gr.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             myPen = new Pen(Brushes.Black, 1);
             myFont = new Font("Arial", 10);
+            
+            gr.Clear(Color.White);
 
+            float x = 0;
+            float y = 0;
 
-            //Vertical lines
+            //Grid tekenen
+            //TODO (Jel) : Dynamisch volgens panel de grootte van de 
+            //size aanpassen
             for (int i = 0; i < columns; i++) {
-                gr.DrawLine(myPen, x, y, x, size * columns);
-                x += size;
-            }
-
-            x = 0;
-            //Horizontal lines
-            for (int i = 0; i < rows; i++) {
-                gr.DrawLine(myPen, x, y, size * columns, y);
+                for (int j = 0; j < rows; j++) {
+                    gr.DrawRectangle(myPen, x, y, size, size);
+                    x += size;
+                }
+                x = 0;
                 y += size;
             }
 
-            x = 0f;
-            y = 0f;
-            int counter = 1;
-
             //Counter
+            x = 0;
+            y = 0;
+            int counter = 1;
             int[,] raster = session.getRaster();
 
-            y = size * rows;
+            //TODO (Jel) : Waarom - 1 hier doen? UITZOEKEN PLS
+            y = size * (rows - 1);
             for (int r = 0; r < rows; r++)
             {
                 for (int c = 0; c < columns; c++)
@@ -138,13 +146,25 @@ namespace ConnectXLibrary
                 y -= size;
                 x = 0;
             }
-
-            //drawCircles();
         }
 
         private void btnDrawGrid_Click(object sender, EventArgs e) {
             drawGrid();
         }
         #endregion
+
+        private void pnlGame_MouseMove(object sender, MouseEventArgs e) {
+            lblMouseX.Text = e.X.ToString();
+            lblMouseY.Text = e.Y.ToString();
+            
+            //TODO (Jel) : Defig de hover laten werken
+            //Pen penOrange = new Pen(Brushes.Orange, 5);
+            //for (int i = 0; i < columns; i++) {
+            //    if (e.X >= i * size && e.X <= size * (i + 1)) {
+            //        hr.DrawRectangle(penOrange, i * size, 0, size + i, size * rows);
+            //        //gr.FillRectangle(new SolidBrush(Color.FromArgb(128, 255, 128, 0)), i * size, 0, size * i, size * rows);
+            //    }
+            //}
+        }
     }
 }

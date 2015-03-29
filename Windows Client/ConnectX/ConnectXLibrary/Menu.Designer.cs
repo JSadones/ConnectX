@@ -37,6 +37,8 @@
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.btnMultiplayer = new System.Windows.Forms.Button();
             this.pnlEnterData = new System.Windows.Forms.Panel();
+            this.txtBoxLength = new System.Windows.Forms.TextBox();
+            this.txtBoxWidth = new System.Windows.Forms.TextBox();
             this.btnStart = new System.Windows.Forms.Button();
             this.lstBoxLength = new System.Windows.Forms.ListBox();
             this.lblLength = new System.Windows.Forms.Label();
@@ -48,8 +50,6 @@
             this.lblPlayer1Name = new System.Windows.Forms.Label();
             this.txtBoxPlayer1Name = new System.Windows.Forms.TextBox();
             this.picBoxBanner = new System.Windows.Forms.PictureBox();
-            this.txtBoxWidth = new System.Windows.Forms.TextBox();
-            this.txtBoxLength = new System.Windows.Forms.TextBox();
             this.pnlMenu.SuspendLayout();
             this.pnlEnterData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxBanner)).BeginInit();
@@ -161,9 +161,24 @@
             this.pnlEnterData.TabIndex = 7;
             this.pnlEnterData.Visible = false;
             // 
+            // txtBoxLength
+            // 
+            this.txtBoxLength.Location = new System.Drawing.Point(762, 329);
+            this.txtBoxLength.Name = "txtBoxLength";
+            this.txtBoxLength.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxLength.TabIndex = 12;
+            this.txtBoxLength.Text = "5";
+            // 
+            // txtBoxWidth
+            // 
+            this.txtBoxWidth.Location = new System.Drawing.Point(567, 329);
+            this.txtBoxWidth.Name = "txtBoxWidth";
+            this.txtBoxWidth.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxWidth.TabIndex = 11;
+            this.txtBoxWidth.Text = "5";
+            // 
             // btnStart
             // 
-            this.btnStart.Enabled = false;
             this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStart.Location = new System.Drawing.Point(475, 371);
             this.btnStart.Name = "btnStart";
@@ -175,6 +190,7 @@
             // 
             // lstBoxLength
             // 
+            this.lstBoxLength.Enabled = false;
             this.lstBoxLength.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstBoxLength.FormattingEnabled = true;
             this.lstBoxLength.ItemHeight = 42;
@@ -216,6 +232,7 @@
             // 
             // lstBoxWidth
             // 
+            this.lstBoxWidth.Enabled = false;
             this.lstBoxWidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstBoxWidth.FormattingEnabled = true;
             this.lstBoxWidth.ItemHeight = 42;
@@ -251,6 +268,7 @@
             this.txtBoxPlayer2Name.Name = "txtBoxPlayer2Name";
             this.txtBoxPlayer2Name.Size = new System.Drawing.Size(381, 49);
             this.txtBoxPlayer2Name.TabIndex = 4;
+            this.txtBoxPlayer2Name.Text = "b";
             this.txtBoxPlayer2Name.TextChanged += new System.EventHandler(this.txtBoxPlayer2Name_TextChanged);
             // 
             // lblPlayer2Name
@@ -282,6 +300,7 @@
             this.txtBoxPlayer1Name.Name = "txtBoxPlayer1Name";
             this.txtBoxPlayer1Name.Size = new System.Drawing.Size(381, 49);
             this.txtBoxPlayer1Name.TabIndex = 0;
+            this.txtBoxPlayer1Name.Text = "a";
             this.txtBoxPlayer1Name.TextChanged += new System.EventHandler(this.txtBoxPlayer1Name_TextChanged);
             // 
             // picBoxBanner
@@ -294,20 +313,6 @@
             this.picBoxBanner.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picBoxBanner.TabIndex = 6;
             this.picBoxBanner.TabStop = false;
-            // 
-            // txtBoxWidth
-            // 
-            this.txtBoxWidth.Location = new System.Drawing.Point(567, 329);
-            this.txtBoxWidth.Name = "txtBoxWidth";
-            this.txtBoxWidth.Size = new System.Drawing.Size(100, 20);
-            this.txtBoxWidth.TabIndex = 11;
-            // 
-            // txtBoxLength
-            // 
-            this.txtBoxLength.Location = new System.Drawing.Point(762, 329);
-            this.txtBoxLength.Name = "txtBoxLength";
-            this.txtBoxLength.Size = new System.Drawing.Size(100, 20);
-            this.txtBoxLength.TabIndex = 12;
             // 
             // Menu
             // 

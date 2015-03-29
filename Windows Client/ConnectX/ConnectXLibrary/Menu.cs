@@ -24,7 +24,6 @@ namespace ConnectXLibrary
         }
 
         private void btnStart_Click(object sender, EventArgs e) {
-            MessageBox.Show((string)lstBoxLength.SelectedItem);
             string namePlayer1 = txtBoxPlayer1Name.Text;
             string namePlayer2 = txtBoxPlayer2Name.Text;
             int width = int.Parse(txtBoxWidth.Text);
