@@ -437,7 +437,7 @@ namespace ConnectXLibrary
                     }
                 }
             }
-            return 0;
+			return -1;
         }
 
 		public Coord getCoordinateWithDiagonal45LongestStreakOfAI() {
@@ -458,7 +458,6 @@ namespace ConnectXLibrary
 
 				counterRow++;
 				counterColumn++;
-
 			}
 		}
 
