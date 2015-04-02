@@ -443,6 +443,23 @@ namespace ConnectXLibrary
 		public Coord getCoordinateWithDiagonal45LongestStreakOfAI() {
 			Coord coordinate = new Coord(3, 3);
 			return coordinate;
+
+			int counter = 0;
+			int counterColumn = 0;
+			int counterRow = 0;
+
+			while (counterColumn < columns && counterRow < rows)
+			{
+				if (raster[counterRow, counterColumn] == 1)
+				{
+					counter++;
+				}
+				else counter = 0;
+
+				counterRow++;
+				counterColumn++;
+
+			}
 		}
 
 		public Coord getCoordinateWithDiagonal135LongestStreakOfAI() {
