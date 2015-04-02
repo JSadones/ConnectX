@@ -401,7 +401,7 @@ namespace ConnectXLibrary
 				counter = 0;
 
 				while (j < rows && raster[j, i] != 0) {
-					if (raster[i, j] == 2) {
+					if (raster[j, i] == 2) {
 						counter++;
 					} else counter = 0;
 					j++;
