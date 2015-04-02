@@ -349,8 +349,7 @@ namespace ConnectXLibrary
             emptySpots = checkEmptySpotInColumn();
             int length = emptySpots.Count;
             int spot = rnd.Next(0, length);
-
-            //TODO : Hoe weet je dat player 2 AI is? of insertToken(item) gebruiken?
+ 
             if (playerAtTurn == 2)
             {
                 insertToken(emptySpots[spot], 2);
@@ -414,6 +413,43 @@ namespace ConnectXLibrary
 			}
 			return longestStreakColumn;
 		}
+
+
+        public int getRowWithHorizontalLongestStreakOfAI()
+        {
+            int counter;
+
+            for (int i = 0; i < rows; i++)
+            {
+
+                counter = 0;
+                int longestStreak = 0;
+                int longestStreakRow = -1;
+
+                for (int j = 0; j < columns; j++)
+                {
+
+                    if (raster[i, j] == 2)
+                    {
+                        counter++;
+                    }
+                    else counter = 0;
+                    j++;
+
+                    if (counter > longestStreak)
+                    {
+                        longestStreak = counter;
+                        longestStreakRow = i;
+                    }
+
+                    if (counter == tokenStreak)
+                    {
+                        return counter;
+                    }
+                }
+            }
+            return 0;
+        }
         #endregion
 
 		
