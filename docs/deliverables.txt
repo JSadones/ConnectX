@@ -1,2 +1,3 @@
 Deliverable 1: Speelbare WindowsClient 2 Humans Fixed Grid
 Deliverable 2: Speelbare WindowsClient 2 Humans Modular Grid
+Deliverable 3: Speelbare WindowsClient 2 Humans Or 1 Human vs. 1 CPU Modular Grid
