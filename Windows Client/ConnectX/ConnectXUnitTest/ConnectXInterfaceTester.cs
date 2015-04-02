@@ -97,5 +97,21 @@ namespace ConnectXUnitTest
             // return false if it is not his turn
             Assert.IsTrue(gameInterface.insertToken(2, 2));
         }
+
+        [TestMethod]
+        public void TestInsertTokenByUserAndThenByAIAndThenByUserAndCheckIfTurnsAreRespected()
+        {
+            gameInterface.newGame();
+
+
+            Assert.IsTrue(gameInterface.insertToken(2, 1));
+            Assert.IsFalse(gameInterface.insertToken(2, 1));
+
+            Assert.IsTrue(gameInterface.insertTokenByAI(2);
+            Assert.IsFalse(gameInterface.insertTokenByAI(2);
+
+            Assert.IsTrue(gameInterface.insertToken(2, 1));
+
+        }
 	}
 }
