@@ -107,8 +107,8 @@ namespace ConnectXUnitTest
             Assert.IsTrue(gameInterface.insertToken(2, 1));
             Assert.IsFalse(gameInterface.insertToken(2, 1));
 
-            Assert.IsTrue(gameInterface.insertTokenByAI(2);
-            Assert.IsFalse(gameInterface.insertTokenByAI(2);
+            Assert.IsTrue(gameInterface.insertTokenByAI();
+            Assert.IsFalse(gameInterface.insertTokenByAI();
 
             Assert.IsTrue(gameInterface.insertToken(2, 1));
 
