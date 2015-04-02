@@ -176,6 +176,20 @@
             }
         }
 
+        public bool insertTokenByAI(){
+            ConnectX connectX = new ConnectX();
+            if (game.insertTokenByAI())
+            {
+                return true;
+            }
+            else
+            { 
+                return false; 
+            }
+        }
+        
+        
+
 
 		#endregion
 	}
