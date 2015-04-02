@@ -469,7 +469,7 @@ namespace ConnectXUnitTest
             game.insertToken(3, 1);
             game.insertToken(1, 2);
 
-            Assert.IsTrue(gameWithOneTokenBeforeFullRaster.getColumnWithVerticalLongestStreakOfAI() == 2);
+            Assert.IsTrue(gameWithOneTokenBeforeFullRaster.getColumnWithVerticalLongestStreakOfAI() == 1);
         }
 
 		[TestMethod]
