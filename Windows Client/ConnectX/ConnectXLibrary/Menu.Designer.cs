@@ -37,6 +37,9 @@
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.btnMultiplayer = new System.Windows.Forms.Button();
             this.pnlEnterData = new System.Windows.Forms.Panel();
+            this.txtBoxWinstreak = new System.Windows.Forms.TextBox();
+            this.lblWinstreak = new System.Windows.Forms.Label();
+            this.txtBoxWidth = new System.Windows.Forms.TextBox();
             this.txtBoxLength = new System.Windows.Forms.TextBox();
             this.btnStart = new System.Windows.Forms.Button();
             this.lblLength = new System.Windows.Forms.Label();
@@ -47,7 +50,6 @@
             this.lblPlayer1Name = new System.Windows.Forms.Label();
             this.txtBoxPlayer1Name = new System.Windows.Forms.TextBox();
             this.picBoxBanner = new System.Windows.Forms.PictureBox();
-            this.txtBoxWidth = new System.Windows.Forms.TextBox();
             this.pnlMenu.SuspendLayout();
             this.pnlEnterData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxBanner)).BeginInit();
@@ -141,6 +143,8 @@
             // pnlEnterData
             // 
             this.pnlEnterData.BackColor = System.Drawing.Color.Transparent;
+            this.pnlEnterData.Controls.Add(this.txtBoxWinstreak);
+            this.pnlEnterData.Controls.Add(this.lblWinstreak);
             this.pnlEnterData.Controls.Add(this.txtBoxWidth);
             this.pnlEnterData.Controls.Add(this.txtBoxLength);
             this.pnlEnterData.Controls.Add(this.btnStart);
@@ -157,10 +161,40 @@
             this.pnlEnterData.TabIndex = 7;
             this.pnlEnterData.Visible = false;
             // 
+            // txtBoxWinstreak
+            // 
+            this.txtBoxWinstreak.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxWinstreak.Location = new System.Drawing.Point(766, 279);
+            this.txtBoxWinstreak.Name = "txtBoxWinstreak";
+            this.txtBoxWinstreak.Size = new System.Drawing.Size(59, 40);
+            this.txtBoxWinstreak.TabIndex = 15;
+            this.txtBoxWinstreak.Text = "4";
+            this.txtBoxWinstreak.TextChanged += new System.EventHandler(this.txtBoxWinstreak_TextChanged);
+            // 
+            // lblWinstreak
+            // 
+            this.lblWinstreak.AutoSize = true;
+            this.lblWinstreak.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWinstreak.ForeColor = System.Drawing.Color.White;
+            this.lblWinstreak.Location = new System.Drawing.Point(563, 274);
+            this.lblWinstreak.Name = "lblWinstreak";
+            this.lblWinstreak.Size = new System.Drawing.Size(184, 42);
+            this.lblWinstreak.TabIndex = 14;
+            this.lblWinstreak.Text = "Winstreak";
+            // 
+            // txtBoxWidth
+            // 
+            this.txtBoxWidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxWidth.Location = new System.Drawing.Point(570, 219);
+            this.txtBoxWidth.Name = "txtBoxWidth";
+            this.txtBoxWidth.Size = new System.Drawing.Size(59, 40);
+            this.txtBoxWidth.TabIndex = 13;
+            this.txtBoxWidth.Text = "5";
+            // 
             // txtBoxLength
             // 
             this.txtBoxLength.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoxLength.Location = new System.Drawing.Point(766, 273);
+            this.txtBoxLength.Location = new System.Drawing.Point(766, 219);
             this.txtBoxLength.Name = "txtBoxLength";
             this.txtBoxLength.Size = new System.Drawing.Size(59, 40);
             this.txtBoxLength.TabIndex = 12;
@@ -182,7 +216,7 @@
             this.lblLength.AutoSize = true;
             this.lblLength.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLength.ForeColor = System.Drawing.Color.White;
-            this.lblLength.Location = new System.Drawing.Point(759, 192);
+            this.lblLength.Location = new System.Drawing.Point(759, 171);
             this.lblLength.Name = "lblLength";
             this.lblLength.Size = new System.Drawing.Size(133, 42);
             this.lblLength.TabIndex = 8;
@@ -193,7 +227,7 @@
             this.lblWidth.AutoSize = true;
             this.lblWidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWidth.ForeColor = System.Drawing.Color.White;
-            this.lblWidth.Location = new System.Drawing.Point(560, 192);
+            this.lblWidth.Location = new System.Drawing.Point(563, 171);
             this.lblWidth.Name = "lblWidth";
             this.lblWidth.Size = new System.Drawing.Size(113, 42);
             this.lblWidth.TabIndex = 7;
@@ -263,15 +297,6 @@
             this.picBoxBanner.TabIndex = 6;
             this.picBoxBanner.TabStop = false;
             // 
-            // txtBoxWidth
-            // 
-            this.txtBoxWidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoxWidth.Location = new System.Drawing.Point(570, 273);
-            this.txtBoxWidth.Name = "txtBoxWidth";
-            this.txtBoxWidth.Size = new System.Drawing.Size(59, 40);
-            this.txtBoxWidth.TabIndex = 13;
-            this.txtBoxWidth.Text = "5";
-            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -324,6 +349,8 @@
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.TextBox txtBoxLength;
         private System.Windows.Forms.TextBox txtBoxWidth;
+        private System.Windows.Forms.TextBox txtBoxWinstreak;
+        private System.Windows.Forms.Label lblWinstreak;
     }
 }
 

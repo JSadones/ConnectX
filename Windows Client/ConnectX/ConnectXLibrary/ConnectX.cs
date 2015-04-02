@@ -8,14 +8,8 @@ namespace ConnectXLibrary
     {
         #region State
         private int[,] raster;
-        private int rows;
-        private int columns;
-        private int tokenStreak;
-		private int playerAtTurn;
-        private int winningPlayer;
-		private static int defaultRows = 6;
-		private static int defaultColumns = 7;
-		private static int defaultStreak = 4;
+        private int rows, columns, tokenStreak, playerAtTurn, winningPlayer;
+		private static int defaultRows = 6, defaultColumns = 7, defaultStreak = 4;
         #endregion State
 
         #region Constructor
@@ -53,26 +47,25 @@ namespace ConnectXLibrary
             return raster;
         }
 
-		public static int GetDefaultNumberOfRows()
-		{
+		public static int GetDefaultNumberOfRows() {
 			return defaultRows;
 		}
 
-		public static int GetDefaultNumberOfColumns()
-		{
+		public static int GetDefaultNumberOfColumns() {
 			return defaultColumns;
 		}
 
-		public static int GetDefaultStreak()
-		{
+		public static int GetDefaultStreak() {
 			return defaultStreak;
 		}
-		
 		#endregion
 
         #region Methods
         public bool exists() {
-            return true;
+            if (raster != null) {
+                return true;
+            }
+            return false;
         }
 
         public bool rasterExists() {
@@ -94,14 +87,10 @@ namespace ConnectXLibrary
             if (isWonVertical() == 1 || isWonHorizontal() == 1 || isWonDiagonal45() ==1 || isWonDiagonal135() == 1) {
                 winningPlayer = 1;
                 return true;
-            }
-
-            if (isWonVertical() == 2 || isWonHorizontal() == 2 || isWonDiagonal45() == 2 || isWonDiagonal135() == 2)
-            {
+            } else if (isWonVertical() == 2 || isWonHorizontal() == 2 || isWonDiagonal45() == 2 || isWonDiagonal135() == 2) {
                 winningPlayer = 2;
                 return true;
             }
-
             return false;
         }
 
@@ -461,7 +450,5 @@ namespace ConnectXLibrary
 			return coordinate;
 		}
         #endregion
-
-		
 	}
 }

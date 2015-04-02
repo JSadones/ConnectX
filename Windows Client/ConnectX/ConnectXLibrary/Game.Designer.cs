@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Game));
             this.lblName = new System.Windows.Forms.Label();
             this.pnlGame = new System.Windows.Forms.Panel();
-            this.btnDrawGrid = new System.Windows.Forms.Button();
             this.picBoxBanner = new System.Windows.Forms.PictureBox();
             this.lblPlayer1 = new System.Windows.Forms.Label();
             this.lblPlayer2 = new System.Windows.Forms.Label();
@@ -58,20 +57,10 @@
             this.pnlGame.BackColor = System.Drawing.Color.White;
             this.pnlGame.Location = new System.Drawing.Point(12, 157);
             this.pnlGame.Name = "pnlGame";
-            this.pnlGame.Size = new System.Drawing.Size(1189, 450);
+            this.pnlGame.Size = new System.Drawing.Size(1189, 477);
             this.pnlGame.TabIndex = 4;
             this.pnlGame.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pnlGame_MouseClick);
             this.pnlGame.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlGame_MouseMove);
-            // 
-            // btnDrawGrid
-            // 
-            this.btnDrawGrid.Location = new System.Drawing.Point(569, 626);
-            this.btnDrawGrid.Name = "btnDrawGrid";
-            this.btnDrawGrid.Size = new System.Drawing.Size(75, 23);
-            this.btnDrawGrid.TabIndex = 5;
-            this.btnDrawGrid.Text = "Draw Grid";
-            this.btnDrawGrid.UseVisualStyleBackColor = true;
-            this.btnDrawGrid.Click += new System.EventHandler(this.btnDrawGrid_Click);
             // 
             // picBoxBanner
             // 
@@ -202,7 +191,6 @@
             this.Controls.Add(this.lblPlayer2);
             this.Controls.Add(this.lblPlayer1);
             this.Controls.Add(this.picBoxBanner);
-            this.Controls.Add(this.btnDrawGrid);
             this.Controls.Add(this.pnlGame);
             this.Controls.Add(this.lblName);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -220,7 +208,6 @@
         #endregion
 
         private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.Button btnDrawGrid;
         public System.Windows.Forms.Panel pnlGame;
         private System.Windows.Forms.PictureBox picBoxBanner;
         private System.Windows.Forms.Label lblPlayer1;
