@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConnectXLibrary
 {
-	class Coord
+	public class Coord
 	{
 
 		int row;

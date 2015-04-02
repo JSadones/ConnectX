@@ -7,33 +7,29 @@ namespace ConnectXLibrary
     public partial class Game : Form
     {
         #region State
-        private int rows, columns;
+        private int rows, columns, winstreak;
         private string namePlayer1, namePlayer2;
-        private float size = 60;
+        private static float size = 60;
         Bitmap I;
         Graphics gr;
         Graphics hr;
-
         ConnectXInterface session;
-
-
         Pen myPen;
         Font myFont;
         #endregion
 
         #region Constructor
-        public Game(string namePlayer1, string namePlayer2, int columns, int rows) {
+        public Game(string namePlayer1, string namePlayer2, int columns, int rows, int winstreak) {
             InitializeComponent();
 
             this.namePlayer1 = namePlayer1;
             this.namePlayer2 = namePlayer2;
             this.rows = rows;
             this.columns = columns;
+            this.winstreak = winstreak;
 
             newSession();
             session.newGame();
-            rows = session.getRows();
-            columns = session.getColumns();
         }
         #endregion
 
@@ -44,8 +40,7 @@ namespace ConnectXLibrary
         }
 
         private void newSession() {
-
-            session = new ConnectXInterface(rows,columns);
+            session = new ConnectXInterface(rows,columns, winstreak);
             session.setName(1, namePlayer1);
             session.setName(2, namePlayer2);
 
@@ -53,7 +48,6 @@ namespace ConnectXLibrary
             lblPlayer2.Text = session.getName(2);
 
             updateScores();
-            
         }
 
         private void pnlGame_MouseClick(object sender, MouseEventArgs e) {
@@ -64,20 +58,17 @@ namespace ConnectXLibrary
                     session.insertToken(i, playerAtPlay);
                 }
             }
-
-
-            //pnlGame.Invalidate();
-            //gr.Clear(Color.White);
             drawGrid();
+            checkIfWon();
+        }
 
-            if (session.isCurrentGameWon() || session.isRasterFull())
-            {
+        private void checkIfWon() {
+            if (session.isCurrentGameWon() || session.isRasterFull()) {
                 gr.Clear(Color.White);
                 updateScores();
 
                 DialogResult dialogResult = MessageBox.Show("Play another game?", "?", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
+                if (dialogResult == DialogResult.Yes) {
                     session.newGame();
                     drawGrid();
                 } else if (dialogResult == DialogResult.No) {
@@ -89,14 +80,11 @@ namespace ConnectXLibrary
 
                     DialogResult dialogResult2 = MessageBox.Show(message, "YeeHOO", MessageBoxButtons.OK);
 
-                    if (dialogResult2 == DialogResult.OK)
-                    {
+                    if (dialogResult2 == DialogResult.OK) {
                         this.Hide();
                     }
                 }
-
             }
-
         }
 
         private void drawGrid() {
@@ -126,19 +114,20 @@ namespace ConnectXLibrary
                 x = 0;
                 y += size;
             }
+            drawCounter();
+        }
 
+        private void drawCounter() {
             //Counter
-            x = 0;
-            y = 0;
+            float x = 0;
+            float y = 0;
             int counter = 1;
             int[,] raster = session.getRaster();
 
             //TODO (Jel) : Waarom - 1 hier doen? UITZOEKEN PLS
             y = size * (rows - 1);
-            for (int r = 0; r < rows; r++)
-            {
-                for (int c = 0; c < columns; c++)
-                {
+            for (int r = 0; r < rows; r++) {
+                for (int c = 0; c < columns; c++) {
                     gr.DrawString(Convert.ToString(raster[r, c]), myFont, Brushes.Black, x + myFont.Size, y + myFont.Size);
                     x += size;
                     counter++;
@@ -146,17 +135,18 @@ namespace ConnectXLibrary
                 y -= size;
                 x = 0;
             }
-        }
 
-        private void btnDrawGrid_Click(object sender, EventArgs e) {
-            drawGrid();
+            Pen blackPen = new Pen(Color.Black, 1);
+
+            Rectangle circle = new Rectangle(0, 0, 30, 30);
+
+            gr.DrawEllipse(blackPen, circle);
         }
-        #endregion
 
         private void pnlGame_MouseMove(object sender, MouseEventArgs e) {
             lblMouseX.Text = e.X.ToString();
             lblMouseY.Text = e.Y.ToString();
-            
+
             //TODO (Jel) : Defig de hover laten werken
             //Pen penOrange = new Pen(Brushes.Orange, 5);
             //for (int i = 0; i < columns; i++) {
@@ -166,5 +156,6 @@ namespace ConnectXLibrary
             //    }
             //}
         }
+        #endregion
     }
 }

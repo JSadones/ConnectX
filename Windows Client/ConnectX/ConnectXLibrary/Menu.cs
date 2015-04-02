@@ -14,10 +14,6 @@ namespace ConnectXLibrary
         #endregion
 
         #region Methods
-        private void btnSluiten_Click(object sender, EventArgs e) {
-            this.Close();
-        }
-
         private void btnMultiplayer_Click(object sender, EventArgs e) {
             pnlEnterData.Visible = true;
             pnlMenu.Visible = false;
@@ -28,15 +24,15 @@ namespace ConnectXLibrary
             string namePlayer2 = txtBoxPlayer2Name.Text;
             int width = int.Parse(txtBoxWidth.Text);
             int length = int.Parse(txtBoxLength.Text);
+            int winstreak = int.Parse(txtBoxWinstreak.Text);
 
             pnlEnterData.Visible = false;
             pnlMenu.Visible = true;
-            Game gameForm = new Game(namePlayer1, namePlayer2, width, length);
+            Game gameForm = new Game(namePlayer1, namePlayer2, width, length, winstreak);
             gameForm.StartPosition = FormStartPosition.Manual;
             gameForm.Location = new Point(this.Location.X, this.Location.Y);
             gameForm.Show();
         }
-        #endregion
 
         private void txtBoxPlayer1Name_TextChanged(object sender, EventArgs e) {
             checkTextBoxes();
@@ -45,11 +41,21 @@ namespace ConnectXLibrary
         private void txtBoxPlayer2Name_TextChanged(object sender, EventArgs e) {
             checkTextBoxes();
         }
+
+        private void txtBoxWinstreak_TextChanged(object sender, EventArgs e) {
+            checkTextBoxes();
+        }
+
         private void checkTextBoxes() {
-            if ((txtBoxPlayer1Name.Text != "") && (txtBoxPlayer2Name.Text != "")) {
+            if ((txtBoxPlayer1Name.Text != "") && (txtBoxPlayer2Name.Text != "") && (txtBoxWinstreak.Text != "")) {
                 btnStart.Enabled = true;
             }
             else btnStart.Enabled = false;
         }
+
+        private void btnSluiten_Click(object sender, EventArgs e) {
+            this.Close();
+        }
+        #endregion
     }
 }
