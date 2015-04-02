@@ -349,8 +349,7 @@ namespace ConnectXLibrary
             emptySpots = checkEmptySpotInColumn();
             int length = emptySpots.Count;
             int spot = rnd.Next(0, length);
-
-            //TODO : Hoe weet je dat player 2 AI is? of insertToken(item) gebruiken?
+ 
             if (playerAtTurn == 2)
             {
                 insertToken(emptySpots[spot], 2);
