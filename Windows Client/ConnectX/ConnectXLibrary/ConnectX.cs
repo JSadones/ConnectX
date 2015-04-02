@@ -391,10 +391,25 @@ namespace ConnectXLibrary
 
 		public int getColumnWithVerticalLongestStreakOfAI()
 		{
-			int counter = 0;
+			int counter;
 			int longestStreak = 0;
 
-			for (int i = 0; i < columns; i++) ;
+			for (int i = 0; i < columns; i++)
+			{
+				int j = 0;
+				counter = 0;
+
+				while (j < rows && raster[j, i] != 0)
+				{
+					if (raster[i, j] == 2) {
+						counter++;
+					} else counter = 0;
+
+					if (counter > longestStreak) {
+						longestStreak = counter;
+					}
+				}
+			}
 		}
         #endregion
 
