@@ -404,6 +404,7 @@ namespace ConnectXLibrary
 					if (raster[i, j] == 2) {
 						counter++;
 					} else counter = 0;
+					j++;
 				}
 
 				if (counter > longestStreak){
