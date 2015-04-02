@@ -393,23 +393,25 @@ namespace ConnectXLibrary
 		{
 			int counter;
 			int longestStreak = 0;
+			int longestStreakColumn;
 
 			for (int i = 0; i < columns; i++)
 			{
 				int j = 0;
 				counter = 0;
 
-				while (j < rows && raster[j, i] != 0)
-				{
+				while (j < rows && raster[j, i] != 0) {
 					if (raster[i, j] == 2) {
 						counter++;
 					} else counter = 0;
+				}
 
-					if (counter > longestStreak) {
-						longestStreak = counter;
-					}
+				if (counter > longestStreak){
+					longestStreak = counter;
+					longestStreakColumn = i;
 				}
 			}
+			return longestStreakColumn;
 		}
         #endregion
 
