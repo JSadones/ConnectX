@@ -474,7 +474,6 @@ namespace ConnectXUnitTest
 
 		[TestMethod]
 		public void TestAIGetRowWithHorizontalLongestStreakOfAI(){
-
 			game.insertToken(0, 1);
 			game.insertToken(1, 2);
 			game.insertToken(0, 1);
