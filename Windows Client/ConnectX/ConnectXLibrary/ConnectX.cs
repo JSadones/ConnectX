@@ -343,7 +343,7 @@ namespace ConnectXLibrary
             return true;
         }
 
-        public void insertTokenByAI() {
+        public bool insertTokenByAI() {
             List<byte> emptySpots;
             Random rnd = new Random();
             emptySpots = checkEmptySpotInColumn();
@@ -351,7 +351,15 @@ namespace ConnectXLibrary
             int spot = rnd.Next(0, length);
 
             //TODO : Hoe weet je dat player 2 AI is? of insertToken(item) gebruiken?
-            insertToken(emptySpots[spot], 2);
+            if (playerAtTurn == 2)
+            {
+                insertToken(emptySpots[spot], 2);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         
         public int getCurrentGameWonPlayer() {
@@ -386,7 +394,7 @@ namespace ConnectXLibrary
 			int counter = 0;
 			int longestStreak = 0;
 
-			for (int i = 0; i < columns; i++)
+			for (int i = 0; i < columns; i++) ;
 		}
         #endregion
 
