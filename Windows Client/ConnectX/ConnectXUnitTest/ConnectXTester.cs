@@ -493,8 +493,21 @@ namespace ConnectXUnitTest
 			game.insertToken(2, 2);
 			game.insertToken(2, 1);
 
-			Assert.IsTrue(Game.getRowWithDiagonal45LongestStreakOfAI().getRow == 3);
-			Assert.IsTrue(Game.getColumnWithDiagonal45LongestStreakOfAI().getColumn == 3);
+			Assert.IsTrue(game.getRowWithDiagonal45LongestStreakOfAI().getRow == 3);
+			Assert.IsTrue(game.getColumnWithDiagonal45LongestStreakOfAI().getColumn == 3);
+		}
+
+		public void TestAIGetCoordWithDiagonal135LongestStreakOfAI()
+		{
+			game.insertToken(1, 1);
+			game.insertToken(1, 2);
+			game.insertToken(1, 1);
+			game.insertToken(2, 2);
+			game.insertToken(2, 1);
+			game.insertToken(3, 1);
+
+			Assert.IsTrue(game.getRowWithDiagonal135LongestStreakOfAI().getRow == 3);
+			Assert.IsTrue(game.getColumnWithDiagonal135LongestStreakOfAI().getColumn == 0);
 		}
 
 		[TestMethod]
