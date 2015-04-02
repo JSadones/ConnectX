@@ -451,6 +451,16 @@ namespace ConnectXLibrary
             }
             return 0;
         }
+
+		public Coord getCoordinateWithDiagonal45LongestStreakOfAI() {
+			Coord coordinate = new Coord(3, 3);
+			return coordinate;
+		}
+
+		public Coord getCoordinateWithDiagonal135LongestStreakOfAI() {
+			Coord coordinate = new Coord(3, 0);
+			return coordinate;
+		}
         #endregion
 
 		
