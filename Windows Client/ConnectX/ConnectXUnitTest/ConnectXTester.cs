@@ -475,16 +475,14 @@ namespace ConnectXUnitTest
 		[TestMethod]
 		public void TestAIGetRowWithHorizontalLongestStreakOfAI(){
 
-			game.insertToken(0, 2);
             game.insertToken(0, 1);
-            game.insertToken(1, 1);
-            game.insertToken(1, 1);
+            game.insertToken(1, 2);
+            game.insertToken(0, 1);
             game.insertToken(2, 2);
-            game.insertToken(2, 1);
+			game.insertToken(0, 1);
 			game.insertToken(3, 2);
-			game.insertToken(3, 1);
 
-			Assert.IsTrue(Game.getRowWithHorizontalLongestStreakOfAI() == 1)
+            Assert.IsTrue(game.getRowWithHorizontalLongestStreakOfAI() == 0);
 		}
 
 		[TestMethod]
