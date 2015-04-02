@@ -393,7 +393,7 @@ namespace ConnectXLibrary
 		{
 			int counter;
 			int longestStreak = 0;
-			int longestStreakColumn;
+			int longestStreakColumn = -1;
 
 			for (int i = 0; i < columns; i++)
 			{
