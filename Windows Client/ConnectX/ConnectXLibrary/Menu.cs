@@ -10,6 +10,7 @@ namespace ConnectXLibrary
         public Menu() {
             InitializeComponent();
             ConnectX game = new ConnectX();
+            WebServer server = new WebServer();
         }
         #endregion
 
