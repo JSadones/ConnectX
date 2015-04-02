@@ -380,6 +380,16 @@ namespace ConnectXLibrary
 		public int getToken(int row, int column) {
 			return raster[row, column];
 		}
+
+		public int getColumnWithVerticalLongestStreakOfAI()
+		{
+			int counter = 0;
+			int longestStreak = 0;
+
+			for (int i = 0; i < columns; i++)
+		}
         #endregion
-    }
+
+		
+	}
 }

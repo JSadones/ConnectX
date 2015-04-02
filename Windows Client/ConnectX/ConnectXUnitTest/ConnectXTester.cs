@@ -474,7 +474,6 @@ namespace ConnectXUnitTest
 
 		[TestMethod]
 		public void Test10Rows14ColumnsTurnByAI() {
-			// Let AI Determine Spot To Put Token
 			game10Rows14ColumnsWithOneTokenBeforeFullRaster.insertTokenByAI();
 
 			Assert.IsTrue(game10Rows14ColumnsWithOneTokenBeforeFullRaster.rasterIsFull());
