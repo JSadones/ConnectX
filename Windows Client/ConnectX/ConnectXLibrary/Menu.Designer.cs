@@ -38,18 +38,16 @@
             this.btnMultiplayer = new System.Windows.Forms.Button();
             this.pnlEnterData = new System.Windows.Forms.Panel();
             this.txtBoxLength = new System.Windows.Forms.TextBox();
-            this.txtBoxWidth = new System.Windows.Forms.TextBox();
             this.btnStart = new System.Windows.Forms.Button();
-            this.lstBoxLength = new System.Windows.Forms.ListBox();
             this.lblLength = new System.Windows.Forms.Label();
             this.lblWidth = new System.Windows.Forms.Label();
-            this.lstBoxWidth = new System.Windows.Forms.ListBox();
             this.lblGridSize = new System.Windows.Forms.Label();
             this.txtBoxPlayer2Name = new System.Windows.Forms.TextBox();
             this.lblPlayer2Name = new System.Windows.Forms.Label();
             this.lblPlayer1Name = new System.Windows.Forms.Label();
             this.txtBoxPlayer1Name = new System.Windows.Forms.TextBox();
             this.picBoxBanner = new System.Windows.Forms.PictureBox();
+            this.txtBoxWidth = new System.Windows.Forms.TextBox();
             this.pnlMenu.SuspendLayout();
             this.pnlEnterData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxBanner)).BeginInit();
@@ -143,13 +141,11 @@
             // pnlEnterData
             // 
             this.pnlEnterData.BackColor = System.Drawing.Color.Transparent;
-            this.pnlEnterData.Controls.Add(this.txtBoxLength);
             this.pnlEnterData.Controls.Add(this.txtBoxWidth);
+            this.pnlEnterData.Controls.Add(this.txtBoxLength);
             this.pnlEnterData.Controls.Add(this.btnStart);
-            this.pnlEnterData.Controls.Add(this.lstBoxLength);
             this.pnlEnterData.Controls.Add(this.lblLength);
             this.pnlEnterData.Controls.Add(this.lblWidth);
-            this.pnlEnterData.Controls.Add(this.lstBoxWidth);
             this.pnlEnterData.Controls.Add(this.lblGridSize);
             this.pnlEnterData.Controls.Add(this.txtBoxPlayer2Name);
             this.pnlEnterData.Controls.Add(this.lblPlayer2Name);
@@ -163,19 +159,12 @@
             // 
             // txtBoxLength
             // 
-            this.txtBoxLength.Location = new System.Drawing.Point(762, 329);
+            this.txtBoxLength.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxLength.Location = new System.Drawing.Point(766, 273);
             this.txtBoxLength.Name = "txtBoxLength";
-            this.txtBoxLength.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxLength.Size = new System.Drawing.Size(59, 40);
             this.txtBoxLength.TabIndex = 12;
             this.txtBoxLength.Text = "5";
-            // 
-            // txtBoxWidth
-            // 
-            this.txtBoxWidth.Location = new System.Drawing.Point(567, 329);
-            this.txtBoxWidth.Name = "txtBoxWidth";
-            this.txtBoxWidth.Size = new System.Drawing.Size(100, 20);
-            this.txtBoxWidth.TabIndex = 11;
-            this.txtBoxWidth.Text = "5";
             // 
             // btnStart
             // 
@@ -187,26 +176,6 @@
             this.btnStart.Text = "START GAME";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
-            // 
-            // lstBoxLength
-            // 
-            this.lstBoxLength.Enabled = false;
-            this.lstBoxLength.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lstBoxLength.FormattingEnabled = true;
-            this.lstBoxLength.ItemHeight = 42;
-            this.lstBoxLength.Items.AddRange(new object[] {
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
-            this.lstBoxLength.Location = new System.Drawing.Point(766, 257);
-            this.lstBoxLength.Name = "lstBoxLength";
-            this.lstBoxLength.Size = new System.Drawing.Size(70, 46);
-            this.lstBoxLength.TabIndex = 9;
             // 
             // lblLength
             // 
@@ -229,26 +198,6 @@
             this.lblWidth.Size = new System.Drawing.Size(113, 42);
             this.lblWidth.TabIndex = 7;
             this.lblWidth.Text = "Width";
-            // 
-            // lstBoxWidth
-            // 
-            this.lstBoxWidth.Enabled = false;
-            this.lstBoxWidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lstBoxWidth.FormattingEnabled = true;
-            this.lstBoxWidth.ItemHeight = 42;
-            this.lstBoxWidth.Items.AddRange(new object[] {
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
-            this.lstBoxWidth.Location = new System.Drawing.Point(567, 257);
-            this.lstBoxWidth.Name = "lstBoxWidth";
-            this.lstBoxWidth.Size = new System.Drawing.Size(70, 46);
-            this.lstBoxWidth.TabIndex = 6;
             // 
             // lblGridSize
             // 
@@ -314,6 +263,15 @@
             this.picBoxBanner.TabIndex = 6;
             this.picBoxBanner.TabStop = false;
             // 
+            // txtBoxWidth
+            // 
+            this.txtBoxWidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxWidth.Location = new System.Drawing.Point(570, 273);
+            this.txtBoxWidth.Name = "txtBoxWidth";
+            this.txtBoxWidth.Size = new System.Drawing.Size(59, 40);
+            this.txtBoxWidth.TabIndex = 13;
+            this.txtBoxWidth.Text = "5";
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -358,11 +316,9 @@
         private System.Windows.Forms.Panel pnlEnterData;
         private System.Windows.Forms.Label lblPlayer1Name;
         private System.Windows.Forms.TextBox txtBoxPlayer1Name;
-        private System.Windows.Forms.ListBox lstBoxWidth;
         private System.Windows.Forms.Label lblGridSize;
         private System.Windows.Forms.TextBox txtBoxPlayer2Name;
         private System.Windows.Forms.Label lblPlayer2Name;
-        private System.Windows.Forms.ListBox lstBoxLength;
         private System.Windows.Forms.Label lblLength;
         private System.Windows.Forms.Label lblWidth;
         private System.Windows.Forms.Button btnStart;
