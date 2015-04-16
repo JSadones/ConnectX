@@ -1,20 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Xml.Linq; 
+using System.IO;
 using System.Net;
 using System.Threading;
-using System.IO;
-using System.Text.RegularExpressions;
-using System.Diagnostics;
-using System.Web;
 using System.Web.Script.Serialization;
+using System.Windows.Forms;
 
 namespace ConnectXLibrary
 {
@@ -26,7 +16,6 @@ namespace ConnectXLibrary
         {
             InitializeComponent();
         }
-        
         
         private void Server_Load(object sender, EventArgs e)
         {
@@ -41,27 +30,19 @@ namespace ConnectXLibrary
            
         }
 
-
         private void startlistener(object s)
         {
-
             while (true)
             {
-               
                 ////blocks until a client has connected to the server
                 ProcessRequest();
-
             }
-
         }
-
 
         private void ProcessRequest()
         {
-
             var result = listener.BeginGetContext(ListenerCallback, listener);
             result.AsyncWaitHandle.WaitOne();
-
         }
 
         private void ListenerCallback(IAsyncResult result)
@@ -98,7 +79,6 @@ namespace ConnectXLibrary
             }
             context.Response.AppendHeader("Access-Control-Allow-Origin", "*");
 
-            
             byte[] buffer = System.Text.Encoding.UTF8.GetBytes(JSONPstring);
             // Get a response stream and write the response to it.
             context.Response.ContentLength64 = buffer.Length;
@@ -116,7 +96,5 @@ namespace ConnectXLibrary
          
             context.Response.Close();
         }
-
-
     }
 }
