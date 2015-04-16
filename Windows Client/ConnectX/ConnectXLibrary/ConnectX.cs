@@ -8,7 +8,7 @@ namespace ConnectXLibrary
     {
         #region State
         int[,] raster;
-        private int rows, columns, tokenStreak, playerAtTurn, winningPlayer, scorePlayer1 = 0, scorePlayer2 = 0, counterPlayer1, counterPlayer2, counter;
+        private int rows, columns, streakToWin, playerAtTurn, winningPlayer, scorePlayer1 = 0, scorePlayer2 = 0, counterPlayer1, counterPlayer2, counter;
 		private static int defaultRows = 6, defaultColumns = 7, defaultStreak = 4;
         #endregion State
 
@@ -19,10 +19,10 @@ namespace ConnectXLibrary
         public ConnectX(int rows, int columns): this (rows, columns, defaultStreak) {
         }
 
-        public ConnectX(int rows, int columns, int tokenStreak) {
+        public ConnectX(int rows, int columns, int streakToWin) {
             this.rows = rows;
             this.columns = columns;
-            this.tokenStreak = tokenStreak;
+            this.streakToWin = streakToWin;
             playerAtTurn = 1;
             raster = new int[rows, columns];
         }
@@ -37,9 +37,9 @@ namespace ConnectXLibrary
             return columns;
         }//getColumns
 
-        public int getTokenStreak() {
-            return tokenStreak;
-        }//getTokenStreak
+        public int getStreakToWin() {
+            return streakToWin;
+        }//getStreakToWin
 
 		public static int GetDefaultRows() {
 			return defaultRows;
@@ -49,9 +49,9 @@ namespace ConnectXLibrary
 			return defaultColumns;
 		}//GetDefaultColumns
 
-		public static int GetDefaultTokenStreak() {
+		public static int GetDefaultStreakToWin() {
 			return defaultStreak;
-		}//GetDefaultTokenStreak
+		}//GetDefaultStreakToWin
 
         public int getWinnerOfLastGame()
         {
@@ -78,12 +78,12 @@ namespace ConnectXLibrary
                 counterRow++;
                 counterColumn--;
 
-                if (counterPlayer1 == tokenStreak)
+                if (counterPlayer1 == streakToWin)
                 {
                     return 1;
                 }
 
-                if (counterPlayer2 == tokenStreak)
+                if (counterPlayer2 == streakToWin)
                 {
                     return 2;
                 }
@@ -111,12 +111,12 @@ namespace ConnectXLibrary
                 counterRow++;
                 counterColumn++;
 
-                if (counterPlayer1 == tokenStreak)
+                if (counterPlayer1 == streakToWin)
                 {
                     return 1;
                 }
 
-                else if (counterPlayer2 == tokenStreak)
+                else if (counterPlayer2 == streakToWin)
                 {
                     return 2;
                 }
@@ -201,7 +201,7 @@ namespace ConnectXLibrary
                         longestStreakRow = i;
                     }
 
-                    if (counter == tokenStreak)
+                    if (counter == streakToWin)
                     {
                         return counter;
                     }
@@ -410,8 +410,8 @@ namespace ConnectXLibrary
                     if (raster[j, i] == 2) counterPlayer2++;
                     else counterPlayer2 = 0;
 
-                    if (counterPlayer1 == tokenStreak) return 1;
-                    if (counterPlayer2 == tokenStreak) return 2;
+                    if (counterPlayer1 == streakToWin) return 1;
+                    if (counterPlayer2 == streakToWin) return 2;
                 }
             }
             return 0;
@@ -430,8 +430,8 @@ namespace ConnectXLibrary
                     if (raster[i, j] == 2) counterPlayer2++;
                     else counterPlayer2 = 0;
 
-                    if (counterPlayer1 == tokenStreak) return 1;
-                    if (counterPlayer2 == tokenStreak) return 2;
+                    if (counterPlayer1 == streakToWin) return 1;
+                    if (counterPlayer2 == streakToWin) return 2;
                 }
             }
             return 0;

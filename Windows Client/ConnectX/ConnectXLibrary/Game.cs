@@ -34,7 +34,7 @@ namespace ConnectXLibrary
             lblPlayer1.Text = namePlayer1;
             lblPlayer2.Text = namePlayer2;
             showPlayerAtTurn();
-			showTokenStreak();
+			showStreakToWin();
         }//Game
         #endregion
 
@@ -218,11 +218,11 @@ namespace ConnectXLibrary
             else lblTurnName.Text = namePlayer2;
         }//showPlayerAtTurn
 
-		private void showTokenStreak()
+		private void showStreakToWin()
 		{
-			int streak = gamePlay.getTokenStreak();
+			int streak = gamePlay.getStreakToWin();
 			lblStreakNumber.Text = streak.ToString();
-		}//showTokenStreak
+		}//showStreakToWin
 
         private void newGame() {
             gamePlay.nextGame();

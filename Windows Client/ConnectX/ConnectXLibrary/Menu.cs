@@ -14,7 +14,7 @@ namespace ConnectXLibrary
             picBoxPlayer2.BackColor = Color.Red;
 			txtBoxRows.Text = ConnectX.GetDefaultRows().ToString();
 			txtBoxColumns.Text = ConnectX.GetDefaultColumns().ToString();
-			txtBoxWinstreak.Text = ConnectX.GetDefaultTokenStreak().ToString();
+			txtBoxStreakToWin.Text = ConnectX.GetDefaultStreakToWin().ToString();
         }//Menu
         #endregion
 
@@ -33,11 +33,11 @@ namespace ConnectXLibrary
             string namePlayer2 = txtBoxPlayer2Name.Text;
             int columns = int.Parse(txtBoxColumns.Text);
             int rows = int.Parse(txtBoxRows.Text);
-            int winstreak = int.Parse(txtBoxWinstreak.Text);
+            int streaktowin = int.Parse(txtBoxStreakToWin.Text);
 
             pnlEnterData.Visible = false;
             pnlStartScreen.Visible = true;
-            Game gameForm = new Game(namePlayer1, namePlayer2, columns, rows, winstreak);
+            Game gameForm = new Game(namePlayer1, namePlayer2, columns, rows, streaktowin);
             gameForm.StartPosition = FormStartPosition.Manual;
             gameForm.Location = new Point(this.Location.X, this.Location.Y);
             gameForm.Show();
@@ -70,10 +70,10 @@ namespace ConnectXLibrary
             checkNames();
         }//txtBoxPlayer2Name_TextChanged
 
-        private void txtBoxWinstreak_TextChanged(object sender, EventArgs e)
+        private void txtBoxStreakToWin_TextChanged(object sender, EventArgs e)
         {
             checkStreak();
-        }//txtBoxWinstreak_TextChanged
+        }//txtBoxStreakToWin_TextChanged
 
         private void txtBoxColumns_TextChanged(object sender, EventArgs e)
         {
@@ -149,7 +149,7 @@ namespace ConnectXLibrary
 		{
             
 
-            if (txtBoxWinstreak.Text != "" && txtBoxColumns.Text !="" && txtBoxRows.Text != "")
+            if (txtBoxStreakToWin.Text != "" && txtBoxColumns.Text !="" && txtBoxRows.Text != "")
 			{
                 int columns = int.Parse(txtBoxRows.Text);
                 int rows = int.Parse(txtBoxColumns.Text);
@@ -158,12 +158,12 @@ namespace ConnectXLibrary
                 #region Exception Handling
                 try
                 {
-                    streak = Convert.ToInt32(txtBoxWinstreak.Text);
+                    streak = Convert.ToInt32(txtBoxStreakToWin.Text);
                 }
                 catch (FormatException e)
                 {
-                    txtBoxWinstreak.Text = ConnectX.GetDefaultTokenStreak().ToString();
-					streak = ConnectX.GetDefaultTokenStreak();
+                    txtBoxStreakToWin.Text = ConnectX.GetDefaultStreakToWin().ToString();
+					streak = ConnectX.GetDefaultStreakToWin();
                     lblErrorStreak.Text = "Invalid character.";
                 }
                 #endregion

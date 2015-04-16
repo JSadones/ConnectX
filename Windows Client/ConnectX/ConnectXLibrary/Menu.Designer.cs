@@ -40,7 +40,7 @@
 			this.lblErrorDimension = new System.Windows.Forms.Label();
 			this.picBoxPlayer2 = new System.Windows.Forms.PictureBox();
 			this.picBoxPlayer1 = new System.Windows.Forms.PictureBox();
-			this.txtBoxWinstreak = new System.Windows.Forms.TextBox();
+			this.txtBoxStreakToWin = new System.Windows.Forms.TextBox();
 			this.lblWinstreak = new System.Windows.Forms.Label();
 			this.txtBoxRows = new System.Windows.Forms.TextBox();
 			this.txtBoxColumns = new System.Windows.Forms.TextBox();
@@ -128,7 +128,7 @@
 			this.pnlEnterData.Controls.Add(this.lblErrorDimension);
 			this.pnlEnterData.Controls.Add(this.picBoxPlayer2);
 			this.pnlEnterData.Controls.Add(this.picBoxPlayer1);
-			this.pnlEnterData.Controls.Add(this.txtBoxWinstreak);
+			this.pnlEnterData.Controls.Add(this.txtBoxStreakToWin);
 			this.pnlEnterData.Controls.Add(this.lblWinstreak);
 			this.pnlEnterData.Controls.Add(this.txtBoxRows);
 			this.pnlEnterData.Controls.Add(this.txtBoxColumns);
@@ -200,14 +200,14 @@
 			this.picBoxPlayer1.TabStop = false;
 			this.picBoxPlayer1.Click += new System.EventHandler(this.picBoxPlayer1_Click);
 			// 
-			// txtBoxWinstreak
+			// txtBoxStreakToWin
 			// 
-			this.txtBoxWinstreak.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtBoxWinstreak.Location = new System.Drawing.Point(453, 291);
-			this.txtBoxWinstreak.Name = "txtBoxWinstreak";
-			this.txtBoxWinstreak.Size = new System.Drawing.Size(45, 40);
-			this.txtBoxWinstreak.TabIndex = 5;
-			this.txtBoxWinstreak.TextChanged += new System.EventHandler(this.txtBoxWinstreak_TextChanged);
+			this.txtBoxStreakToWin.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtBoxStreakToWin.Location = new System.Drawing.Point(453, 291);
+			this.txtBoxStreakToWin.Name = "txtBoxStreakToWin";
+			this.txtBoxStreakToWin.Size = new System.Drawing.Size(45, 40);
+			this.txtBoxStreakToWin.TabIndex = 5;
+			this.txtBoxStreakToWin.TextChanged += new System.EventHandler(this.txtBoxStreakToWin_TextChanged);
 			// 
 			// lblWinstreak
 			// 
@@ -413,7 +413,7 @@
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.TextBox txtBoxColumns;
         private System.Windows.Forms.TextBox txtBoxRows;
-        private System.Windows.Forms.TextBox txtBoxWinstreak;
+        private System.Windows.Forms.TextBox txtBoxStreakToWin;
         private System.Windows.Forms.Label lblWinstreak;
         private System.Windows.Forms.PictureBox picBoxPlayer1;
         private System.Windows.Forms.PictureBox picBoxPlayer2;
