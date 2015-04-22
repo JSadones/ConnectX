@@ -189,7 +189,7 @@ namespace ConnectXLibrary
                 if (raster[row, column] == 0) return row;
                 row++;
             }
-            return -1;
+            return rows;
         }
 
         private void showPlayerAtTurn()

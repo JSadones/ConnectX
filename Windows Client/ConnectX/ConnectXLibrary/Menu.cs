@@ -10,6 +10,8 @@ namespace ConnectXLibrary
         public Menu() 
         {
             InitializeComponent();
+            picBoxPlayer1.BackColor = Color.Blue;
+            picBoxPlayer2.BackColor = Color.Red;
         }//Menu
         #endregion
 
@@ -41,6 +43,16 @@ namespace ConnectXLibrary
         {
             this.Close();
         }//btnSluiten_Click
+
+        private void picBoxPlayer1_Click(object sender, EventArgs e)
+        {
+            showColorDialog();
+        }//picBoxPlayer1_Click
+
+        private void picBoxPlayer2_Click(object sender, EventArgs e)
+        {
+            showColorDialog();
+        }//picBoxPlayer2_Click
         #endregion
 
         #region EventTextChanged
@@ -68,6 +80,11 @@ namespace ConnectXLibrary
             }
             else btnStart.Enabled = false;
         }//checkTextBoxes
+
+        private void showColorDialog()
+        {
+            
+        }
         #endregion
     }
 }

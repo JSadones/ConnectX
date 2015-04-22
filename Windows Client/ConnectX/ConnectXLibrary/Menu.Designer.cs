@@ -50,9 +50,14 @@
             this.lblPlayer1Name = new System.Windows.Forms.Label();
             this.txtBoxPlayer1Name = new System.Windows.Forms.TextBox();
             this.picBoxBanner = new System.Windows.Forms.PictureBox();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.picBoxPlayer1 = new System.Windows.Forms.PictureBox();
+            this.picBoxPlayer2 = new System.Windows.Forms.PictureBox();
             this.pnlMenu.SuspendLayout();
             this.pnlEnterData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxBanner)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxPlayer1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxPlayer2)).BeginInit();
             this.SuspendLayout();
             // 
             // lblLinkWebclient
@@ -143,6 +148,8 @@
             // pnlEnterData
             // 
             this.pnlEnterData.BackColor = System.Drawing.Color.Transparent;
+            this.pnlEnterData.Controls.Add(this.picBoxPlayer2);
+            this.pnlEnterData.Controls.Add(this.picBoxPlayer1);
             this.pnlEnterData.Controls.Add(this.txtBoxWinstreak);
             this.pnlEnterData.Controls.Add(this.lblWinstreak);
             this.pnlEnterData.Controls.Add(this.txtBoxWidth);
@@ -297,6 +304,33 @@
             this.picBoxBanner.TabIndex = 6;
             this.picBoxBanner.TabStop = false;
             // 
+            // colorDialog1
+            // 
+            this.colorDialog1.AllowFullOpen = false;
+            this.colorDialog1.SolidColorOnly = true;
+            // 
+            // picBoxPlayer1
+            // 
+            this.picBoxPlayer1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.picBoxPlayer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picBoxPlayer1.Location = new System.Drawing.Point(1036, 28);
+            this.picBoxPlayer1.Name = "picBoxPlayer1";
+            this.picBoxPlayer1.Size = new System.Drawing.Size(49, 49);
+            this.picBoxPlayer1.TabIndex = 16;
+            this.picBoxPlayer1.TabStop = false;
+            this.picBoxPlayer1.Click += new System.EventHandler(this.picBoxPlayer1_Click);
+            // 
+            // picBoxPlayer2
+            // 
+            this.picBoxPlayer2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.picBoxPlayer2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picBoxPlayer2.Location = new System.Drawing.Point(1036, 103);
+            this.picBoxPlayer2.Name = "picBoxPlayer2";
+            this.picBoxPlayer2.Size = new System.Drawing.Size(49, 49);
+            this.picBoxPlayer2.TabIndex = 17;
+            this.picBoxPlayer2.TabStop = false;
+            this.picBoxPlayer2.Click += new System.EventHandler(this.picBoxPlayer2_Click);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -323,6 +357,8 @@
             this.pnlEnterData.ResumeLayout(false);
             this.pnlEnterData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxBanner)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxPlayer1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxPlayer2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -351,6 +387,9 @@
         private System.Windows.Forms.TextBox txtBoxWidth;
         private System.Windows.Forms.TextBox txtBoxWinstreak;
         private System.Windows.Forms.Label lblWinstreak;
+        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.PictureBox picBoxPlayer1;
+        private System.Windows.Forms.PictureBox picBoxPlayer2;
     }
 }
 
