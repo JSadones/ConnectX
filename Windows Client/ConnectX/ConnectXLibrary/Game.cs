@@ -109,11 +109,12 @@ namespace ConnectXLibrary
         private void drawToken(int column) {
             SolidBrush redBrush = new SolidBrush(Color.Red);
             SolidBrush blueBrush = new SolidBrush(Color.Blue);
-
+            int freeSpot = emptySpotFree(column);
             Pen blackPen = new Pen(Color.Black, 3);
-            Rectangle circle = new Rectangle((column * size) + 5, 5, size -10, size - 10);
+            Rectangle circle = new Rectangle((column * size) + 5, ((rows - freeSpot) * size) + 5, size - 10, size - 10);
             gr.DrawEllipse(blackPen, circle);
 
+            
             if (session.getPlayerAtPlay() == 1) {
                 hr.FillEllipse(redBrush, circle);
             } else {
@@ -161,7 +162,6 @@ namespace ConnectXLibrary
 
         private void pnlGame_MouseClick(object sender, MouseEventArgs e)
         {
-            drawGrid();
             int playerAtPlay = session.getPlayerAtPlay();
             for (int i = 0; i < columns; i++)
             {
@@ -172,7 +172,23 @@ namespace ConnectXLibrary
                 }
             }
             checkIfWon();
+        }
+
+        private void pnlGame_Paint(object sender, PaintEventArgs e)
+        {
+            drawGrid();
         }//pnlGame_MouseClick
+
+        private int emptySpotFree(int column) {
+            int row = 0;
+            int[,] raster = session.getRaster();
+            while (row < rows)
+            {
+                if (raster[row, column] == 0) return row;
+                row++;
+            }
+            return -1;
+        }
         #endregion
     }
 }
