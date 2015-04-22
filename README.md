@@ -4,7 +4,7 @@ Howest Project C# Groep 30
 ## Opdracht
 Link tot opdracht : http://goo.gl/v0wKYx
 
-### X OP een Rij
+### ConnectX
 - ~~Afwisselend een gekleurde schijf laten vallen in kolom naar keuze (Elke speler heeft eigen kleur)~~
 - ~~7 kolommen en 6 rijen (default)~~
 - Ook mogelijk om meerdere kolommen/rijen in te stellen (Niet nutteloze dimensies zoals 3x3 of 1x1)
