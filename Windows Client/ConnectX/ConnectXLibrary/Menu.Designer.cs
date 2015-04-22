@@ -251,7 +251,7 @@
             this.txtBoxPlayer2Name.Name = "txtBoxPlayer2Name";
             this.txtBoxPlayer2Name.Size = new System.Drawing.Size(381, 49);
             this.txtBoxPlayer2Name.TabIndex = 4;
-            this.txtBoxPlayer2Name.Text = "b";
+            this.txtBoxPlayer2Name.Text = "Bert";
             this.txtBoxPlayer2Name.TextChanged += new System.EventHandler(this.txtBoxPlayer2Name_TextChanged);
             // 
             // lblPlayer2Name
@@ -283,7 +283,7 @@
             this.txtBoxPlayer1Name.Name = "txtBoxPlayer1Name";
             this.txtBoxPlayer1Name.Size = new System.Drawing.Size(381, 49);
             this.txtBoxPlayer1Name.TabIndex = 0;
-            this.txtBoxPlayer1Name.Text = "a";
+            this.txtBoxPlayer1Name.Text = "Dirk";
             this.txtBoxPlayer1Name.TextChanged += new System.EventHandler(this.txtBoxPlayer1Name_TextChanged);
             // 
             // picBoxBanner

@@ -172,11 +172,13 @@ namespace ConnectXLibrary
                 }
             }
             checkIfWon();
+            showPlayerAtTurn();
         }
 
         private void pnlGame_Paint(object sender, PaintEventArgs e)
         {
             drawGrid();
+            showPlayerAtTurn();
         }//pnlGame_MouseClick
 
         private int emptySpotFree(int column) {
@@ -188,6 +190,13 @@ namespace ConnectXLibrary
                 row++;
             }
             return -1;
+        }
+
+        private void showPlayerAtTurn()
+        {
+            int playerAtTurn = session.getPlayerAtPlay();
+            if (playerAtTurn == 1) lblTurnName.Text = namePlayer1;
+            else lblTurnName.Text = namePlayer2;
         }
         #endregion
     }

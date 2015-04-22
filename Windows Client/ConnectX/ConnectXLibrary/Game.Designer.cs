@@ -41,6 +41,7 @@
             this.lblTurn = new System.Windows.Forms.Label();
             this.lblMouseX = new System.Windows.Forms.Label();
             this.lblMouseY = new System.Windows.Forms.Label();
+            this.lblTurnName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxBanner)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,7 +62,7 @@
             this.pnlGame.TabIndex = 4;
             this.pnlGame.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlGame_Paint);
             this.pnlGame.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pnlGame_MouseClick);
-            //this.pnlGame.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlGame_MouseMove);
+            this.pnlGame.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlGame_MouseMove);
             // 
             // picBoxBanner
             // 
@@ -153,7 +154,7 @@
             this.lblTurn.BackColor = System.Drawing.Color.Transparent;
             this.lblTurn.Font = new System.Drawing.Font("Century Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTurn.ForeColor = System.Drawing.Color.White;
-            this.lblTurn.Location = new System.Drawing.Point(550, 20);
+            this.lblTurn.Location = new System.Drawing.Point(483, 20);
             this.lblTurn.Name = "lblTurn";
             this.lblTurn.Size = new System.Drawing.Size(112, 44);
             this.lblTurn.TabIndex = 14;
@@ -176,12 +177,25 @@
             this.lblMouseY.Size = new System.Drawing.Size(0, 13);
             this.lblMouseY.TabIndex = 16;
             // 
+            // lblTurnName
+            // 
+            this.lblTurnName.AutoSize = true;
+            this.lblTurnName.BackColor = System.Drawing.Color.Transparent;
+            this.lblTurnName.Font = new System.Drawing.Font("Century Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTurnName.ForeColor = System.Drawing.Color.White;
+            this.lblTurnName.Location = new System.Drawing.Point(601, 19);
+            this.lblTurnName.Name = "lblTurnName";
+            this.lblTurnName.Size = new System.Drawing.Size(0, 44);
+            this.lblTurnName.TabIndex = 17;
+            this.lblTurnName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::ConnectXLibrary.Properties.Resources._128_184;
             this.ClientSize = new System.Drawing.Size(1213, 661);
+            this.Controls.Add(this.lblTurnName);
             this.Controls.Add(this.lblMouseY);
             this.Controls.Add(this.lblMouseX);
             this.Controls.Add(this.lblTurn);
@@ -220,5 +234,6 @@
         private System.Windows.Forms.Label lblTurn;
         private System.Windows.Forms.Label lblMouseX;
         private System.Windows.Forms.Label lblMouseY;
+        private System.Windows.Forms.Label lblTurnName;
     }
 }
