@@ -97,7 +97,7 @@ namespace ConnectXLibrary
 
         private void showColorDialog()
         {
-            
+            //TODO (Zie issues)
         }
 
         private void dimensieCheck()

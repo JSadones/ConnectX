@@ -98,9 +98,7 @@ namespace ConnectXLibrary
         private void drawGrid() {
             I = new Bitmap(columns, rows);
             gr = Graphics.FromImage(I);
-
             gr.Clear(Color.White);
-
             gr = pnlGame.CreateGraphics();
             hr = pnlGame.CreateGraphics();
             hr.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
@@ -108,7 +106,6 @@ namespace ConnectXLibrary
             myPen = new Pen(Brushes.Black, 1);
             myFont = new Font("Arial", 10);
             
-
             float x = 0;
             float y = 0;
 
@@ -116,8 +113,16 @@ namespace ConnectXLibrary
             {
                 for (int j = 0; j < rows; j++)
                 {
+                    PictureBox box = new PictureBox();
+                    box.Image = new Bitmap("C:/Users/Jel/Documents/ConnectX/docs/logo/frame.png");
+                    box.Size = new Size(size, size);
+                    box.Location = new Point(0, 0);
+                    box.SizeMode = PictureBoxSizeMode.StretchImage;
+                    box.BackColor = Color.Transparent;
+
                     gr.DrawRectangle(myPen, x, y, size, size);
                     x += size;
+                    pnlGame.Controls.Add(box);
                 }
                 x = 0;
                 y += size;
@@ -133,7 +138,7 @@ namespace ConnectXLibrary
 			hud.DrawEllipse(blackPen, redCircle);
 			hud.FillEllipse(blueBrush, blueCircle);
 			hud.FillEllipse(redBrush, redCircle);
-		}
+		}//drawHud
 
         private void drawToken(int column) {
             int freeSpot = emptySpotFree(column);
