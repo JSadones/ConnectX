@@ -9,7 +9,7 @@ namespace ConnectXLibrary
         #region State
         private int rows, columns, winstreak;
         private string namePlayer1, namePlayer2;
-        private static float size = 60;
+        private static int size = 60;
         Bitmap I;
         Graphics gr;
         Graphics hr;
@@ -30,17 +30,13 @@ namespace ConnectXLibrary
 
             newSession();
             session.newGame();
-        }
+        }//Game
         #endregion
 
         #region Methods
-        private void updateScores() {
-            lblPointsPlayer1.Text = session.getScore(1).ToString();
-            lblPointsPlayer2.Text = session.getScore(2).ToString();
-        }
-
-        private void newSession() {
-            session = new ConnectXInterface(rows,columns, winstreak);
+        private void newSession()
+        {
+            session = new ConnectXInterface(rows, columns, winstreak);
             session.setName(1, namePlayer1);
             session.setName(2, namePlayer2);
 
@@ -48,19 +44,12 @@ namespace ConnectXLibrary
             lblPlayer2.Text = session.getName(2);
 
             updateScores();
-        }
+        }//newSession
 
-        private void pnlGame_MouseClick(object sender, MouseEventArgs e) {
-            int playerAtPlay = session.getPlayerAtPlay();
-
-            for (int i = 0; i < columns; i++) { 
-                if(e.X >= i * size && e.X <= size * (i + 1)){
-                    session.insertToken(i, playerAtPlay);
-                }
-            }
-            drawGrid();
-            checkIfWon();
-        }
+        private void updateScores() {
+            lblPointsPlayer1.Text = session.getScore(1).ToString();
+            lblPointsPlayer2.Text = session.getScore(2).ToString();
+        }//updateScores
 
         private void checkIfWon() {
             if (session.isCurrentGameWon() || session.isRasterFull()) {
@@ -85,11 +74,13 @@ namespace ConnectXLibrary
                     }
                 }
             }
-        }
+        }//checkIfWon
 
         private void drawGrid() {
             I = new Bitmap(columns, rows);
             gr = Graphics.FromImage(I);
+
+            gr.Clear(Color.White);
 
             gr = pnlGame.CreateGraphics();
             hr = pnlGame.CreateGraphics();
@@ -98,16 +89,14 @@ namespace ConnectXLibrary
             myPen = new Pen(Brushes.Black, 1);
             myFont = new Font("Arial", 10);
             
-            gr.Clear(Color.White);
 
             float x = 0;
             float y = 0;
 
-            //Grid tekenen
-            //TODO (Jel) : Dynamisch volgens panel de grootte van de 
-            //size aanpassen
-            for (int i = 0; i < columns; i++) {
-                for (int j = 0; j < rows; j++) {
+            for (int i = 0; i < columns; i++)
+            {
+                for (int j = 0; j < rows; j++)
+                {
                     gr.DrawRectangle(myPen, x, y, size, size);
                     x += size;
                 }
@@ -115,9 +104,26 @@ namespace ConnectXLibrary
                 y += size;
             }
             drawCounter();
-        }
+        }//drawGrid
 
-        private void drawCounter() {
+        private void drawToken(int column) {
+            SolidBrush redBrush = new SolidBrush(Color.Red);
+            SolidBrush blueBrush = new SolidBrush(Color.Blue);
+            int freeSpot = emptySpotFree(column);
+            Pen blackPen = new Pen(Color.Black, 3);
+            Rectangle circle = new Rectangle((column * size) + 5, ((rows - freeSpot) * size) + 5, size - 10, size - 10);
+            gr.DrawEllipse(blackPen, circle);
+
+            
+            if (session.getPlayerAtPlay() == 1) {
+                hr.FillEllipse(redBrush, circle);
+            } else {
+                hr.FillEllipse(blueBrush, circle);
+            }
+        }//drawToken
+
+        private void drawCounter()
+        {
             //Counter
             float x = 0;
             float y = 0;
@@ -126,8 +132,10 @@ namespace ConnectXLibrary
 
             //TODO (Jel) : Waarom - 1 hier doen? UITZOEKEN PLS
             y = size * (rows - 1);
-            for (int r = 0; r < rows; r++) {
-                for (int c = 0; c < columns; c++) {
+            for (int r = 0; r < rows; r++)
+            {
+                for (int c = 0; c < columns; c++)
+                {
                     gr.DrawString(Convert.ToString(raster[r, c]), myFont, Brushes.Black, x + myFont.Size, y + myFont.Size);
                     x += size;
                     counter++;
@@ -135,15 +143,10 @@ namespace ConnectXLibrary
                 y -= size;
                 x = 0;
             }
+        }//drawCounter
 
-            Pen blackPen = new Pen(Color.Black, 1);
-
-            Rectangle circle = new Rectangle(0, 0, 30, 30);
-
-            gr.DrawEllipse(blackPen, circle);
-        }
-
-        private void pnlGame_MouseMove(object sender, MouseEventArgs e) {
+        private void pnlGame_MouseMove(object sender, MouseEventArgs e)
+        {
             lblMouseX.Text = e.X.ToString();
             lblMouseY.Text = e.Y.ToString();
 
@@ -155,6 +158,45 @@ namespace ConnectXLibrary
             //        //gr.FillRectangle(new SolidBrush(Color.FromArgb(128, 255, 128, 0)), i * size, 0, size * i, size * rows);
             //    }
             //}
+        }//pnlGame_MouseMove
+
+        private void pnlGame_MouseClick(object sender, MouseEventArgs e)
+        {
+            int playerAtPlay = session.getPlayerAtPlay();
+            for (int i = 0; i < columns; i++)
+            {
+                if (e.X >= i * size && e.X <= size * (i + 1))
+                {
+                    session.insertToken(i, playerAtPlay);
+                    drawToken(i);
+                }
+            }
+            checkIfWon();
+            showPlayerAtTurn();
+        }
+
+        private void pnlGame_Paint(object sender, PaintEventArgs e)
+        {
+            drawGrid();
+            showPlayerAtTurn();
+        }//pnlGame_MouseClick
+
+        private int emptySpotFree(int column) {
+            int row = 0;
+            int[,] raster = session.getRaster();
+            while (row < rows)
+            {
+                if (raster[row, column] == 0) return row;
+                row++;
+            }
+            return rows;
+        }
+
+        private void showPlayerAtTurn()
+        {
+            int playerAtTurn = session.getPlayerAtPlay();
+            if (playerAtTurn == 1) lblTurnName.Text = namePlayer1;
+            else lblTurnName.Text = namePlayer2;
         }
         #endregion
     }

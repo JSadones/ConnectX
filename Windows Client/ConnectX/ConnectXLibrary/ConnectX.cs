@@ -33,219 +33,36 @@ namespace ConnectXLibrary
         #region Properties
         public int getRows() {
             return rows;
-        }
+        }//getRows
 
         public int getColumns() {
             return columns;
-        }
+        }//getColumns
 
         public int getStreakToReach() {
             return tokenStreak;
-        }
+        }//getStreakToReach
 
         public int[,] getRaster() {
             return raster;
-        }
+        }//getRaster
 
 		public static int GetDefaultNumberOfRows() {
 			return defaultRows;
-		}
+		}//GetDefaultNumberOfRows
 
 		public static int GetDefaultNumberOfColumns() {
 			return defaultColumns;
-		}
+		}//GetDefaultNumberOfColumns
 
 		public static int GetDefaultStreak() {
 			return defaultStreak;
-		}
-		#endregion
+		}//GetDefaultStreak
 
-        #region Methods
-        public bool exists() {
-            if (raster != null) {
-                return true;
-            }
-            return false;
-        }
-
-        public bool rasterExists() {
-            return true;
-        }
-
-        public bool isRasterInitializedWithZeros() {
-            for (int i = 0; i < rows; i++) {
-                for (int j = 0; j < columns; j++) {
-                    if (raster[i, j] != 0) {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-
-        public bool isWon() {
-            if (isWonVertical() == 1 || isWonHorizontal() == 1 || isWonDiagonal45() ==1 || isWonDiagonal135() == 1) {
-                winningPlayer = 1;
-                return true;
-            } else if (isWonVertical() == 2 || isWonHorizontal() == 2 || isWonDiagonal45() == 2 || isWonDiagonal135() == 2) {
-                winningPlayer = 2;
-                return true;
-            }
-            return false;
-        }
-
-        public int isWonVertical() {
-            int counterPlayer1 = 0;
-            int counterPlayer2 = 0;
-
-            for (int i = 0; i < columns; i++) {
-
-                int j = 0;
-                counterPlayer1 = 0;
-                counterPlayer2 = 0;
-
-                while (j < rows && raster[j,i] != 0) {
-
-                   
-                    if (raster[j, i] == 1) {
-                        counterPlayer1++;
-                    } else counterPlayer1 = 0;
-                    
-                    if (raster[j, i] == 2) {
-                        counterPlayer2++;
-                    } else counterPlayer2 = 0;
-
-                    if (counterPlayer1 == tokenStreak) {
-                       
-                        return 1;
-                    }
-
-                    if (counterPlayer2 == tokenStreak) {
-                        return 2;
-                    }
-
-                    j++;
-                }
-            }
-            return 0;
-        }
-
-		public int isWonHorizontal() {
-			int counterPlayer1 = 0;
-			int counterPlayer2 = 0;
-
-			for (int i = 0; i < rows; i++) {
-
-				counterPlayer1 = 0;
-				counterPlayer2 = 0;
-
-				for (int j = 0; j < columns; j++) {
-
-					if (raster[i, j] == 1) {
-						counterPlayer1++;
-					} else counterPlayer1 = 0;
-
-					if (raster[i, j] == 2) {
-						counterPlayer2++;
-					} else counterPlayer2 = 0;
-
-					if (counterPlayer1 == tokenStreak) {
-                        return 1;
-					}
-
-					if (counterPlayer2 == tokenStreak) {
-                        return 2;
-					}
-				}
-			}
-            return 0;
-		}
-
-        public int isWonDiagonal45() {
-
-			for (int i = columns - 1; i >= 0; i--) {
-                int winner = getStreakWinnerDiagonal45(0, i);
-                if (1 <= winner && winner <= 2)
-                {
-                    return winner;
-                }
-                
-			}
-
-			for (int i = 1; i < rows; i++) {
-
-                int winner = getStreakWinnerDiagonal45(i, 0);
-                if (1 <= winner && winner <= 2)
-                {
-                    return winner;
-                }
-                
-                
-			}
-			return 0;
-        }
-
-        private int getStreakWinnerDiagonal45(int counterRow, int counterColumn)
+        public int getCurrentGameWonPlayer()
         {
-            int counterPlayer1 = 0;
-            int counterPlayer2 = 0;
-            while (counterColumn < columns && counterRow < rows)
-            {
-                if (raster[counterRow, counterColumn] == 1)
-                {
-                    counterPlayer1++;
-                }
-                else counterPlayer1 = 0;
-
-                if (raster[counterRow, counterColumn] == 2)
-                {
-                    counterPlayer2++;
-                }
-                else counterPlayer2 = 0;
-
-                counterRow++;
-                counterColumn++;
-
-                if (counterPlayer1 == tokenStreak)
-                {
-                    return 1;
-                    
-                }
-
-                else if (counterPlayer2 == tokenStreak)
-                {
-                    return 2;
-                    
-                }
-               
-            }
-            return 0;
-        }
-
-        public int isWonDiagonal135()
-        {
-
-            for (int i = 0; i < columns; i++)
-            {
-
-                int winner = getStreakWinnerDiagonal135(0, i);
-                if (1 <= winner && winner <= 2)
-                {
-                    return winner;
-                }
-
-            }
-
-            for (int i = 1; i < rows; i++)
-            {
-                int winner = getStreakWinnerDiagonal135(i, columns - 1);
-                if (1 <= winner && winner <= 2)
-                {
-                    return winner;
-                }
-            }
-            return 0;
-        }
+            return winningPlayer;
+        }//getCurrentGameWonPlayer
 
         private int getStreakWinnerDiagonal135(int counterRow, int counterColumn)
         {
@@ -279,130 +96,93 @@ namespace ConnectXLibrary
                 }
             }
             return 0;
-        }
+        }//getStreakWinnerDiagonal135
 
-        private List<byte> checkEmptySpotInColumn() {
-            List<byte> empySpots = new List<byte>();
-
-            for (byte i = 0; i < columns; i++) {
-                if (raster[rows - 1, i] == 0) {
-                    empySpots.Add(i);
+        private int getStreakWinnerDiagonal45(int counterRow, int counterColumn)
+        {
+            int counterPlayer1 = 0;
+            int counterPlayer2 = 0;
+            while (counterColumn < columns && counterRow < rows)
+            {
+                if (raster[counterRow, counterColumn] == 1)
+                {
+                    counterPlayer1++;
                 }
-            }
-            return empySpots;
-        }
+                else counterPlayer1 = 0;
 
-        private int getRowIndexOfLowestEmptyTokenInColumn(int column) {
+                if (raster[counterRow, counterColumn] == 2)
+                {
+                    counterPlayer2++;
+                }
+                else counterPlayer2 = 0;
+
+                counterRow++;
+                counterColumn++;
+
+                if (counterPlayer1 == tokenStreak)
+                {
+                    return 1;
+                }
+
+                else if (counterPlayer2 == tokenStreak)
+                {
+                    return 2;
+                }
+
+            }
+            return 0;
+        }//getStreakWinnerDiagonal45
+
+        private int getRowIndexOfLowestEmptyTokenInColumn(int column)
+        {
             int row = 0;
-            while (row < rows) {
+            while (row < rows)
+            {
                 if (raster[row, column] == 0) return row;
                 row++;
             }
             return -1;
-        }
+        }//getRowIndexOfLowestEmptyTokenInColumn
 
-        public void switchPlayerAtTurn() {
-            if (playerAtTurn == 1) playerAtTurn = 2;
-            else playerAtTurn = 1;
-        }
+        public int getPlayerAtTurn()
+        {
+            return playerAtTurn;
+        }//getPlayerAtTurn
 
-        public bool insertToken(int column, int player) {
-			if (1 <= player && player <= 2) {
-
-                if (getRowIndexOfLowestEmptyTokenInColumn(column) != -1) {
-                    raster[getRowIndexOfLowestEmptyTokenInColumn(column), column] = player;
-
-                    switchPlayerAtTurn();
-                }
-				return true;
-			}
-			else return false;
-        }
-
-        public bool hasNotCrashed() {
-            return false;
-        }
-
-        public bool rasterIsFull() {
-            for (int i = 0; i < columns; i++) {
-                if (raster[rows - 1, i] == 0) {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        public bool insertTokenByAI() {
-            List<byte> emptySpots;
-            Random rnd = new Random();
-            emptySpots = checkEmptySpotInColumn();
-            int length = emptySpots.Count;
-            int spot = rnd.Next(0, length);
- 
-            if (playerAtTurn == 2)
-            {
-                insertToken(emptySpots[spot], 2);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        public int getToken(int row, int column)
+        {
+            return raster[row, column];
+        }//getToken
         
-        public int getCurrentGameWonPlayer() {
-            return winningPlayer;
-        }
+        public int getColumnWithVerticalLongestStreakOfAI()
+        {
+            int counter;
+            int longestStreak = 0;
+            int longestStreakColumn = -1;
 
-        public void clearRaster() {
-            for (int i = 0; i < rows; i++) {
-                for (int j = 0; j < columns; j++) {
-                    raster[i, j] = 0;
+            for (int i = 0; i < columns; i++)
+            {
+                int j = 0;
+                counter = 0;
+
+                while (j < rows && raster[j, i] != 0)
+                {
+                    if (raster[j, i] == 2)
+                    {
+                        counter++;
+                    }
+                    else counter = 0;
+                    j++;
+                }
+
+                if (counter > longestStreak)
+                {
+                    longestStreak = counter;
+                    longestStreakColumn = i;
                 }
             }
-        }
-
-		public int getPlayerAtTurn() {
-			return playerAtTurn;
-		}
-
-        public bool isColumnFull(int column) {
-            if (raster[rows - 1, column] != 0) {
-                return true;
-            }
-            else { return false; }
-        }
-
-		public int getToken(int row, int column) {
-			return raster[row, column];
-		}
-
-		public int getColumnWithVerticalLongestStreakOfAI()
-		{
-			int counter;
-			int longestStreak = 0;
-			int longestStreakColumn = -1;
-
-			for (int i = 0; i < columns; i++)
-			{
-				int j = 0;
-				counter = 0;
-
-				while (j < rows && raster[j, i] != 0) {
-					if (raster[j, i] == 2) {
-						counter++;
-					} else counter = 0;
-					j++;
-				}
-
-				if (counter > longestStreak){
-					longestStreak = counter;
-					longestStreakColumn = i;
-				}
-			}
-			return longestStreakColumn;
-		}
-
+            return longestStreakColumn;
+        }//getColumnWithVerticalLongestStreakOfAI
 
         public int getRowWithHorizontalLongestStreakOfAI()
         {
@@ -437,6 +217,268 @@ namespace ConnectXLibrary
                     }
                 }
             }
+            return 0;
+        }//getRowWithHorizontalLongestStreakOfAI
+
+        public Coord getCoordinateWithDiagonal45LongestStreakOfAI()
+        {
+            Coord coordinate = new Coord(3, 3);
+            return coordinate;
+
+            int counter = 0;
+            int counterColumn = 0;
+            int counterRow = 0;
+
+            while (counterColumn < columns && counterRow < rows)
+            {
+                if (raster[counterRow, counterColumn] == 1)
+                {
+                    counter++;
+                }
+                else counter = 0;
+
+                counterRow++;
+                counterColumn++;
+            }
+        }//getCoordinateWithDiagonal45LongestStreakOfAI
+
+        public Coord getCoordinateWithDiagonal135LongestStreakOfAI()
+        {
+            Coord coordinate = new Coord(3, 0);
+            return coordinate;
+        }//getCoordinateWithDiagonal135LongestStreakOfAI
+		#endregion
+
+        #region Methods
+        public bool exists()
+        {
+            if (raster != null) {
+                return true;
+            }
+            return false;
+        }//exists
+
+        public bool rasterExists()
+        {
+            return true;
+        }//rasterExists
+
+        public bool isRasterInitializedWithZeros()
+        {
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    if (raster[i, j] != 0) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }//isRasterInitializedWithZeros
+
+        public bool isWon()
+        {
+            if (isWonVertical() == 1 || isWonHorizontal() == 1 || isWonDiagonal45() ==1 || isWonDiagonal135() == 1)
+            {
+                winningPlayer = 1;
+                return true;
+            } else if (isWonVertical() == 2 || isWonHorizontal() == 2 || isWonDiagonal45() == 2 || isWonDiagonal135() == 2)
+            {
+                winningPlayer = 2;
+                return true;
+            }
+            return false;
+        }//isWon
+
+        public int isWonVertical()
+        {
+            int counterPlayer1 = 0;
+            int counterPlayer2 = 0;
+
+            for (int i = 0; i < columns; i++)
+            {
+                int j = 0;
+                counterPlayer1 = 0;
+                counterPlayer2 = 0;
+                while (j < rows && raster[j,i] != 0)
+                {
+                    if (raster[j, i] == 1)
+                    {
+                        counterPlayer1++;
+                    }
+                    else counterPlayer1 = 0;
+                    
+                    if (raster[j, i] == 2)
+                    {
+                        counterPlayer2++;
+                    }
+                    else counterPlayer2 = 0;
+
+                    if (counterPlayer1 == tokenStreak)
+                    {
+                        return 1;
+                    }
+                    if (counterPlayer2 == tokenStreak)
+                    {
+                        return 2;
+                    }
+                    j++;
+                }
+            }
+            return 0;
+        }//isWonVertical
+
+		public int isWonHorizontal() {
+			int counterPlayer1 = 0;
+			int counterPlayer2 = 0;
+
+			for (int i = 0; i < rows; i++)
+            {
+				counterPlayer1 = 0;
+				counterPlayer2 = 0;
+				for (int j = 0; j < columns; j++)
+                {
+
+					if (raster[i, j] == 1)
+                    {
+						counterPlayer1++;
+					} else counterPlayer1 = 0;
+
+					if (raster[i, j] == 2)
+                    {
+						counterPlayer2++;
+					} else counterPlayer2 = 0;
+
+					if (counterPlayer1 == tokenStreak)
+                    {
+                        return 1;
+					}
+
+					if (counterPlayer2 == tokenStreak)
+                    {
+                        return 2;
+					}
+				}
+			}
+            return 0;
+		}//isWonHorizontal
+
+        public int isWonDiagonal45()
+        {
+			for (int i = columns - 1; i >= 0; i--) {
+                int winner = getStreakWinnerDiagonal45(0, i);
+                if (1 <= winner && winner <= 2)
+                {
+                    return winner;
+                }
+			}
+			for (int i = 1; i < rows; i++)
+            {
+                int winner = getStreakWinnerDiagonal45(i, 0);
+                if (1 <= winner && winner <= 2)
+                {
+                    return winner;
+                }
+			}
+			return 0;
+        }//isWonDiagonal45
+
+        public int isWonDiagonal135()
+        {
+            for (int i = 0; i < columns; i++)
+            {
+                int winner = getStreakWinnerDiagonal135(0, i);
+                if (1 <= winner && winner <= 2)
+                {
+                    return winner;
+                }
+            }
+
+            for (int i = 1; i < rows; i++)
+            {
+                int winner = getStreakWinnerDiagonal135(i, columns - 1);
+                if (1 <= winner && winner <= 2)
+                {
+                    return winner;
+                }
+            }
+            return 0;
+        }//isWonDiagonal135
+
+        private List<byte> checkEmptySpotInColumn()
+        {
+            List<byte> empySpots = new List<byte>();
+
+            for (byte i = 0; i < columns; i++)
+            {
+                if (raster[rows - 1, i] == 0)
+                {
+                    empySpots.Add(i);
+                }
+            }
+            return empySpots;
+        }//checkEmptySpotInColumn
+
+        public void switchPlayerAtTurn()
+        {
+            if (playerAtTurn == 1) playerAtTurn = 2;
+            else playerAtTurn = 1;
+        }//switchPlayerAtTurn
+
+        public bool insertToken(int column, int player)
+        {
+			if (1 <= player && player <= 2)
+            {
+                if (getRowIndexOfLowestEmptyTokenInColumn(column) != -1)
+                {
+                    raster[getRowIndexOfLowestEmptyTokenInColumn(column), column] = player;
+                    switchPlayerAtTurn();
+                }
+				return true;
+			}
+			else return false;
+        }//insertToken
+
+        public bool hasNotCrashed()
+        {
+            return false;
+        }//hasNotCrashed
+
+        public bool rasterIsFull()
+        {
+            for (int i = 0; i < columns; i++)
+            {
+                if (raster[rows - 1, i] == 0) return false;
+            }
+            return true;
+        }//rasterIsFull
+
+        public bool insertTokenByAI() {
+            List<byte> emptySpots;
+            Random rnd = new Random();
+            emptySpots = checkEmptySpotInColumn();
+            int length = emptySpots.Count;
+            int spot = rnd.Next(0, length);
+ 
+            if (playerAtTurn == 2)
+            {
+                insertToken(emptySpots[spot], 2);
+                return true;
+            }
+            else return false;
+        }//insertTokenByAI
+
+        public void clearRaster()
+        {
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    raster[i, j] = 0;
+                }
+            }
+<<<<<<< HEAD
 			return -1;
         }
 
@@ -465,6 +507,18 @@ namespace ConnectXLibrary
 			Coord coordinate = new Coord(3, 0);
 			return coordinate;
 		}
+=======
+        }//clearRaster
+
+        public bool isColumnFull(int column)
+        {
+            if (raster[rows - 1, column] != 0)
+            {
+                return true;
+            }
+            else { return false; }
+        }//isColumnFull
+>>>>>>> 9790d6e4b0de6b3e1f8e410db16f4274d4e9b010
         #endregion
 	}
 }

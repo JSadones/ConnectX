@@ -4,13 +4,13 @@ Howest Project C# Groep 30
 ## Opdracht
 Link tot opdracht : http://goo.gl/v0wKYx
 
-### X OP een Rij
-- Afwisselend een gekleurde schijf laten vallen in kolom naar keuze (Elke speler heeft eigen kleur)
-- 7 kolommen en 6 rijen (default)
+### ConnectX
+- ~~Afwisselend een gekleurde schijf laten vallen in kolom naar keuze (Elke speler heeft eigen kleur)~~
+- ~~7 kolommen en 6 rijen (default)~~
 - Ook mogelijk om meerdere kolommen/rijen in te stellen (Niet nutteloze dimensies zoals 3x3 of 1x1)
-- Een volledig gevulde kolom kan niet meer gekozen worden
-- Indien niemand 4 op een rij heeft, stop het spel (een tie)
-- Twee spelers tegen elkaar (beurt om beurt)
+- ~~Een volledig gevulde kolom kan niet meer gekozen worden~~ 
+- ~~Indien niemand 4 op een rij heeft, stop het spel (een tie)~~
+- ~~Twee spelers tegen elkaar (beurt om beurt)~~
 - Of via AI (eventeel moeilijkheidsgraad kunnen instellen?)
 
 ### Project zichzelf
@@ -19,7 +19,7 @@ Link tot opdracht : http://goo.gl/v0wKYx
 - C# moet OOP zijn
 - Code efficiëntie is belangrijk
 - Moet bijhouden hoeveel keer een persoon heeft gewonnen
-- Eenmaal spel afgesloten wordt, kent hij niets meer
+- ~~Eenmaal spel afgesloten wordt, kent hij niets meer~~
 
 ### Opdracht buiten programmeren
 - UML klassendiagram (voor zowel windows- als webclient)
