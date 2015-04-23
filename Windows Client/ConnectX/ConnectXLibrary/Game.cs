@@ -11,11 +11,9 @@ namespace ConnectXLibrary
         private string namePlayer1, namePlayer2;
         private static int size = 60;
         Bitmap I;
-        Graphics gr;
-        Graphics hr;
+        Graphics gr, hr;
         ConnectXSession session;
         Pen myPen;
-        Font myFont;
 		SolidBrush redBrush = new SolidBrush(Color.Red);
 		SolidBrush blueBrush = new SolidBrush(Color.Blue);
 		Pen blackPen = new Pen(Color.Black, 3);
@@ -24,37 +22,36 @@ namespace ConnectXLibrary
         #region Constructor
         public Game(string namePlayer1, string namePlayer2, int columns, int rows, int winstreak) {
             InitializeComponent();
-
             this.namePlayer1 = namePlayer1;
             this.namePlayer2 = namePlayer2;
             this.rows = rows;
             this.columns = columns;
             this.winstreak = winstreak;
 
-            newSession();
+            session = new ConnectXSession(rows, columns, winstreak);
             session.newGame();
+
+            lblPlayer1.Text = namePlayer1;
+            lblPlayer2.Text = namePlayer2;
+            showPlayerAtTurn();
         }//Game
         #endregion
 
-        #region Methods
-        private void newSession()
+        #region Properties
+        private string getName(int number)
         {
-            session = new ConnectXSession(rows, columns, winstreak);
-            session.setName(1, namePlayer1);
-            session.setName(2, namePlayer2);
+            if (number == 1) return namePlayer1;
+            else return namePlayer2;
+        }
+        #endregion
 
-            lblPlayer1.Text = session.getName(1);
-            lblPlayer2.Text = session.getName(2);
-
-            updateScores();
-        }//newSession
-
+        #region Methods
         private void updateScores() {
             lblPointsPlayer1.Text = session.getScore(1).ToString();
             lblPointsPlayer2.Text = session.getScore(2).ToString();
         }//updateScores
 
-        private void checkIfWon() {
+        private void showIfWon() {
 			string title = "";
 			bool won = false;
             if (session.isCurrentGameWon()) {
@@ -62,11 +59,11 @@ namespace ConnectXLibrary
 				else title = namePlayer2;
 				title += " has won the game.";
 				won = true;
-			}else if (session.isRasterFull()){
+			}
+            else if (session.isRasterFull()){
 				title = "Raster is full.";
 				won = true;
 			}
-
 			if (won)
 			{
 				gr.Clear(Color.White);
@@ -83,7 +80,7 @@ namespace ConnectXLibrary
 					if (session.getOverallWonPlayer() == 0)
 						message = "It's a tie!";
 					else
-						message = session.getName(session.getOverallWonPlayer()) + " won the game!";
+						message = getName(session.getOverallWonPlayer()) + " won the game!";
 
 					DialogResult dialogResult2 = MessageBox.Show(message, "Game over!", MessageBoxButtons.OK);
 
@@ -104,7 +101,6 @@ namespace ConnectXLibrary
             hr.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             gr.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             myPen = new Pen(Brushes.Black, 1);
-            myFont = new Font("Arial", 10);
             
             float x = 0;
             float y = 0;
@@ -141,9 +137,7 @@ namespace ConnectXLibrary
 		}//drawHud
 
         private void drawToken(int column) {
-            int freeSpot = emptySpotFree(column);
-            
-            Rectangle circle = new Rectangle((column * size) + 5, ((rows - freeSpot) * size) + 5, size - 10, size - 10);
+            Rectangle circle = new Rectangle((column * size) + 5, ((rows - emptySpotFree(column)) * size) + 5, size - 10, size - 10);
             gr.DrawEllipse(blackPen, circle);
 
             if (session.getPlayerAtPlay() == 1) {
@@ -158,7 +152,7 @@ namespace ConnectXLibrary
             lblMouseX.Text = e.X.ToString();
             lblMouseY.Text = e.Y.ToString();
 
-            //TODO (Jel) : Defig de hover laten werken
+            //TODO (Jel) : Deftig de hover laten werken
             //Pen penOrange = new Pen(Brushes.Orange, 5);
             //for (int i = 0; i < columns; i++) {
             //    if (e.X >= i * size && e.X <= size * (i + 1)) {
@@ -175,18 +169,17 @@ namespace ConnectXLibrary
             {
                 if (e.X >= i * size && e.X <= size * (i + 1))
                 {
-                    session.insertToken(i, playerAtPlay);
+                    session.checkIfWon(i, playerAtPlay);
                     drawToken(i);
                 }
             }
-            checkIfWon();
+            showIfWon();
             showPlayerAtTurn();
         }//pnlGame_MouseClick
 
         private void pnlGame_Paint(object sender, PaintEventArgs e)
         {
             drawGrid();
-            showPlayerAtTurn();
 			drawHud();
         }//pnlGame_MouseClick
 

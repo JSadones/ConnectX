@@ -74,7 +74,6 @@ namespace ConnectXLibrary
         private void txtBoxWidth_TextChanged(object sender, EventArgs e)
         {
             dimensieCheck();
-
         } // txtBoxWidth_TextChanged
 
         private void txtBoxLength_TextChanged(object sender, EventArgs e)
@@ -102,7 +101,6 @@ namespace ConnectXLibrary
 
         private void dimensieCheck()
         {
-            
             if ((txtBoxWidth.Text != "") && (txtBoxLength.Text != ""))
             {
                int Width = int.Parse(txtBoxWidth.Text);
@@ -124,8 +122,6 @@ namespace ConnectXLibrary
                 dimensionError.Visible = true;
             }
         } // dimensieCheck
-
-
         #endregion
     }
 }

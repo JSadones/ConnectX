@@ -398,11 +398,6 @@ namespace ConnectXUnitTest
         }
 
 		[TestMethod]
-		public void TestRasterExists() {
-			Assert.IsTrue(game.rasterExists());
-		}
-
-		[TestMethod]
 		public void TestIsRasterInitializedWithZeros(){
 			Assert.IsTrue(game.isRasterInitializedWithZeros());
 		}
@@ -617,14 +612,12 @@ namespace ConnectXUnitTest
         [TestMethod]
         public void TestInsertTokenInRasterInFullColumn() {
             gameWithFullRaster.insertToken(0, 1);
-            Assert.IsFalse(gameWithFullRaster.hasNotCrashed());
         }
 
         [TestMethod]
         public void Test10Rows14ColumnsInsertTokenInRasterInFullColumn()
         {
             game10Rows14ColumnsWithFullRaster.insertToken(0, 1);
-            Assert.IsFalse(game10Rows14ColumnsWithFullRaster.hasNotCrashed());
         }
 
 		[TestMethod]

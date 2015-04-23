@@ -2,10 +2,7 @@
 {
     public class ConnectXSession {
         #region State
-        private int scorePlayer1 = 0;
-		private int scorePlayer2 = 0;
-		private string namePlayer1;
-		private string namePlayer2;
+        private int scorePlayer1, scorePlayer2 = 0;
 		private int rows;
 		private int columns;
 		private int streak;
@@ -47,19 +44,6 @@
         {
             return game.getRaster();
         }//getRaster
-
-        public string getName(int player)
-        {
-            if (player == 1)
-            {
-                return namePlayer1;
-            }
-            else if (player == 2)
-            {
-                return namePlayer2;
-            }
-            else return "";
-        }//getName
 
         public int getOverallWonPlayer()
         {
@@ -113,11 +97,6 @@
             game = new ConnectX(rows, columns, streak);
         }//newGame
 
-		public void newGame(int players, int rows, int columns, int tokenStreak)
-        {
-			game = new ConnectX(rows, columns, tokenStreak);
-		}//newGame
-
         public bool gameRunning()
         {
             if (game != null)
@@ -126,18 +105,6 @@
             }
             else return false;
         }//gameRunning
-
-        public void setName(int playerNumber, string playerName)
-        {
-            if (playerNumber == 1)
-            {
-                namePlayer1 = playerName;
-            }
-            else if (playerNumber == 2)
-            {
-                namePlayer2 = playerName;
-            }
-        }//setName
 
         public bool isCurrentGameWon()
         {
@@ -154,7 +121,7 @@
             return game.rasterIsFull();
         }//isRasterFull
 
-		public bool insertToken(int column, int player)
+		public bool checkIfWon(int column, int player)
         {
 			if (player == game.getPlayerAtTurn())
             {
@@ -184,11 +151,11 @@
             }
         }//incrementScorePlayer
 
-        public bool insertTokenByAI()
-        {
-            ConnectX connectX = new ConnectX();
-            return game.insertTokenByAI();
-        }//insertTokenByAI
+        //public bool insertTokenByAI()
+        //{
+        //    //ConnectX connectX = new ConnectX();
+        //    //return game.insertTokenByAI();
+        //}//insertTokenByAI
 		#endregion
 	}
 }

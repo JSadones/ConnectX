@@ -354,10 +354,10 @@
             this.AutoSize = true;
             this.BackgroundImage = global::ConnectXLibrary.Properties.Resources._128_184;
             this.ClientSize = new System.Drawing.Size(1208, 646);
+            this.Controls.Add(this.pnlEnterData);
             this.Controls.Add(this.picBoxBanner);
             this.Controls.Add(this.lblSideInfo);
             this.Controls.Add(this.lblLinkWebclient);
-            this.Controls.Add(this.pnlEnterData);
             this.Controls.Add(this.pnlMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

@@ -236,7 +236,6 @@ namespace ConnectXLibrary
                     counter++;
                 }
                 else counter = 0;
-
                 counterRow++;
                 counterColumn++;
             }
@@ -257,11 +256,6 @@ namespace ConnectXLibrary
             }
             return false;
         }//exists
-
-        public bool rasterExists()
-        {
-            return true;
-        }//rasterExists
 
         public bool isRasterInitializedWithZeros()
         {
@@ -439,11 +433,6 @@ namespace ConnectXLibrary
 			}
 			else return false;
         }//insertToken
-
-        public bool hasNotCrashed()
-        {
-            return false;
-        }//hasNotCrashed
 
         public bool rasterIsFull()
         {
