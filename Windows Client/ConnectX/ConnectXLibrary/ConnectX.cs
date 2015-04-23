@@ -478,36 +478,6 @@ namespace ConnectXLibrary
                     raster[i, j] = 0;
                 }
             }
-<<<<<<< HEAD
-			return -1;
-        }
-
-		public Coord getCoordinateWithDiagonal45LongestStreakOfAI() {
-			Coord coordinate = new Coord(3, 3);
-			return coordinate;
-
-			int counter = 0;
-			int counterColumn = 0;
-			int counterRow = 0;
-
-			while (counterColumn < columns && counterRow < rows)
-			{
-				if (raster[counterRow, counterColumn] == 1)
-				{
-					counter++;
-				}
-				else counter = 0;
-
-				counterRow++;
-				counterColumn++;
-			}
-		}
-
-		public Coord getCoordinateWithDiagonal135LongestStreakOfAI() {
-			Coord coordinate = new Coord(3, 0);
-			return coordinate;
-		}
-=======
         }//clearRaster
 
         public bool isColumnFull(int column)
@@ -518,7 +488,6 @@ namespace ConnectXLibrary
             }
             else { return false; }
         }//isColumnFull
->>>>>>> 9790d6e4b0de6b3e1f8e410db16f4274d4e9b010
         #endregion
 	}
 }
