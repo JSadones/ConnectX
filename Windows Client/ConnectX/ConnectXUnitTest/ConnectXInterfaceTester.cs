@@ -5,15 +5,15 @@ namespace ConnectXUnitTest
 {
     [TestClass]
     public class ConnectXInterfaceTester {
-        ConnectXInterface gameInterface;
-		ConnectXInterface gameInterface10Rows14Columns;
-		ConnectXInterface gameInterface10Rows14Columns5Streak;
+        ConnectXSession gameInterface;
+		ConnectXSession gameInterface10Rows14Columns;
+		ConnectXSession gameInterface10Rows14Columns5Streak;
 
         [TestInitialize]
         public void setup() {
-            gameInterface = new ConnectXInterface();
-			gameInterface10Rows14Columns = new ConnectXInterface(10, 14);
-			gameInterface10Rows14Columns5Streak = new ConnectXInterface(10, 14, 5);
+            gameInterface = new ConnectXSession();
+			gameInterface10Rows14Columns = new ConnectXSession(10, 14);
+			gameInterface10Rows14Columns5Streak = new ConnectXSession(10, 14, 5);
 
         }
 

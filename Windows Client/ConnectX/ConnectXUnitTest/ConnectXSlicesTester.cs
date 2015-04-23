@@ -7,18 +7,18 @@ namespace ConnectXUnitTest
     [TestClass]
     public class ConnectXSlicesTester
     {
-        ConnectXInterface gameInterface;
+        ConnectXSession gameInterface;
 
         [TestInitialize]
         public void setup()
         {
-            gameInterface = new ConnectXInterface();
+            gameInterface = new ConnectXSession();
         }
 
         [TestMethod]
         public void TestSlice1_1AskNames()
         {
-            gameInterface = new ConnectXInterface();
+            gameInterface = new ConnectXSession();
 
             gameInterface.setName(1, "Player 1");
             gameInterface.setName(2, "Player 2");

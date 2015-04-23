@@ -1,6 +1,6 @@
 ﻿namespace ConnectXLibrary
 {
-    public class ConnectXInterface {
+    public class ConnectXSession {
         #region State
         private int scorePlayer1 = 0;
 		private int scorePlayer2 = 0;
@@ -13,7 +13,7 @@
         #endregion
 
         #region Constructor
-        public ConnectXInterface()
+        public ConnectXSession()
         {
             this.rows = ConnectX.GetDefaultNumberOfRows();
             this.columns = ConnectX.GetDefaultNumberOfColumns();
@@ -22,14 +22,14 @@
             newGame();
         }//ConnectXInterface
 
-        public ConnectXInterface(int rows, int columns) {
+        public ConnectXSession(int rows, int columns) {
 			this.rows = rows;
 			this.columns = columns;
 			this.streak = ConnectX.GetDefaultStreak();
             newGame();
         }//ConnectXInterface
 
-		public ConnectXInterface(int rows, int columns, int streak)
+		public ConnectXSession(int rows, int columns, int streak)
 		{
 			this.rows = rows;
 			this.columns = columns;

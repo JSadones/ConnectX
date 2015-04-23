@@ -13,7 +13,7 @@ namespace ConnectXLibrary
         Bitmap I;
         Graphics gr;
         Graphics hr;
-        ConnectXInterface session;
+        ConnectXSession session;
         Pen myPen;
         Font myFont;
 		SolidBrush redBrush = new SolidBrush(Color.Red);
@@ -39,7 +39,7 @@ namespace ConnectXLibrary
         #region Methods
         private void newSession()
         {
-            session = new ConnectXInterface(rows, columns, winstreak);
+            session = new ConnectXSession(rows, columns, winstreak);
             session.setName(1, namePlayer1);
             session.setName(2, namePlayer2);
 
@@ -122,7 +122,6 @@ namespace ConnectXLibrary
                 x = 0;
                 y += size;
             }
-            drawCounter();
         }//drawGrid
 
 		private void drawHud()
@@ -148,29 +147,6 @@ namespace ConnectXLibrary
                 hr.FillEllipse(blueBrush, circle);
             }
         }//drawToken
-
-        private void drawCounter()
-        {
-            //Counter
-            float x = 0;
-            float y = 0;
-            int counter = 1;
-            int[,] raster = session.getRaster();
-
-            //TODO (Jel) : Waarom - 1 hier doen? UITZOEKEN PLS
-            y = size * (rows - 1);
-            for (int r = 0; r < rows; r++)
-            {
-                for (int c = 0; c < columns; c++)
-                {
-                    gr.DrawString(Convert.ToString(raster[r, c]), myFont, Brushes.Black, x + myFont.Size, y + myFont.Size);
-                    x += size;
-                    counter++;
-                }
-                y -= size;
-                x = 0;
-            }
-        }//drawCounter
 
         private void pnlGame_MouseMove(object sender, MouseEventArgs e)
         {
@@ -200,7 +176,7 @@ namespace ConnectXLibrary
             }
             checkIfWon();
             showPlayerAtTurn();
-        }
+        }//pnlGame_MouseClick
 
         private void pnlGame_Paint(object sender, PaintEventArgs e)
         {
@@ -218,14 +194,14 @@ namespace ConnectXLibrary
                 row++;
             }
             return rows;
-        }
+        }//emptySpotFree
 
         private void showPlayerAtTurn()
         {
             int playerAtTurn = session.getPlayerAtPlay();
             if (playerAtTurn == 1) lblTurnName.Text = namePlayer1;
             else lblTurnName.Text = namePlayer2;
-        }
+        }//showPlayerAtTurn
         #endregion
     }
 }

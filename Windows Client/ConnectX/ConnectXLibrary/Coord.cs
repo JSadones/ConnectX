@@ -8,7 +8,6 @@ namespace ConnectXLibrary
 {
 	public class Coord
 	{
-
 		int row;
 		int column;
 
