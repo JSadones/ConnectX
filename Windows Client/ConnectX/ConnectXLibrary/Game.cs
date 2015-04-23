@@ -16,6 +16,9 @@ namespace ConnectXLibrary
         ConnectXInterface session;
         Pen myPen;
         Font myFont;
+		SolidBrush redBrush = new SolidBrush(Color.Red);
+		SolidBrush blueBrush = new SolidBrush(Color.Blue);
+		Pen blackPen = new Pen(Color.Black, 3);
         #endregion
 
         #region Constructor
@@ -122,15 +125,23 @@ namespace ConnectXLibrary
             drawCounter();
         }//drawGrid
 
+		private void drawHud()
+		{
+			Graphics hud = this.CreateGraphics();
+			Rectangle blueCircle = new Rectangle(235, 20, 45, 45);
+			Rectangle redCircle = new Rectangle(235, 80, 45, 45);
+			hud.DrawEllipse(blackPen, blueCircle);
+			hud.DrawEllipse(blackPen, redCircle);
+			hud.FillEllipse(blueBrush, blueCircle);
+			hud.FillEllipse(redBrush, redCircle);
+		}
+
         private void drawToken(int column) {
-            SolidBrush redBrush = new SolidBrush(Color.Red);
-            SolidBrush blueBrush = new SolidBrush(Color.Blue);
             int freeSpot = emptySpotFree(column);
-            Pen blackPen = new Pen(Color.Black, 3);
+            
             Rectangle circle = new Rectangle((column * size) + 5, ((rows - freeSpot) * size) + 5, size - 10, size - 10);
             gr.DrawEllipse(blackPen, circle);
 
-            
             if (session.getPlayerAtPlay() == 1) {
                 hr.FillEllipse(redBrush, circle);
             } else {
@@ -195,6 +206,7 @@ namespace ConnectXLibrary
         {
             drawGrid();
             showPlayerAtTurn();
+			drawHud();
         }//pnlGame_MouseClick
 
         private int emptySpotFree(int column) {
