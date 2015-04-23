@@ -37,7 +37,8 @@
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.btnMultiplayer = new System.Windows.Forms.Button();
             this.pnlEnterData = new System.Windows.Forms.Panel();
-            this.dimensionError = new System.Windows.Forms.Label();
+            this.lblErrorNaam = new System.Windows.Forms.Label();
+            this.lblErrorDimension = new System.Windows.Forms.Label();
             this.picBoxPlayer2 = new System.Windows.Forms.PictureBox();
             this.picBoxPlayer1 = new System.Windows.Forms.PictureBox();
             this.txtBoxWinstreak = new System.Windows.Forms.TextBox();
@@ -149,7 +150,8 @@
             // pnlEnterData
             // 
             this.pnlEnterData.BackColor = System.Drawing.Color.Transparent;
-            this.pnlEnterData.Controls.Add(this.dimensionError);
+            this.pnlEnterData.Controls.Add(this.lblErrorNaam);
+            this.pnlEnterData.Controls.Add(this.lblErrorDimension);
             this.pnlEnterData.Controls.Add(this.picBoxPlayer2);
             this.pnlEnterData.Controls.Add(this.picBoxPlayer1);
             this.pnlEnterData.Controls.Add(this.txtBoxWinstreak);
@@ -170,17 +172,27 @@
             this.pnlEnterData.TabIndex = 7;
             this.pnlEnterData.Visible = false;
             // 
-            // dimensionError
+            // lblErrorNaam
             // 
-            this.dimensionError.AutoSize = true;
-            this.dimensionError.ForeColor = System.Drawing.Color.Red;
-            this.dimensionError.Location = new System.Drawing.Point(509, 345);
-            this.dimensionError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.dimensionError.Name = "dimensionError";
-            this.dimensionError.Size = new System.Drawing.Size(189, 13);
-            this.dimensionError.TabIndex = 18;
-            this.dimensionError.Text = "Gelieve min. 4x4 afmetingen te kiezen.";
-            this.dimensionError.Visible = false;
+            this.lblErrorNaam.AutoSize = true;
+            this.lblErrorNaam.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorNaam.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorNaam.Location = new System.Drawing.Point(483, 296);
+            this.lblErrorNaam.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblErrorNaam.Name = "lblErrorNaam";
+            this.lblErrorNaam.Size = new System.Drawing.Size(0, 20);
+            this.lblErrorNaam.TabIndex = 19;
+            // 
+            // lblErrorDimension
+            // 
+            this.lblErrorDimension.AutoSize = true;
+            this.lblErrorDimension.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorDimension.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorDimension.Location = new System.Drawing.Point(483, 339);
+            this.lblErrorDimension.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblErrorDimension.Name = "lblErrorDimension";
+            this.lblErrorDimension.Size = new System.Drawing.Size(0, 20);
+            this.lblErrorDimension.TabIndex = 18;
             // 
             // picBoxPlayer2
             // 
@@ -207,7 +219,7 @@
             // txtBoxWinstreak
             // 
             this.txtBoxWinstreak.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoxWinstreak.Location = new System.Drawing.Point(766, 279);
+            this.txtBoxWinstreak.Location = new System.Drawing.Point(776, 258);
             this.txtBoxWinstreak.Name = "txtBoxWinstreak";
             this.txtBoxWinstreak.Size = new System.Drawing.Size(59, 40);
             this.txtBoxWinstreak.TabIndex = 15;
@@ -219,7 +231,7 @@
             this.lblWinstreak.AutoSize = true;
             this.lblWinstreak.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWinstreak.ForeColor = System.Drawing.Color.White;
-            this.lblWinstreak.Location = new System.Drawing.Point(563, 274);
+            this.lblWinstreak.Location = new System.Drawing.Point(563, 253);
             this.lblWinstreak.Name = "lblWinstreak";
             this.lblWinstreak.Size = new System.Drawing.Size(184, 42);
             this.lblWinstreak.TabIndex = 14;
@@ -228,7 +240,7 @@
             // txtBoxWidth
             // 
             this.txtBoxWidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoxWidth.Location = new System.Drawing.Point(570, 219);
+            this.txtBoxWidth.Location = new System.Drawing.Point(682, 190);
             this.txtBoxWidth.Name = "txtBoxWidth";
             this.txtBoxWidth.Size = new System.Drawing.Size(59, 40);
             this.txtBoxWidth.TabIndex = 13;
@@ -238,7 +250,7 @@
             // txtBoxLength
             // 
             this.txtBoxLength.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoxLength.Location = new System.Drawing.Point(766, 219);
+            this.txtBoxLength.Location = new System.Drawing.Point(925, 193);
             this.txtBoxLength.Name = "txtBoxLength";
             this.txtBoxLength.Size = new System.Drawing.Size(59, 40);
             this.txtBoxLength.TabIndex = 12;
@@ -248,7 +260,7 @@
             // btnStart
             // 
             this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStart.Location = new System.Drawing.Point(475, 371);
+            this.btnStart.Location = new System.Drawing.Point(487, 379);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(254, 60);
             this.btnStart.TabIndex = 10;
@@ -261,7 +273,7 @@
             this.lblLength.AutoSize = true;
             this.lblLength.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLength.ForeColor = System.Drawing.Color.White;
-            this.lblLength.Location = new System.Drawing.Point(759, 171);
+            this.lblLength.Location = new System.Drawing.Point(786, 188);
             this.lblLength.Name = "lblLength";
             this.lblLength.Size = new System.Drawing.Size(133, 42);
             this.lblLength.TabIndex = 8;
@@ -272,7 +284,7 @@
             this.lblWidth.AutoSize = true;
             this.lblWidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWidth.ForeColor = System.Drawing.Color.White;
-            this.lblWidth.Location = new System.Drawing.Point(563, 171);
+            this.lblWidth.Location = new System.Drawing.Point(563, 188);
             this.lblWidth.Name = "lblWidth";
             this.lblWidth.Size = new System.Drawing.Size(113, 42);
             this.lblWidth.TabIndex = 7;
@@ -283,7 +295,7 @@
             this.lblGridSize.AutoSize = true;
             this.lblGridSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGridSize.ForeColor = System.Drawing.Color.White;
-            this.lblGridSize.Location = new System.Drawing.Point(346, 171);
+            this.lblGridSize.Location = new System.Drawing.Point(346, 188);
             this.lblGridSize.Name = "lblGridSize";
             this.lblGridSize.Size = new System.Drawing.Size(185, 42);
             this.lblGridSize.TabIndex = 5;
@@ -293,6 +305,7 @@
             // 
             this.txtBoxPlayer2Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBoxPlayer2Name.Location = new System.Drawing.Point(570, 103);
+            this.txtBoxPlayer2Name.MaxLength = 10;
             this.txtBoxPlayer2Name.Name = "txtBoxPlayer2Name";
             this.txtBoxPlayer2Name.Size = new System.Drawing.Size(381, 49);
             this.txtBoxPlayer2Name.TabIndex = 4;
@@ -325,6 +338,7 @@
             // 
             this.txtBoxPlayer1Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBoxPlayer1Name.Location = new System.Drawing.Point(570, 28);
+            this.txtBoxPlayer1Name.MaxLength = 10;
             this.txtBoxPlayer1Name.Name = "txtBoxPlayer1Name";
             this.txtBoxPlayer1Name.Size = new System.Drawing.Size(381, 49);
             this.txtBoxPlayer1Name.TabIndex = 0;
@@ -406,7 +420,8 @@
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.PictureBox picBoxPlayer1;
         private System.Windows.Forms.PictureBox picBoxPlayer2;
-        private System.Windows.Forms.Label dimensionError;
+        private System.Windows.Forms.Label lblErrorDimension;
+        private System.Windows.Forms.Label lblErrorNaam;
     }
 }
 

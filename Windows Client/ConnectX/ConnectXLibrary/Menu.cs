@@ -59,11 +59,13 @@ namespace ConnectXLibrary
         private void txtBoxPlayer1Name_TextChanged(object sender, EventArgs e)
         {
             checkTextBoxes();
+            checkDoubleName();
         }//txtBoxPlayer1Name_TextChanged
 
         private void txtBoxPlayer2Name_TextChanged(object sender, EventArgs e)
         {
             checkTextBoxes();
+            checkDoubleName();
         }//txtBoxPlayer2Name_TextChanged
 
         private void txtBoxWinstreak_TextChanged(object sender, EventArgs e)
@@ -108,20 +110,33 @@ namespace ConnectXLibrary
                 if ((Width >= 4) && (Length >= 4))
                 {
                     btnStart.Enabled = true;
-                    dimensionError.Visible = false;
+                    lblErrorDimension.Text = "";
                 }
                 else 
                 {
                     btnStart.Enabled = false;
-                    dimensionError.Visible = true;
+                    lblErrorDimension.Text += "Gelieve min. 4x4 afmetingen te kiezen.";
                 }
             }
             else
             {
                 btnStart.Enabled = false;
-                dimensionError.Visible = true;
             }
         } // dimensieCheck
+
+        private void checkDoubleName() 
+        {
+            if (txtBoxPlayer1Name.Text == txtBoxPlayer2Name.Text)
+            {
+                btnStart.Enabled = false;
+                lblErrorNaam.Text = "De namen moeten verschillen van elkaar.";
+            }
+            else
+            {
+                btnStart.Enabled = true;
+                lblErrorNaam.Text = "";
+            }
+        }//checkDoubleName
         #endregion
     }
 }

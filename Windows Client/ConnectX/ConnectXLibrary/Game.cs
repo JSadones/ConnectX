@@ -128,8 +128,8 @@ namespace ConnectXLibrary
 		private void drawHud()
 		{
 			Graphics hud = this.CreateGraphics();
-			Rectangle blueCircle = new Rectangle(235, 20, 45, 45);
-			Rectangle redCircle = new Rectangle(235, 80, 45, 45);
+			Rectangle blueCircle = new Rectangle(75, 20, 45, 45);
+			Rectangle redCircle = new Rectangle(75, 80, 45, 45);
 			hud.DrawEllipse(blackPen, blueCircle);
 			hud.DrawEllipse(blackPen, redCircle);
 			hud.FillEllipse(blueBrush, blueCircle);
