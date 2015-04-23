@@ -4,7 +4,7 @@ using ConnectXLibrary;
 namespace ConnectXUnitTest
 {
     [TestClass]
-    public class ConnectXInterfaceTester {
+    public class ConnectXSessionTester {
         ConnectXSession gameInterface;
 		ConnectXSession gameInterface10Rows14Columns;
 		ConnectXSession gameInterface10Rows14Columns5Streak;
