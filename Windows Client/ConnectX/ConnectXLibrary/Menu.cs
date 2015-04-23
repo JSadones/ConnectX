@@ -70,6 +70,20 @@ namespace ConnectXLibrary
         {
             checkTextBoxes();
         }//txtBoxWinstreak_TextChanged
+
+        private void txtBoxWidth_TextChanged(object sender, EventArgs e)
+        {
+            dimensieCheck();
+
+        } // txtBoxWidth_TextChanged
+
+        private void txtBoxLength_TextChanged(object sender, EventArgs e)
+        {
+            dimensieCheck();
+        } //txtBoxLength_TextChanged
+
+
+
         #endregion
 
         private void checkTextBoxes()
@@ -85,6 +99,33 @@ namespace ConnectXLibrary
         {
             
         }
+
+        private void dimensieCheck()
+        {
+            
+            if ((txtBoxWidth.Text != "") && (txtBoxLength.Text != ""))
+            {
+               int Width = int.Parse(txtBoxWidth.Text);
+               int Length = int.Parse(txtBoxLength.Text);
+                if ((Width >= 4) && (Length >= 4))
+                {
+                    btnStart.Enabled = true;
+                    dimensionError.Visible = false;
+                }
+                else 
+                {
+                    btnStart.Enabled = false;
+                    dimensionError.Visible = true;
+                }
+            }
+            else
+            {
+                btnStart.Enabled = false;
+                dimensionError.Visible = true;
+            }
+        } // dimensieCheck
+
+
         #endregion
     }
 }
