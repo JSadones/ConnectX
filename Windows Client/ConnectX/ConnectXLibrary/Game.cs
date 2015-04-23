@@ -52,28 +52,44 @@ namespace ConnectXLibrary
         }//updateScores
 
         private void checkIfWon() {
-            if (session.isCurrentGameWon() || session.isRasterFull()) {
-                gr.Clear(Color.White);
-                updateScores();
+			string title = "";
+			bool won = false;
+            if (session.isCurrentGameWon()) {
+				if (session.getCurrentGameWonPlayer() == 1) title = namePlayer1;
+				else title = namePlayer2;
+				title += " has won the game.";
+				won = true;
+			}else if (session.isRasterFull()){
+				title = "Raster is full.";
+				won = true;
+			}
 
-                DialogResult dialogResult = MessageBox.Show("Play another game?", "?", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes) {
-                    session.newGame();
-                    drawGrid();
-                } else if (dialogResult == DialogResult.No) {
-                    string message;
-                    if (session.getOverallWonPlayer() == 0)
-                        message = "It's a tie!";
-                    else
-                        message = session.getName(session.getOverallWonPlayer()) + " won the game!";
+			if (won)
+			{
+				gr.Clear(Color.White);
+				updateScores();
+				DialogResult dialogResult = MessageBox.Show("Play another one?", title, MessageBoxButtons.YesNo);
+				if (dialogResult == DialogResult.Yes)
+				{
+					session.newGame();
+					drawGrid();
+				}
+				else if (dialogResult == DialogResult.No)
+				{
+					string message;
+					if (session.getOverallWonPlayer() == 0)
+						message = "It's a tie!";
+					else
+						message = session.getName(session.getOverallWonPlayer()) + " won the game!";
 
-                    DialogResult dialogResult2 = MessageBox.Show(message, "YeeHOO", MessageBoxButtons.OK);
+					DialogResult dialogResult2 = MessageBox.Show(message, "Game over!", MessageBoxButtons.OK);
 
-                    if (dialogResult2 == DialogResult.OK) {
-                        this.Hide();
-                    }
-                }
-            }
+					if (dialogResult2 == DialogResult.OK)
+					{
+						this.Hide();
+					}
+				}
+			}
         }//checkIfWon
 
         private void drawGrid() {
