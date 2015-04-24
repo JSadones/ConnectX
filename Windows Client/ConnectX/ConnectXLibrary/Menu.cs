@@ -106,10 +106,10 @@ namespace ConnectXLibrary
         {
             if ((txtBoxWidth.Text != "") && (txtBoxLength.Text != ""))
             {
-               int Width = int.Parse(txtBoxWidth.Text);
-               int Length = int.Parse(txtBoxLength.Text);
-               int Winstreak = int.Parse(txtBoxWinstreak.Text);
-                if ((Width >= Winstreak) && (Length >= Winstreak))
+               int width = int.Parse(txtBoxWidth.Text);
+               int length = int.Parse(txtBoxLength.Text);
+               int winstreak = int.Parse(txtBoxWinstreak.Text);
+                if ((width >= winstreak) && (length >= winstreak))
                 {
                     btnStart.Enabled = true;
                     lblErrorDimension.Text = "";
@@ -131,7 +131,9 @@ namespace ConnectXLibrary
 			if (txtBoxWinstreak.Text != "")
 			{
 				int streak = int.Parse(txtBoxWinstreak.Text);
-				if (streak >= 3)
+                int width = int.Parse(txtBoxWidth.Text);
+                int length = int.Parse(txtBoxLength.Text);
+				if ((streak > length) || (streak > width))
 				{
 					btnStart.Enabled = true;
 					lblErrorDimension.Text = "";
@@ -139,7 +141,7 @@ namespace ConnectXLibrary
 				else
 				{
 					btnStart.Enabled = false;
-					lblErrorDimension.Text = "Gelieve een winstreak van ten minste 3 te kiezen.";
+					lblErrorDimension.Text = "Gelieve een winstreak boven de huidige lengte en breedte te kiezen.";
 				}
 			}
 			else {
