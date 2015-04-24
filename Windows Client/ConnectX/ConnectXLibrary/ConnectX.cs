@@ -222,28 +222,117 @@ namespace ConnectXLibrary
 
         public Coord getCoordinateWithDiagonal45LongestStreakOfAI()
         {
-            Coord coordinate = new Coord(3, 3);
-            return coordinate;
+            Coord coordinate = new Coord(0,0);
 
-            int counter = 0;
+            int currentStreak = 0;
+            int longestStreakByAI = 0;
             int counterColumn = 0;
             int counterRow = 0;
 
-            while (counterColumn < columns && counterRow < rows)
+            for (int i = columns - 1; i >= 0; i--)
             {
-                if (raster[counterRow, counterColumn] == 1)
+                while (counterColumn < columns && counterRow < rows)
                 {
-                    counter++;
+                    if (raster[counterRow, counterColumn] == 2)
+                    {
+                        currentStreak++;
+                        if (currentStreak > longestStreakByAI) {
+                            longestStreakByAI = currentStreak;
+                            coordinate.setRow(counterRow);
+                            coordinate.setColumn(counterColumn);
+                        }
+                    }
+                    else currentStreak = 0;
+
+                    counterRow++;
+                    counterColumn++;
                 }
-                else counter = 0;
-                counterRow++;
-                counterColumn++;
             }
+
+           
+            for (int i = 1; i < rows; i++)
+            {
+                while (counterColumn < columns && counterRow < rows)
+                {
+                    if (raster[counterRow, counterColumn] == 2)
+                    {
+                        currentStreak++;
+                        if (currentStreak > longestStreakByAI)
+                        {
+                            longestStreakByAI = currentStreak;
+                            coordinate.setRow(counterRow);
+                            coordinate.setColumn(counterColumn);
+                        }
+                    }
+                    else currentStreak = 0;
+
+                    counterRow++;
+                    counterColumn++;
+                }
+            }
+
+            return coordinate;
+
+
         }//getCoordinateWithDiagonal45LongestStreakOfAI
 
         public Coord getCoordinateWithDiagonal135LongestStreakOfAI()
         {
-            Coord coordinate = new Coord(3, 0);
+            Coord coordinate = new Coord(0, 0);
+
+            int currentStreak = 0;
+            int longestStreakByAI = 0;
+            int counterColumn = 0;
+            int counterRow = 0;
+
+            for (int i = 0; i < columns; i++)
+            {
+                counterColumn = i;
+                counterRow = 0;
+                while (counterColumn >= 0 && counterRow < rows)
+                {
+                    if (raster[counterRow, counterColumn] == 2)
+                    {
+                        currentStreak++;
+                        if (currentStreak > longestStreakByAI)
+                        {
+                            longestStreakByAI = currentStreak;
+                            coordinate.setRow(counterRow);
+                            coordinate.setColumn(counterColumn);
+                        }
+                    }
+                    else currentStreak = 0;
+
+                    counterRow++;
+                    counterColumn--;
+                }
+            }
+
+            for (int i = 1; i < rows; i++)
+            {
+                counterColumn = columns - 1;
+                counterRow = i;
+                while (counterColumn >= 0 && counterRow < rows)
+                {
+                    if (raster[counterRow, counterColumn] == 2)
+                    {
+                        currentStreak++;
+                        if (currentStreak > longestStreakByAI)
+                        {
+                            longestStreakByAI = currentStreak;
+                            coordinate.setRow(counterRow);
+                            coordinate.setColumn(counterColumn);
+                        }
+                    }
+                    else currentStreak = 0;
+
+                    counterRow++;
+                    counterColumn--;
+                }
+            }
+
+
+
             return coordinate;
         }//getCoordinateWithDiagonal135LongestStreakOfAI
 		#endregion

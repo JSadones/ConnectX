@@ -16,20 +16,6 @@ namespace ConnectXUnitTest
         }
 
         [TestMethod]
-        public void TestSlice1_1AskNames()
-        {
-            gameInterface = new ConnectXSession();
-
-            gameInterface.setName(1, "Player 1");
-            gameInterface.setName(2, "Player 2");
-
-            Assert.IsTrue(gameInterface.getName(1) == "Player 1");
-            Assert.IsTrue(gameInterface.getName(2) == "Player 2");
-            Assert.IsFalse(gameInterface.getName(2) == "Player 1");
-            
-        }
-
-        [TestMethod]
         public void TestSlice1_2StartGame()
         {
             gameInterface.newGame();

@@ -151,11 +151,12 @@
             }
         }//incrementScorePlayer
 
-        //public bool insertTokenByAI()
-        //{
-        //    //ConnectX connectX = new ConnectX();
-        //    //return game.insertTokenByAI();
-        //}//insertTokenByAI
+        public bool insertTokenByAI()
+        {
+            return true;
+            //ConnectX connectX = new ConnectX();
+            //return game.insertTokenByAI();
+        }//insertTokenByAI
 		#endregion
 	}
 }
