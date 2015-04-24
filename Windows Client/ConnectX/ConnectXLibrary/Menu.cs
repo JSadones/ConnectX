@@ -120,7 +120,6 @@ namespace ConnectXLibrary
             {
                int width = int.Parse(txtBoxWidth.Text);
                int length = int.Parse(txtBoxLength.Text);
-               int winstreak = int.Parse(txtBoxWinstreak.Text);
                 if ((width >= 4) && (length >= 4))
                 {
                     btnStart.Enabled = true;
