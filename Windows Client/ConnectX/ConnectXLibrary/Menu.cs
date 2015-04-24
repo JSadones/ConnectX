@@ -60,28 +60,40 @@ namespace ConnectXLibrary
         {
             checkTextBoxes();
             checkDoubleName();
+            checkDimension();
+            checkStreak();
         }//txtBoxPlayer1Name_TextChanged
 
         private void txtBoxPlayer2Name_TextChanged(object sender, EventArgs e)
         {
             checkTextBoxes();
             checkDoubleName();
+            checkDimension();
+            checkStreak();
         }//txtBoxPlayer2Name_TextChanged
 
         private void txtBoxWinstreak_TextChanged(object sender, EventArgs e)
         {
             checkTextBoxes();
-			streakCheck();
+            checkDoubleName();
+            checkDimension();
+            checkStreak();
         }//txtBoxWinstreak_TextChanged
 
         private void txtBoxWidth_TextChanged(object sender, EventArgs e)
         {
-            dimensionCheck();
+            checkTextBoxes();
+            checkDoubleName();
+            checkDimension();
+            checkStreak();
         } // txtBoxWidth_TextChanged
 
         private void txtBoxLength_TextChanged(object sender, EventArgs e)
         {
-            dimensionCheck();
+            checkTextBoxes();
+            checkDoubleName();
+            checkDimension();
+            checkStreak();
         } //txtBoxLength_TextChanged
 
 
@@ -90,7 +102,7 @@ namespace ConnectXLibrary
 
         private void checkTextBoxes()
         {
-            if ((txtBoxPlayer1Name.Text != "") && (txtBoxPlayer2Name.Text != "") && (txtBoxWinstreak.Text != ""))
+            if ((txtBoxPlayer1Name.Text != "") && (txtBoxPlayer2Name.Text != ""))
             {
                 btnStart.Enabled = true;
             }
@@ -102,14 +114,14 @@ namespace ConnectXLibrary
             //TODO (Zie issues)
         }
 
-        private void dimensionCheck()
+        private void checkDimension()
         {
             if ((txtBoxWidth.Text != "") && (txtBoxLength.Text != ""))
             {
                int width = int.Parse(txtBoxWidth.Text);
                int length = int.Parse(txtBoxLength.Text);
                int winstreak = int.Parse(txtBoxWinstreak.Text);
-                if ((width >= winstreak) && (length >= winstreak))
+                if ((width >= 4) && (length >= 4))
                 {
                     btnStart.Enabled = true;
                     lblErrorDimension.Text = "";
@@ -123,29 +135,32 @@ namespace ConnectXLibrary
             else
             {
                 btnStart.Enabled = false;
+                lblErrorDimension.Text = "";
             }
         } // dimensionCheck
 
-		private void streakCheck()
+		private void checkStreak()
 		{
 			if (txtBoxWinstreak.Text != "")
 			{
 				int streak = int.Parse(txtBoxWinstreak.Text);
                 int width = int.Parse(txtBoxWidth.Text);
                 int length = int.Parse(txtBoxLength.Text);
-				if ((streak > length) || (streak > width))
+				if (!(streak <= length) || !(streak <= width))
 				{
 					btnStart.Enabled = true;
-					lblErrorDimension.Text = "";
+					lblErrorStreak.Text = "";
 				}
 				else
 				{
 					btnStart.Enabled = false;
-					lblErrorDimension.Text = "Gelieve een winstreak boven de huidige lengte en breedte te kiezen.";
+					lblErrorStreak.Text += "Gelieve een winstreak lager dan de huidige lengte en breedte te kiezen.";
 				}
 			}
-			else {
+			else 
+            {
 				btnStart.Enabled = false;
+                lblErrorStreak.Text = "";
 			}
 		}
 
