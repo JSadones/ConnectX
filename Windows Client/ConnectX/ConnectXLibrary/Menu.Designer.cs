@@ -117,7 +117,6 @@
             // btnPlayCPU
             // 
             this.btnPlayCPU.BackColor = System.Drawing.SystemColors.Control;
-            this.btnPlayCPU.Enabled = false;
             this.btnPlayCPU.Font = new System.Drawing.Font("Century Gothic", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPlayCPU.Location = new System.Drawing.Point(676, 31);
             this.btnPlayCPU.Margin = new System.Windows.Forms.Padding(6);
