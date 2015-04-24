@@ -108,7 +108,8 @@ namespace ConnectXLibrary
             {
                int Width = int.Parse(txtBoxWidth.Text);
                int Length = int.Parse(txtBoxLength.Text);
-                if ((Width >= 4) && (Length >= 4))
+               int Winstreak = int.Parse(txtBoxWinstreak.Text);
+                if ((Width >= Winstreak) && (Length >= Winstreak))
                 {
                     btnStart.Enabled = true;
                     lblErrorDimension.Text = "";

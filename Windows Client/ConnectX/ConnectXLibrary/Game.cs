@@ -7,7 +7,7 @@ namespace ConnectXLibrary
     public partial class Game : Form
     {
         #region State
-        private int rows, columns, winstreak;
+        private int rows, columns, winstreak, startWidth, startHeigt;
         private string namePlayer1, namePlayer2;
         private static int size = 60;
         Bitmap I;
@@ -101,26 +101,21 @@ namespace ConnectXLibrary
             hr.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             gr.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             myPen = new Pen(Brushes.Black, 1);
-            
-            float x = 0;
-            float y = 0;
+            startWidth = (pnlGame.Width / 2) - ((size * columns) / 2);
+            startHeigt = (pnlGame.Height / 2) - ((size * rows) / 2);
+
+            float x = startWidth;
+            float y = startHeigt;
 
             for (int i = 0; i < columns; i++)
             {
                 for (int j = 0; j < rows; j++)
                 {
-                    PictureBox box = new PictureBox();
-                    box.Image = new Bitmap("C:/Users/Jel/Documents/ConnectX/docs/logo/frame.png");
-                    box.Size = new Size(size, size);
-                    box.Location = new Point(0, 0);
-                    box.SizeMode = PictureBoxSizeMode.StretchImage;
-                    box.BackColor = Color.Transparent;
-
-                    gr.DrawRectangle(myPen, x, y, size, size);
+                    Image newImage = Image.FromFile("C:/Users/Jel/Documents/ConnectX/docs/logo/frame.png");
+                    gr.DrawImage(newImage, x, y, size, size);
                     x += size;
-                    pnlGame.Controls.Add(box);
                 }
-                x = 0;
+                x = startWidth;
                 y += size;
             }
         }//drawGrid
@@ -137,7 +132,7 @@ namespace ConnectXLibrary
 		}//drawHud
 
         private void drawToken(int column) {
-            Rectangle circle = new Rectangle((column * size) + 5, ((rows - emptySpotFree(column)) * size) + 5, size - 10, size - 10);
+            Rectangle circle = new Rectangle((column * size) + 5 + startWidth, ((rows - emptySpotFree(column)) * size) + 5 + startHeigt, size - 10, size - 10);
             gr.DrawEllipse(blackPen, circle);
 
             if (session.getPlayerAtPlay() == 1) {
@@ -167,7 +162,7 @@ namespace ConnectXLibrary
             int playerAtPlay = session.getPlayerAtPlay();
             for (int i = 0; i < columns; i++)
             {
-                if (e.X >= i * size && e.X <= size * (i + 1))
+                if (e.X >= (i * size) + startWidth && e.X <= (size * (i + 1) + startWidth))
                 {
                     session.checkIfWon(i, playerAtPlay);
                     drawToken(i);
