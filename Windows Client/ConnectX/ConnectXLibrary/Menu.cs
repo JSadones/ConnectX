@@ -27,13 +27,13 @@ namespace ConnectXLibrary
         {
             string namePlayer1 = txtBoxPlayer1Name.Text;
             string namePlayer2 = txtBoxPlayer2Name.Text;
-            int width = int.Parse(txtBoxWidth.Text);
-            int length = int.Parse(txtBoxLength.Text);
+            int columns = int.Parse(txtBoxColumns.Text);
+            int rows = int.Parse(txtBoxRows.Text);
             int winstreak = int.Parse(txtBoxWinstreak.Text);
 
             pnlEnterData.Visible = false;
             pnlStartScreen.Visible = true;
-            Game gameForm = new Game(namePlayer1, namePlayer2, width, length, winstreak);
+            Game gameForm = new Game(namePlayer1, namePlayer2, columns, rows, winstreak);
             gameForm.StartPosition = FormStartPosition.Manual;
             gameForm.Location = new Point(this.Location.X, this.Location.Y);
             gameForm.Show();
@@ -116,10 +116,10 @@ namespace ConnectXLibrary
 
         private void checkDimension()
         {
-            if ((txtBoxWidth.Text != "") && (txtBoxLength.Text != ""))
+            if ((txtBoxRows.Text != "") && (txtBoxColumns.Text != ""))
             {
-               int width = int.Parse(txtBoxWidth.Text);
-               int length = int.Parse(txtBoxLength.Text);
+               int width = int.Parse(txtBoxRows.Text);
+               int length = int.Parse(txtBoxColumns.Text);
                 if ((width >= 4) && (length >= 4))
                 {
                     btnStart.Enabled = true;
@@ -140,11 +140,11 @@ namespace ConnectXLibrary
 
 		private void checkStreak()
 		{
-			if (txtBoxWinstreak.Text != "" && txtBoxLength.Text !="" && txtBoxWidth.Text != "")
+			if (txtBoxWinstreak.Text != "" && txtBoxColumns.Text !="" && txtBoxRows.Text != "")
 			{
 				int streak = int.Parse(txtBoxWinstreak.Text);
-                int width = int.Parse(txtBoxWidth.Text);
-                int length = int.Parse(txtBoxLength.Text);
+                int width = int.Parse(txtBoxRows.Text);
+                int length = int.Parse(txtBoxColumns.Text);
 				if ((streak > length) && (streak > width))
 				{
                     btnStart.Enabled = false;

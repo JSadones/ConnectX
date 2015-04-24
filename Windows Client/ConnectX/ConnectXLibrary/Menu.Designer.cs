@@ -42,11 +42,11 @@
             this.picBoxPlayer1 = new System.Windows.Forms.PictureBox();
             this.txtBoxWinstreak = new System.Windows.Forms.TextBox();
             this.lblWinstreak = new System.Windows.Forms.Label();
-            this.txtBoxWidth = new System.Windows.Forms.TextBox();
-            this.txtBoxLength = new System.Windows.Forms.TextBox();
+            this.txtBoxRows = new System.Windows.Forms.TextBox();
+            this.txtBoxColumns = new System.Windows.Forms.TextBox();
             this.btnStart = new System.Windows.Forms.Button();
-            this.lblRows = new System.Windows.Forms.Label();
             this.lblColumns = new System.Windows.Forms.Label();
+            this.lblRows = new System.Windows.Forms.Label();
             this.lblGridSize = new System.Windows.Forms.Label();
             this.txtBoxPlayer2Name = new System.Windows.Forms.TextBox();
             this.lblPlayer2Name = new System.Windows.Forms.Label();
@@ -130,11 +130,11 @@
             this.pnlEnterData.Controls.Add(this.picBoxPlayer1);
             this.pnlEnterData.Controls.Add(this.txtBoxWinstreak);
             this.pnlEnterData.Controls.Add(this.lblWinstreak);
-            this.pnlEnterData.Controls.Add(this.txtBoxWidth);
-            this.pnlEnterData.Controls.Add(this.txtBoxLength);
+            this.pnlEnterData.Controls.Add(this.txtBoxRows);
+            this.pnlEnterData.Controls.Add(this.txtBoxColumns);
             this.pnlEnterData.Controls.Add(this.btnStart);
-            this.pnlEnterData.Controls.Add(this.lblRows);
             this.pnlEnterData.Controls.Add(this.lblColumns);
+            this.pnlEnterData.Controls.Add(this.lblRows);
             this.pnlEnterData.Controls.Add(this.lblGridSize);
             this.pnlEnterData.Controls.Add(this.txtBoxPlayer2Name);
             this.pnlEnterData.Controls.Add(this.lblPlayer2Name);
@@ -221,25 +221,25 @@
             this.lblWinstreak.TabIndex = 14;
             this.lblWinstreak.Text = "Winstreak";
             // 
-            // txtBoxWidth
+            // txtBoxRows
             // 
-            this.txtBoxWidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoxWidth.Location = new System.Drawing.Point(453, 193);
-            this.txtBoxWidth.Name = "txtBoxWidth";
-            this.txtBoxWidth.Size = new System.Drawing.Size(45, 40);
-            this.txtBoxWidth.TabIndex = 13;
-            this.txtBoxWidth.Text = "5";
-            this.txtBoxWidth.TextChanged += new System.EventHandler(this.txtBoxWidth_TextChanged);
+            this.txtBoxRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxRows.Location = new System.Drawing.Point(453, 193);
+            this.txtBoxRows.Name = "txtBoxRows";
+            this.txtBoxRows.Size = new System.Drawing.Size(45, 40);
+            this.txtBoxRows.TabIndex = 13;
+            this.txtBoxRows.Text = "6";
+            this.txtBoxRows.TextChanged += new System.EventHandler(this.txtBoxWidth_TextChanged);
             // 
-            // txtBoxLength
+            // txtBoxColumns
             // 
-            this.txtBoxLength.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoxLength.Location = new System.Drawing.Point(453, 243);
-            this.txtBoxLength.Name = "txtBoxLength";
-            this.txtBoxLength.Size = new System.Drawing.Size(45, 40);
-            this.txtBoxLength.TabIndex = 12;
-            this.txtBoxLength.Text = "5";
-            this.txtBoxLength.TextChanged += new System.EventHandler(this.txtBoxLength_TextChanged);
+            this.txtBoxColumns.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxColumns.Location = new System.Drawing.Point(453, 243);
+            this.txtBoxColumns.Name = "txtBoxColumns";
+            this.txtBoxColumns.Size = new System.Drawing.Size(45, 40);
+            this.txtBoxColumns.TabIndex = 12;
+            this.txtBoxColumns.Text = "5";
+            this.txtBoxColumns.TextChanged += new System.EventHandler(this.txtBoxLength_TextChanged);
             // 
             // btnStart
             // 
@@ -252,27 +252,27 @@
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
-            // lblRows
-            // 
-            this.lblRows.AutoSize = true;
-            this.lblRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRows.ForeColor = System.Drawing.Color.White;
-            this.lblRows.Location = new System.Drawing.Point(243, 238);
-            this.lblRows.Name = "lblRows";
-            this.lblRows.Size = new System.Drawing.Size(112, 42);
-            this.lblRows.TabIndex = 8;
-            this.lblRows.Text = "Rows";
-            // 
             // lblColumns
             // 
             this.lblColumns.AutoSize = true;
             this.lblColumns.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblColumns.ForeColor = System.Drawing.Color.White;
-            this.lblColumns.Location = new System.Drawing.Point(243, 193);
+            this.lblColumns.Location = new System.Drawing.Point(243, 238);
             this.lblColumns.Name = "lblColumns";
             this.lblColumns.Size = new System.Drawing.Size(165, 42);
-            this.lblColumns.TabIndex = 7;
+            this.lblColumns.TabIndex = 8;
             this.lblColumns.Text = "Columns";
+            // 
+            // lblRows
+            // 
+            this.lblRows.AutoSize = true;
+            this.lblRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRows.ForeColor = System.Drawing.Color.White;
+            this.lblRows.Location = new System.Drawing.Point(243, 193);
+            this.lblRows.Name = "lblRows";
+            this.lblRows.Size = new System.Drawing.Size(112, 42);
+            this.lblRows.TabIndex = 7;
+            this.lblRows.Text = "Rows";
             // 
             // lblGridSize
             // 
@@ -293,7 +293,7 @@
             this.txtBoxPlayer2Name.Name = "txtBoxPlayer2Name";
             this.txtBoxPlayer2Name.Size = new System.Drawing.Size(189, 49);
             this.txtBoxPlayer2Name.TabIndex = 4;
-            this.txtBoxPlayer2Name.Text = "Kenny";
+            this.txtBoxPlayer2Name.Text = "Rood";
             this.txtBoxPlayer2Name.TextChanged += new System.EventHandler(this.txtBoxPlayer2Name_TextChanged);
             // 
             // lblPlayer2Name
@@ -326,7 +326,7 @@
             this.txtBoxPlayer1Name.Name = "txtBoxPlayer1Name";
             this.txtBoxPlayer1Name.Size = new System.Drawing.Size(189, 49);
             this.txtBoxPlayer1Name.TabIndex = 0;
-            this.txtBoxPlayer1Name.Text = "Jimmy";
+            this.txtBoxPlayer1Name.Text = "Blauw";
             this.txtBoxPlayer1Name.TextChanged += new System.EventHandler(this.txtBoxPlayer1Name_TextChanged);
             // 
             // btnWebclient
@@ -410,11 +410,11 @@
         private System.Windows.Forms.Label lblGridSize;
         private System.Windows.Forms.TextBox txtBoxPlayer2Name;
         private System.Windows.Forms.Label lblPlayer2Name;
-        private System.Windows.Forms.Label lblRows;
         private System.Windows.Forms.Label lblColumns;
+        private System.Windows.Forms.Label lblRows;
         private System.Windows.Forms.Button btnStart;
-        private System.Windows.Forms.TextBox txtBoxLength;
-        private System.Windows.Forms.TextBox txtBoxWidth;
+        private System.Windows.Forms.TextBox txtBoxColumns;
+        private System.Windows.Forms.TextBox txtBoxRows;
         private System.Windows.Forms.TextBox txtBoxWinstreak;
         private System.Windows.Forms.Label lblWinstreak;
         private System.Windows.Forms.PictureBox picBoxPlayer1;

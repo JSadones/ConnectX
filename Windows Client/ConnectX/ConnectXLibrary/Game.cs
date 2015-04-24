@@ -7,7 +7,7 @@ namespace ConnectXLibrary
     public partial class Game : Form
     {
         #region State
-        private int rows, columns, winstreak, startWidth, startHeigt;
+        private int rows, columns, winstreak, startWidth, startHeight;
         private string namePlayer1, namePlayer2;
         private static int size = 60;
         Bitmap I;
@@ -93,7 +93,7 @@ namespace ConnectXLibrary
         }//checkIfWon
 
         private void drawGrid() {
-            I = new Bitmap(columns, rows);
+            I = new Bitmap(rows, columns);
             gr = Graphics.FromImage(I);
             gr.Clear(Color.White);
             gr = pnlGame.CreateGraphics();
@@ -102,10 +102,10 @@ namespace ConnectXLibrary
             gr.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             myPen = new Pen(Brushes.Black, 1);
             startWidth = (pnlGame.Width / 2) - ((size * columns) / 2);
-            startHeigt = (pnlGame.Height / 2) - ((size * rows) / 2);
+            startHeight = (pnlGame.Height / 2) - ((size * rows) / 2);
 
             float x = startWidth;
-            float y = startHeigt;
+            float y = startHeight;
 
             for (int i = 0; i < columns; i++)
             {
@@ -132,7 +132,7 @@ namespace ConnectXLibrary
 		}//drawHud
 
         private void drawToken(int column) {
-            Rectangle circle = new Rectangle((column * size) + 5 + startWidth, ((rows - emptySpotFree(column)) * size) + 5 + startHeigt, size - 10, size - 10);
+            Rectangle circle = new Rectangle((column * size) + 5 + startWidth, ((rows - emptySpotFree(column)) * size) + 5 + startHeight, size - 10, size - 10);
             gr.DrawEllipse(blackPen, circle);
 
             if (session.getPlayerAtPlay() == 1) {
@@ -162,10 +162,11 @@ namespace ConnectXLibrary
             int playerAtPlay = session.getPlayerAtPlay();
             for (int i = 0; i < columns; i++)
             {
-                if (e.X >= (i * size) + startWidth && e.X <= (size * (i + 1) + startWidth))
+                if ((i * size) + startWidth <= e.X  && e.X <= (size * (i + 1) + startWidth))
                 {
-                    session.checkIfWon(i, playerAtPlay);
                     drawToken(i);
+                    session.checkIfWon(i, playerAtPlay);
+                    break;
                 }
             }
             showIfWon();
