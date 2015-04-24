@@ -128,7 +128,7 @@ namespace ConnectXLibrary
                 else 
                 {
                     btnStart.Enabled = false;
-                    lblErrorDimension.Text += "Gelieve min. 4x4 afmetingen te kiezen.";
+                    lblErrorDimension.Text = "Please select at least 4 columns and 4 rows.";
                 }
             }
             else
@@ -148,8 +148,13 @@ namespace ConnectXLibrary
 				if ((streak > length) && (streak > width))
 				{
                     btnStart.Enabled = false;
-                    lblErrorStreak.Text = "Gelieve een winstreak lager dan de huidige lengte en breedte te kiezen.";
+                    lblErrorStreak.Text = "Please select a valid streak.";
 				}
+                else if (streak < 3)
+                {
+                    btnStart.Enabled = false;
+                    lblErrorStreak.Text = "Please select a winstreak of at least 3.";
+                }
 				else
 				{
                     btnStart.Enabled = true;
@@ -168,12 +173,12 @@ namespace ConnectXLibrary
             if (txtBoxPlayer1Name.Text == txtBoxPlayer2Name.Text)
             {
                 btnStart.Enabled = false;
-                lblErrorNaam.Text = "De namen moeten verschillen van elkaar.";
+                lblErrorName.Text = "Both names can't be the same.";
             }
             else
             {
                 btnStart.Enabled = true;
-                lblErrorNaam.Text = "";
+                lblErrorName.Text = "";
             }
         }//checkDoubleName
         #endregion
