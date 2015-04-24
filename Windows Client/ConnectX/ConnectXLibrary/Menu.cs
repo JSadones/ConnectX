@@ -140,7 +140,7 @@ namespace ConnectXLibrary
 
 		private void checkStreak()
 		{
-			if (txtBoxWinstreak.Text != "")
+			if (txtBoxWinstreak.Text != "" && txtBoxLength.Text !="" && txtBoxWidth.Text != "")
 			{
 				int streak = int.Parse(txtBoxWinstreak.Text);
                 int width = int.Parse(txtBoxWidth.Text);
