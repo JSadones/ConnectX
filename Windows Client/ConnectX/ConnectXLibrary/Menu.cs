@@ -128,7 +128,7 @@ namespace ConnectXLibrary
                 else 
                 {
                     btnStart.Enabled = false;
-                    lblErrorDimension.Text += "Please select at least 4 columns and 4 rows.";
+                    lblErrorDimension.Text = "Please select at least 4 columns and 4 rows.";
                 }
             }
             else
