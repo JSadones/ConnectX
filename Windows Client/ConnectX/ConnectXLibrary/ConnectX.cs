@@ -330,9 +330,6 @@ namespace ConnectXLibrary
                     counterColumn--;
                 }
             }
-
-
-
             return coordinate;
         }//getCoordinateWithDiagonal135LongestStreakOfAI
 		#endregion

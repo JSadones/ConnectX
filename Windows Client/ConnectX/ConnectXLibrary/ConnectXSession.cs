@@ -153,7 +153,8 @@
 
         public bool insertTokenByAI()
         {
-            return true;
+            return game.insertTokenByAI();
+           
             //ConnectX connectX = new ConnectX();
             //return game.insertTokenByAI();
         }//insertTokenByAI
