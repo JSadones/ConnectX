@@ -538,6 +538,12 @@ namespace ConnectXLibrary
  
             if (playerAtTurn == 2)
             {
+                // Bruikbare functies:
+                // getCoordinateWithDiagonal135LongestStreakOfAI();
+                // getCoordinateWithDiagonal45LongestStreakOfAI();
+                // getColumnWithVerticalLongestStreakOfAI();
+                // getRowWithHorizontalLongestStreakOfAI();
+
                 insertToken(emptySpots[spot], 2);
                 return true;
             }
