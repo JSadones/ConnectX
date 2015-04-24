@@ -145,11 +145,16 @@ namespace ConnectXLibrary
 				int streak = int.Parse(txtBoxWinstreak.Text);
                 int width = int.Parse(txtBoxWidth.Text);
                 int length = int.Parse(txtBoxLength.Text);
-				if ((streak > length) && (streak > width) && (streak <= 3))
+				if ((streak > length) && (streak > width))
 				{
                     btnStart.Enabled = false;
-                    lblErrorStreak.Text = "Gelieve een winstreak lager dan de huidige lengte en breedte te kiezen en groter dan 3.";
+                    lblErrorStreak.Text = "Voer een geldige winstreak in.";
 				}
+                else if (streak < 3)
+                {
+                    btnStart.Enabled = false;
+                    lblErrorStreak.Text = "Gelieve een winstreak van min. 3 invoeren.";
+                }
 				else
 				{
                     btnStart.Enabled = true;
