@@ -398,11 +398,6 @@ namespace ConnectXUnitTest
         }
 
 		[TestMethod]
-		public void TestRasterExists() {
-			Assert.IsTrue(game.rasterExists());
-		}
-
-		[TestMethod]
 		public void TestIsRasterInitializedWithZeros(){
 			Assert.IsTrue(game.isRasterInitializedWithZeros());
 		}
@@ -486,29 +481,29 @@ namespace ConnectXUnitTest
 
 	    [TestMethod]
 		public void TestAIGetCoordWithDiagonal45LongestStreakOfAI() {
-			game.insertToken(0, 1);
-			game.insertToken(1, 2);
+			game.insertToken(0, 2);
 			game.insertToken(1, 1);
-			game.insertToken(2, 1);
+			game.insertToken(1, 2);
 			game.insertToken(2, 2);
 			game.insertToken(2, 1);
+			game.insertToken(2, 2);
 
-			Assert.IsTrue(game.getCoordinateWithDiagonal45LongestStreakOfAI().getRow() == 3);
-			Assert.IsTrue(game.getCoordinateWithDiagonal45LongestStreakOfAI().getColumn() == 3);
+			Assert.IsTrue(game.getCoordinateWithDiagonal45LongestStreakOfAI().getRow() == 2);
+			Assert.IsTrue(game.getCoordinateWithDiagonal45LongestStreakOfAI().getColumn() == 2);
 		}
 
 		[TestMethod]
 		public void TestAIGetCoordWithDiagonal135LongestStreakOfAI()
 		{
-			game.insertToken(1, 1);
 			game.insertToken(1, 2);
 			game.insertToken(1, 1);
-			game.insertToken(2, 2);
+			game.insertToken(1, 2);
 			game.insertToken(2, 1);
-			game.insertToken(3, 1);
+			game.insertToken(2, 2);
+			game.insertToken(3, 2);
 
-			Assert.IsTrue(game.getCoordinateWithDiagonal135LongestStreakOfAI().getRow() == 3);
-			Assert.IsTrue(game.getCoordinateWithDiagonal135LongestStreakOfAI().getColumn() == 0);
+			Assert.IsTrue(game.getCoordinateWithDiagonal135LongestStreakOfAI().getRow() == 2);
+			Assert.IsTrue(game.getCoordinateWithDiagonal135LongestStreakOfAI().getColumn() == 1);
 		}
 
 		[TestMethod]
@@ -617,14 +612,12 @@ namespace ConnectXUnitTest
         [TestMethod]
         public void TestInsertTokenInRasterInFullColumn() {
             gameWithFullRaster.insertToken(0, 1);
-            Assert.IsFalse(gameWithFullRaster.hasNotCrashed());
         }
 
         [TestMethod]
         public void Test10Rows14ColumnsInsertTokenInRasterInFullColumn()
         {
             game10Rows14ColumnsWithFullRaster.insertToken(0, 1);
-            Assert.IsFalse(game10Rows14ColumnsWithFullRaster.hasNotCrashed());
         }
 
 		[TestMethod]

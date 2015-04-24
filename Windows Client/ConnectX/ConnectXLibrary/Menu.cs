@@ -59,11 +59,13 @@ namespace ConnectXLibrary
         private void txtBoxPlayer1Name_TextChanged(object sender, EventArgs e)
         {
             checkTextBoxes();
+            checkDoubleName();
         }//txtBoxPlayer1Name_TextChanged
 
         private void txtBoxPlayer2Name_TextChanged(object sender, EventArgs e)
         {
             checkTextBoxes();
+            checkDoubleName();
         }//txtBoxPlayer2Name_TextChanged
 
         private void txtBoxWinstreak_TextChanged(object sender, EventArgs e)
@@ -74,7 +76,6 @@ namespace ConnectXLibrary
         private void txtBoxWidth_TextChanged(object sender, EventArgs e)
         {
             dimensieCheck();
-
         } // txtBoxWidth_TextChanged
 
         private void txtBoxLength_TextChanged(object sender, EventArgs e)
@@ -97,12 +98,11 @@ namespace ConnectXLibrary
 
         private void showColorDialog()
         {
-            
+            //TODO (Zie issues)
         }
 
         private void dimensieCheck()
         {
-            
             if ((txtBoxWidth.Text != "") && (txtBoxLength.Text != ""))
             {
                int Width = int.Parse(txtBoxWidth.Text);
@@ -111,22 +111,33 @@ namespace ConnectXLibrary
                 if ((Width >= Winstreak) && (Length >= Winstreak))
                 {
                     btnStart.Enabled = true;
-                    dimensionError.Visible = false;
+                    lblErrorDimension.Text = "";
                 }
                 else 
                 {
                     btnStart.Enabled = false;
-                    dimensionError.Visible = true;
+                    lblErrorDimension.Text += "Gelieve min. 4x4 afmetingen te kiezen.";
                 }
             }
             else
             {
                 btnStart.Enabled = false;
-                dimensionError.Visible = true;
             }
         } // dimensieCheck
 
-
+        private void checkDoubleName() 
+        {
+            if (txtBoxPlayer1Name.Text == txtBoxPlayer2Name.Text)
+            {
+                btnStart.Enabled = false;
+                lblErrorNaam.Text = "De namen moeten verschillen van elkaar.";
+            }
+            else
+            {
+                btnStart.Enabled = true;
+                lblErrorNaam.Text = "";
+            }
+        }//checkDoubleName
         #endregion
     }
 }

@@ -68,16 +68,16 @@ namespace ConnectXUnitTest
             
             Assert.IsTrue(gameInterface.isCurrentGameWon() == false);
 
-            gameInterface.insertToken(1, 1);
-            gameInterface.insertToken(2, 2);
+            gameInterface.checkIfWon(1, 1);
+            gameInterface.checkIfWon(2, 2);
 
-            gameInterface.insertToken(1, 1);
-            gameInterface.insertToken(3, 2);
+            gameInterface.checkIfWon(1, 1);
+            gameInterface.checkIfWon(3, 2);
 
-            gameInterface.insertToken(1, 1);
-            gameInterface.insertToken(4, 2);
+            gameInterface.checkIfWon(1, 1);
+            gameInterface.checkIfWon(4, 2);
 
-            gameInterface.insertToken(1, 1);
+            gameInterface.checkIfWon(1, 1);
 
 			Assert.IsTrue(gameInterface.isCurrentGameWon() == true);
 
@@ -93,9 +93,9 @@ namespace ConnectXUnitTest
             gameInterface.newGame();
             
             // insertToken returns true if token is successfully inserted
-            Assert.IsTrue(gameInterface.insertToken(2,1));
+            Assert.IsTrue(gameInterface.checkIfWon(2,1));
             // return false if it is not his turn
-            Assert.IsTrue(gameInterface.insertToken(2, 2));
+            Assert.IsTrue(gameInterface.checkIfWon(2, 2));
         }
 
         [TestMethod]
@@ -104,13 +104,13 @@ namespace ConnectXUnitTest
             gameInterface.newGame();
 
 
-            Assert.IsTrue(gameInterface.insertToken(2, 1));
-            Assert.IsFalse(gameInterface.insertToken(2, 1));
+            Assert.IsTrue(gameInterface.checkIfWon(2, 1));
+            Assert.IsFalse(gameInterface.checkIfWon(2, 1));
 
             Assert.IsTrue(gameInterface.insertTokenByAI());
             Assert.IsFalse(gameInterface.insertTokenByAI());
 
-            Assert.IsTrue(gameInterface.insertToken(2, 1));
+            Assert.IsTrue(gameInterface.checkIfWon(2, 1));
 
         }
 	}

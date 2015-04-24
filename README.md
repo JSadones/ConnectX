@@ -7,7 +7,7 @@ Link tot opdracht : http://goo.gl/v0wKYx
 ### ConnectX
 - ~~Afwisselend een gekleurde schijf laten vallen in kolom naar keuze (Elke speler heeft eigen kleur)~~
 - ~~7 kolommen en 6 rijen (default)~~
-- Ook mogelijk om meerdere kolommen/rijen in te stellen (Niet nutteloze dimensies zoals 3x3 of 1x1)
+- ~~Ook mogelijk om meerdere kolommen/rijen in te stellen (Niet nutteloze dimensies zoals 3x3 of 1x1)~~
 - ~~Een volledig gevulde kolom kan niet meer gekozen worden~~ 
 - ~~Indien niemand 4 op een rij heeft, stop het spel (een tie)~~
 - ~~Twee spelers tegen elkaar (beurt om beurt)~~

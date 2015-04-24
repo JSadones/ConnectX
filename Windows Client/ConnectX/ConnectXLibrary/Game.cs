@@ -7,15 +7,13 @@ namespace ConnectXLibrary
     public partial class Game : Form
     {
         #region State
-        private int rows, columns, winstreak;
+        private int rows, columns, winstreak, startWidth, startHeigt;
         private string namePlayer1, namePlayer2;
         private static int size = 60;
         Bitmap I;
-        Graphics gr;
-        Graphics hr;
+        Graphics gr, hr;
         ConnectXSession session;
         Pen myPen;
-        Font myFont;
 		SolidBrush redBrush = new SolidBrush(Color.Red);
 		SolidBrush blueBrush = new SolidBrush(Color.Blue);
 		Pen blackPen = new Pen(Color.Black, 3);
@@ -24,37 +22,36 @@ namespace ConnectXLibrary
         #region Constructor
         public Game(string namePlayer1, string namePlayer2, int columns, int rows, int winstreak) {
             InitializeComponent();
-
             this.namePlayer1 = namePlayer1;
             this.namePlayer2 = namePlayer2;
             this.rows = rows;
             this.columns = columns;
             this.winstreak = winstreak;
 
-            newSession();
+            session = new ConnectXSession(rows, columns, winstreak);
             session.newGame();
+
+            lblPlayer1.Text = namePlayer1;
+            lblPlayer2.Text = namePlayer2;
+            showPlayerAtTurn();
         }//Game
         #endregion
 
-        #region Methods
-        private void newSession()
+        #region Properties
+        private string getName(int number)
         {
-            session = new ConnectXSession(rows, columns, winstreak);
-            session.setName(1, namePlayer1);
-            session.setName(2, namePlayer2);
+            if (number == 1) return namePlayer1;
+            else return namePlayer2;
+        }
+        #endregion
 
-            lblPlayer1.Text = session.getName(1);
-            lblPlayer2.Text = session.getName(2);
-
-            updateScores();
-        }//newSession
-
+        #region Methods
         private void updateScores() {
             lblPointsPlayer1.Text = session.getScore(1).ToString();
             lblPointsPlayer2.Text = session.getScore(2).ToString();
         }//updateScores
 
-        private void checkIfWon() {
+        private void showIfWon() {
 			string title = "";
 			bool won = false;
             if (session.isCurrentGameWon()) {
@@ -62,11 +59,11 @@ namespace ConnectXLibrary
 				else title = namePlayer2;
 				title += " has won the game.";
 				won = true;
-			}else if (session.isRasterFull()){
+			}
+            else if (session.isRasterFull()){
 				title = "Raster is full.";
 				won = true;
 			}
-
 			if (won)
 			{
 				gr.Clear(Color.White);
@@ -83,7 +80,7 @@ namespace ConnectXLibrary
 					if (session.getOverallWonPlayer() == 0)
 						message = "It's a tie!";
 					else
-						message = session.getName(session.getOverallWonPlayer()) + " won the game!";
+						message = getName(session.getOverallWonPlayer()) + " won the game!";
 
 					DialogResult dialogResult2 = MessageBox.Show(message, "Game over!", MessageBoxButtons.OK);
 
@@ -98,28 +95,27 @@ namespace ConnectXLibrary
         private void drawGrid() {
             I = new Bitmap(columns, rows);
             gr = Graphics.FromImage(I);
-
             gr.Clear(Color.White);
-
             gr = pnlGame.CreateGraphics();
             hr = pnlGame.CreateGraphics();
             hr.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             gr.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             myPen = new Pen(Brushes.Black, 1);
-            myFont = new Font("Arial", 10);
-            
+            startWidth = (pnlGame.Width / 2) - ((size * columns) / 2);
+            startHeigt = (pnlGame.Height / 2) - ((size * rows) / 2);
 
-            float x = 0;
-            float y = 0;
+            float x = startWidth;
+            float y = startHeigt;
 
             for (int i = 0; i < columns; i++)
             {
                 for (int j = 0; j < rows; j++)
                 {
-                    gr.DrawRectangle(myPen, x, y, size, size);
+                    Image newImage = Image.FromFile("C:/Users/Jel/Documents/ConnectX/docs/logo/frame.png");
+                    gr.DrawImage(newImage, x, y, size, size);
                     x += size;
                 }
-                x = 0;
+                x = startWidth;
                 y += size;
             }
         }//drawGrid
@@ -127,18 +123,16 @@ namespace ConnectXLibrary
 		private void drawHud()
 		{
 			Graphics hud = this.CreateGraphics();
-			Rectangle blueCircle = new Rectangle(235, 20, 45, 45);
-			Rectangle redCircle = new Rectangle(235, 80, 45, 45);
+			Rectangle blueCircle = new Rectangle(75, 20, 45, 45);
+			Rectangle redCircle = new Rectangle(75, 80, 45, 45);
 			hud.DrawEllipse(blackPen, blueCircle);
 			hud.DrawEllipse(blackPen, redCircle);
 			hud.FillEllipse(blueBrush, blueCircle);
 			hud.FillEllipse(redBrush, redCircle);
-		}
+		}//drawHud
 
         private void drawToken(int column) {
-            int freeSpot = emptySpotFree(column);
-            
-            Rectangle circle = new Rectangle((column * size) + 5, ((rows - freeSpot) * size) + 5, size - 10, size - 10);
+            Rectangle circle = new Rectangle((column * size) + 5 + startWidth, ((rows - emptySpotFree(column)) * size) + 5 + startHeigt, size - 10, size - 10);
             gr.DrawEllipse(blackPen, circle);
 
             if (session.getPlayerAtPlay() == 1) {
@@ -153,7 +147,7 @@ namespace ConnectXLibrary
             lblMouseX.Text = e.X.ToString();
             lblMouseY.Text = e.Y.ToString();
 
-            //TODO (Jel) : Defig de hover laten werken
+            //TODO (Jel) : Deftig de hover laten werken
             //Pen penOrange = new Pen(Brushes.Orange, 5);
             //for (int i = 0; i < columns; i++) {
             //    if (e.X >= i * size && e.X <= size * (i + 1)) {
@@ -168,20 +162,19 @@ namespace ConnectXLibrary
             int playerAtPlay = session.getPlayerAtPlay();
             for (int i = 0; i < columns; i++)
             {
-                if (e.X >= i * size && e.X <= size * (i + 1))
+                if (e.X >= (i * size) + startWidth && e.X <= (size * (i + 1) + startWidth))
                 {
-                    session.insertToken(i, playerAtPlay);
+                    session.checkIfWon(i, playerAtPlay);
                     drawToken(i);
                 }
             }
-            checkIfWon();
+            showIfWon();
             showPlayerAtTurn();
         }//pnlGame_MouseClick
 
         private void pnlGame_Paint(object sender, PaintEventArgs e)
         {
             drawGrid();
-            showPlayerAtTurn();
 			drawHud();
         }//pnlGame_MouseClick
 

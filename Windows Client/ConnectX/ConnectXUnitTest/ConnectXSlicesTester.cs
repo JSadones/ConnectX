@@ -16,20 +16,6 @@ namespace ConnectXUnitTest
         }
 
         [TestMethod]
-        public void TestSlice1_1AskNames()
-        {
-            gameInterface = new ConnectXSession();
-
-            gameInterface.setName(1, "Player 1");
-            gameInterface.setName(2, "Player 2");
-
-            Assert.IsTrue(gameInterface.getName(1) == "Player 1");
-            Assert.IsTrue(gameInterface.getName(2) == "Player 2");
-            Assert.IsFalse(gameInterface.getName(2) == "Player 1");
-            
-        }
-
-        [TestMethod]
         public void TestSlice1_2StartGame()
         {
             gameInterface.newGame();
@@ -41,15 +27,15 @@ namespace ConnectXUnitTest
         public void TestSlice2_1CheckIfColumnIsNotFull()
         {
             gameInterface.newGame();
-            gameInterface.insertToken(1, 1);
-            gameInterface.insertToken(1, 2);
-            gameInterface.insertToken(1, 1);
-            gameInterface.insertToken(1, 2);
-            gameInterface.insertToken(1, 1);
+            gameInterface.checkIfWon(1, 1);
+            gameInterface.checkIfWon(1, 2);
+            gameInterface.checkIfWon(1, 1);
+            gameInterface.checkIfWon(1, 2);
+            gameInterface.checkIfWon(1, 1);
 
             Assert.IsFalse(gameInterface.isColumnFull(1));
 
-            gameInterface.insertToken(1, 2);
+            gameInterface.checkIfWon(1, 2);
 
             Assert.IsTrue(gameInterface.isColumnFull(1));
         }
@@ -58,7 +44,7 @@ namespace ConnectXUnitTest
         public void TestSlice2_2SelectColumnAndInsertToken()
         {
             gameInterface.newGame();
-            gameInterface.insertToken(1, 1);
+            gameInterface.checkIfWon(1, 1);
 
             Assert.IsFalse(gameInterface.getToken(1,0) == 1);
         }
@@ -67,16 +53,16 @@ namespace ConnectXUnitTest
         public void TestSlice2_3CheckIfGameIsWon()
         {
             gameInterface.newGame();
-            gameInterface.insertToken(1, 1);
-            gameInterface.insertToken(2, 2);
-            gameInterface.insertToken(1, 1);
-            gameInterface.insertToken(2, 2);
-            gameInterface.insertToken(1, 1);
-            gameInterface.insertToken(2, 2);
+            gameInterface.checkIfWon(1, 1);
+            gameInterface.checkIfWon(2, 2);
+            gameInterface.checkIfWon(1, 1);
+            gameInterface.checkIfWon(2, 2);
+            gameInterface.checkIfWon(1, 1);
+            gameInterface.checkIfWon(2, 2);
 
             Assert.IsFalse(gameInterface.isCurrentGameWon());
 
-            gameInterface.insertToken(1, 1);
+            gameInterface.checkIfWon(1, 1);
 
             Assert.IsTrue(gameInterface.isCurrentGameWon());
         }
@@ -112,7 +98,7 @@ namespace ConnectXUnitTest
         public void TestSlice2_6PlayNewGame()
         {
             gameInterface.newGame();
-            gameInterface.insertToken(1, 1);
+            gameInterface.checkIfWon(1, 1);
             gameInterface.newGame();
             Assert.IsTrue(gameInterface.getToken(1, 0) == 0);
         }
@@ -121,13 +107,13 @@ namespace ConnectXUnitTest
         public void TestSlice3_1ShowWinner()
         {
             gameInterface.newGame();
-            gameInterface.insertToken(1, 1);
-            gameInterface.insertToken(2, 2);
-            gameInterface.insertToken(1, 1);
-            gameInterface.insertToken(2, 2);
-            gameInterface.insertToken(1, 1);
-            gameInterface.insertToken(2, 2);
-            gameInterface.insertToken(1, 1);
+            gameInterface.checkIfWon(1, 1);
+            gameInterface.checkIfWon(2, 2);
+            gameInterface.checkIfWon(1, 1);
+            gameInterface.checkIfWon(2, 2);
+            gameInterface.checkIfWon(1, 1);
+            gameInterface.checkIfWon(2, 2);
+            gameInterface.checkIfWon(1, 1);
             gameInterface.isCurrentGameWon();
             Assert.IsTrue(gameInterface.getCurrentGameWonPlayer() == 1);
         }
