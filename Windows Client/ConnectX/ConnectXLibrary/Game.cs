@@ -111,7 +111,7 @@ namespace ConnectXLibrary
             {
                 for (int j = 0; j < rows; j++)
                 {
-                    Image newImage = Image.FromFile("C:/Users/Jel/Documents/ConnectX/docs/logo/frame.png");
+                    Image newImage = Image.FromFile("C:/frame.png");
                     gr.DrawImage(newImage, x, y, size, size);
                     x += size;
                 }
