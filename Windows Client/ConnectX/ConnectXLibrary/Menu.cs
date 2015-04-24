@@ -20,7 +20,7 @@ namespace ConnectXLibrary
         private void btnMultiplayer_Click(object sender, EventArgs e)
         {
             pnlEnterData.Visible = true;
-            pnlMenu.Visible = false;
+            pnlStartScreen.Visible = false;
         }//btnMultiplayer_Click
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -32,7 +32,7 @@ namespace ConnectXLibrary
             int winstreak = int.Parse(txtBoxWinstreak.Text);
 
             pnlEnterData.Visible = false;
-            pnlMenu.Visible = true;
+            pnlStartScreen.Visible = true;
             Game gameForm = new Game(namePlayer1, namePlayer2, width, length, winstreak);
             gameForm.StartPosition = FormStartPosition.Manual;
             gameForm.Location = new Point(this.Location.X, this.Location.Y);

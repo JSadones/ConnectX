@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Game));
             this.lblName = new System.Windows.Forms.Label();
             this.pnlGame = new System.Windows.Forms.Panel();
-            this.picBoxBanner = new System.Windows.Forms.PictureBox();
             this.lblPlayer1 = new System.Windows.Forms.Label();
             this.lblPlayer2 = new System.Windows.Forms.Label();
             this.lblPointsPlayer1 = new System.Windows.Forms.Label();
@@ -40,7 +39,6 @@
             this.lblMouseX = new System.Windows.Forms.Label();
             this.lblMouseY = new System.Windows.Forms.Label();
             this.lblTurnName = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.picBoxBanner)).BeginInit();
             this.SuspendLayout();
             // 
             // lblName
@@ -56,22 +54,11 @@
             this.pnlGame.BackColor = System.Drawing.Color.White;
             this.pnlGame.Location = new System.Drawing.Point(12, 157);
             this.pnlGame.Name = "pnlGame";
-            this.pnlGame.Size = new System.Drawing.Size(1189, 477);
+            this.pnlGame.Size = new System.Drawing.Size(960, 418);
             this.pnlGame.TabIndex = 4;
             this.pnlGame.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlGame_Paint);
             this.pnlGame.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pnlGame_MouseClick);
             this.pnlGame.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlGame_MouseMove);
-            // 
-            // picBoxBanner
-            // 
-            this.picBoxBanner.BackColor = System.Drawing.Color.Transparent;
-            this.picBoxBanner.Image = global::ConnectXLibrary.Properties.Resources.banner1;
-            this.picBoxBanner.Location = new System.Drawing.Point(833, 12);
-            this.picBoxBanner.Name = "picBoxBanner";
-            this.picBoxBanner.Size = new System.Drawing.Size(368, 52);
-            this.picBoxBanner.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picBoxBanner.TabIndex = 7;
-            this.picBoxBanner.TabStop = false;
             // 
             // lblPlayer1
             // 
@@ -168,7 +155,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::ConnectXLibrary.Properties.Resources._128_184;
-            this.ClientSize = new System.Drawing.Size(1213, 661);
+            this.ClientSize = new System.Drawing.Size(984, 587);
             this.Controls.Add(this.lblTurnName);
             this.Controls.Add(this.lblMouseY);
             this.Controls.Add(this.lblMouseX);
@@ -177,16 +164,14 @@
             this.Controls.Add(this.lblPointsPlayer1);
             this.Controls.Add(this.lblPlayer2);
             this.Controls.Add(this.lblPlayer1);
-            this.Controls.Add(this.picBoxBanner);
             this.Controls.Add(this.pnlGame);
             this.Controls.Add(this.lblName);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1229, 700);
-            this.MinimumSize = new System.Drawing.Size(1229, 700);
+            this.MaximumSize = new System.Drawing.Size(1000, 626);
+            this.MinimumSize = new System.Drawing.Size(1000, 626);
             this.Name = "Game";
             this.Text = "Connect X";
-            ((System.ComponentModel.ISupportInitialize)(this.picBoxBanner)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -196,7 +181,6 @@
 
         private System.Windows.Forms.Label lblName;
         public System.Windows.Forms.Panel pnlGame;
-        private System.Windows.Forms.PictureBox picBoxBanner;
         private System.Windows.Forms.Label lblPlayer1;
         private System.Windows.Forms.Label lblPlayer2;
         private System.Windows.Forms.Label lblPointsPlayer1;
