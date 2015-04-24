@@ -145,15 +145,15 @@ namespace ConnectXLibrary
 				int streak = int.Parse(txtBoxWinstreak.Text);
                 int width = int.Parse(txtBoxWidth.Text);
                 int length = int.Parse(txtBoxLength.Text);
-				if (!(streak <= length) || !(streak <= width))
+				if ((streak > length) && (streak > width))
 				{
-					btnStart.Enabled = true;
-					lblErrorStreak.Text = "";
+                    btnStart.Enabled = false;
+                    lblErrorStreak.Text = "Gelieve een winstreak lager dan de huidige lengte en breedte te kiezen.";
 				}
 				else
 				{
-					btnStart.Enabled = false;
-					lblErrorStreak.Text += "Gelieve een winstreak lager dan de huidige lengte en breedte te kiezen.";
+                    btnStart.Enabled = true;
+                    lblErrorStreak.Text = "";
 				}
 			}
 			else 
