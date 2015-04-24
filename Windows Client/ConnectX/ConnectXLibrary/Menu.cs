@@ -71,16 +71,17 @@ namespace ConnectXLibrary
         private void txtBoxWinstreak_TextChanged(object sender, EventArgs e)
         {
             checkTextBoxes();
+			streakCheck();
         }//txtBoxWinstreak_TextChanged
 
         private void txtBoxWidth_TextChanged(object sender, EventArgs e)
         {
-            dimensieCheck();
+            dimensionCheck();
         } // txtBoxWidth_TextChanged
 
         private void txtBoxLength_TextChanged(object sender, EventArgs e)
         {
-            dimensieCheck();
+            dimensionCheck();
         } //txtBoxLength_TextChanged
 
 
@@ -101,7 +102,7 @@ namespace ConnectXLibrary
             //TODO (Zie issues)
         }
 
-        private void dimensieCheck()
+        private void dimensionCheck()
         {
             if ((txtBoxWidth.Text != "") && (txtBoxLength.Text != ""))
             {
@@ -122,7 +123,28 @@ namespace ConnectXLibrary
             {
                 btnStart.Enabled = false;
             }
-        } // dimensieCheck
+        } // dimensionCheck
+
+		private void streakCheck()
+		{
+			if (txtBoxWinstreak.Text != "")
+			{
+				int streak = int.Parse(txtBoxWinstreak.Text);
+				if (streak >= 3)
+				{
+					btnStart.Enabled = true;
+					lblErrorDimension.Text = "";
+				}
+				else
+				{
+					btnStart.Enabled = false;
+					lblErrorDimension.Text = "Gelieve een winstreak van ten minste 3 te kiezen.";
+				}
+			}
+			else {
+				btnStart.Enabled = false;
+			}
+		}
 
         private void checkDoubleName() 
         {
