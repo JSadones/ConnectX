@@ -128,7 +128,7 @@ namespace ConnectXLibrary
                 else 
                 {
                     btnStart.Enabled = false;
-                    lblErrorDimension.Text = "Please select at least 4 columns and 4 rows.";
+                    lblErrorDimension.Text += "Please select at least 4 columns and 4 rows.";
                 }
             }
             else
@@ -150,11 +150,6 @@ namespace ConnectXLibrary
                     btnStart.Enabled = false;
                     lblErrorStreak.Text = "Please select a valid streak.";
 				}
-                else if (streak < 3)
-                {
-                    btnStart.Enabled = false;
-                    lblErrorStreak.Text = "Please select a winstreak of at least 3.";
-                }
 				else
 				{
                     btnStart.Enabled = true;
@@ -173,12 +168,12 @@ namespace ConnectXLibrary
             if (txtBoxPlayer1Name.Text == txtBoxPlayer2Name.Text)
             {
                 btnStart.Enabled = false;
-                lblErrorName.Text = "Both names can't be the same.";
+                lblErrorNaam.Text = "Both names can't be the same.";
             }
             else
             {
                 btnStart.Enabled = true;
-                lblErrorName.Text = "";
+                lblErrorNaam.Text = "";
             }
         }//checkDoubleName
         #endregion
