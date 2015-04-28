@@ -78,14 +78,14 @@ namespace ConnectXLibrary
             checkStreak();
         }//txtBoxWinstreak_TextChanged
 
-        private void txtBoxWidth_TextChanged(object sender, EventArgs e)
+        private void txtBoxColumns_TextChanged(object sender, EventArgs e)
         {
             checkNames();
             checkDimension();
             checkStreak();
         } // txtBoxWidth_TextChanged
 
-        private void txtBoxLength_TextChanged(object sender, EventArgs e)
+        private void txtBoxRows_TextChanged(object sender, EventArgs e)
         {
             checkNames();
             checkDimension();
@@ -175,7 +175,7 @@ namespace ConnectXLibrary
 				btnStart.Enabled = false;
                 lblErrorStreak.Text = "Please enter a streak";
 			}
-		}
+		}//checkStreak
 
 		private void checkNames()
 		{
