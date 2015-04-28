@@ -1,7 +1,6 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 using ConnectXLibrary.Properties;
-using System.Media;
 
 namespace ConnectXLibrary
 {
@@ -34,7 +33,6 @@ namespace ConnectXLibrary
             lblPlayer1.Text = namePlayer1;
             lblPlayer2.Text = namePlayer2;
             showPlayerAtTurn();
-			showTokenStreak();
         }//Game
         #endregion
 
@@ -67,8 +65,6 @@ namespace ConnectXLibrary
 				else title = namePlayer2;
 				title += " has won the game.";
 				won = true;
-				SoundPlayer winsound = new SoundPlayer(Properties.Resources.winsound);
-				winsound.Play();
 			}
             else if (gamePlay.rasterIsFull())
             {
@@ -104,7 +100,7 @@ namespace ConnectXLibrary
 			calculateSlotSize();
             I = new Bitmap(rows, columns);
             gr = Graphics.FromImage(I);
-            gr.Clear(Color.Transparent);
+            gr.Clear(Color.White);
             gr = pnlGame.CreateGraphics();
             gr.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             myPen = new Pen(Brushes.Black, 1);
@@ -114,7 +110,7 @@ namespace ConnectXLibrary
             float x = startWidth;
             float y = startHeight;
 
-			gr.Clear(Color.Transparent);
+            gr.Clear(Color.White);
 
 			Image newImage = Resources.frame;
 
@@ -191,12 +187,6 @@ namespace ConnectXLibrary
             if (playerAtTurn == 1) lblTurnName.Text = namePlayer1;
             else lblTurnName.Text = namePlayer2;
         }//showPlayerAtTurn
-
-		private void showTokenStreak()
-		{
-			int streak = gamePlay.getTokenStreak();
-			lblStreakNumber.Text = streak.ToString();
-		}//showStreak
 
         private void newGame() {
             gamePlay.nextGame();

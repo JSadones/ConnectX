@@ -136,14 +136,6 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="media\banner.png" />
-<<<<<<< HEAD
-    <Content Include="media\bg.png" />
-    <None Include="Resources\winsound.mp3" />
-    <None Include="Resources\winsound.wav" />
-    <None Include="Resources\128-184-left.jpg" />
-    <None Include="Resources\bg_left.jpg" />
-=======
->>>>>>> a85f846646ff5d43044c3d7763eed2bbe4adc582
     <None Include="media\frame.png" />
     <Content Include="Resources\chip-icon.ico" />
     <None Include="Resources\banner1.png" />

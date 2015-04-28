@@ -41,15 +41,15 @@ namespace ConnectXLibrary
             return tokenStreak;
         }//getTokenStreak
 
-		public static int GetDefaultRows() {
+		public static int getDefaultRows() {
 			return defaultRows;
 		}//getDefaultRows
 
-		public static int GetDefaultColumns() {
+		public static int getDefaultColumns() {
 			return defaultColumns;
 		}//getDefaultColumns
 
-		public static int GetDefaultTokenStreak() {
+		public static int getDefaultTokenStreak() {
 			return defaultStreak;
 		}//getDefaultTokenStreak
 
