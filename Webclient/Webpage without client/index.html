@@ -8,6 +8,78 @@
     <script src="js/skel.min.js"></script>
     <script src="js/init.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
+    <script>
+        $(document).ready(function(){   
+        // Start
+            // Show start div
+        // Options
+            // Show options div
+             $( "#play-vs-cpu" ).click(function() {
+                $('#start').hide();
+                $( "#options" ).show();
+
+            });
+
+            function getSecondClass(thisObj) {
+                var counter = 0;
+                var classes = {};
+                $(thisObj.attr('class').split(' ')).each(function() { 
+                    if (this !== '') {
+                        classes[counter] = this;
+                    }    
+                    counter++;
+                });
+                return classes[1];
+             }
+
+           $(document).on("mouseenter", ".column", function() {
+                $('.'+getSecondClass($(this)).toString()).css("background-color","red");
+            });
+
+            $(document).on("mouseleave", ".column", function() {
+                $('.'+getSecondClass($(this)).toString()).css("background-color","transparent");
+            });
+
+            $(document).on("click", ".column", function() {
+                console.log(getSecondClass($(this)).replace(/\D/g,''));
+            });
+        });
+
+        function submitForm() {
+
+
+                var $inputs = $('#form :input');
+
+                var values = {};
+                $inputs.each(function() {
+                    values[this.name] = $(this).val();
+                });
+
+                var content = "<table width='70%'><tr id='selectie'>";
+
+                for (var i = 0; i < values["columns"]; i++) {
+                    content += "<th>o</th>";
+                }
+                    
+                content += '</tr>';
+                for (var i = 0; i< values["rows"]; i++) {
+                    content += '<tr>';
+                    for (var j = 0; j < values["columns"]; j++) {
+                        content += "<td class='column column"+j+"'>x</td>"
+                    }
+                    content += '</tr>';
+                }
+                content += '</table>';
+                $( "#game" ).html(content);
+
+                $('#options').hide();
+
+                $( "#game" ).show();
+
+
+            return false;
+        }
+    </script>
     <noscript>
         <link rel="stylesheet" href="css/reset.css" />
         <link rel="stylesheet" href="css/normalize.css" />
@@ -42,71 +114,24 @@
                     <!-- Content -->
                 <section>
                     <h3 id="clear">Connect X: The Browser Version</h3>
-                    <table width="70%">
-                        <tr id="selectie">
-                            <th>o</th>
-                            <th>o</th>
-                            <th>o</th>
-                            <th>o</th>
-                            <th>o</th>
-                            <th>o</th>
-                            <th>o</th>
-                        </tr>
-                        <tr>
-                            <td>x</td>
-                            <td>x</td>
-                            <td>x</td>
-                            <td>x</td>
-                            <td>x</td>
-                            <td>x</td>
-                            <td>x</td>
-                        </tr>
-                        <tr>
-                            <td>x</td>
-                            <td>x</td>
-                            <td>x</td>
-                            <td>x</td>
-                            <td>x</td>
-                            <td>x</td>
-                            <td>x</td>
-                        </tr>
-                        <tr>
-                            <td>x</td>
-                            <td>x</td>
-                            <td>x</td>
-                            <td>x</td>
-                            <td>x</td>
-                            <td>x</td>
-                            <td>x</td>
-                        </tr>
-                        <tr>
-                            <td>x</td>
-                            <td>x</td>
-                            <td>x</td>
-                            <td>x</td>
-                            <td>x</td>
-                            <td>x</td>
-                            <td>x</td>
-                        </tr>
-                        <tr>
-                            <td>x</td>
-                            <td>x</td>
-                            <td>x</td>
-                            <td>x</td>
-                            <td>x</td>
-                            <td>x</td>
-                            <td>x</td>
-                        </tr>
-                        <tr>
-                            <td>x</td>
-                            <td>x</td>
-                            <td>x</td>
-                            <td>x</td>
-                            <td>x</td>
-                            <td>x</td>
-                            <td>x</td>
-                        </tr>
-                    </table> 
+                    <div id='start'>
+                         <input type="button" id='play-vs-cpu'>Play vs. CPU</button> 
+                         <button type="button" id='play-multiplayer'>Play multiplayer</button> 
+                         <input type="button" id="filter" name="filter" value="Filter" />
+                    </div>
+                    <div id='options' style='display:none;'>
+                        <form id='form' onsubmit="return submitForm();">
+                            Rows: <input type='text' name='rows'><br>
+                            Columns: <input type='text' name='columns'><br>
+                            Streak: <input type='text' name='streak'><br>
+                            Name1: <input type='text' name='name1'><br>
+                            Name2:  <input type='text' name='name2'><br>
+                            <input type='submit' value='Start' id='#startgame'>
+
+                        </form>
+                    </div>
+                    <div id='game' style='display:none;'>
+                    </div>
                 </section>
             </div>
         </div>

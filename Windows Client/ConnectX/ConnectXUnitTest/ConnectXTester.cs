@@ -46,14 +46,6 @@ namespace ConnectXUnitTest
         private ConnectX game10Rows14ColumnsWithOneTokenBeforeFullRaster;
 
         [TestInitialize]
-        public void setup()
-        {
-            gameInterface = new ConnectX();
-            gameInterface10Rows14Columns = new ConnectX(10, 14);
-            gameInterface10Rows14Columns5Streak = new ConnectX(10, 14, 5);
-        }
-
-        [TestInitialize]
         public void setup() {
             // Empty game
             game = new ConnectX();
@@ -402,6 +394,10 @@ namespace ConnectXUnitTest
 
                 }
             }
+
+            gameInterface = new ConnectX();
+            gameInterface10Rows14Columns = new ConnectX(10, 14);
+            gameInterface10Rows14Columns5Streak = new ConnectX(10, 14, 5);
         }
 
         [TestMethod]
@@ -476,7 +472,7 @@ namespace ConnectXUnitTest
             game.insertToken(3, 1);
             game.insertToken(1, 2);
 
-            Assert.IsTrue(game.getColumnWithVerticalLongestStreakOfAI() == 1);
+            Assert.IsTrue(game.getColumnVerticalLongestStreakOfAI() == 1);
         }
 
 		[TestMethod]
@@ -488,7 +484,7 @@ namespace ConnectXUnitTest
 			game.insertToken(0, 1);
 			game.insertToken(3, 2);
 
-			Assert.IsTrue(game.getRowWithHorizontalLongestStreakOfAI() == 0);
+			Assert.IsTrue(game.getRowHorizontalLongestStreakOfAI() == 0);
 		}
 
 	    [TestMethod]
@@ -500,8 +496,8 @@ namespace ConnectXUnitTest
 			game.insertToken(2, 1);
 			game.insertToken(2, 2);
 
-			Assert.IsTrue(game.getCoordinateWithDiagonal45LongestStreakOfAI().getRow() == 2);
-			Assert.IsTrue(game.getCoordinateWithDiagonal45LongestStreakOfAI().getColumn() == 2);
+			Assert.IsTrue(game.getCoordinateDiagonal45LongestStreakOfAI().getRow() == 2);
+			Assert.IsTrue(game.getCoordinateDiagonal45LongestStreakOfAI().getColumn() == 2);
 		}
 
 		[TestMethod]
@@ -514,8 +510,8 @@ namespace ConnectXUnitTest
 			game.insertToken(2, 2);
 			game.insertToken(3, 2);
 
-			Assert.IsTrue(game.getCoordinateWithDiagonal135LongestStreakOfAI().getRow() == 2);
-			Assert.IsTrue(game.getCoordinateWithDiagonal135LongestStreakOfAI().getColumn() == 1);
+			Assert.IsTrue(game.getCoordinateDiagonal135LongestStreakOfAI().getRow() == 2);
+			Assert.IsTrue(game.getCoordinateDiagonal135LongestStreakOfAI().getColumn() == 1);
 		}
 
 		[TestMethod]
@@ -687,21 +683,21 @@ namespace ConnectXUnitTest
         [TestMethod]
         public void TestGetOverallWonPlayer()
         {
-            gameInterface.incrementScorePlayer(1);
-            gameInterface.incrementScorePlayer(2);
+            game.incrementScorePlayer(1);
+            game.incrementScorePlayer(2);
             // Parameter == player number
-            Assert.IsTrue(gameInterface.getWinnerOfLastSession() == 0);
-            gameInterface.incrementScorePlayer(1);
-            Assert.IsTrue(gameInterface.getWinnerOfLastSession() == 1);
-            gameInterface.incrementScorePlayer(2);
-            gameInterface.incrementScorePlayer(2);
+            Assert.IsTrue(game.getWinnerOfLastSession() == 0);
+            game.incrementScorePlayer(1);
+            Assert.IsTrue(game.getWinnerOfLastSession() == 1);
+            game.incrementScorePlayer(2);
+            game.incrementScorePlayer(2);
             Assert.IsTrue(gameInterface.getWinnerOfLastSession() == 2);
         }
 
         [TestMethod]
         public void TestNewGame2HumanPlayersWith10RowsAnd14Columns()
         {
-            gameInterface.newGame();
+            game.newGame();
             Assert.IsTrue(gameInterface10Rows14Columns.gameRunning());
         }
 

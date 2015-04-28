@@ -16,7 +16,7 @@ namespace ConnectXLibrary
 		SolidBrush redBrush = new SolidBrush(Color.Red);
 		SolidBrush blueBrush = new SolidBrush(Color.Blue);
 		Pen blackPen = new Pen(Color.Black, 3);
-        ConnectX test;
+        ConnectX spel = new ConnectX();
         #endregion
 
         #region Constructor
@@ -29,7 +29,7 @@ namespace ConnectXLibrary
             this.tokenStreak = tokenStreak;
 
             gamePlay = new ConnectX(rows, columns, tokenStreak);
-            newGame();
+            //newGame();
 
             lblPlayer1.Text = namePlayer1;
             lblPlayer2.Text = namePlayer2;
@@ -46,6 +46,12 @@ namespace ConnectXLibrary
         #endregion
 
         #region Methods
+        private void pnlGame_Paint(object sender, PaintEventArgs e)
+        {
+            drawGrid();
+            drawHud();
+        }//pnlGame_MouseClick
+
         private void updateScores() {
             lblPointsPlayer1.Text = gamePlay.getScore(1).ToString();
             lblPointsPlayer2.Text = gamePlay.getScore(2).ToString();
@@ -73,7 +79,6 @@ namespace ConnectXLibrary
 				if (dialogResult == DialogResult.Yes)
 				{
 					newGame();
-					drawGrid();
 				}
 				else if (dialogResult == DialogResult.No)
 				{
@@ -97,7 +102,7 @@ namespace ConnectXLibrary
             gr = Graphics.FromImage(I);
             gr.Clear(Color.White);
             gr = pnlGame.CreateGraphics();
-            gr.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            gr.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             myPen = new Pen(Brushes.Black, 1);
             startWidth = (pnlGame.Width / 2) - ((size * columns) / 2);
             startHeight = (pnlGame.Height / 2) - ((size * rows) / 2);
@@ -132,7 +137,7 @@ namespace ConnectXLibrary
 		}//drawHud
 
         private void drawToken(int column) {
-            Rectangle circle = new Rectangle((column * size) + 5 + startWidth, ((rows - checkIfColumnHasEmptySpot(column)) * size) + 5 + startHeight, size - 10, size - 10);
+            Rectangle circle = new Rectangle((column * size) + 5 + startWidth, ((rows - gamePlay.checkIfColumnHasEmptySpot(column)) * size) + 5 + startHeight, size - 10, size - 10);
             gr.DrawEllipse(blackPen, circle);
 
             if (gamePlay.getPlayerAtTurn() == 1)
@@ -143,20 +148,20 @@ namespace ConnectXLibrary
             }
         }//drawToken
 
-        private void pnlGame_MouseMove(object sender, MouseEventArgs e)
-        {
-            lblMouseX.Text = e.X.ToString();
-            lblMouseY.Text = e.Y.ToString();
+        //private void pnlGame_MouseMove(object sender, MouseEventArgs e)
+        //{
+        //    lblMouseX.Text = e.X.ToString();
+        //    lblMouseY.Text = e.Y.ToString();
 
-            //TODO (Jel) : Deftig de hover laten werken
-            //Pen penOrange = new Pen(Brushes.Orange, 5);
-            //for (int i = 0; i < columns; i++) {
-            //    if (e.X >= i * size && e.X <= size * (i + 1)) {
-            //        gr.DrawRectangle(penOrange, i * size, 0, size + i, size * rows);
-            //        //gr.FillRectangle(new SolidBrush(Color.FromArgb(128, 255, 128, 0)), i * size, 0, size * i, size * rows);
-            //    }
-            //}
-        }//pnlGame_MouseMove
+        //    //TODO (Jel) : Deftig de hover laten werken
+        //    //Pen penOrange = new Pen(Brushes.Orange, 5);
+        //    //for (int i = 0; i < columns; i++) {
+        //    //    if (e.X >= i * size && e.X <= size * (i + 1)) {
+        //    //        gr.DrawRectangle(penOrange, i * size, 0, size + i, size * rows);
+        //    //        //gr.FillRectangle(new SolidBrush(Color.FromArgb(128, 255, 128, 0)), i * size, 0, size * i, size * rows);
+        //    //    }
+        //    //}
+        //}//pnlGame_MouseMove
 
         private void pnlGame_MouseClick(object sender, MouseEventArgs e)
         {
@@ -174,23 +179,6 @@ namespace ConnectXLibrary
             showPlayerAtTurn();
         }//pnlGame_MouseClick
 
-        private void pnlGame_Paint(object sender, PaintEventArgs e)
-        {
-            drawGrid();
-			drawHud();
-        }//pnlGame_MouseClick
-
-        private int checkIfColumnHasEmptySpot(int column) {
-            int row = 0;
-            int[,] raster = gamePlay.getRaster();
-            while (row < rows)
-            {
-                if (raster[row, column] == 0) return row;
-                row++;
-            }
-            return rows;
-        }//checkIfColumnHasEmptySpot
-
         private void showPlayerAtTurn()
         {
             int playerAtTurn = gamePlay.getPlayerAtTurn();
@@ -199,7 +187,8 @@ namespace ConnectXLibrary
         }//showPlayerAtTurn
 
         private void newGame() {
-            test = new ConnectX(rows, columns, tokenStreak);
+            spel.nextGame();
+            drawGrid();
         }//newGame
         #endregion
     }
