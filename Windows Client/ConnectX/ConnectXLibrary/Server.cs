@@ -14,7 +14,6 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
 using System.Web;
-using System.Web;
 using System.Web.Script.Serialization;
 
 namespace ConnectXLibrary
@@ -29,7 +28,7 @@ namespace ConnectXLibrary
         }
         
         
-        private void Form1_Load(object sender, EventArgs e)
+        private void Server_Load(object sender, EventArgs e)
         {
             listener = new HttpListener();
             listener.Prefixes.Add("http://localhost:8000/");

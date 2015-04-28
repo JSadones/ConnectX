@@ -196,7 +196,13 @@ namespace ConnectXLibrary
 				btnStart.Enabled = false;
 				lblErrorName.Text = "Empty or double names are not allowed";
 			}
-		}//checkNames
+		}
+
+        private void btnWebclient_Click(object sender, EventArgs e)
+        {
+            Server server = new Server();
+            server.Show();
+        }//checkNames
         #endregion
     }
 }
