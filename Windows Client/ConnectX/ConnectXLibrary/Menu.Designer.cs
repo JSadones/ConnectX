@@ -344,10 +344,11 @@
             // picBoxBanner
             // 
             this.picBoxBanner.BackColor = System.Drawing.Color.Transparent;
+            this.picBoxBanner.BackgroundImage = global::ConnectXLibrary.Properties.Resources.banner1;
             this.picBoxBanner.Image = global::ConnectXLibrary.Properties.Resources.banner1;
-            this.picBoxBanner.Location = new System.Drawing.Point(114, 126);
+            this.picBoxBanner.Location = new System.Drawing.Point(114, 76);
             this.picBoxBanner.Name = "picBoxBanner";
-            this.picBoxBanner.Size = new System.Drawing.Size(769, 105);
+            this.picBoxBanner.Size = new System.Drawing.Size(769, 143);
             this.picBoxBanner.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picBoxBanner.TabIndex = 6;
             this.picBoxBanner.TabStop = false;
@@ -368,19 +369,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackgroundImage = global::ConnectXLibrary.Properties.Resources._128_184;
-            this.ClientSize = new System.Drawing.Size(958, 548);
+            this.ClientSize = new System.Drawing.Size(984, 694);
             this.Controls.Add(this.btnWebclient);
             this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.btnMultiplayer);
             this.Controls.Add(this.btnQuit);
             this.Controls.Add(this.btnPlayCPU);
-            this.Controls.Add(this.pnlEnterData);
             this.Controls.Add(this.pnlStartScreen);
+            this.Controls.Add(this.pnlEnterData);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(995, 610);
-            this.MinimumSize = new System.Drawing.Size(967, 558);
+            this.MaximumSize = new System.Drawing.Size(1000, 732);
+            this.MinimumSize = new System.Drawing.Size(1000, 732);
             this.Name = "Menu";
             this.Padding = new System.Windows.Forms.Padding(4, 4, 4, 26);
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;

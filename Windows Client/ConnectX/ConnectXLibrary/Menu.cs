@@ -103,7 +103,7 @@ namespace ConnectXLibrary
                 catch (FormatException e)
                 {
                     txtBoxRows.Text = "6";
-                    rows =6;
+                    rows = 6;
                     lblErrorDimension.Text = "Invalid character.";
                 }
 

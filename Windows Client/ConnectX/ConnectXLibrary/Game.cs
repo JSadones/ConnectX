@@ -1,14 +1,14 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
+using ConnectXLibrary.Properties;
 
 namespace ConnectXLibrary
 {
     public partial class Game : Form
     {
         #region State
-        private int rows, columns, tokenStreak, startWidth, startHeight;
+        private int rows, columns, tokenStreak, startWidth, startHeight, size;
         private string namePlayer1, namePlayer2;
-        private static int size = 60;
         Bitmap I;
         Graphics gr;
         ConnectX gamePlay;
@@ -97,6 +97,7 @@ namespace ConnectXLibrary
         }//checkIfWon
 
         private void drawGrid() {
+			calculateSlotSize();
             I = new Bitmap(rows, columns);
             gr = Graphics.FromImage(I);
             gr.Clear(Color.White);
@@ -111,11 +112,12 @@ namespace ConnectXLibrary
 
             gr.Clear(Color.White);
 
+			Image newImage = Resources.frame;
+
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < columns; j++)
                 {
-                    Image newImage = Image.FromFile("C:/frame.png");
                     gr.DrawImage(newImage, x, y, size, size);
                     x += size;
                 }
@@ -190,6 +192,11 @@ namespace ConnectXLibrary
             gamePlay.nextGame();
             drawGrid();
         }//newGame
+
+		private void calculateSlotSize()
+		{
+			size = 480 / rows;
+		}
         #endregion
     }
 }
