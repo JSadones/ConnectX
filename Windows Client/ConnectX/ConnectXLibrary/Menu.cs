@@ -121,20 +121,20 @@ namespace ConnectXLibrary
             {
                int width = int.Parse(txtBoxRows.Text);
                int length = int.Parse(txtBoxColumns.Text);
-                if ((width >= 4) && (length >= 4))
+                if ((width < 4) || (length < 4))
                 {
-                    btnStart.Enabled = true;
-                    lblErrorDimension.Text = "";
+                    btnStart.Enabled = false;
+                    lblErrorDimension.Text = "Please select at least 4 columns and 4 rows.";
                 }
-                else if ((width >= 11 || length >= 11) || (width >= 11 && length >= 11))
+                else if ((width > 10 || length > 10))
                 {
                     btnStart.Enabled = false;
                     lblErrorDimension.Text = "Please don't select more than 10 columns and 10 rows.";
                 }
                 else 
                 {
-                    btnStart.Enabled = false;
-                    lblErrorDimension.Text = "Please select at least 4 columns and 4 rows.";
+                    btnStart.Enabled = true;
+                    lblErrorDimension.Text = "";
                 }
             }
             else
