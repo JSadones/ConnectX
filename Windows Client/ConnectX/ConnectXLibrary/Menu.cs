@@ -142,7 +142,7 @@ namespace ConnectXLibrary
                 btnStart.Enabled = false;
                 lblErrorDimension.Text = "";
             }
-        } // dimensionCheck
+        }// dimensionCheck
 
 		private void checkStreak()
 		{

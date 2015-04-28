@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace ConnectXLibrary
@@ -11,7 +10,7 @@ namespace ConnectXLibrary
         private string namePlayer1, namePlayer2;
         private static int size = 60;
         Bitmap I;
-        Graphics gr, hr;
+        Graphics gr;
         ConnectX gamePlay;
         Pen myPen;
 		SolidBrush redBrush = new SolidBrush(Color.Red);
@@ -57,7 +56,7 @@ namespace ConnectXLibrary
 			bool won = false;
             if (gamePlay.isCurrentGameWon())
             {
-                if (gamePlay.getCurrentGameWonPlayer() == 1) title = namePlayer1;
+                if (gamePlay.getWinnerOfLastGame() == 1) title = namePlayer1;
 				else title = namePlayer2;
 				title += " has won the game.";
 				won = true;
@@ -69,7 +68,6 @@ namespace ConnectXLibrary
 			}
 			if (won)
 			{
-				gr.Clear(Color.White);
 				updateScores();
 				DialogResult dialogResult = MessageBox.Show("Play another one?", title, MessageBoxButtons.YesNo);
 				if (dialogResult == DialogResult.Yes)
@@ -80,11 +78,10 @@ namespace ConnectXLibrary
 				else if (dialogResult == DialogResult.No)
 				{
 					string message;
-					if (gamePlay.getOverallWonPlayer() == 0)
+					if (gamePlay.getWinnerOfLastSession() == 0)
 						message = "It's a tie!";
 					else
-						message = getName(gamePlay.getOverallWonPlayer()) + " won the game!";
-
+						message = getName(gamePlay.getWinnerOfLastSession()) + " won the game!";
 					DialogResult dialogResult2 = MessageBox.Show(message, "Game over!", MessageBoxButtons.OK);
 
 					if (dialogResult2 == DialogResult.OK)
@@ -100,8 +97,6 @@ namespace ConnectXLibrary
             gr = Graphics.FromImage(I);
             gr.Clear(Color.White);
             gr = pnlGame.CreateGraphics();
-            hr = pnlGame.CreateGraphics();
-            hr.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             gr.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             myPen = new Pen(Brushes.Black, 1);
             startWidth = (pnlGame.Width / 2) - ((size * columns) / 2);
@@ -109,6 +104,8 @@ namespace ConnectXLibrary
 
             float x = startWidth;
             float y = startHeight;
+
+            gr.Clear(Color.White);
 
             for (int i = 0; i < columns; i++)
             {
@@ -140,9 +137,9 @@ namespace ConnectXLibrary
 
             if (gamePlay.getPlayerAtTurn() == 1)
             {
-                hr.FillEllipse(redBrush, circle);
+                gr.FillEllipse(blueBrush, circle);
             } else {
-                hr.FillEllipse(blueBrush, circle);
+                gr.FillEllipse(redBrush, circle);
             }
         }//drawToken
 
@@ -155,7 +152,7 @@ namespace ConnectXLibrary
             //Pen penOrange = new Pen(Brushes.Orange, 5);
             //for (int i = 0; i < columns; i++) {
             //    if (e.X >= i * size && e.X <= size * (i + 1)) {
-            //        hr.DrawRectangle(penOrange, i * size, 0, size + i, size * rows);
+            //        gr.DrawRectangle(penOrange, i * size, 0, size + i, size * rows);
             //        //gr.FillRectangle(new SolidBrush(Color.FromArgb(128, 255, 128, 0)), i * size, 0, size * i, size * rows);
             //    }
             //}
