@@ -12,6 +12,9 @@ namespace ConnectXLibrary
             InitializeComponent();
             picBoxPlayer1.BackColor = Color.Blue;
             picBoxPlayer2.BackColor = Color.Red;
+			txtBoxRows.Text = ConnectX.getDefaultRows().ToString();
+			txtBoxColumns.Text = ConnectX.getDefaultColumns().ToString();
+			txtBoxWinstreak.Text = ConnectX.getDefaultTokenStreak().ToString();
         }//Menu
         #endregion
 
@@ -102,8 +105,8 @@ namespace ConnectXLibrary
                 }
                 catch (FormatException e)
                 {
-                    txtBoxRows.Text = "6";
-                    rows = 6;
+                    txtBoxRows.Text = ConnectX.getDefaultRows().ToString();
+                    rows = ConnectX.getDefaultRows();
                     lblErrorDimension.Text = "Invalid character.";
                 }
 
@@ -113,8 +116,8 @@ namespace ConnectXLibrary
                 }
                 catch (FormatException e)
                 {
-                    txtBoxColumns.Text = "7";
-                    columns = 7;
+                    txtBoxColumns.Text = ConnectX.getDefaultColumns().ToString();
+					columns = ConnectX.getDefaultColumns();
                     lblErrorDimension.Text = "Invalid character.";
                 }
                 #endregion
@@ -159,8 +162,8 @@ namespace ConnectXLibrary
                 }
                 catch (FormatException e)
                 {
-                    txtBoxWinstreak.Text = "4";
-                    streak = 4;
+                    txtBoxWinstreak.Text = ConnectX.getDefaultTokenStreak().ToString();
+					streak = ConnectX.getDefaultTokenStreak();
                     lblErrorStreak.Text = "Invalid character.";
                 }
                 #endregion
