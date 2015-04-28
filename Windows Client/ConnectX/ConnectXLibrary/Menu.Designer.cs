@@ -83,7 +83,7 @@
             this.btnQuit.Size = new System.Drawing.Size(40, 40);
             this.btnQuit.TabIndex = 1;
             this.btnQuit.UseVisualStyleBackColor = true;
-            this.btnQuit.Click += new System.EventHandler(this.btnSluiten_Click);
+            this.btnQuit.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnSettings
             // 

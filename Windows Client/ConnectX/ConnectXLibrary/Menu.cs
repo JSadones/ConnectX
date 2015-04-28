@@ -39,10 +39,10 @@ namespace ConnectXLibrary
             gameForm.Show();
         }//btnStart_Click
 
-        private void btnSluiten_Click(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
-        }//btnSluiten_Click
+        }//btnClose_Click
 
         private void picBoxPlayer1_Click(object sender, EventArgs e)
         {
@@ -58,7 +58,7 @@ namespace ConnectXLibrary
         #region EventTextChanged
         private void txtBoxPlayer1Name_TextChanged(object sender, EventArgs e)
         {
-            checkTextBoxes();
+            //checkNameTextBoxes();
             checkDoubleName();
             checkDimension();
             checkStreak();
@@ -66,7 +66,7 @@ namespace ConnectXLibrary
 
         private void txtBoxPlayer2Name_TextChanged(object sender, EventArgs e)
         {
-            checkTextBoxes();
+            //checkNameTextBoxes();
             checkDoubleName();
             checkDimension();
             checkStreak();
@@ -74,7 +74,7 @@ namespace ConnectXLibrary
 
         private void txtBoxWinstreak_TextChanged(object sender, EventArgs e)
         {
-            checkTextBoxes();
+            //checkNameTextBoxes();
             checkDoubleName();
             checkDimension();
             checkStreak();
@@ -82,7 +82,7 @@ namespace ConnectXLibrary
 
         private void txtBoxWidth_TextChanged(object sender, EventArgs e)
         {
-            checkTextBoxes();
+            //checkNameTextBoxes();
             checkDoubleName();
             checkDimension();
             checkStreak();
@@ -90,7 +90,7 @@ namespace ConnectXLibrary
 
         private void txtBoxLength_TextChanged(object sender, EventArgs e)
         {
-            checkTextBoxes();
+            //checkNameTextBoxes();
             checkDoubleName();
             checkDimension();
             checkStreak();
@@ -100,14 +100,14 @@ namespace ConnectXLibrary
 
         #endregion
 
-        private void checkTextBoxes()
+        /*private void checkNameTextBoxes()
         {
             if ((txtBoxPlayer1Name.Text != "") && (txtBoxPlayer2Name.Text != ""))
             {
                 btnStart.Enabled = true;
             }
             else btnStart.Enabled = false;
-        }//checkTextBoxes
+        }//checkTextBoxes*/
 
         private void showColorDialog()
         {
@@ -167,13 +167,28 @@ namespace ConnectXLibrary
         {
             if (txtBoxPlayer1Name.Text == txtBoxPlayer2Name.Text)
             {
-                btnStart.Enabled = false;
-                lblErrorNaam.Text = "Both names can't be the same.";
+				if ((txtBoxPlayer1Name.Text != "") && (txtBoxPlayer2Name.Text != "")) {
+					btnStart.Enabled = false;
+					lblErrorNaam.Text = "Both names can't be the same.";
+					
+				}
+				else {
+					btnStart.Enabled = false;
+					//lblErrorNamesEmpty.Text = "The name fields can't be empty";
+				}
             }
             else
             {
-                btnStart.Enabled = true;
-                lblErrorNaam.Text = "";
+				if ((txtBoxPlayer1Name.Text != "") && (txtBoxPlayer2Name.Text != ""))
+				{
+					btnStart.Enabled = true;
+				}
+				else
+				{
+					btnStart.Enabled = false;
+					//lblErrorNamesEmpty.Text = "The name fields can't be empty";
+				}
+                
             }
         }//checkDoubleName
         #endregion
