@@ -3,9 +3,16 @@
             // Show start div
         // Options
             // Show options div
-             $( "#play-vs-cpu" ).click(function() {
+            $( "#play-vs-cpu" ).click(function() {
                 $('#start').hide();
                 $( "#options" ).show();
+                $( ".multiplayer-option" ).hide();
+
+            });
+            $( "#play-multiplayer" ).click(function() {
+                $('#start').hide();
+                $( "#options" ).show();
+                $( ".multiplayer-option" ).show();
 
             });
 
@@ -19,11 +26,12 @@
                     counter++;
                 });
                 return classes[1];
-             }
+            }
 
-             function insertToken(column) {
+            function insertToken(column) {
                 //
-             }
+            }
+           
            $(document).on("mouseenter", ".column", function() {
                 $('.'+getSecondClass($(this)).toString()).css("background-color","red");
             });
