@@ -59,7 +59,6 @@ namespace ConnectXLibrary
         #region EventTextChanged
         private void txtBoxPlayer1Name_TextChanged(object sender, EventArgs e)
         {
-            //checkNameTextBoxes();
             checkNames();
             checkDimension();
             checkStreak();
@@ -67,7 +66,6 @@ namespace ConnectXLibrary
 
         private void txtBoxPlayer2Name_TextChanged(object sender, EventArgs e)
         {
-            //checkNameTextBoxes();
             checkNames();
             checkDimension();
             checkStreak();
@@ -75,7 +73,6 @@ namespace ConnectXLibrary
 
         private void txtBoxWinstreak_TextChanged(object sender, EventArgs e)
         {
-            //checkNameTextBoxes();
             checkNames();
             checkDimension();
             checkStreak();
@@ -83,7 +80,6 @@ namespace ConnectXLibrary
 
         private void txtBoxWidth_TextChanged(object sender, EventArgs e)
         {
-            //checkNameTextBoxes();
             checkNames();
             checkDimension();
             checkStreak();
@@ -91,7 +87,6 @@ namespace ConnectXLibrary
 
         private void txtBoxLength_TextChanged(object sender, EventArgs e)
         {
-            //checkNameTextBoxes();
             checkNames();
             checkDimension();
             checkStreak();
