@@ -372,13 +372,13 @@ namespace ConnectXLibrary
             return true;
         }//isRasterInitializedWithZeros
 
-        public void resetCounter()
+        private void resetCounter()
         {
             counterPlayer1 = 0;
             counterPlayer2 = 0;
         }//resetCounter
 
-        public void resetStreakCounter()
+        private void resetStreakCounter()
         {
             counter = 0;
         }//resetStreakCounter
@@ -401,72 +401,47 @@ namespace ConnectXLibrary
         {
             for (int i = 0; i < columns; i++)
             {
-                int j = 0;
                 resetCounter();
-                while (j < rows && raster[j,i] != 0)
+                for (int j = 0; j < rows; j++)
                 {
-                    if (raster[j, i] == 1)
-                    {
-                        counterPlayer1++;
-                    }
+                    if (raster[j, i] == 1) counterPlayer1++;
                     else counterPlayer1 = 0;
-                    
-                    if (raster[j, i] == 2)
-                    {
-                        counterPlayer2++;
-                    }
+
+                    if (raster[j, i] == 2) counterPlayer2++;
                     else counterPlayer2 = 0;
 
-                    if (counterPlayer1 == tokenStreak)
-                    {
-                        return 1;
-                    }
-                    if (counterPlayer2 == tokenStreak)
-                    {
-                        return 2;
-                    }
-                    j++;
+                    if (counterPlayer1 == tokenStreak) return 1;
+                    if (counterPlayer2 == tokenStreak) return 2;
                 }
             }
             return 0;
         }//isWonVertical
 
-		public int isWonHorizontal() {
-
-			for (int i = 0; i < rows; i++)
+        public int isWonHorizontal()
+        {
+            for (int i = 0; i < rows; i++)
             {
                 resetCounter();
-				for (int j = 0; j < columns; j++)
+                for (int j = 0; j < columns; j++)
                 {
+                    if (raster[i, j] == 1) counterPlayer1++;
+                    else counterPlayer1 = 0;
 
-					if (raster[i, j] == 1)
-                    {
-						counterPlayer1++;
-					} else counterPlayer1 = 0;
+                    if (raster[i, j] == 2) counterPlayer2++;
+                    else counterPlayer2 = 0;
 
-					if (raster[i, j] == 2)
-                    {
-						counterPlayer2++;
-					} else counterPlayer2 = 0;
-
-					if (counterPlayer1 == tokenStreak)
-                    {
-                        return 1;
-					}
-
-					if (counterPlayer2 == tokenStreak)
-                    {
-                        return 2;
-					}
-				}
-			}
+                    if (counterPlayer1 == tokenStreak) return 1;
+                    if (counterPlayer2 == tokenStreak) return 2;
+                }
+            }
             return 0;
-		}//isWonHorizontal
+        }//isWonHorizontal
 
         public int isWonDiagonal45()
         {
 			for (int i = columns - 1; i >= 0; i--) {
                 int winner = getStreakWinnerDiagonal45(0, i);
+
                 if (1 <= winner && winner <= 2)
                 {
                     return winner;
@@ -519,7 +494,7 @@ namespace ConnectXLibrary
             return empySpots;
         }//checkEmptySpotInColumn
 
-        public void switchPlayerAtTurn()
+        private void switchPlayerAtTurn()
         {
             if (playerAtTurn == 1) playerAtTurn = 2;
             else playerAtTurn = 1;
@@ -580,7 +555,7 @@ namespace ConnectXLibrary
             }
         }//clearRaster
 
-        public bool isColumnFull(int column)
+        private bool isColumnFull(int column)
         {
             if (raster[rows - 1, column] != 0)
             {
