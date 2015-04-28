@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace ConnectXLibrary
 {
@@ -8,9 +7,8 @@ namespace ConnectXLibrary
     {
         #region State
         private int[,] raster;
-        private int rows, columns, tokenStreak, playerAtTurn, winningPlayer;
+        private int rows, columns, tokenStreak, playerAtTurn, winningPlayer, scorePlayer1 = 0, scorePlayer2 = 0, counterPlayer1, counterPlayer2, counter;
 		private static int defaultRows = 6, defaultColumns = 7, defaultStreak = 4;
-        private int scorePlayer1, scorePlayer2 = 0;
         #endregion State
 
         #region Constructor
@@ -40,35 +38,34 @@ namespace ConnectXLibrary
             return columns;
         }//getColumns
 
-        public int getStreakToReach() {
+        public int getTokenStreak() {
             return tokenStreak;
-        }//getStreakToReach
+        }//getTokenStreak
 
         public int[,] getRaster() {
             return raster;
         }//getRaster
 
-		public static int GetDefaultNumberOfRows() {
+		public static int getDefaultRows() {
 			return defaultRows;
-		}//GetDefaultNumberOfRows
+		}//getDefaultRows
 
-		public static int GetDefaultNumberOfColumns() {
+		public static int getDefaultColumns() {
 			return defaultColumns;
-		}//GetDefaultNumberOfColumns
+		}//getDefaultColumns
 
-		public static int GetDefaultStreak() {
+		public static int getDefaultTokenStreak() {
 			return defaultStreak;
-		}//GetDefaultStreak
+		}//getDefaultTokenStreak
 
-        public int getCurrentGameWonPlayer()
+        public int getWinnerOfLastGame()
         {
             return winningPlayer;
         }//getCurrentGameWonPlayer
 
         private int getStreakWinnerDiagonal135(int counterRow, int counterColumn)
         {
-            int counterPlayer1 = 0;
-            int counterPlayer2 = 0;
+            resetCounter();
             while (counterColumn >= 0 && counterRow < rows)
             {
                 if (raster[counterRow, counterColumn] == 1)
@@ -101,8 +98,7 @@ namespace ConnectXLibrary
 
         private int getStreakWinnerDiagonal45(int counterRow, int counterColumn)
         {
-            int counterPlayer1 = 0;
-            int counterPlayer2 = 0;
+            resetCounter();
             while (counterColumn < columns && counterRow < rows)
             {
                 if (raster[counterRow, counterColumn] == 1)
@@ -157,14 +153,13 @@ namespace ConnectXLibrary
         
         public int getColumnWithVerticalLongestStreakOfAI()
         {
-            int counter;
             int longestStreak = 0;
             int longestStreakColumn = -1;
 
             for (int i = 0; i < columns; i++)
             {
                 int j = 0;
-                counter = 0;
+                resetStreakCounter();
 
                 while (j < rows && raster[j, i] != 0)
                 {
@@ -187,12 +182,11 @@ namespace ConnectXLibrary
 
         public int getRowWithHorizontalLongestStreakOfAI()
         {
-            int counter;
 
             for (int i = 0; i < rows; i++)
             {
 
-                counter = 0;
+                resetStreakCounter();
                 int longestStreak = 0;
                 int longestStreakRow = -1;
 
@@ -334,7 +328,7 @@ namespace ConnectXLibrary
             return coordinate;
         }//getCoordinateWithDiagonal135LongestStreakOfAI
 
-        public int getOverallWonPlayer()
+        public int getWinnerOfLastSession()
         {
             if (scorePlayer1 > scorePlayer2)
             {
@@ -383,6 +377,17 @@ namespace ConnectXLibrary
             return true;
         }//isRasterInitializedWithZeros
 
+        public void resetCounter()
+        {
+            counterPlayer1 = 0;
+            counterPlayer2 = 0;
+        }
+
+        public void resetStreakCounter()
+        {
+            counter = 0;
+        }
+
         public bool isWon()
         {
             if (isWonVertical() == 1 || isWonHorizontal() == 1 || isWonDiagonal45() ==1 || isWonDiagonal135() == 1)
@@ -399,14 +404,10 @@ namespace ConnectXLibrary
 
         public int isWonVertical()
         {
-            int counterPlayer1 = 0;
-            int counterPlayer2 = 0;
-
             for (int i = 0; i < columns; i++)
             {
                 int j = 0;
-                counterPlayer1 = 0;
-                counterPlayer2 = 0;
+                resetCounter();
                 while (j < rows && raster[j,i] != 0)
                 {
                     if (raster[j, i] == 1)
@@ -436,13 +437,10 @@ namespace ConnectXLibrary
         }//isWonVertical
 
 		public int isWonHorizontal() {
-			int counterPlayer1 = 0;
-			int counterPlayer2 = 0;
 
 			for (int i = 0; i < rows; i++)
             {
-				counterPlayer1 = 0;
-				counterPlayer2 = 0;
+                resetCounter();
 				for (int j = 0; j < columns; j++)
                 {
 
@@ -609,7 +607,7 @@ namespace ConnectXLibrary
                 {
                     if (isWon())
                     {
-                        incrementScorePlayer(getCurrentGameWonPlayer());
+                        incrementScorePlayer(getWinnerOfLastGame());
                     }
                     return true;
                 }
