@@ -11,6 +11,7 @@ namespace ConnectXLibrary
         private int rows, columns, tokenStreak, playerAtTurn, winningPlayer;
 		private static int defaultRows = 6, defaultColumns = 7, defaultStreak = 4;
         private int scorePlayer1, scorePlayer2 = 0;
+        private int counterPlayer1, counterPlayer2;
         #endregion State
 
         #region Constructor
@@ -383,6 +384,12 @@ namespace ConnectXLibrary
             return true;
         }//isRasterInitializedWithZeros
 
+        public void resetCounter()
+        {
+            counterPlayer1 = 0;
+            counterPlayer2 = 0;
+        }
+
         public bool isWon()
         {
             if (isWonVertical() == 1 || isWonHorizontal() == 1 || isWonDiagonal45() ==1 || isWonDiagonal135() == 1)
@@ -399,14 +406,10 @@ namespace ConnectXLibrary
 
         public int isWonVertical()
         {
-            int counterPlayer1 = 0;
-            int counterPlayer2 = 0;
-
             for (int i = 0; i < columns; i++)
             {
                 int j = 0;
-                counterPlayer1 = 0;
-                counterPlayer2 = 0;
+                resetCounter();
                 while (j < rows && raster[j,i] != 0)
                 {
                     if (raster[j, i] == 1)
@@ -436,13 +439,10 @@ namespace ConnectXLibrary
         }//isWonVertical
 
 		public int isWonHorizontal() {
-			int counterPlayer1 = 0;
-			int counterPlayer2 = 0;
 
 			for (int i = 0; i < rows; i++)
             {
-				counterPlayer1 = 0;
-				counterPlayer2 = 0;
+                resetCounter();
 				for (int j = 0; j < columns; j++)
                 {
 

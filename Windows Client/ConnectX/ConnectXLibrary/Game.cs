@@ -135,7 +135,7 @@ namespace ConnectXLibrary
 		}//drawHud
 
         private void drawToken(int column) {
-            Rectangle circle = new Rectangle((column * size) + 5 + startWidth, ((rows - emptySpotFree(column)) * size) + 5 + startHeight, size - 10, size - 10);
+            Rectangle circle = new Rectangle((column * size) + 5 + startWidth, ((rows - checkIfColumnHasEmptySpot(column)) * size) + 5 + startHeight, size - 10, size - 10);
             gr.DrawEllipse(blackPen, circle);
 
             if (gamePlay.getPlayerAtTurn() == 1)
@@ -183,7 +183,7 @@ namespace ConnectXLibrary
 			drawHud();
         }//pnlGame_MouseClick
 
-        private int emptySpotFree(int column) {
+        private int checkIfColumnHasEmptySpot(int column) {
             int row = 0;
             int[,] raster = gamePlay.getRaster();
             while (row < rows)
@@ -192,7 +192,7 @@ namespace ConnectXLibrary
                 row++;
             }
             return rows;
-        }//emptySpotFree
+        }//checkIfColumnHasEmptySpot
 
         private void showPlayerAtTurn()
         {
