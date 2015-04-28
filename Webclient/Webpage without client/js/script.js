@@ -15,10 +15,16 @@ $(document).ready(function () {
         $(this).animate({
             height: '+=10px'
         });
+		$(div.wrapper).animate({
+			height: '+=10%'
+		});
     });
     $('div.container-footer').mouseleave(function () {
         $(this).animate({
             height: '-=10px'
         });
+		$(div.wrapper).animate({
+			height: '-=10%'
+		});
     });
 });
