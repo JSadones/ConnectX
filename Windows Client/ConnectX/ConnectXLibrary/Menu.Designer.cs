@@ -206,7 +206,7 @@
 			this.txtBoxWinstreak.Location = new System.Drawing.Point(453, 291);
 			this.txtBoxWinstreak.Name = "txtBoxWinstreak";
 			this.txtBoxWinstreak.Size = new System.Drawing.Size(45, 40);
-			this.txtBoxWinstreak.TabIndex = 15;
+			this.txtBoxWinstreak.TabIndex = 5;
 			this.txtBoxWinstreak.Text = "4";
 			this.txtBoxWinstreak.TextChanged += new System.EventHandler(this.txtBoxWinstreak_TextChanged);
 			// 
@@ -227,7 +227,7 @@
 			this.txtBoxRows.Location = new System.Drawing.Point(453, 193);
 			this.txtBoxRows.Name = "txtBoxRows";
 			this.txtBoxRows.Size = new System.Drawing.Size(45, 40);
-			this.txtBoxRows.TabIndex = 13;
+			this.txtBoxRows.TabIndex = 3;
 			this.txtBoxRows.Text = "5";
 			this.txtBoxRows.TextChanged += new System.EventHandler(this.txtBoxColumns_TextChanged);
 			// 
@@ -237,7 +237,7 @@
 			this.txtBoxColumns.Location = new System.Drawing.Point(453, 243);
 			this.txtBoxColumns.Name = "txtBoxColumns";
 			this.txtBoxColumns.Size = new System.Drawing.Size(45, 40);
-			this.txtBoxColumns.TabIndex = 12;
+			this.txtBoxColumns.TabIndex = 4;
 			this.txtBoxColumns.Text = "6";
 			this.txtBoxColumns.TextChanged += new System.EventHandler(this.txtBoxRows_TextChanged);
 			// 
@@ -247,7 +247,7 @@
 			this.btnStart.Location = new System.Drawing.Point(383, 362);
 			this.btnStart.Name = "btnStart";
 			this.btnStart.Size = new System.Drawing.Size(254, 60);
-			this.btnStart.TabIndex = 10;
+			this.btnStart.TabIndex = 6;
 			this.btnStart.Text = "START GAME";
 			this.btnStart.UseVisualStyleBackColor = true;
 			this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
@@ -292,7 +292,7 @@
 			this.txtBoxPlayer2Name.MaxLength = 10;
 			this.txtBoxPlayer2Name.Name = "txtBoxPlayer2Name";
 			this.txtBoxPlayer2Name.Size = new System.Drawing.Size(189, 49);
-			this.txtBoxPlayer2Name.TabIndex = 4;
+			this.txtBoxPlayer2Name.TabIndex = 2;
 			this.txtBoxPlayer2Name.Text = "Rood";
 			this.txtBoxPlayer2Name.TextChanged += new System.EventHandler(this.txtBoxPlayer2Name_TextChanged);
 			// 
