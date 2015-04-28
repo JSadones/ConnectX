@@ -55,7 +55,6 @@
 			this.btnWebclient = new System.Windows.Forms.Button();
 			this.picBoxBanner = new System.Windows.Forms.PictureBox();
 			this.pnlStartScreen = new System.Windows.Forms.Panel();
-			this.lblErrorNamesEmpty = new System.Windows.Forms.Label();
 			this.pnlEnterData.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.picBoxPlayer2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.picBoxPlayer1)).BeginInit();
@@ -124,7 +123,6 @@
 			// pnlEnterData
 			// 
 			this.pnlEnterData.BackColor = System.Drawing.Color.Transparent;
-			this.pnlEnterData.Controls.Add(this.lblErrorNamesEmpty);
 			this.pnlEnterData.Controls.Add(this.lblErrorStreak);
 			this.pnlEnterData.Controls.Add(this.lblErrorName);
 			this.pnlEnterData.Controls.Add(this.lblErrorDimension);
@@ -364,16 +362,6 @@
 			this.pnlStartScreen.Size = new System.Drawing.Size(948, 447);
 			this.pnlStartScreen.TabIndex = 5;
 			// 
-			// lblErrorNamesEmpty
-			// 
-			this.lblErrorNamesEmpty.AutoSize = true;
-			this.lblErrorNamesEmpty.ForeColor = System.Drawing.Color.Red;
-			this.lblErrorNamesEmpty.Location = new System.Drawing.Point(453, 142);
-			this.lblErrorNamesEmpty.Name = "lblErrorNamesEmpty";
-			this.lblErrorNamesEmpty.Size = new System.Drawing.Size(0, 13);
-			this.lblErrorNamesEmpty.TabIndex = 21;
-			this.lblErrorNamesEmpty.Click += new System.EventHandler(this.label1_Click);
-			// 
 			// Menu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -436,8 +424,7 @@
         private System.Windows.Forms.Label lblErrorStreak;
         private System.Windows.Forms.Button btnWebclient;
         private System.Windows.Forms.PictureBox picBoxBanner;
-        private System.Windows.Forms.Panel pnlStartScreen;
-		private System.Windows.Forms.Label lblErrorNamesEmpty;
+		private System.Windows.Forms.Panel pnlStartScreen;
     }
 }
 

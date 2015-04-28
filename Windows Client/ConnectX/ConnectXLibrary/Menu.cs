@@ -101,15 +101,6 @@ namespace ConnectXLibrary
 
         #endregion
 
-        /*private void checkNameTextBoxes()
-        {
-            if ((txtBoxPlayer1Name.Text != "") && (txtBoxPlayer2Name.Text != ""))
-            {
-                btnStart.Enabled = true;
-            }
-            else btnStart.Enabled = false;
-        }//checkTextBoxes*/
-
         private void showColorDialog()
         {
             //TODO (Zie issues)
@@ -119,8 +110,30 @@ namespace ConnectXLibrary
         {
             if ((txtBoxRows.Text != "") && (txtBoxColumns.Text != ""))
             {
-               int width = int.Parse(txtBoxRows.Text);
-               int length = int.Parse(txtBoxColumns.Text);
+                int width = 0;
+                int length = 0;
+
+                try
+                {
+                    length = Convert.ToInt32(txtBoxRows.Text);
+                }
+                catch (FormatException e)
+                {
+                    txtBoxRows.Text = "6";
+                    length =6;
+                    lblErrorDimension.Text = "Invalid character.";
+                }
+                try
+                {
+                    width = Convert.ToInt32(txtBoxColumns.Text);
+                }
+                catch (FormatException e)
+                {
+                    txtBoxColumns.Text = "7";
+                    width = 7;
+                    lblErrorDimension.Text = "Invalid character.";
+                }
+
                 if ((width < 4) || (length < 4))
                 {
                     btnStart.Enabled = false;
@@ -146,7 +159,7 @@ namespace ConnectXLibrary
 
 		private void checkStreak()
 		{
-			if (txtBoxWinstreak.Text != "" && txtBoxColumns.Text !="" && txtBoxRows.Text != "")
+			if (txtBoxWinstreak.Text != "" && txtBoxWinstreak.Text != "0" && txtBoxColumns.Text !="" && txtBoxRows.Text != "")
 			{
 				int streak = int.Parse(txtBoxWinstreak.Text);
                 int width = int.Parse(txtBoxRows.Text);
@@ -181,11 +194,6 @@ namespace ConnectXLibrary
 				btnStart.Enabled = false;
 				lblErrorName.Text = "Empty or double names are not allowed";
 			}
-		}
-
-		private void label1_Click(object sender, EventArgs e)
-		{
-
 		}//checkNames
         #endregion
     }
