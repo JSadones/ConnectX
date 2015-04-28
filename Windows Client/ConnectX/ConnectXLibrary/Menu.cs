@@ -12,9 +12,9 @@ namespace ConnectXLibrary
             InitializeComponent();
             picBoxPlayer1.BackColor = Color.Blue;
             picBoxPlayer2.BackColor = Color.Red;
-			txtBoxRows.Text = ConnectX.getDefaultRows().ToString();
-			txtBoxColumns.Text = ConnectX.getDefaultColumns().ToString();
-			txtBoxWinstreak.Text = ConnectX.getDefaultTokenStreak().ToString();
+			txtBoxRows.Text = ConnectX.GetDefaultRows().ToString();
+			txtBoxColumns.Text = ConnectX.GetDefaultColumns().ToString();
+			txtBoxWinstreak.Text = ConnectX.GetDefaultTokenStreak().ToString();
         }//Menu
         #endregion
 
@@ -105,8 +105,8 @@ namespace ConnectXLibrary
                 }
                 catch (FormatException e)
                 {
-                    txtBoxRows.Text = ConnectX.getDefaultRows().ToString();
-                    rows = ConnectX.getDefaultRows();
+                    txtBoxRows.Text = ConnectX.GetDefaultRows().ToString();
+                    rows = ConnectX.GetDefaultRows();
                     lblErrorDimension.Text = "Invalid character.";
                 }
 
@@ -116,8 +116,8 @@ namespace ConnectXLibrary
                 }
                 catch (FormatException e)
                 {
-                    txtBoxColumns.Text = ConnectX.getDefaultColumns().ToString();
-					columns = ConnectX.getDefaultColumns();
+                    txtBoxColumns.Text = ConnectX.GetDefaultColumns().ToString();
+					columns = ConnectX.GetDefaultColumns();
                     lblErrorDimension.Text = "Invalid character.";
                 }
                 #endregion
@@ -162,8 +162,8 @@ namespace ConnectXLibrary
                 }
                 catch (FormatException e)
                 {
-                    txtBoxWinstreak.Text = ConnectX.getDefaultTokenStreak().ToString();
-					streak = ConnectX.getDefaultTokenStreak();
+                    txtBoxWinstreak.Text = ConnectX.GetDefaultTokenStreak().ToString();
+					streak = ConnectX.GetDefaultTokenStreak();
                     lblErrorStreak.Text = "Invalid character.";
                 }
                 #endregion
