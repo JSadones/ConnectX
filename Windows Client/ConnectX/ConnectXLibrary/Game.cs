@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
+using ConnectXLibrary.Properties;
 
 namespace ConnectXLibrary
 {
@@ -111,7 +112,7 @@ namespace ConnectXLibrary
 
             gr.Clear(Color.White);
 
-			Image newImage = Image.FromFile("C:/frame.png");
+			Image newImage = Resources.frame;
 
             for (int i = 0; i < rows; i++)
             {
