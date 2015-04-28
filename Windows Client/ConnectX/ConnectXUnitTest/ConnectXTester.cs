@@ -433,7 +433,7 @@ namespace ConnectXUnitTest
 			ConnectX gameWithParameters = new ConnectX(10, 12, 7);
 			Assert.IsTrue(gameWithParameters.getRows() == 10);
 			Assert.IsTrue(gameWithParameters.getColumns() == 12);
-			Assert.IsTrue(gameWithParameters.getStreakToReach() == 7);
+			Assert.IsTrue(gameWithParameters.getTokenStreak() == 7);
 		}
 
 		[TestMethod]
@@ -600,7 +600,7 @@ namespace ConnectXUnitTest
         {
             Assert.IsTrue(game10Rows14Columns.getRows() == 10);
             Assert.IsTrue(game10Rows14Columns.getColumns() == 14);
-            Assert.IsTrue(game10Rows14Columns.getStreakToReach() == 4);
+            Assert.IsTrue(game10Rows14Columns.getTokenStreak() == 4);
         }
 
         [TestMethod]
@@ -608,7 +608,7 @@ namespace ConnectXUnitTest
         {
             Assert.IsTrue(game10Rows14Columns6Streak.getRows() == 10);
             Assert.IsTrue(game10Rows14Columns6Streak.getColumns() == 14);
-            Assert.IsTrue(game10Rows14Columns6Streak.getStreakToReach() == 6);
+            Assert.IsTrue(game10Rows14Columns6Streak.getTokenStreak() == 6);
         }
 
 		[TestMethod]
@@ -643,7 +643,7 @@ namespace ConnectXUnitTest
 		[TestMethod]
 		public void TestGetWinningPlayerGivenWonGame() {
 			gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.isWon();
-			Assert.IsTrue(gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.getCurrentGameWonPlayer() == 1);
+			Assert.IsTrue(gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.getWinnerOfLastGame() == 1);
 		}
 
 		[TestMethod]
@@ -690,12 +690,12 @@ namespace ConnectXUnitTest
             gameInterface.incrementScorePlayer(1);
             gameInterface.incrementScorePlayer(2);
             // Parameter == player number
-            Assert.IsTrue(gameInterface.getOverallWonPlayer() == 0);
+            Assert.IsTrue(gameInterface.getWinnerOfLastSession() == 0);
             gameInterface.incrementScorePlayer(1);
-            Assert.IsTrue(gameInterface.getOverallWonPlayer() == 1);
+            Assert.IsTrue(gameInterface.getWinnerOfLastSession() == 1);
             gameInterface.incrementScorePlayer(2);
             gameInterface.incrementScorePlayer(2);
-            Assert.IsTrue(gameInterface.getOverallWonPlayer() == 2);
+            Assert.IsTrue(gameInterface.getWinnerOfLastSession() == 2);
         }
 
         [TestMethod]

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace ConnectXLibrary
 {
@@ -8,11 +7,8 @@ namespace ConnectXLibrary
     {
         #region State
         private int[,] raster;
-        private int rows, columns, tokenStreak, playerAtTurn, winningPlayer;
+        private int rows, columns, tokenStreak, playerAtTurn, winningPlayer, scorePlayer1 = 0, scorePlayer2 = 0, counterPlayer1, counterPlayer2, counter;
 		private static int defaultRows = 6, defaultColumns = 7, defaultStreak = 4;
-        private int scorePlayer1, scorePlayer2 = 0;
-        private int counterPlayer1, counterPlayer2;
-        private int counter;
         #endregion State
 
         #region Constructor
@@ -42,27 +38,27 @@ namespace ConnectXLibrary
             return columns;
         }//getColumns
 
-        public int getStreakToReach() {
+        public int getTokenStreak() {
             return tokenStreak;
-        }//getStreakToReach
+        }//getTokenStreak
 
         public int[,] getRaster() {
             return raster;
         }//getRaster
 
-		public static int GetDefaultNumberOfRows() {
+		public static int getDefaultRows() {
 			return defaultRows;
-		}//GetDefaultNumberOfRows
+		}//getDefaultRows
 
-		public static int GetDefaultNumberOfColumns() {
+		public static int getDefaultColumns() {
 			return defaultColumns;
-		}//GetDefaultNumberOfColumns
+		}//getDefaultColumns
 
-		public static int GetDefaultStreak() {
+		public static int getDefaultTokenStreak() {
 			return defaultStreak;
-		}//GetDefaultStreak
+		}//getDefaultTokenStreak
 
-        public int getCurrentGameWonPlayer()
+        public int getWinnerOfLastGame()
         {
             return winningPlayer;
         }//getCurrentGameWonPlayer
@@ -332,7 +328,7 @@ namespace ConnectXLibrary
             return coordinate;
         }//getCoordinateWithDiagonal135LongestStreakOfAI
 
-        public int getOverallWonPlayer()
+        public int getWinnerOfLastSession()
         {
             if (scorePlayer1 > scorePlayer2)
             {
@@ -386,6 +382,7 @@ namespace ConnectXLibrary
             counterPlayer1 = 0;
             counterPlayer2 = 0;
         }
+
         public void resetStreakCounter()
         {
             counter = 0;
@@ -610,7 +607,7 @@ namespace ConnectXLibrary
                 {
                     if (isWon())
                     {
-                        incrementScorePlayer(getCurrentGameWonPlayer());
+                        incrementScorePlayer(getWinnerOfLastGame());
                     }
                     return true;
                 }

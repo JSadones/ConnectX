@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace ConnectXLibrary
@@ -57,7 +56,7 @@ namespace ConnectXLibrary
 			bool won = false;
             if (gamePlay.isCurrentGameWon())
             {
-                if (gamePlay.getCurrentGameWonPlayer() == 1) title = namePlayer1;
+                if (gamePlay.getWinnerOfLastGame() == 1) title = namePlayer1;
 				else title = namePlayer2;
 				title += " has won the game.";
 				won = true;
@@ -80,10 +79,10 @@ namespace ConnectXLibrary
 				else if (dialogResult == DialogResult.No)
 				{
 					string message;
-					if (gamePlay.getOverallWonPlayer() == 0)
+					if (gamePlay.getWinnerOfLastSession() == 0)
 						message = "It's a tie!";
 					else
-						message = getName(gamePlay.getOverallWonPlayer()) + " won the game!";
+						message = getName(gamePlay.getWinnerOfLastSession()) + " won the game!";
 
 					DialogResult dialogResult2 = MessageBox.Show(message, "Game over!", MessageBoxButtons.OK);
 
@@ -140,9 +139,9 @@ namespace ConnectXLibrary
 
             if (gamePlay.getPlayerAtTurn() == 1)
             {
-                hr.FillEllipse(redBrush, circle);
-            } else {
                 hr.FillEllipse(blueBrush, circle);
+            } else {
+                hr.FillEllipse(redBrush, circle);
             }
         }//drawToken
 
