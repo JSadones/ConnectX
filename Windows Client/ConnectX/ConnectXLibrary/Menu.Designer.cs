@@ -228,7 +228,7 @@
             this.txtBoxRows.Name = "txtBoxRows";
             this.txtBoxRows.Size = new System.Drawing.Size(45, 40);
             this.txtBoxRows.TabIndex = 13;
-            this.txtBoxRows.Text = "6";
+            this.txtBoxRows.Text = "5";
             this.txtBoxRows.TextChanged += new System.EventHandler(this.txtBoxWidth_TextChanged);
             // 
             // txtBoxColumns
@@ -238,7 +238,7 @@
             this.txtBoxColumns.Name = "txtBoxColumns";
             this.txtBoxColumns.Size = new System.Drawing.Size(45, 40);
             this.txtBoxColumns.TabIndex = 12;
-            this.txtBoxColumns.Text = "5";
+            this.txtBoxColumns.Text = "6";
             this.txtBoxColumns.TextChanged += new System.EventHandler(this.txtBoxLength_TextChanged);
             // 
             // btnStart

@@ -10,6 +10,7 @@ namespace ConnectXLibrary
         private int[,] raster;
         private int rows, columns, tokenStreak, playerAtTurn, winningPlayer;
 		private static int defaultRows = 6, defaultColumns = 7, defaultStreak = 4;
+        private int scorePlayer1, scorePlayer2 = 0;
         #endregion State
 
         #region Constructor
@@ -332,6 +333,31 @@ namespace ConnectXLibrary
             }
             return coordinate;
         }//getCoordinateWithDiagonal135LongestStreakOfAI
+
+        public int getOverallWonPlayer()
+        {
+            if (scorePlayer1 > scorePlayer2)
+            {
+                return 1;
+            }
+            else if (scorePlayer1 < scorePlayer2)
+            {
+                return 2;
+            }
+            else
+            {
+                return 0;
+            }
+        }//getOverallWonPlayer
+
+        public int getScore(int player)
+        {
+            if (player == 1)
+            {
+                return scorePlayer1;
+            }
+            else return scorePlayer2;
+        }//getScore
 		#endregion
 
         #region Methods
@@ -569,6 +595,42 @@ namespace ConnectXLibrary
             }
             else { return false; }
         }//isColumnFull
+
+        public bool isCurrentGameWon()
+        {
+            return isWon();
+        }//isCurrentGameWon
+
+        public bool checkIfWon(int column, int player)
+        {
+            if (player == getPlayerAtTurn())
+            {
+                if (insertToken(column, player))
+                {
+                    if (isWon())
+                    {
+                        incrementScorePlayer(getCurrentGameWonPlayer());
+                    }
+                    return true;
+                }
+                else return false;
+            }
+            else return false;
+        }//insertToken
+
+        public void incrementScorePlayer(int player)
+        {
+            switch (player)
+            {
+                case 1:
+                    scorePlayer1++;
+                    break;
+
+                case 2:
+                    scorePlayer2++;
+                    break;
+            }
+        }//incrementScorePlayer
         #endregion
 	}
 }

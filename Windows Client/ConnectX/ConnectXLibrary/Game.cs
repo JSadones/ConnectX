@@ -7,29 +7,30 @@ namespace ConnectXLibrary
     public partial class Game : Form
     {
         #region State
-        private int rows, columns, winstreak, startWidth, startHeight;
+        private int rows, columns, tokenStreak, startWidth, startHeight;
         private string namePlayer1, namePlayer2;
         private static int size = 60;
         Bitmap I;
         Graphics gr, hr;
-        ConnectXSession session;
+        ConnectX gamePlay;
         Pen myPen;
 		SolidBrush redBrush = new SolidBrush(Color.Red);
 		SolidBrush blueBrush = new SolidBrush(Color.Blue);
 		Pen blackPen = new Pen(Color.Black, 3);
+        ConnectX test;
         #endregion
 
         #region Constructor
-        public Game(string namePlayer1, string namePlayer2, int columns, int rows, int winstreak) {
+        public Game(string namePlayer1, string namePlayer2, int columns, int rows, int tokenStreak) {
             InitializeComponent();
             this.namePlayer1 = namePlayer1;
             this.namePlayer2 = namePlayer2;
             this.rows = rows;
             this.columns = columns;
-            this.winstreak = winstreak;
+            this.tokenStreak = tokenStreak;
 
-            session = new ConnectXSession(rows, columns, winstreak);
-            session.newGame();
+            gamePlay = new ConnectX(rows, columns, tokenStreak);
+            newGame();
 
             lblPlayer1.Text = namePlayer1;
             lblPlayer2.Text = namePlayer2;
@@ -47,20 +48,22 @@ namespace ConnectXLibrary
 
         #region Methods
         private void updateScores() {
-            lblPointsPlayer1.Text = session.getScore(1).ToString();
-            lblPointsPlayer2.Text = session.getScore(2).ToString();
+            lblPointsPlayer1.Text = gamePlay.getScore(1).ToString();
+            lblPointsPlayer2.Text = gamePlay.getScore(2).ToString();
         }//updateScores
 
         private void showIfWon() {
 			string title = "";
 			bool won = false;
-            if (session.isCurrentGameWon()) {
-				if (session.getCurrentGameWonPlayer() == 1) title = namePlayer1;
+            if (gamePlay.isCurrentGameWon())
+            {
+                if (gamePlay.getCurrentGameWonPlayer() == 1) title = namePlayer1;
 				else title = namePlayer2;
 				title += " has won the game.";
 				won = true;
 			}
-            else if (session.isRasterFull()){
+            else if (gamePlay.rasterIsFull())
+            {
 				title = "Raster is full.";
 				won = true;
 			}
@@ -71,16 +74,16 @@ namespace ConnectXLibrary
 				DialogResult dialogResult = MessageBox.Show("Play another one?", title, MessageBoxButtons.YesNo);
 				if (dialogResult == DialogResult.Yes)
 				{
-					session.newGame();
+					newGame();
 					drawGrid();
 				}
 				else if (dialogResult == DialogResult.No)
 				{
 					string message;
-					if (session.getOverallWonPlayer() == 0)
+					if (gamePlay.getOverallWonPlayer() == 0)
 						message = "It's a tie!";
 					else
-						message = getName(session.getOverallWonPlayer()) + " won the game!";
+						message = getName(gamePlay.getOverallWonPlayer()) + " won the game!";
 
 					DialogResult dialogResult2 = MessageBox.Show(message, "Game over!", MessageBoxButtons.OK);
 
@@ -135,7 +138,8 @@ namespace ConnectXLibrary
             Rectangle circle = new Rectangle((column * size) + 5 + startWidth, ((rows - emptySpotFree(column)) * size) + 5 + startHeight, size - 10, size - 10);
             gr.DrawEllipse(blackPen, circle);
 
-            if (session.getPlayerAtPlay() == 1) {
+            if (gamePlay.getPlayerAtTurn() == 1)
+            {
                 hr.FillEllipse(redBrush, circle);
             } else {
                 hr.FillEllipse(blueBrush, circle);
@@ -159,13 +163,13 @@ namespace ConnectXLibrary
 
         private void pnlGame_MouseClick(object sender, MouseEventArgs e)
         {
-            int playerAtPlay = session.getPlayerAtPlay();
+            int getPlayerAtTurn = gamePlay.getPlayerAtTurn();
             for (int i = 0; i < columns; i++)
             {
                 if ((i * size) + startWidth <= e.X  && e.X <= (size * (i + 1) + startWidth))
                 {
                     drawToken(i);
-                    session.checkIfWon(i, playerAtPlay);
+                    gamePlay.checkIfWon(i, getPlayerAtTurn);
                     break;
                 }
             }
@@ -181,7 +185,7 @@ namespace ConnectXLibrary
 
         private int emptySpotFree(int column) {
             int row = 0;
-            int[,] raster = session.getRaster();
+            int[,] raster = gamePlay.getRaster();
             while (row < rows)
             {
                 if (raster[row, column] == 0) return row;
@@ -192,10 +196,14 @@ namespace ConnectXLibrary
 
         private void showPlayerAtTurn()
         {
-            int playerAtTurn = session.getPlayerAtPlay();
+            int playerAtTurn = gamePlay.getPlayerAtTurn();
             if (playerAtTurn == 1) lblTurnName.Text = namePlayer1;
             else lblTurnName.Text = namePlayer2;
         }//showPlayerAtTurn
+
+        private void newGame() {
+            test = new ConnectX(rows, columns, tokenStreak);
+        }//newGame
         #endregion
     }
 }
