@@ -165,38 +165,23 @@ namespace ConnectXLibrary
 			else 
             {
 				btnStart.Enabled = false;
-                lblErrorStreak.Text = "";
+                lblErrorStreak.Text = "Please enter a streak";
 			}
 		}
 
-        private void checkNames() 
-        {
-            if (txtBoxPlayer1Name.Text == txtBoxPlayer2Name.Text)
-            {
-				if ((txtBoxPlayer1Name.Text != "") && (txtBoxPlayer2Name.Text != "")) {
-					btnStart.Enabled = false;
-					lblErrorName.Text = "Both names can't be the same.";
-					
-				}
-				else {
-					btnStart.Enabled = false;
-					lblErrorNamesEmpty.Text = "The name fields can't be empty";
-				}
-            }
-            else
-            {
-				if ((txtBoxPlayer1Name.Text != "") && (txtBoxPlayer2Name.Text != ""))
-				{
-					btnStart.Enabled = true;
-				}
-				else
-				{
-					btnStart.Enabled = false;
-					lblErrorNamesEmpty.Text = "The name fields can't be empty";
-				}
-                
-            }
-        }
+		private void checkNames()
+		{
+			if ((txtBoxPlayer1Name.Text != txtBoxPlayer2Name.Text) && ((txtBoxPlayer1Name.Text != "") && (txtBoxPlayer2Name.Text != "")))
+			{
+				btnStart.Enabled = true;
+				lblErrorName.Text = "";
+			}
+			else
+			{
+				btnStart.Enabled = false;
+				lblErrorName.Text = "Empty or double names are not allowed";
+			}
+		}
 
 		private void label1_Click(object sender, EventArgs e)
 		{
