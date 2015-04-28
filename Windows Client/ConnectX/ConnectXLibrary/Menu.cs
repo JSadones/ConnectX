@@ -126,6 +126,11 @@ namespace ConnectXLibrary
                     btnStart.Enabled = true;
                     lblErrorDimension.Text = "";
                 }
+                else if ((width >= 11 || length >= 11) || (width >= 11 && length >= 11))
+                {
+                    btnStart.Enabled = false;
+                    lblErrorDimension.Text = "Please don't select more than 10 columns and 10 rows.";
+                }
                 else 
                 {
                     btnStart.Enabled = false;
