@@ -207,7 +207,6 @@
 			this.txtBoxWinstreak.Name = "txtBoxWinstreak";
 			this.txtBoxWinstreak.Size = new System.Drawing.Size(45, 40);
 			this.txtBoxWinstreak.TabIndex = 5;
-			this.txtBoxWinstreak.Text = "4";
 			this.txtBoxWinstreak.TextChanged += new System.EventHandler(this.txtBoxWinstreak_TextChanged);
 			// 
 			// lblWinstreak
@@ -228,7 +227,6 @@
 			this.txtBoxRows.Name = "txtBoxRows";
 			this.txtBoxRows.Size = new System.Drawing.Size(45, 40);
 			this.txtBoxRows.TabIndex = 3;
-			this.txtBoxRows.Text = "5";
 			this.txtBoxRows.TextChanged += new System.EventHandler(this.txtBoxColumns_TextChanged);
 			// 
 			// txtBoxColumns
@@ -238,7 +236,6 @@
 			this.txtBoxColumns.Name = "txtBoxColumns";
 			this.txtBoxColumns.Size = new System.Drawing.Size(45, 40);
 			this.txtBoxColumns.TabIndex = 4;
-			this.txtBoxColumns.Text = "6";
 			this.txtBoxColumns.TextChanged += new System.EventHandler(this.txtBoxRows_TextChanged);
 			// 
 			// btnStart
