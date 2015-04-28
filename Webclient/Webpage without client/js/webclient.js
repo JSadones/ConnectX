@@ -72,11 +72,11 @@
                     content += '</tr>';
                 }
                 content += '</table>';
-                $( "#game" ).html(content);
+                $( "#raster" ).html(content);
 
                 $('#options').hide();
 
-                $( "#game" ).show();
+                $( "#raster" ).show();
 
 
             return false;
