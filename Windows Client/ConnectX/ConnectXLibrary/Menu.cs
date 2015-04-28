@@ -60,7 +60,7 @@ namespace ConnectXLibrary
         private void txtBoxPlayer1Name_TextChanged(object sender, EventArgs e)
         {
             //checkNameTextBoxes();
-            checkDoubleName();
+            checkNames();
             checkDimension();
             checkStreak();
         }//txtBoxPlayer1Name_TextChanged
@@ -68,7 +68,7 @@ namespace ConnectXLibrary
         private void txtBoxPlayer2Name_TextChanged(object sender, EventArgs e)
         {
             //checkNameTextBoxes();
-            checkDoubleName();
+            checkNames();
             checkDimension();
             checkStreak();
         }//txtBoxPlayer2Name_TextChanged
@@ -76,7 +76,7 @@ namespace ConnectXLibrary
         private void txtBoxWinstreak_TextChanged(object sender, EventArgs e)
         {
             //checkNameTextBoxes();
-            checkDoubleName();
+            checkNames();
             checkDimension();
             checkStreak();
         }//txtBoxWinstreak_TextChanged
@@ -84,7 +84,7 @@ namespace ConnectXLibrary
         private void txtBoxWidth_TextChanged(object sender, EventArgs e)
         {
             //checkNameTextBoxes();
-            checkDoubleName();
+            checkNames();
             checkDimension();
             checkStreak();
         } // txtBoxWidth_TextChanged
@@ -92,7 +92,7 @@ namespace ConnectXLibrary
         private void txtBoxLength_TextChanged(object sender, EventArgs e)
         {
             //checkNameTextBoxes();
-            checkDoubleName();
+            checkNames();
             checkDimension();
             checkStreak();
         } //txtBoxLength_TextChanged
@@ -191,18 +191,18 @@ namespace ConnectXLibrary
 			}
 		}
 
-        private void checkDoubleName() 
+        private void checkNames() 
         {
             if (txtBoxPlayer1Name.Text == txtBoxPlayer2Name.Text)
             {
 				if ((txtBoxPlayer1Name.Text != "") && (txtBoxPlayer2Name.Text != "")) {
 					btnStart.Enabled = false;
-					lblErrorNaam.Text = "Both names can't be the same.";
+					lblErrorName.Text = "Both names can't be the same.";
 					
 				}
 				else {
 					btnStart.Enabled = false;
-					//lblErrorNamesEmpty.Text = "The name fields can't be empty";
+					lblErrorNamesEmpty.Text = "The name fields can't be empty";
 				}
             }
             else
@@ -214,11 +214,16 @@ namespace ConnectXLibrary
 				else
 				{
 					btnStart.Enabled = false;
-					//lblErrorNamesEmpty.Text = "The name fields can't be empty";
+					lblErrorNamesEmpty.Text = "The name fields can't be empty";
 				}
                 
             }
-        }//checkDoubleName
+        }
+
+		private void label1_Click(object sender, EventArgs e)
+		{
+
+		}//checkNames
         #endregion
     }
 }
