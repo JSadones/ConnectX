@@ -368,7 +368,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoSize = true;
 			this.BackgroundImage = global::ConnectXLibrary.Properties.Resources._128_184;
-			this.ClientSize = new System.Drawing.Size(958, 548);
+			this.ClientSize = new System.Drawing.Size(984, 693);
 			this.Controls.Add(this.btnWebclient);
 			this.Controls.Add(this.btnSettings);
 			this.Controls.Add(this.btnMultiplayer);
@@ -379,10 +379,9 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
-			this.MaximumSize = new System.Drawing.Size(995, 610);
-			this.MinimumSize = new System.Drawing.Size(967, 558);
+			this.MaximumSize = new System.Drawing.Size(1000, 732);
+			this.MinimumSize = new System.Drawing.Size(1000, 732);
 			this.Name = "Menu";
-			this.Padding = new System.Windows.Forms.Padding(4, 4, 4, 26);
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Connect X";
