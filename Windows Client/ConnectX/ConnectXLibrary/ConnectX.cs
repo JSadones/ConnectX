@@ -12,6 +12,7 @@ namespace ConnectXLibrary
 		private static int defaultRows = 6, defaultColumns = 7, defaultStreak = 4;
         private int scorePlayer1, scorePlayer2 = 0;
         private int counterPlayer1, counterPlayer2;
+        private int counter;
         #endregion State
 
         #region Constructor
@@ -68,8 +69,7 @@ namespace ConnectXLibrary
 
         private int getStreakWinnerDiagonal135(int counterRow, int counterColumn)
         {
-            int counterPlayer1 = 0;
-            int counterPlayer2 = 0;
+            resetCounter();
             while (counterColumn >= 0 && counterRow < rows)
             {
                 if (raster[counterRow, counterColumn] == 1)
@@ -102,8 +102,7 @@ namespace ConnectXLibrary
 
         private int getStreakWinnerDiagonal45(int counterRow, int counterColumn)
         {
-            int counterPlayer1 = 0;
-            int counterPlayer2 = 0;
+            resetCounter();
             while (counterColumn < columns && counterRow < rows)
             {
                 if (raster[counterRow, counterColumn] == 1)
@@ -158,14 +157,13 @@ namespace ConnectXLibrary
         
         public int getColumnWithVerticalLongestStreakOfAI()
         {
-            int counter;
             int longestStreak = 0;
             int longestStreakColumn = -1;
 
             for (int i = 0; i < columns; i++)
             {
                 int j = 0;
-                counter = 0;
+                resetStreakCounter();
 
                 while (j < rows && raster[j, i] != 0)
                 {
@@ -188,12 +186,11 @@ namespace ConnectXLibrary
 
         public int getRowWithHorizontalLongestStreakOfAI()
         {
-            int counter;
 
             for (int i = 0; i < rows; i++)
             {
 
-                counter = 0;
+                resetStreakCounter();
                 int longestStreak = 0;
                 int longestStreakRow = -1;
 
@@ -388,6 +385,10 @@ namespace ConnectXLibrary
         {
             counterPlayer1 = 0;
             counterPlayer2 = 0;
+        }
+        public void resetStreakCounter()
+        {
+            counter = 0;
         }
 
         public bool isWon()
