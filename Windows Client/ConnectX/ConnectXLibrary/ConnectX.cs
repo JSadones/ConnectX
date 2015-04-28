@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace ConnectXLibrary
@@ -6,7 +7,7 @@ namespace ConnectXLibrary
     public class ConnectX
     {
         #region State
-        private int[,] raster;
+        int[,] raster;
         private int rows, columns, tokenStreak, playerAtTurn, winningPlayer, scorePlayer1 = 0, scorePlayer2 = 0, counterPlayer1, counterPlayer2, counter;
 		private static int defaultRows = 6, defaultColumns = 7, defaultStreak = 4;
         #endregion State
@@ -23,9 +24,7 @@ namespace ConnectXLibrary
             this.columns = columns;
             this.tokenStreak = tokenStreak;
             playerAtTurn = 1;
-
             raster = new int[rows, columns];
-            clearRaster();
         }
         #endregion
 
@@ -41,10 +40,6 @@ namespace ConnectXLibrary
         public int getTokenStreak() {
             return tokenStreak;
         }//getTokenStreak
-
-        public int[,] getRaster() {
-            return raster;
-        }//getRaster
 
 		public static int getDefaultRows() {
 			return defaultRows;
@@ -381,12 +376,12 @@ namespace ConnectXLibrary
         {
             counterPlayer1 = 0;
             counterPlayer2 = 0;
-        }
+        }//resetCounter
 
         public void resetStreakCounter()
         {
             counter = 0;
-        }
+        }//resetStreakCounter
 
         public bool isWon()
         {
@@ -629,6 +624,23 @@ namespace ConnectXLibrary
                     break;
             }
         }//incrementScorePlayer
+
+        public int checkIfColumnHasEmptySpot(int column)
+        {
+            int row = 0;
+            while (row < rows)
+            {
+                if (raster[row, column] == 0) return row;
+                row++;
+            }
+            return rows;
+        }//checkIfColumnHasEmptySpot
+
+        public void nextGame()
+        {
+            clearRaster();
+            playerAtTurn = 1;
+        }
         #endregion
-	}
+    }
 }
