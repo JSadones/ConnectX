@@ -43,15 +43,15 @@ namespace ConnectXLibrary
 
 		public static int GetDefaultRows() {
 			return defaultRows;
-		}//getDefaultRows
+		}//GetDefaultRows
 
 		public static int GetDefaultColumns() {
 			return defaultColumns;
-		}//getDefaultColumns
+		}//GetDefaultColumns
 
 		public static int GetDefaultTokenStreak() {
 			return defaultStreak;
-		}//getDefaultTokenStreak
+		}//GetDefaultTokenStreak
 
         public int getWinnerOfLastGame()
         {
