@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 using ConnectXLibrary.Properties;
+using System;
 
 namespace ConnectXLibrary
 {
@@ -149,6 +150,34 @@ namespace ConnectXLibrary
                 } else {
                     gr.FillEllipse(redBrush, circle);
                 }
+
+                Random rnd = new Random();
+                int month = rnd.Next(1, 6);
+
+                System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+                switch (month)
+                {
+                    case 1:
+                        player.Stream = Properties.Resources.a1;
+                        break;
+                    case 2:
+                        player.Stream = Properties.Resources.a2;
+                        break;
+                    case 3:
+                        player.Stream = Properties.Resources.a3;
+                        break;
+                    case 4:
+                        player.Stream = Properties.Resources.a4;
+                        break;
+                    case 5:
+                        player.Stream = Properties.Resources.a5;
+                        break;
+                    case 6:
+                        player.Stream = Properties.Resources.a6;
+                        break;
+                }
+                player.Play();
+
                 gamePlay.checkIfWon(column, gamePlay.getPlayerAtTurn());
             }
         }//drawToken
