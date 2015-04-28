@@ -16,6 +16,7 @@ namespace ConnectXLibrary
         #endregion
 
         #region Methods
+
         #region EventClicks
         private void btnMultiplayer_Click(object sender, EventArgs e)
         {
@@ -128,7 +129,7 @@ namespace ConnectXLibrary
                 else 
                 {
                     btnStart.Enabled = false;
-                    lblErrorDimension.Text += "Please select at least 4 columns and 4 rows.";
+                    lblErrorDimension.Text = "Please select at least 4 columns and 4 rows.";
                 }
             }
             else
