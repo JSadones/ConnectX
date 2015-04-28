@@ -16,7 +16,6 @@ namespace ConnectXLibrary
 		SolidBrush redBrush = new SolidBrush(Color.Red);
 		SolidBrush blueBrush = new SolidBrush(Color.Blue);
 		Pen blackPen = new Pen(Color.Black, 3);
-        ConnectX spel = new ConnectX();
         #endregion
 
         #region Constructor
@@ -112,9 +111,9 @@ namespace ConnectXLibrary
 
             gr.Clear(Color.White);
 
-            for (int i = 0; i < columns; i++)
+            for (int i = 0; i < rows; i++)
             {
-                for (int j = 0; j < rows; j++)
+                for (int j = 0; j < columns; j++)
                 {
                     Image newImage = Image.FromFile("C:/frame.png");
                     gr.DrawImage(newImage, x, y, size, size);
@@ -137,14 +136,17 @@ namespace ConnectXLibrary
 		}//drawHud
 
         private void drawToken(int column) {
-            Rectangle circle = new Rectangle((column * size) + 5 + startWidth, ((rows - gamePlay.checkIfColumnHasEmptySpot(column)) * size) + 5 + startHeight, size - 10, size - 10);
-            gr.DrawEllipse(blackPen, circle);
+            if (gamePlay.checkIfColumnHasEmptySpot(column) > -1) {
+                Rectangle circle = new Rectangle((column * size) + 5 + startWidth, ((rows - gamePlay.checkIfColumnHasEmptySpot(column) - 1) * size) + 5 + startHeight, size - 10, size - 10);
+                gr.DrawEllipse(blackPen, circle);
 
-            if (gamePlay.getPlayerAtTurn() == 1)
-            {
-                gr.FillEllipse(blueBrush, circle);
-            } else {
-                gr.FillEllipse(redBrush, circle);
+                if (gamePlay.getPlayerAtTurn() == 1)
+                {
+                    gr.FillEllipse(blueBrush, circle);
+                } else {
+                    gr.FillEllipse(redBrush, circle);
+                }
+                gamePlay.checkIfWon(column, gamePlay.getPlayerAtTurn());
             }
         }//drawToken
 
@@ -165,13 +167,11 @@ namespace ConnectXLibrary
 
         private void pnlGame_MouseClick(object sender, MouseEventArgs e)
         {
-            int getPlayerAtTurn = gamePlay.getPlayerAtTurn();
             for (int i = 0; i < columns; i++)
             {
                 if ((i * size) + startWidth <= e.X  && e.X <= (size * (i + 1) + startWidth))
                 {
                     drawToken(i);
-                    gamePlay.checkIfWon(i, getPlayerAtTurn);
                     break;
                 }
             }
@@ -187,7 +187,7 @@ namespace ConnectXLibrary
         }//showPlayerAtTurn
 
         private void newGame() {
-            spel.nextGame();
+            gamePlay.nextGame();
             drawGrid();
         }//newGame
         #endregion

@@ -81,9 +81,6 @@ namespace ConnectXLibrary
         {
             checkDimension();
         } //txtBoxLength_TextChanged
-
-
-
         #endregion
 
         private void showColorDialog()

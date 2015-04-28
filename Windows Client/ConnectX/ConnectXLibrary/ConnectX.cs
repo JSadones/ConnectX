@@ -586,7 +586,7 @@ namespace ConnectXLibrary
             {
                 return true;
             }
-            else { return false; }
+            else return false;
         }//isColumnFull
 
         public bool isCurrentGameWon()
@@ -627,20 +627,24 @@ namespace ConnectXLibrary
 
         public int checkIfColumnHasEmptySpot(int column)
         {
-            int row = 0;
-            while (row < rows)
+            if (isColumnFull(column) == false)
             {
-                if (raster[row, column] == 0) return row;
-                row++;
+                int row = 0;
+                while (row < rows)
+                {
+                    if (raster[row, column] == 0) return row;
+                    row++;
+                }
+                return rows;
             }
-            return rows;
+            else return -1;
         }//checkIfColumnHasEmptySpot
 
         public void nextGame()
         {
             clearRaster();
             playerAtTurn = 1;
-        }
+        }//nextGame
         #endregion
     }
 }
