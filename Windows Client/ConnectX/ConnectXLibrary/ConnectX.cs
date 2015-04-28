@@ -151,7 +151,7 @@ namespace ConnectXLibrary
             return raster[row, column];
         }//getToken
         
-        public int getColumnWithVerticalLongestStreakOfAI()
+        public int getColumnVerticalLongestStreakOfAI()
         {
             int longestStreak = 0;
             int longestStreakColumn = -1;
@@ -180,7 +180,7 @@ namespace ConnectXLibrary
             return longestStreakColumn;
         }//getColumnWithVerticalLongestStreakOfAI
 
-        public int getRowWithHorizontalLongestStreakOfAI()
+        public int getRowHorizontalLongestStreakOfAI()
         {
 
             for (int i = 0; i < rows; i++)
@@ -215,7 +215,7 @@ namespace ConnectXLibrary
             return 0;
         }//getRowWithHorizontalLongestStreakOfAI
 
-        public Coord getCoordinateWithDiagonal45LongestStreakOfAI()
+        public Coord getCoordinateDiagonal45LongestStreakOfAI()
         {
             Coord coordinate = new Coord(0,0);
 
@@ -271,7 +271,7 @@ namespace ConnectXLibrary
 
         }//getCoordinateWithDiagonal45LongestStreakOfAI
 
-        public Coord getCoordinateWithDiagonal135LongestStreakOfAI()
+        public Coord getCoordinateDiagonal135LongestStreakOfAI()
         {
             Coord coordinate = new Coord(0, 0);
 
