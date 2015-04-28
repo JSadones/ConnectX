@@ -150,7 +150,7 @@
 			// 
 			this.lblErrorStreak.AutoSize = true;
 			this.lblErrorStreak.ForeColor = System.Drawing.Color.Red;
-			this.lblErrorStreak.Location = new System.Drawing.Point(572, 303);
+			this.lblErrorStreak.Location = new System.Drawing.Point(521, 305);
 			this.lblErrorStreak.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.lblErrorStreak.Name = "lblErrorStreak";
 			this.lblErrorStreak.Size = new System.Drawing.Size(0, 13);
@@ -161,7 +161,7 @@
 			this.lblErrorName.AutoSize = true;
 			this.lblErrorName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblErrorName.ForeColor = System.Drawing.Color.Red;
-			this.lblErrorName.Location = new System.Drawing.Point(572, 166);
+			this.lblErrorName.Location = new System.Drawing.Point(520, 150);
 			this.lblErrorName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.lblErrorName.Name = "lblErrorName";
 			this.lblErrorName.Size = new System.Drawing.Size(0, 20);
@@ -172,7 +172,7 @@
 			this.lblErrorDimension.AutoSize = true;
 			this.lblErrorDimension.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblErrorDimension.ForeColor = System.Drawing.Color.Red;
-			this.lblErrorDimension.Location = new System.Drawing.Point(718, 303);
+			this.lblErrorDimension.Location = new System.Drawing.Point(520, 227);
 			this.lblErrorDimension.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.lblErrorDimension.Name = "lblErrorDimension";
 			this.lblErrorDimension.Size = new System.Drawing.Size(0, 20);
@@ -182,7 +182,7 @@
 			// 
 			this.picBoxPlayer2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
 			this.picBoxPlayer2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.picBoxPlayer2.Location = new System.Drawing.Point(662, 89);
+			this.picBoxPlayer2.Location = new System.Drawing.Point(662, 86);
 			this.picBoxPlayer2.Name = "picBoxPlayer2";
 			this.picBoxPlayer2.Size = new System.Drawing.Size(49, 49);
 			this.picBoxPlayer2.TabIndex = 17;
@@ -193,7 +193,7 @@
 			// 
 			this.picBoxPlayer1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
 			this.picBoxPlayer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.picBoxPlayer1.Location = new System.Drawing.Point(662, 21);
+			this.picBoxPlayer1.Location = new System.Drawing.Point(662, 18);
 			this.picBoxPlayer1.Name = "picBoxPlayer1";
 			this.picBoxPlayer1.Size = new System.Drawing.Size(49, 49);
 			this.picBoxPlayer1.TabIndex = 16;
@@ -206,7 +206,7 @@
 			this.txtBoxWinstreak.Location = new System.Drawing.Point(453, 291);
 			this.txtBoxWinstreak.Name = "txtBoxWinstreak";
 			this.txtBoxWinstreak.Size = new System.Drawing.Size(45, 40);
-			this.txtBoxWinstreak.TabIndex = 15;
+			this.txtBoxWinstreak.TabIndex = 5;
 			this.txtBoxWinstreak.Text = "4";
 			this.txtBoxWinstreak.TextChanged += new System.EventHandler(this.txtBoxWinstreak_TextChanged);
 			// 
@@ -227,7 +227,7 @@
 			this.txtBoxRows.Location = new System.Drawing.Point(453, 193);
 			this.txtBoxRows.Name = "txtBoxRows";
 			this.txtBoxRows.Size = new System.Drawing.Size(45, 40);
-			this.txtBoxRows.TabIndex = 13;
+			this.txtBoxRows.TabIndex = 3;
 			this.txtBoxRows.Text = "5";
 			this.txtBoxRows.TextChanged += new System.EventHandler(this.txtBoxColumns_TextChanged);
 			// 
@@ -237,7 +237,7 @@
 			this.txtBoxColumns.Location = new System.Drawing.Point(453, 243);
 			this.txtBoxColumns.Name = "txtBoxColumns";
 			this.txtBoxColumns.Size = new System.Drawing.Size(45, 40);
-			this.txtBoxColumns.TabIndex = 12;
+			this.txtBoxColumns.TabIndex = 4;
 			this.txtBoxColumns.Text = "6";
 			this.txtBoxColumns.TextChanged += new System.EventHandler(this.txtBoxRows_TextChanged);
 			// 
@@ -247,7 +247,7 @@
 			this.btnStart.Location = new System.Drawing.Point(383, 362);
 			this.btnStart.Name = "btnStart";
 			this.btnStart.Size = new System.Drawing.Size(254, 60);
-			this.btnStart.TabIndex = 10;
+			this.btnStart.TabIndex = 6;
 			this.btnStart.Text = "START GAME";
 			this.btnStart.UseVisualStyleBackColor = true;
 			this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
@@ -292,7 +292,7 @@
 			this.txtBoxPlayer2Name.MaxLength = 10;
 			this.txtBoxPlayer2Name.Name = "txtBoxPlayer2Name";
 			this.txtBoxPlayer2Name.Size = new System.Drawing.Size(189, 49);
-			this.txtBoxPlayer2Name.TabIndex = 4;
+			this.txtBoxPlayer2Name.TabIndex = 2;
 			this.txtBoxPlayer2Name.Text = "Rood";
 			this.txtBoxPlayer2Name.TextChanged += new System.EventHandler(this.txtBoxPlayer2Name_TextChanged);
 			// 
@@ -368,7 +368,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoSize = true;
 			this.BackgroundImage = global::ConnectXLibrary.Properties.Resources._128_184;
-			this.ClientSize = new System.Drawing.Size(984, 587);
+			this.ClientSize = new System.Drawing.Size(958, 548);
 			this.Controls.Add(this.btnWebclient);
 			this.Controls.Add(this.btnSettings);
 			this.Controls.Add(this.btnMultiplayer);
@@ -379,8 +379,8 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
-			this.MaximumSize = new System.Drawing.Size(1000, 626);
-			this.MinimumSize = new System.Drawing.Size(1000, 626);
+			this.MaximumSize = new System.Drawing.Size(995, 610);
+			this.MinimumSize = new System.Drawing.Size(967, 558);
 			this.Name = "Menu";
 			this.Padding = new System.Windows.Forms.Padding(4, 4, 4, 26);
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;

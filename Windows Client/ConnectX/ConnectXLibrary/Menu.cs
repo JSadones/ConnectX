@@ -81,9 +81,6 @@ namespace ConnectXLibrary
         {
             checkDimension();
         } //txtBoxLength_TextChanged
-
-
-
         #endregion
 
         private void showColorDialog()
@@ -95,36 +92,39 @@ namespace ConnectXLibrary
         {
             if ((txtBoxRows.Text != "") && (txtBoxColumns.Text != ""))
             {
-                int width = 0;
-                int length = 0;
+                int columns = 0;
+                int rows = 0;
 
+                #region Exception Handling
                 try
                 {
-                    length = Convert.ToInt32(txtBoxRows.Text);
+                    rows = Convert.ToInt32(txtBoxRows.Text);
                 }
                 catch (FormatException e)
                 {
                     txtBoxRows.Text = "6";
-                    length =6;
+                    rows =6;
                     lblErrorDimension.Text = "Invalid character.";
                 }
+
                 try
                 {
-                    width = Convert.ToInt32(txtBoxColumns.Text);
+                    columns = Convert.ToInt32(txtBoxColumns.Text);
                 }
                 catch (FormatException e)
                 {
                     txtBoxColumns.Text = "7";
-                    width = 7;
+                    columns = 7;
                     lblErrorDimension.Text = "Invalid character.";
                 }
+                #endregion
 
-                if ((width < 4) || (length < 4))
+                if ((columns < 4) || (rows < 4))
                 {
                     btnStart.Enabled = false;
                     lblErrorDimension.Text = "Please select at least 4 columns and 4 rows.";
                 }
-                else if ((width > 10 || length > 10))
+                else if ((columns > 10 || rows > 10))
                 {
                     btnStart.Enabled = false;
                     lblErrorDimension.Text = "Please don't select more than 10 columns and 10 rows.";
@@ -144,12 +144,28 @@ namespace ConnectXLibrary
 
 		private void checkStreak()
 		{
-			if (txtBoxWinstreak.Text != "" && txtBoxWinstreak.Text != "0" && txtBoxColumns.Text !="" && txtBoxRows.Text != "")
+            
+
+            if (txtBoxWinstreak.Text != "" && txtBoxColumns.Text !="" && txtBoxRows.Text != "")
 			{
-				int streak = int.Parse(txtBoxWinstreak.Text);
-                int width = int.Parse(txtBoxRows.Text);
-                int length = int.Parse(txtBoxColumns.Text);
-				if ((streak > length) && (streak > width))
+                int columns = int.Parse(txtBoxRows.Text);
+                int rows = int.Parse(txtBoxColumns.Text);
+                int streak = 0;
+
+                #region Exception Handling
+                try
+                {
+                    streak = Convert.ToInt32(txtBoxWinstreak.Text);
+                }
+                catch (FormatException e)
+                {
+                    txtBoxWinstreak.Text = "4";
+                    streak = 4;
+                    lblErrorStreak.Text = "Invalid character.";
+                }
+                #endregion
+
+				if ((streak > rows) && (streak > columns) || (streak <= 3))
 				{
                     btnStart.Enabled = false;
                     lblErrorStreak.Text = "Please select a valid streak.";
@@ -160,6 +176,7 @@ namespace ConnectXLibrary
                     lblErrorStreak.Text = "";
 				}
 			}
+
 			else 
             {
 				btnStart.Enabled = false;
