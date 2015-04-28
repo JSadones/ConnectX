@@ -465,7 +465,8 @@ namespace ConnectXLibrary
 
         public int isWonDiagonal45()
         {
-			for (int i = columns - 1; i >= 0; i--) {
+			for (int i = columns - 1; i >= 0; i--) 
+			{
                 int winner = getStreakWinnerDiagonal45(0, i);
                 if (1 <= winner && winner <= 2)
                 {
@@ -481,7 +482,85 @@ namespace ConnectXLibrary
                 }
 			}
 			return 0;
-        }//isWonDiagonal45
+        } //isWonDiagonal45
+
+        // public int isWonDiagonal45(){
+        // diagonalStreak(columns - 1, i>=0, i--, getStreakWinnerDiagonal45(0,i))
+        // diagonalStreak(1, i < rows, i++, getStreakWinnerDiagonal45(i,0) }
+        // public diagonalStreak (b, c, d, e){
+        // for (int i = b; c; d){
+        // int winner = e;
+        // if (1 <= winner && winner <= 2){return winner;}}
+        // return 0;}
+
+        // dit is een mogelijke fix voor de herhaling in onze diagonal code.
+        public int isWonDiagonal()
+        {
+            gotStreakDiagonal(columns - 1, 1, -1);
+            gotStreakDiagonal(1, 2 ,1);
+
+            gotStreakDiagonal(0, 3, 1);
+            gotStreakDiagonal(1, 4, 1);
+            return 0;
+
+        }
+        // brainfuck //
+        public int gotStreakDiagonal(int start, int type, int step)
+        {
+            for (int i = 0; diagonalIterationCondition(type, i); i+=step )
+               {
+                    if (type == 1)
+                    {
+                        return getStreakWinnerDiagonal45(0, i);
+                    }
+                    else if (type == 2)
+                    {
+                        return getStreakWinnerDiagonal45(i, 0);
+                    }
+                    else if (type == 3)
+                    {
+                        return getStreakWinnerDiagonal135(0, i);
+                    }
+                    else if (type == 4)
+                    {
+                        return getStreakWinnerDiagonal135(i, columns - 1);
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                    
+                }
+            return 0;
+        }
+
+        public bool diagonalIterationCondition(int type, int i)
+        {
+            if( type == 1)
+            {
+                if (i >= 0) return true;
+                else return false;
+            }
+            else if (type == 2)
+            {
+                if (i < rows) return true;
+                else return false;
+            }
+            else if (type == 3)
+            {
+                if (i < columns) return true;
+                else return false;
+            }
+            else if (type == 4)
+            {
+                if (i < rows) return true;
+                else return false;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         public int isWonDiagonal135()
         {
