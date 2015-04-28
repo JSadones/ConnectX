@@ -1,16 +1,15 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace ConnectXLibrary
 {
     public class ConnectX
     {
         #region State
-        private int[,] raster;
-        private int rows, columns, tokenStreak, playerAtTurn, winningPlayer;
+        int[,] raster;
+        private int rows, columns, tokenStreak, playerAtTurn, winningPlayer, scorePlayer1 = 0, scorePlayer2 = 0, counterPlayer1, counterPlayer2, counter;
 		private static int defaultRows = 6, defaultColumns = 7, defaultStreak = 4;
-        private int scorePlayer1, scorePlayer2 = 0;
         #endregion State
 
         #region Constructor
@@ -25,9 +24,7 @@ namespace ConnectXLibrary
             this.columns = columns;
             this.tokenStreak = tokenStreak;
             playerAtTurn = 1;
-
             raster = new int[rows, columns];
-            clearRaster();
         }
         #endregion
 
@@ -40,35 +37,30 @@ namespace ConnectXLibrary
             return columns;
         }//getColumns
 
-        public int getStreakToReach() {
+        public int getTokenStreak() {
             return tokenStreak;
-        }//getStreakToReach
+        }//getTokenStreak
 
-        public int[,] getRaster() {
-            return raster;
-        }//getRaster
-
-		public static int GetDefaultNumberOfRows() {
+		public static int getDefaultRows() {
 			return defaultRows;
-		}//GetDefaultNumberOfRows
+		}//getDefaultRows
 
-		public static int GetDefaultNumberOfColumns() {
+		public static int getDefaultColumns() {
 			return defaultColumns;
-		}//GetDefaultNumberOfColumns
+		}//getDefaultColumns
 
-		public static int GetDefaultStreak() {
+		public static int getDefaultTokenStreak() {
 			return defaultStreak;
-		}//GetDefaultStreak
+		}//getDefaultTokenStreak
 
-        public int getCurrentGameWonPlayer()
+        public int getWinnerOfLastGame()
         {
             return winningPlayer;
         }//getCurrentGameWonPlayer
 
         private int getStreakWinnerDiagonal135(int counterRow, int counterColumn)
         {
-            int counterPlayer1 = 0;
-            int counterPlayer2 = 0;
+            resetCounter();
             while (counterColumn >= 0 && counterRow < rows)
             {
                 if (raster[counterRow, counterColumn] == 1)
@@ -101,8 +93,7 @@ namespace ConnectXLibrary
 
         private int getStreakWinnerDiagonal45(int counterRow, int counterColumn)
         {
-            int counterPlayer1 = 0;
-            int counterPlayer2 = 0;
+            resetCounter();
             while (counterColumn < columns && counterRow < rows)
             {
                 if (raster[counterRow, counterColumn] == 1)
@@ -155,16 +146,15 @@ namespace ConnectXLibrary
             return raster[row, column];
         }//getToken
         
-        public int getColumnWithVerticalLongestStreakOfAI()
+        public int getColumnVerticalLongestStreakOfAI()
         {
-            int counter;
             int longestStreak = 0;
             int longestStreakColumn = -1;
 
             for (int i = 0; i < columns; i++)
             {
                 int j = 0;
-                counter = 0;
+                resetStreakCounter();
 
                 while (j < rows && raster[j, i] != 0)
                 {
@@ -185,14 +175,13 @@ namespace ConnectXLibrary
             return longestStreakColumn;
         }//getColumnWithVerticalLongestStreakOfAI
 
-        public int getRowWithHorizontalLongestStreakOfAI()
+        public int getRowHorizontalLongestStreakOfAI()
         {
-            int counter;
 
             for (int i = 0; i < rows; i++)
             {
 
-                counter = 0;
+                resetStreakCounter();
                 int longestStreak = 0;
                 int longestStreakRow = -1;
 
@@ -221,7 +210,7 @@ namespace ConnectXLibrary
             return 0;
         }//getRowWithHorizontalLongestStreakOfAI
 
-        public Coord getCoordinateWithDiagonal45LongestStreakOfAI()
+        public Coord getCoordinateDiagonal45LongestStreakOfAI()
         {
             Coord coordinate = new Coord(0,0);
 
@@ -277,7 +266,7 @@ namespace ConnectXLibrary
 
         }//getCoordinateWithDiagonal45LongestStreakOfAI
 
-        public Coord getCoordinateWithDiagonal135LongestStreakOfAI()
+        public Coord getCoordinateDiagonal135LongestStreakOfAI()
         {
             Coord coordinate = new Coord(0, 0);
 
@@ -334,7 +323,7 @@ namespace ConnectXLibrary
             return coordinate;
         }//getCoordinateWithDiagonal135LongestStreakOfAI
 
-        public int getOverallWonPlayer()
+        public int getWinnerOfLastSession()
         {
             if (scorePlayer1 > scorePlayer2)
             {
@@ -383,6 +372,17 @@ namespace ConnectXLibrary
             return true;
         }//isRasterInitializedWithZeros
 
+        public void resetCounter()
+        {
+            counterPlayer1 = 0;
+            counterPlayer2 = 0;
+        }//resetCounter
+
+        public void resetStreakCounter()
+        {
+            counter = 0;
+        }//resetStreakCounter
+
         public bool isWon()
         {
             if (isWonVertical() == 1 || isWonHorizontal() == 1 || isWonDiagonal45() ==1 || isWonDiagonal135() == 1)
@@ -399,14 +399,10 @@ namespace ConnectXLibrary
 
         public int isWonVertical()
         {
-            int counterPlayer1 = 0;
-            int counterPlayer2 = 0;
-
             for (int i = 0; i < columns; i++)
             {
                 int j = 0;
-                counterPlayer1 = 0;
-                counterPlayer2 = 0;
+                resetCounter();
                 while (j < rows && raster[j,i] != 0)
                 {
                     if (raster[j, i] == 1)
@@ -436,13 +432,10 @@ namespace ConnectXLibrary
         }//isWonVertical
 
 		public int isWonHorizontal() {
-			int counterPlayer1 = 0;
-			int counterPlayer2 = 0;
 
 			for (int i = 0; i < rows; i++)
             {
-				counterPlayer1 = 0;
-				counterPlayer2 = 0;
+                resetCounter();
 				for (int j = 0; j < columns; j++)
                 {
 
@@ -609,7 +602,7 @@ namespace ConnectXLibrary
                 {
                     if (isWon())
                     {
-                        incrementScorePlayer(getCurrentGameWonPlayer());
+                        incrementScorePlayer(getWinnerOfLastGame());
                     }
                     return true;
                 }
@@ -631,6 +624,23 @@ namespace ConnectXLibrary
                     break;
             }
         }//incrementScorePlayer
+
+        public int checkIfColumnHasEmptySpot(int column)
+        {
+            int row = 0;
+            while (row < rows)
+            {
+                if (raster[row, column] == 0) return row;
+                row++;
+            }
+            return rows;
+        }//checkIfColumnHasEmptySpot
+
+        public void nextGame()
+        {
+            clearRaster();
+            playerAtTurn = 1;
+        }
         #endregion
-	}
+    }
 }

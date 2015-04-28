@@ -10,6 +10,10 @@ namespace ConnectXUnitTest
         private ConnectX game10Rows14Columns;
         private ConnectX game10Rows14Columns6Streak;
 
+        private ConnectX gameInterface;
+        private ConnectX gameInterface10Rows14Columns;
+        private ConnectX gameInterface10Rows14Columns5Streak;
+
         private ConnectX gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon;
         private ConnectX gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon;
 
@@ -390,6 +394,10 @@ namespace ConnectXUnitTest
 
                 }
             }
+
+            gameInterface = new ConnectX();
+            gameInterface10Rows14Columns = new ConnectX(10, 14);
+            gameInterface10Rows14Columns5Streak = new ConnectX(10, 14, 5);
         }
 
         [TestMethod]
@@ -421,7 +429,7 @@ namespace ConnectXUnitTest
 			ConnectX gameWithParameters = new ConnectX(10, 12, 7);
 			Assert.IsTrue(gameWithParameters.getRows() == 10);
 			Assert.IsTrue(gameWithParameters.getColumns() == 12);
-			Assert.IsTrue(gameWithParameters.getStreakToReach() == 7);
+			Assert.IsTrue(gameWithParameters.getTokenStreak() == 7);
 		}
 
 		[TestMethod]
@@ -464,7 +472,7 @@ namespace ConnectXUnitTest
             game.insertToken(3, 1);
             game.insertToken(1, 2);
 
-            Assert.IsTrue(game.getColumnWithVerticalLongestStreakOfAI() == 1);
+            Assert.IsTrue(game.getColumnVerticalLongestStreakOfAI() == 1);
         }
 
 		[TestMethod]
@@ -476,7 +484,7 @@ namespace ConnectXUnitTest
 			game.insertToken(0, 1);
 			game.insertToken(3, 2);
 
-			Assert.IsTrue(game.getRowWithHorizontalLongestStreakOfAI() == 0);
+			Assert.IsTrue(game.getRowHorizontalLongestStreakOfAI() == 0);
 		}
 
 	    [TestMethod]
@@ -488,8 +496,8 @@ namespace ConnectXUnitTest
 			game.insertToken(2, 1);
 			game.insertToken(2, 2);
 
-			Assert.IsTrue(game.getCoordinateWithDiagonal45LongestStreakOfAI().getRow() == 2);
-			Assert.IsTrue(game.getCoordinateWithDiagonal45LongestStreakOfAI().getColumn() == 2);
+			Assert.IsTrue(game.getCoordinateDiagonal45LongestStreakOfAI().getRow() == 2);
+			Assert.IsTrue(game.getCoordinateDiagonal45LongestStreakOfAI().getColumn() == 2);
 		}
 
 		[TestMethod]
@@ -502,8 +510,8 @@ namespace ConnectXUnitTest
 			game.insertToken(2, 2);
 			game.insertToken(3, 2);
 
-			Assert.IsTrue(game.getCoordinateWithDiagonal135LongestStreakOfAI().getRow() == 2);
-			Assert.IsTrue(game.getCoordinateWithDiagonal135LongestStreakOfAI().getColumn() == 1);
+			Assert.IsTrue(game.getCoordinateDiagonal135LongestStreakOfAI().getRow() == 2);
+			Assert.IsTrue(game.getCoordinateDiagonal135LongestStreakOfAI().getColumn() == 1);
 		}
 
 		[TestMethod]
@@ -588,7 +596,7 @@ namespace ConnectXUnitTest
         {
             Assert.IsTrue(game10Rows14Columns.getRows() == 10);
             Assert.IsTrue(game10Rows14Columns.getColumns() == 14);
-            Assert.IsTrue(game10Rows14Columns.getStreakToReach() == 4);
+            Assert.IsTrue(game10Rows14Columns.getTokenStreak() == 4);
         }
 
         [TestMethod]
@@ -596,7 +604,7 @@ namespace ConnectXUnitTest
         {
             Assert.IsTrue(game10Rows14Columns6Streak.getRows() == 10);
             Assert.IsTrue(game10Rows14Columns6Streak.getColumns() == 14);
-            Assert.IsTrue(game10Rows14Columns6Streak.getStreakToReach() == 6);
+            Assert.IsTrue(game10Rows14Columns6Streak.getTokenStreak() == 6);
         }
 
 		[TestMethod]
@@ -631,7 +639,7 @@ namespace ConnectXUnitTest
 		[TestMethod]
 		public void TestGetWinningPlayerGivenWonGame() {
 			gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.isWon();
-			Assert.IsTrue(gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.getCurrentGameWonPlayer() == 1);
+			Assert.IsTrue(gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.getWinnerOfLastGame() == 1);
 		}
 
 		[TestMethod]
@@ -641,5 +649,110 @@ namespace ConnectXUnitTest
 			game.insertToken(0, 1);
 			Assert.IsFalse(game.isRasterInitializedWithZeros());
 		}
+
+        [TestMethod]
+        public void TestInsertTokenByUserAndThenByAIAndThenByUserAndCheckIfTurnsAreRespected()
+        {
+            gameInterface.newGame();
+
+
+            Assert.IsTrue(gameInterface.checkIfWon(2, 1));
+            Assert.IsFalse(gameInterface.checkIfWon(2, 1));
+
+            Assert.IsTrue(gameInterface.insertTokenByAI());
+            Assert.IsFalse(gameInterface.insertTokenByAI());
+
+            Assert.IsTrue(gameInterface.checkIfWon(2, 1));
+        }
+
+        [TestMethod]
+        public void TestNewGameStarted()
+        {
+            gameInterface.newGame();
+            Assert.IsTrue(gameInterface.gameRunning());
+        }
+
+        [TestMethod]
+        public void TestGetScorePlayer1()
+        {
+            gameInterface.incrementScorePlayer(1);
+            // Parameter == player number
+            Assert.IsTrue(gameInterface.getScore(1) == 1);
+        }
+
+        [TestMethod]
+        public void TestGetOverallWonPlayer()
+        {
+            game.incrementScorePlayer(1);
+            game.incrementScorePlayer(2);
+            // Parameter == player number
+            Assert.IsTrue(game.getWinnerOfLastSession() == 0);
+            game.incrementScorePlayer(1);
+            Assert.IsTrue(game.getWinnerOfLastSession() == 1);
+            game.incrementScorePlayer(2);
+            game.incrementScorePlayer(2);
+            Assert.IsTrue(gameInterface.getWinnerOfLastSession() == 2);
+        }
+
+        [TestMethod]
+        public void TestNewGame2HumanPlayersWith10RowsAnd14Columns()
+        {
+            game.newGame();
+            Assert.IsTrue(gameInterface10Rows14Columns.gameRunning());
+        }
+
+        [TestMethod]
+        public void TestNewGameWith10Rows14ColumnsAnd5Streak()
+        {
+            gameInterface10Rows14Columns5Streak.newGame();
+            Assert.IsTrue(gameInterface.gameRunning());
+        }
+
+        [TestMethod]
+        public void TestNewGameWith10RowsAnd14Columns()
+        {
+            gameInterface10Rows14Columns.newGame();
+            Assert.IsTrue(gameInterface.gameRunning());
+        }
+
+        [TestMethod]
+        public void TestCurrentGameWon()
+        {
+            gameInterface.newGame();
+
+            Assert.IsTrue(gameInterface.isCurrentGameWon() == false);
+
+            gameInterface.checkIfWon(1, 1);
+            gameInterface.checkIfWon(2, 2);
+
+            gameInterface.checkIfWon(1, 1);
+            gameInterface.checkIfWon(3, 2);
+
+            gameInterface.checkIfWon(1, 1);
+            gameInterface.checkIfWon(4, 2);
+
+            gameInterface.checkIfWon(1, 1);
+
+            Assert.IsTrue(gameInterface.isCurrentGameWon() == true);
+
+        }
+
+        [TestMethod]
+        public void TestGetPlayerAtPlay()
+        {
+            // Parameter == player number
+            Assert.IsTrue(gameInterface.getPlayerAtPlay() == 1);
+        }
+
+        [TestMethod]
+        public void TestInsertTokenInColumn2ByPlayer1()
+        {
+            gameInterface.newGame();
+
+            // insertToken returns true if token is successfully inserted
+            Assert.IsTrue(gameInterface.checkIfWon(2, 1));
+            // return false if it is not his turn
+            Assert.IsTrue(gameInterface.checkIfWon(2, 2));
+        }
     }
 }

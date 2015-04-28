@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace ConnectXLibrary
@@ -11,13 +10,13 @@ namespace ConnectXLibrary
         private string namePlayer1, namePlayer2;
         private static int size = 60;
         Bitmap I;
-        Graphics gr, hr;
+        Graphics gr;
         ConnectX gamePlay;
         Pen myPen;
 		SolidBrush redBrush = new SolidBrush(Color.Red);
 		SolidBrush blueBrush = new SolidBrush(Color.Blue);
 		Pen blackPen = new Pen(Color.Black, 3);
-        ConnectX test;
+        ConnectX spel = new ConnectX();
         #endregion
 
         #region Constructor
@@ -30,7 +29,7 @@ namespace ConnectXLibrary
             this.tokenStreak = tokenStreak;
 
             gamePlay = new ConnectX(rows, columns, tokenStreak);
-            newGame();
+            //newGame();
 
             lblPlayer1.Text = namePlayer1;
             lblPlayer2.Text = namePlayer2;
@@ -47,6 +46,12 @@ namespace ConnectXLibrary
         #endregion
 
         #region Methods
+        private void pnlGame_Paint(object sender, PaintEventArgs e)
+        {
+            drawGrid();
+            drawHud();
+        }//pnlGame_MouseClick
+
         private void updateScores() {
             lblPointsPlayer1.Text = gamePlay.getScore(1).ToString();
             lblPointsPlayer2.Text = gamePlay.getScore(2).ToString();
@@ -57,7 +62,7 @@ namespace ConnectXLibrary
 			bool won = false;
             if (gamePlay.isCurrentGameWon())
             {
-                if (gamePlay.getCurrentGameWonPlayer() == 1) title = namePlayer1;
+                if (gamePlay.getWinnerOfLastGame() == 1) title = namePlayer1;
 				else title = namePlayer2;
 				title += " has won the game.";
 				won = true;
@@ -69,22 +74,19 @@ namespace ConnectXLibrary
 			}
 			if (won)
 			{
-				gr.Clear(Color.White);
 				updateScores();
 				DialogResult dialogResult = MessageBox.Show("Play another one?", title, MessageBoxButtons.YesNo);
 				if (dialogResult == DialogResult.Yes)
 				{
 					newGame();
-					drawGrid();
 				}
 				else if (dialogResult == DialogResult.No)
 				{
 					string message;
-					if (gamePlay.getOverallWonPlayer() == 0)
+					if (gamePlay.getWinnerOfLastSession() == 0)
 						message = "It's a tie!";
 					else
-						message = getName(gamePlay.getOverallWonPlayer()) + " won the game!";
-
+						message = getName(gamePlay.getWinnerOfLastSession()) + " won the game!";
 					DialogResult dialogResult2 = MessageBox.Show(message, "Game over!", MessageBoxButtons.OK);
 
 					if (dialogResult2 == DialogResult.OK)
@@ -100,15 +102,15 @@ namespace ConnectXLibrary
             gr = Graphics.FromImage(I);
             gr.Clear(Color.White);
             gr = pnlGame.CreateGraphics();
-            hr = pnlGame.CreateGraphics();
-            hr.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            gr.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            gr.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             myPen = new Pen(Brushes.Black, 1);
             startWidth = (pnlGame.Width / 2) - ((size * columns) / 2);
             startHeight = (pnlGame.Height / 2) - ((size * rows) / 2);
 
             float x = startWidth;
             float y = startHeight;
+
+            gr.Clear(Color.White);
 
             for (int i = 0; i < columns; i++)
             {
@@ -135,31 +137,31 @@ namespace ConnectXLibrary
 		}//drawHud
 
         private void drawToken(int column) {
-            Rectangle circle = new Rectangle((column * size) + 5 + startWidth, ((rows - emptySpotFree(column)) * size) + 5 + startHeight, size - 10, size - 10);
+            Rectangle circle = new Rectangle((column * size) + 5 + startWidth, ((rows - gamePlay.checkIfColumnHasEmptySpot(column)) * size) + 5 + startHeight, size - 10, size - 10);
             gr.DrawEllipse(blackPen, circle);
 
             if (gamePlay.getPlayerAtTurn() == 1)
             {
-                hr.FillEllipse(redBrush, circle);
+                gr.FillEllipse(blueBrush, circle);
             } else {
-                hr.FillEllipse(blueBrush, circle);
+                gr.FillEllipse(redBrush, circle);
             }
         }//drawToken
 
-        private void pnlGame_MouseMove(object sender, MouseEventArgs e)
-        {
-            lblMouseX.Text = e.X.ToString();
-            lblMouseY.Text = e.Y.ToString();
+        //private void pnlGame_MouseMove(object sender, MouseEventArgs e)
+        //{
+        //    lblMouseX.Text = e.X.ToString();
+        //    lblMouseY.Text = e.Y.ToString();
 
-            //TODO (Jel) : Deftig de hover laten werken
-            //Pen penOrange = new Pen(Brushes.Orange, 5);
-            //for (int i = 0; i < columns; i++) {
-            //    if (e.X >= i * size && e.X <= size * (i + 1)) {
-            //        hr.DrawRectangle(penOrange, i * size, 0, size + i, size * rows);
-            //        //gr.FillRectangle(new SolidBrush(Color.FromArgb(128, 255, 128, 0)), i * size, 0, size * i, size * rows);
-            //    }
-            //}
-        }//pnlGame_MouseMove
+        //    //TODO (Jel) : Deftig de hover laten werken
+        //    //Pen penOrange = new Pen(Brushes.Orange, 5);
+        //    //for (int i = 0; i < columns; i++) {
+        //    //    if (e.X >= i * size && e.X <= size * (i + 1)) {
+        //    //        gr.DrawRectangle(penOrange, i * size, 0, size + i, size * rows);
+        //    //        //gr.FillRectangle(new SolidBrush(Color.FromArgb(128, 255, 128, 0)), i * size, 0, size * i, size * rows);
+        //    //    }
+        //    //}
+        //}//pnlGame_MouseMove
 
         private void pnlGame_MouseClick(object sender, MouseEventArgs e)
         {
@@ -177,23 +179,6 @@ namespace ConnectXLibrary
             showPlayerAtTurn();
         }//pnlGame_MouseClick
 
-        private void pnlGame_Paint(object sender, PaintEventArgs e)
-        {
-            drawGrid();
-			drawHud();
-        }//pnlGame_MouseClick
-
-        private int emptySpotFree(int column) {
-            int row = 0;
-            int[,] raster = gamePlay.getRaster();
-            while (row < rows)
-            {
-                if (raster[row, column] == 0) return row;
-                row++;
-            }
-            return rows;
-        }//emptySpotFree
-
         private void showPlayerAtTurn()
         {
             int playerAtTurn = gamePlay.getPlayerAtTurn();
@@ -202,7 +187,8 @@ namespace ConnectXLibrary
         }//showPlayerAtTurn
 
         private void newGame() {
-            test = new ConnectX(rows, columns, tokenStreak);
+            spel.nextGame();
+            drawGrid();
         }//newGame
         #endregion
     }
