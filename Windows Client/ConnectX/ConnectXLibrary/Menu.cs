@@ -60,36 +60,26 @@ namespace ConnectXLibrary
         private void txtBoxPlayer1Name_TextChanged(object sender, EventArgs e)
         {
             checkNames();
-            checkDimension();
-            checkStreak();
         }//txtBoxPlayer1Name_TextChanged
 
         private void txtBoxPlayer2Name_TextChanged(object sender, EventArgs e)
         {
             checkNames();
-            checkDimension();
-            checkStreak();
         }//txtBoxPlayer2Name_TextChanged
 
         private void txtBoxWinstreak_TextChanged(object sender, EventArgs e)
         {
-            checkNames();
-            checkDimension();
             checkStreak();
         }//txtBoxWinstreak_TextChanged
 
         private void txtBoxColumns_TextChanged(object sender, EventArgs e)
         {
-            checkNames();
             checkDimension();
-            checkStreak();
         } // txtBoxWidth_TextChanged
 
         private void txtBoxRows_TextChanged(object sender, EventArgs e)
         {
-            checkNames();
             checkDimension();
-            checkStreak();
         } //txtBoxLength_TextChanged
 
 
