@@ -62,11 +62,10 @@ namespace ConnectXLibrary
             context.Response.ContentType = "application/json";
             string callback = context.Request.QueryString["callback"];
             string Param1 = context.Request.QueryString["Param1"];
+            string Param2 = context.Request.QueryString["Param2"];
+            string Param3 = context.Request.QueryString["Param3"];
             var RegisteredUsers = new List<ResponseForWebClient>();
-            RegisteredUsers.Add(new ResponseForWebClient("a"));
-            RegisteredUsers.Add(new ResponseForWebClient("b"));
-            RegisteredUsers.Add(new ResponseForWebClient("c"));
-            RegisteredUsers.Add(new ResponseForWebClient("d"));
+            RegisteredUsers.Add(new ResponseForWebClient(Param1, Param2, Param3));
             JavaScriptSerializer js = new JavaScriptSerializer();
             string JSONstring = js.Serialize(RegisteredUsers);
             string JSONPstring = string.Format("{0}({1});", callback, JSONstring);
