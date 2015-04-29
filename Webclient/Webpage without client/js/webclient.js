@@ -29,7 +29,7 @@
             }
 
             function insertToken(column) {
-                //
+                
             }
            
            $(document).on("mouseenter", ".column", function() {
@@ -45,6 +45,10 @@
                 insertToken(column);
                 //updateRaster();
             });
+
+            function ajaxCall() {
+                
+            }
         });
 
         function submitForm() {

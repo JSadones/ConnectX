@@ -113,8 +113,7 @@ namespace ConnectXLibrary
 
             //use this line to send your response in a custom header
             //context.Response.Headers["mycustomResponseHeader"] = "mycustomResponse";
-            
-            MessageBox.Show(cleaned_data);
+         
             context.Response.Close();
         }
 
