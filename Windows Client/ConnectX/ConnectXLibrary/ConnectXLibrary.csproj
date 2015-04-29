@@ -138,12 +138,6 @@
   <ItemGroup>
     <Content Include="media\banner.png" />
     <None Include="media\frame.png" />
-    <None Include="Resources\a1.wav" />
-    <None Include="Resources\a2.wav" />
-    <None Include="Resources\a3.wav" />
-    <None Include="Resources\a4.wav" />
-    <None Include="Resources\a5.wav" />
-    <None Include="Resources\a6.wav" />
     <Content Include="Resources\chip-icon.ico" />
     <None Include="Resources\banner1.png" />
     <None Include="Resources\128-184.jpg" />

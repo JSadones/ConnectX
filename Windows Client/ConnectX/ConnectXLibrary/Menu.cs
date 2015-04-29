@@ -6,6 +6,9 @@ namespace ConnectXLibrary
 {
     public partial class Menu : Form
     {
+        #region State
+        bool multiplayer;
+        #endregion
         #region Constructor
         public Menu() 
         {
@@ -14,7 +17,7 @@ namespace ConnectXLibrary
             picBoxPlayer2.BackColor = Color.Red;
 			txtBoxRows.Text = ConnectX.GetDefaultRows().ToString();
 			txtBoxColumns.Text = ConnectX.GetDefaultColumns().ToString();
-			txtBoxWinstreak.Text = ConnectX.GetDefaultTokenStreak().ToString();
+			txtBoxStreakToWin.Text = ConnectX.GetDefaultStreakToWin().ToString();
         }//Menu
         #endregion
 
@@ -23,21 +26,41 @@ namespace ConnectXLibrary
         #region EventClicks
         private void btnMultiplayer_Click(object sender, EventArgs e)
         {
-            pnlEnterData.Visible = true;
-            pnlStartScreen.Visible = false;
+            multiplayer = true;
+            showMenu();
         }//btnMultiplayer_Click
+
+        private void btnPlayCPU_Click(object sender, EventArgs e)
+        {
+            multiplayer = false;
+            showMenu();
+        }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
             string namePlayer1 = txtBoxPlayer1Name.Text;
-            string namePlayer2 = txtBoxPlayer2Name.Text;
             int columns = int.Parse(txtBoxColumns.Text);
             int rows = int.Parse(txtBoxRows.Text);
-            int winstreak = int.Parse(txtBoxWinstreak.Text);
+            int streaktowin = int.Parse(txtBoxStreakToWin.Text);
 
             pnlEnterData.Visible = false;
             pnlStartScreen.Visible = true;
-            Game gameForm = new Game(namePlayer1, namePlayer2, columns, rows, winstreak);
+            Game gameForm;
+
+            if (multiplayer)
+            {
+                string namePlayer2 = txtBoxPlayer2Name.Text;
+                gameForm = new Game(columns, rows, streaktowin, namePlayer1, namePlayer2);
+            }
+            else
+            {
+                gameForm = new Game(columns, rows, streaktowin, namePlayer1);
+            }
+
+
+            pnlEnterData.Visible = false;
+            pnlStartScreen.Visible = true;
+            
             gameForm.StartPosition = FormStartPosition.Manual;
             gameForm.Location = new Point(this.Location.X, this.Location.Y);
             gameForm.Show();
@@ -70,10 +93,10 @@ namespace ConnectXLibrary
             checkNames();
         }//txtBoxPlayer2Name_TextChanged
 
-        private void txtBoxWinstreak_TextChanged(object sender, EventArgs e)
+        private void txtBoxStreakToWin_TextChanged(object sender, EventArgs e)
         {
             checkStreak();
-        }//txtBoxWinstreak_TextChanged
+        }//txtBoxStreakToWin_TextChanged
 
         private void txtBoxColumns_TextChanged(object sender, EventArgs e)
         {
@@ -149,7 +172,7 @@ namespace ConnectXLibrary
 		{
             
 
-            if (txtBoxWinstreak.Text != "" && txtBoxColumns.Text !="" && txtBoxRows.Text != "")
+            if (txtBoxStreakToWin.Text != "" && txtBoxColumns.Text !="" && txtBoxRows.Text != "")
 			{
                 int columns = int.Parse(txtBoxRows.Text);
                 int rows = int.Parse(txtBoxColumns.Text);
@@ -158,12 +181,12 @@ namespace ConnectXLibrary
                 #region Exception Handling
                 try
                 {
-                    streak = Convert.ToInt32(txtBoxWinstreak.Text);
+                    streak = Convert.ToInt32(txtBoxStreakToWin.Text);
                 }
                 catch (FormatException e)
                 {
-                    txtBoxWinstreak.Text = ConnectX.GetDefaultTokenStreak().ToString();
-					streak = ConnectX.GetDefaultTokenStreak();
+                    txtBoxStreakToWin.Text = ConnectX.GetDefaultStreakToWin().ToString();
+					streak = ConnectX.GetDefaultStreakToWin();
                     lblErrorStreak.Text = "Invalid character.";
                 }
                 #endregion
@@ -206,6 +229,24 @@ namespace ConnectXLibrary
             Server server = new Server();
             server.Show();
         }
+
+        private void showMenu()
+        {
+            if (multiplayer)
+            {
+                lblPlayer2Name.Visible = true;
+                picBoxPlayer2.Visible = true;
+                txtBoxPlayer2Name.Visible = true;
+            }
+            else
+            {
+                lblPlayer2Name.Visible = false;
+                picBoxPlayer2.Visible = false;
+                txtBoxPlayer2Name.Visible = false;
+            }
+            pnlEnterData.Visible = true;
+            pnlStartScreen.Visible = false;
+        }//showMenu
         #endregion
     }
 }

@@ -8,7 +8,7 @@ namespace ConnectXLibrary
 {
     public class ResponseForWebClient
     {
-        string type;
+        public string type;
 
         public ResponseForWebClient() : this(""){}
 
