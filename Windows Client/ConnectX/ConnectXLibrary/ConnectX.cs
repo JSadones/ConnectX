@@ -474,7 +474,7 @@ namespace ConnectXLibrary
         {
             if ((gotStreakDiagonal(columns - 1, 1, -1) != 0))  return (gotStreakDiagonal(columns - 1, 1, -1));
             if ((gotStreakDiagonal(1, 2, 1) != 0)) return (gotStreakDiagonal(1, 2, 1));
-            if ((gotStreakDiagonal(0, 3, 1) !=0)) return (gotStreakDiagonal(0, 3, 1));
+            if ((gotStreakDiagonal(0, 3, 1) != 0)) return (gotStreakDiagonal(0, 3, 1));
             if ((gotStreakDiagonal(1, 4, 1) != 0)) return (gotStreakDiagonal(1, 4, 1));
             else return 0;
 
