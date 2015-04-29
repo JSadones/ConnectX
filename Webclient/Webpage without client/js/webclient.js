@@ -42,12 +42,29 @@
 
             $(document).on("click", ".column", function() {
                 var column = getSecondClass($(this)).replace(/\D/g,'');
-                insertToken(column);
-                //updateRaster();
+                ajaxCall(callback, "raster");
+                
             });
 
-            function ajaxCall() {
-                
+            function callback(data) {
+                console.log(data);
+            }
+
+            function ajaxCall(callback) {
+
+                $.support.cors = true;
+                $.ajax({
+                    type: "POST",
+                    crossdomain: true,
+                    contentType: "application/json; charset=utf-8",
+                    url: "http://127.0.0.1:8000/",
+                    dataType: "jsonp",
+                    data: { Param1 : arguments[1]},
+                    success: function (data) {
+                      callback(data);
+                    }
+                });
+
             }
         });
 
