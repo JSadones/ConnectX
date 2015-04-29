@@ -229,6 +229,7 @@ namespace ConnectXLibrary
         {
             Server server = new Server();
             server.Show();
+            System.Diagnostics.Process.Start("http://localhost:8000/");
         }
 
         private void showMenu()

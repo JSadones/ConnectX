@@ -1,7 +1,7 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using ConnectXLibrary.Properties;
-using System;
 
 namespace ConnectXLibrary
 {
@@ -10,6 +10,7 @@ namespace ConnectXLibrary
         #region State
         private int rows, columns, tokenStreak, startWidth, startHeight, size;
         private string namePlayer1, namePlayer2;
+        bool wonGame;
         Bitmap I;
         Graphics gr;
         ConnectX gamePlay;
@@ -31,16 +32,16 @@ namespace ConnectXLibrary
             this.rows = rows;
             this.columns = columns;
             this.tokenStreak = tokenStreak;
+            int streak = tokenStreak;
+            multiplayer = false;
 
-            gamePlay = new ConnectX(rows, columns, tokenStreak);
+            gamePlay = new ConnectX(rows, columns, tokenStreak, multiplayer);
             //newGame();
 
             lblPlayer1.Text = namePlayer1;
             lblPlayer2.Text = cpuName;
+            lblStreakNumber.Text = streak.ToString();
             showPlayerAtTurn();
-            showStreakToWin();
-
-            multiplayer = false;
         }//Game
 
         public Game(int columns, int rows, int tokenStreak, string namePlayer1, string namePlayer2) {
@@ -50,16 +51,16 @@ namespace ConnectXLibrary
             this.rows = rows;
             this.columns = columns;
             this.tokenStreak = tokenStreak;
+            int streak = tokenStreak;
+            multiplayer = true;
 
-            gamePlay = new ConnectX(rows, columns, tokenStreak);
+            gamePlay = new ConnectX(rows, columns, tokenStreak, multiplayer);
             //newGame();
 
             lblPlayer1.Text = namePlayer1;
             lblPlayer2.Text = namePlayer2;
+            lblStreakNumber.Text = streak.ToString();
             showPlayerAtTurn();
-			showStreakToWin();
-
-            multiplayer = true;
         }//Game
         #endregion
 
@@ -88,16 +89,18 @@ namespace ConnectXLibrary
 			bool won = false;
             if (gamePlay.isCurrentGameWon())
             {
+                wonGame = true;
                 if (gamePlay.getWinnerOfLastGame() == 1) title = namePlayer1;
-				else title = namePlayer2;
-				title += " has won the game.";
-				won = true;
-			}
+                else title = namePlayer2;
+                title += " has won the game.";
+                won = true;
+            }
             else if (gamePlay.rasterIsFull())
             {
-				title = "Raster is full.";
-				won = true;
-			}
+                title = "Raster is full.";
+                won = true;
+            }
+            else wonGame = false;
 			if (won)
 			{
 				updateScores();
@@ -163,9 +166,46 @@ namespace ConnectXLibrary
 			hud.FillEllipse(redBrush, redCircle);
 		}//drawHud
 
-        private void drawToken(int column) {
-            if (gamePlay.checkIfColumnHasEmptySpot(column) > -1) {
-                Rectangle circle = new Rectangle((column * size) + 5 + startWidth, ((rows - gamePlay.checkIfColumnHasEmptySpot(column) - 1) * size) + 5 + startHeight, size - 10, size - 10);
+        private void test(int column)
+        {
+            int row;
+            if (multiplayer == false && gamePlay.getPlayerAtTurn() == 1)
+            {
+                row = gamePlay.checkIfColumnHasEmptySpot(column);
+                gamePlay.insertToken(column, gamePlay.getPlayerAtTurn());
+                drawToken(column, row);
+            }
+            else if (multiplayer == false & gamePlay.getPlayerAtTurn() == 2)
+            {
+                int spot = gamePlay.chooseRandomSpot();
+                row = gamePlay.checkIfColumnHasEmptySpot(spot);
+                gamePlay.insertToken(spot, gamePlay.getPlayerAtTurn());
+                drawToken(spot, row);
+            }
+            else
+            {
+                row = gamePlay.checkIfColumnHasEmptySpot(column);
+                gamePlay.insertToken(column, gamePlay.getPlayerAtTurn());
+                drawToken(column, row);
+            } 
+
+            gamePlay.switchPlayerAtTurn();
+            gamePlay.checkIfWon(column, gamePlay.getPlayerAtTurn());
+            showIfWon();
+            showPlayerAtTurn();
+
+            if (multiplayer == false && gamePlay.getPlayerAtTurn() == 2 && !wonGame)
+            {
+                showPlayerAtTurn();
+
+                row = gamePlay.checkIfColumnHasEmptySpot(column);
+                test(0);
+            }
+        }
+
+        private void drawToken(int column, int row) {
+            if (row > -1) {
+                Rectangle circle = new Rectangle((column * size) + 5 + startWidth, ((rows - row - 1) * size) + 5 + startHeight, size - 10, size - 10);
                 gr.DrawEllipse(blackPen, circle);
 
                 if (gamePlay.getPlayerAtTurn() == 1)
@@ -174,8 +214,6 @@ namespace ConnectXLibrary
                 } else {
                     gr.FillEllipse(redBrush, circle);
                 }
-
-                gamePlay.checkIfWon(column, gamePlay.getPlayerAtTurn());
             }
         }//drawToken
 
@@ -200,26 +238,24 @@ namespace ConnectXLibrary
             {
                 if ((i * size) + startWidth <= e.X  && e.X <= (size * (i + 1) + startWidth))
                 {
-                    drawToken(i);
+                    test(i);
                     break;
                 }
             }
-            showIfWon();
-            showPlayerAtTurn();
         }//pnlGame_MouseClick
 
         private void showPlayerAtTurn()
         {
             int playerAtTurn = gamePlay.getPlayerAtTurn();
-            if (playerAtTurn == 1) lblTurnName.Text = namePlayer1;
-            else lblTurnName.Text = namePlayer2;
+            if (playerAtTurn == 1)
+            {
+                lblTurnName.Text = namePlayer1;
+            }
+            else
+            {
+                lblTurnName.Text = namePlayer2;
+            }
         }//showPlayerAtTurn
-
-		private void showStreakToWin()
-		{
-			int streak = gamePlay.getStreakToWin();
-			lblStreakNumber.Text = streak.ToString();
-		}//showStreakToWin
 
         private void newGame() {
             gamePlay.nextGame();
@@ -229,7 +265,7 @@ namespace ConnectXLibrary
 		private void calculateSlotSize()
 		{
 			size = 480 / rows;
-		}
+        }//calculateSlotSize
         #endregion
     }
 }
