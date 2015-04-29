@@ -425,11 +425,11 @@ namespace ConnectXUnitTest
 
 		[TestMethod]
 		public void TestNewGameWithParameters() {
-			// New game with 10 rows, 12 columns, tokenStreak of 7
+			// New game with 10 rows, 12 columns, streakToWin of 7
 			ConnectX gameWithParameters = new ConnectX(10, 12, 7);
 			Assert.IsTrue(gameWithParameters.getRows() == 10);
 			Assert.IsTrue(gameWithParameters.getColumns() == 12);
-			Assert.IsTrue(gameWithParameters.getTokenStreak() == 7);
+			Assert.IsTrue(gameWithParameters.getStreakToWin() == 7);
 		}
 
 		[TestMethod]
@@ -583,7 +583,7 @@ namespace ConnectXUnitTest
         {
             Assert.IsTrue(game10Rows14Columns.getRows() == 10);
             Assert.IsTrue(game10Rows14Columns.getColumns() == 14);
-            Assert.IsTrue(game10Rows14Columns.getTokenStreak() == 4);
+            Assert.IsTrue(game10Rows14Columns.getStreakToWin() == 4);
         }
 
         [TestMethod]
@@ -591,7 +591,7 @@ namespace ConnectXUnitTest
         {
             Assert.IsTrue(game10Rows14Columns6Streak.getRows() == 10);
             Assert.IsTrue(game10Rows14Columns6Streak.getColumns() == 14);
-            Assert.IsTrue(game10Rows14Columns6Streak.getTokenStreak() == 6);
+            Assert.IsTrue(game10Rows14Columns6Streak.getStreakToWin() == 6);
         }
 
 		[TestMethod]
