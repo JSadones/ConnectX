@@ -53,10 +53,11 @@
 			// 
 			// pnlGame
 			// 
-			this.pnlGame.BackColor = System.Drawing.Color.White;
-			this.pnlGame.Location = new System.Drawing.Point(12, 157);
+			this.pnlGame.BackColor = System.Drawing.SystemColors.WindowFrame;
+			this.pnlGame.BackgroundImage = global::ConnectXLibrary.Properties.Resources._128_184;
+			this.pnlGame.Location = new System.Drawing.Point(-4, 157);
 			this.pnlGame.Name = "pnlGame";
-			this.pnlGame.Size = new System.Drawing.Size(960, 524);
+			this.pnlGame.Size = new System.Drawing.Size(991, 540);
 			this.pnlGame.TabIndex = 4;
 			this.pnlGame.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlGame_Paint);
 			this.pnlGame.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pnlGame_MouseClick);
