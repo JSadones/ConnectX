@@ -445,54 +445,49 @@ namespace ConnectXLibrary
             return 0;
         }//isWonHorizontal
 
+        //public int isWonDiagonal45()
+        //{
+        //    for (int i = columns - 1; i >= 0; i--) 
+        //    {
+        //        int winner = getStreakWinnerDiagonal45(0, i);
 
-       /*  public int isWonDiagonal45()
-        /*  public int isWonDiagonal45()
->>>>>>> Stashed changes
-        {
-			for (int i = columns - 1; i >= 0; i--) 
-			{
-                int winner = getStreakWinnerDiagonal45(0, i);
-
-                if (1 <= winner && winner <= 2)
-                {
-                    return winner;
-                }
-			}
-			for (int i = 1; i < rows; i++)
-            {
-                int winner = getStreakWinnerDiagonal45(i, 0);
-                if (1 <= winner && winner <= 2)
-                {
-                    return winner;
-                }
-			}
-			return 0;
-        } //isWonDiagonal45
+        //        if (1 <= winner && winner <= 2)
+        //        {
+        //            return winner;
+        //        }
+        //    }
+        //    for (int i = 1; i < rows; i++)
+        //    {
+        //        int winner = getStreakWinnerDiagonal45(i, 0);
+        //        if (1 <= winner && winner <= 2)
+        //        {
+        //            return winner;
+        //        }
+        //    }
+        //    return 0;
+        //} //isWonDiagonal45
         
-        
-        public int isWonDiagonal135()
-        {
-            for (int i = 0; i < columns; i++)
-            {
-                int winner = getStreakWinnerDiagonal135(0, i);
-                if (1 <= winner && winner <= 2)
-                {
-                    return winner;
-                }
-            }
+        //public int isWonDiagonal135()
+        //{
+        //    for (int i = 0; i < columns; i++)
+        //    {
+        //        int winner = getStreakWinnerDiagonal135(0, i);
+        //        if (1 <= winner && winner <= 2)
+        //        {
+        //            return winner;
+        //        }
+        //    }
 
-            for (int i = 1; i < rows; i++)
-            {
-                int winner = getStreakWinnerDiagonal135(i, columns - 1);
-                if (1 <= winner && winner <= 2)
-                {
-                    return winner;
-                }
-            }
-            return 0;
-        }//isWonDiagonal135  */
-
+        //    for (int i = 1; i < rows; i++)
+        //    {
+        //        int winner = getStreakWinnerDiagonal135(i, columns - 1);
+        //        if (1 <= winner && winner <= 2)
+        //        {
+        //            return winner;
+        //        }
+        //    }
+        //    return 0;
+        //}//isWonDiagonal135
 
         public int isWonDiagonal()
         {
@@ -501,7 +496,7 @@ namespace ConnectXLibrary
             if ((gotStreakDiagonal(0, 3, 1) != 0)) return (gotStreakDiagonal(0, 3, 1));
             if ((gotStreakDiagonal(1, 4, 1) != 0)) return (gotStreakDiagonal(1, 4, 1));
             else return 0;
-        }
+        }//isWonDiagonal
 
         public int gotStreakDiagonal(int start, int type, int step)
         {
@@ -534,7 +529,7 @@ namespace ConnectXLibrary
 
                 }
             return 0;
-        }
+        }//gotStreakDiagonal
 
         public bool diagonalIterationCondition(int type, int i)
         {
@@ -562,7 +557,8 @@ namespace ConnectXLibrary
             {
                 return false;
             }
-        } 
+        } //diagonalIterationCondition
+
         private List<byte> checkEmptySpotInColumn()
         {
             List<byte> empySpots = new List<byte>();

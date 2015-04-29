@@ -127,7 +127,7 @@ namespace ConnectXLibrary
                 {
                     rows = Convert.ToInt32(txtBoxRows.Text);
                 }
-                catch (FormatException e)
+                catch (FormatException)
                 {
                     txtBoxRows.Text = ConnectX.GetDefaultRows().ToString();
                     rows = ConnectX.GetDefaultRows();
@@ -138,7 +138,7 @@ namespace ConnectXLibrary
                 {
                     columns = Convert.ToInt32(txtBoxColumns.Text);
                 }
-                catch (FormatException e)
+                catch (FormatException)
                 {
                     txtBoxColumns.Text = ConnectX.GetDefaultColumns().ToString();
 					columns = ConnectX.GetDefaultColumns();
@@ -184,7 +184,7 @@ namespace ConnectXLibrary
                 {
                     streak = Convert.ToInt32(txtBoxStreakToWin.Text);
                 }
-                catch (FormatException e)
+                catch (FormatException)
                 {
                     txtBoxStreakToWin.Text = ConnectX.GetDefaultStreakToWin().ToString();
 					streak = ConnectX.GetDefaultStreakToWin();
@@ -229,7 +229,6 @@ namespace ConnectXLibrary
         {
             Server server = new Server();
             server.Show();
-            System.Diagnostics.Process.Start("http://localhost:8000/");
         }
 
         private void showMenu()

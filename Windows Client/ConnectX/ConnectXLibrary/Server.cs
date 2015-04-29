@@ -10,25 +10,38 @@ namespace ConnectXLibrary
 {
     public partial class Server : Form
     {
+        #region State
         static HttpListener listener;
         private Thread listenThread1;
+        #endregion State
+
+        #region Constructor
         public Server()
         {
             InitializeComponent();
         }
-        
+        #endregion
+
         private void Server_Load(object sender, EventArgs e)
         {
-            listener = new HttpListener();
-            listener.Prefixes.Add("http://localhost:8000/");
-            listener.Prefixes.Add("http://127.0.0.1:8000/");
-            listener.AuthenticationSchemes = AuthenticationSchemes.Anonymous;
+            try
+            {
+                listener = new HttpListener();
+                listener.Prefixes.Add("http://localhost:8000/");
+                listener.Prefixes.Add("http://127.0.0.1:8000/");
+                listener.AuthenticationSchemes = AuthenticationSchemes.Anonymous;
 
-            listener.Start();
-            
-            this.listenThread1 = new Thread(new ParameterizedThreadStart(startlistener));
-            listenThread1.Start();
-           
+                listener.Start();
+
+                this.listenThread1 = new Thread(new ParameterizedThreadStart(startlistener));
+                listenThread1.Start();
+                System.Diagnostics.Process.Start("http://localhost:8000/");
+            }
+            catch (HttpListenerException)
+            {
+                System.Diagnostics.Debug.Write("Run as admin or server is already listening.");
+                this.Close();
+            }
         }
 
         private void startlistener(object s)
