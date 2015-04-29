@@ -8,13 +8,15 @@ namespace ConnectXLibrary
 {
     public class ResponseForWebClient
     {
-        public string type;
+        public string type, parameter1, parameter2;
 
-        public ResponseForWebClient() : this(""){}
+        public ResponseForWebClient() : this("","",""){}
 
-        public ResponseForWebClient(string type)
+        public ResponseForWebClient(string type, string parameter1, string parameter2)
         {
             this.type = type;
+            this.parameter1 = parameter1;
+            this.parameter2 = parameter2;
         }
 
         public string getType()
