@@ -41,31 +41,26 @@ namespace ConnectXLibrary
             string namePlayer1 = txtBoxPlayer1Name.Text;
             int columns = int.Parse(txtBoxColumns.Text);
             int rows = int.Parse(txtBoxRows.Text);
-<<<<<<< HEAD
             int streaktowin = int.Parse(txtBoxStreakToWin.Text);
 
             pnlEnterData.Visible = false;
             pnlStartScreen.Visible = true;
-            Game gameForm = new Game(namePlayer1, namePlayer2, columns, rows, streaktowin);
-=======
-            int winstreak = int.Parse(txtBoxWinstreak.Text);
             Game gameForm;
 
             if (multiplayer)
             {
                 string namePlayer2 = txtBoxPlayer2Name.Text;
-                 gameForm = new Game(columns, rows, winstreak, namePlayer1, namePlayer2);
+                gameForm = new Game(columns, rows, streaktowin, namePlayer1, namePlayer2);
             }
             else
             {
-                gameForm = new Game(columns, rows, winstreak, namePlayer1);
+                gameForm = new Game(columns, rows, streaktowin, namePlayer1);
             }
 
 
             pnlEnterData.Visible = false;
             pnlStartScreen.Visible = true;
             
->>>>>>> 44e11f164b57dfc85a97b9a8b7a922915ffe476a
             gameForm.StartPosition = FormStartPosition.Manual;
             gameForm.Location = new Point(this.Location.X, this.Location.Y);
             gameForm.Show();

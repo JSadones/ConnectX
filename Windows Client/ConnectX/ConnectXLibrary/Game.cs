@@ -38,7 +38,7 @@ namespace ConnectXLibrary
             lblPlayer1.Text = namePlayer1;
             lblPlayer2.Text = cpuName;
             showPlayerAtTurn();
-            showTokenStreak();
+            showStreakToWin();
 
             multiplayer = false;
         }//Game
@@ -57,13 +57,9 @@ namespace ConnectXLibrary
             lblPlayer1.Text = namePlayer1;
             lblPlayer2.Text = namePlayer2;
             showPlayerAtTurn();
-<<<<<<< HEAD
 			showStreakToWin();
-=======
-			showTokenStreak();
 
             multiplayer = true;
->>>>>>> 44e11f164b57dfc85a97b9a8b7a922915ffe476a
         }//Game
         #endregion
 
