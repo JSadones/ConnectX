@@ -12,6 +12,9 @@ namespace ConnectXLibrary
             InitializeComponent();
             picBoxPlayer1.BackColor = Color.Blue;
             picBoxPlayer2.BackColor = Color.Red;
+			txtBoxRows.Text = ConnectX.GetDefaultRows().ToString();
+			txtBoxColumns.Text = ConnectX.GetDefaultColumns().ToString();
+			txtBoxWinstreak.Text = ConnectX.GetDefaultTokenStreak().ToString();
         }//Menu
         #endregion
 
@@ -102,8 +105,8 @@ namespace ConnectXLibrary
                 }
                 catch (FormatException e)
                 {
-                    txtBoxRows.Text = "6";
-                    rows = 6;
+                    txtBoxRows.Text = ConnectX.GetDefaultRows().ToString();
+                    rows = ConnectX.GetDefaultRows();
                     lblErrorDimension.Text = "Invalid character.";
                 }
 
@@ -113,8 +116,8 @@ namespace ConnectXLibrary
                 }
                 catch (FormatException e)
                 {
-                    txtBoxColumns.Text = "7";
-                    columns = 7;
+                    txtBoxColumns.Text = ConnectX.GetDefaultColumns().ToString();
+					columns = ConnectX.GetDefaultColumns();
                     lblErrorDimension.Text = "Invalid character.";
                 }
                 #endregion
@@ -159,8 +162,8 @@ namespace ConnectXLibrary
                 }
                 catch (FormatException e)
                 {
-                    txtBoxWinstreak.Text = "4";
-                    streak = 4;
+                    txtBoxWinstreak.Text = ConnectX.GetDefaultTokenStreak().ToString();
+					streak = ConnectX.GetDefaultTokenStreak();
                     lblErrorStreak.Text = "Invalid character.";
                 }
                 #endregion
@@ -197,6 +200,12 @@ namespace ConnectXLibrary
 				lblErrorName.Text = "Empty or double names are not allowed";
 			}
 		}//checkNames
+
+        private void btnWebclient_Click(object sender, EventArgs e)
+        {
+            Server server = new Server();
+            server.Show();
+        }
         #endregion
     }
 }

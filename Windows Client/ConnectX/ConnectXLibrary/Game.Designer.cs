@@ -39,6 +39,8 @@
 			this.lblMouseX = new System.Windows.Forms.Label();
 			this.lblMouseY = new System.Windows.Forms.Label();
 			this.lblTurnName = new System.Windows.Forms.Label();
+			this.lblStreak = new System.Windows.Forms.Label();
+			this.lblStreakNumber = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// lblName
@@ -143,11 +145,36 @@
 			this.lblTurnName.BackColor = System.Drawing.Color.Transparent;
 			this.lblTurnName.Font = new System.Drawing.Font("Century Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblTurnName.ForeColor = System.Drawing.Color.White;
-			this.lblTurnName.Location = new System.Drawing.Point(601, 19);
+			this.lblTurnName.Location = new System.Drawing.Point(621, 19);
 			this.lblTurnName.Name = "lblTurnName";
 			this.lblTurnName.Size = new System.Drawing.Size(0, 44);
 			this.lblTurnName.TabIndex = 17;
 			this.lblTurnName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// lblStreak
+			// 
+			this.lblStreak.AutoSize = true;
+			this.lblStreak.BackColor = System.Drawing.Color.Transparent;
+			this.lblStreak.Font = new System.Drawing.Font("Century Gothic", 27.75F);
+			this.lblStreak.ForeColor = System.Drawing.Color.White;
+			this.lblStreak.Location = new System.Drawing.Point(483, 82);
+			this.lblStreak.Name = "lblStreak";
+			this.lblStreak.Size = new System.Drawing.Size(138, 44);
+			this.lblStreak.TabIndex = 18;
+			this.lblStreak.Text = "Streak:";
+			this.lblStreak.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// lblStreakNumber
+			// 
+			this.lblStreakNumber.AutoSize = true;
+			this.lblStreakNumber.BackColor = System.Drawing.Color.Transparent;
+			this.lblStreakNumber.Font = new System.Drawing.Font("Century Gothic", 27.75F);
+			this.lblStreakNumber.ForeColor = System.Drawing.Color.White;
+			this.lblStreakNumber.Location = new System.Drawing.Point(621, 82);
+			this.lblStreakNumber.Name = "lblStreakNumber";
+			this.lblStreakNumber.Size = new System.Drawing.Size(0, 44);
+			this.lblStreakNumber.TabIndex = 19;
+			this.lblStreakNumber.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			// 
 			// Game
 			// 
@@ -155,6 +182,8 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackgroundImage = global::ConnectXLibrary.Properties.Resources._128_184;
 			this.ClientSize = new System.Drawing.Size(984, 693);
+			this.Controls.Add(this.lblStreakNumber);
+			this.Controls.Add(this.lblStreak);
 			this.Controls.Add(this.lblTurnName);
 			this.Controls.Add(this.lblMouseY);
 			this.Controls.Add(this.lblMouseX);
@@ -188,5 +217,7 @@
         private System.Windows.Forms.Label lblMouseX;
         private System.Windows.Forms.Label lblMouseY;
         private System.Windows.Forms.Label lblTurnName;
+		private System.Windows.Forms.Label lblStreak;
+		private System.Windows.Forms.Label lblStreakNumber;
     }
 }
