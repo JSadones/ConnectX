@@ -127,7 +127,6 @@ namespace ConnectXLibrary
 			calculateSlotSize();
             I = new Bitmap(rows, columns);
             gr = Graphics.FromImage(I);
-            gr.Clear(Color.White);
             gr = pnlGame.CreateGraphics();
             gr.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             myPen = new Pen(Brushes.Black, 1);
@@ -137,7 +136,7 @@ namespace ConnectXLibrary
             float x = startWidth;
             float y = startHeight;
 
-            gr.Clear(Color.White);
+            gr.Clear(Color.NavajoWhite);
 
 			Image newImage = Resources.frame;
 
