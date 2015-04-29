@@ -6,6 +6,9 @@ namespace ConnectXLibrary
 {
     public partial class Menu : Form
     {
+        #region State
+        bool multiplayer;
+        #endregion
         #region Constructor
         public Menu() 
         {
@@ -23,21 +26,38 @@ namespace ConnectXLibrary
         #region EventClicks
         private void btnMultiplayer_Click(object sender, EventArgs e)
         {
-            pnlEnterData.Visible = true;
-            pnlStartScreen.Visible = false;
+            multiplayer = true;
+            showMenu();
         }//btnMultiplayer_Click
+
+        private void btnPlayCPU_Click(object sender, EventArgs e)
+        {
+            multiplayer = false;
+            showMenu();
+        }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
             string namePlayer1 = txtBoxPlayer1Name.Text;
-            string namePlayer2 = txtBoxPlayer2Name.Text;
             int columns = int.Parse(txtBoxColumns.Text);
             int rows = int.Parse(txtBoxRows.Text);
             int winstreak = int.Parse(txtBoxWinstreak.Text);
+            Game gameForm;
+
+            if (multiplayer)
+            {
+                string namePlayer2 = txtBoxPlayer2Name.Text;
+                 gameForm = new Game(columns, rows, winstreak, namePlayer1, namePlayer2);
+            }
+            else
+            {
+                gameForm = new Game(columns, rows, winstreak, namePlayer1);
+            }
+
 
             pnlEnterData.Visible = false;
             pnlStartScreen.Visible = true;
-            Game gameForm = new Game(namePlayer1, namePlayer2, columns, rows, winstreak);
+            
             gameForm.StartPosition = FormStartPosition.Manual;
             gameForm.Location = new Point(this.Location.X, this.Location.Y);
             gameForm.Show();
@@ -206,6 +226,24 @@ namespace ConnectXLibrary
             Server server = new Server();
             server.Show();
         }
+
+        private void showMenu()
+        {
+            if (multiplayer)
+            {
+                lblPlayer2Name.Visible = true;
+                picBoxPlayer2.Visible = true;
+                txtBoxPlayer2Name.Visible = true;
+            }
+            else
+            {
+                lblPlayer2Name.Visible = false;
+                picBoxPlayer2.Visible = false;
+                txtBoxPlayer2Name.Visible = false;
+            }
+            pnlEnterData.Visible = true;
+            pnlStartScreen.Visible = false;
+        }//showMenu
         #endregion
     }
 }

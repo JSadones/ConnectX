@@ -17,10 +17,33 @@ namespace ConnectXLibrary
 		SolidBrush redBrush = new SolidBrush(Color.Red);
 		SolidBrush blueBrush = new SolidBrush(Color.Blue);
 		Pen blackPen = new Pen(Color.Black, 3);
+        bool multiplayer;
         #endregion
 
         #region Constructor
-        public Game(string namePlayer1, string namePlayer2, int columns, int rows, int tokenStreak) {
+        public Game(int columns, int rows, int tokenStreak, string namePlayer1)
+        {
+            string cpuName = "Computer";
+
+            InitializeComponent();
+            this.namePlayer1 = namePlayer1;
+            this.namePlayer2 = cpuName;
+            this.rows = rows;
+            this.columns = columns;
+            this.tokenStreak = tokenStreak;
+
+            gamePlay = new ConnectX(rows, columns, tokenStreak);
+            //newGame();
+
+            lblPlayer1.Text = namePlayer1;
+            lblPlayer2.Text = cpuName;
+            showPlayerAtTurn();
+            showTokenStreak();
+
+            multiplayer = false;
+        }//Game
+
+        public Game(int columns, int rows, int tokenStreak, string namePlayer1, string namePlayer2) {
             InitializeComponent();
             this.namePlayer1 = namePlayer1;
             this.namePlayer2 = namePlayer2;
@@ -35,6 +58,8 @@ namespace ConnectXLibrary
             lblPlayer2.Text = namePlayer2;
             showPlayerAtTurn();
 			showTokenStreak();
+
+            multiplayer = true;
         }//Game
         #endregion
 
@@ -150,33 +175,6 @@ namespace ConnectXLibrary
                 } else {
                     gr.FillEllipse(redBrush, circle);
                 }
-
-                Random rnd = new Random();
-                int month = rnd.Next(1, 6);
-
-                System.Media.SoundPlayer player = new System.Media.SoundPlayer();
-                switch (month)
-                {
-                    case 1:
-                        player.Stream = Properties.Resources.a1;
-                        break;
-                    case 2:
-                        player.Stream = Properties.Resources.a2;
-                        break;
-                    case 3:
-                        player.Stream = Properties.Resources.a3;
-                        break;
-                    case 4:
-                        player.Stream = Properties.Resources.a4;
-                        break;
-                    case 5:
-                        player.Stream = Properties.Resources.a5;
-                        break;
-                    case 6:
-                        player.Stream = Properties.Resources.a6;
-                        break;
-                }
-                player.Play();
 
                 gamePlay.checkIfWon(column, gamePlay.getPlayerAtTurn());
             }
