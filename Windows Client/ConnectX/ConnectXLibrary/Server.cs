@@ -68,12 +68,13 @@ namespace ConnectXLibrary
             string Param3 = context.Request.QueryString["Param3"];
 
             var Response = new List<ResponseForWebClient>();
-
+            
+            Object thisLock = new Object();
             if (Param1 == "startGame")
-            {
+                {
                 if (Thread.GetData(Thread.GetNamedDataSlot("game")) == null)
                 {
-                    lock (thislock){
+                    lock (thisLock){
                     ConnectX game = new ConnectX();
                     Thread.SetData(Thread.GetNamedDataSlot("game"), game);
                     }

@@ -482,7 +482,7 @@ namespace ConnectXLibrary
         // brainfuck //
         public int gotStreakDiagonal(int start, int type, int step)
         {
-            for (int i = 0; diagonalIterationCondition(type, i); i+=step )
+            for (int i = start; diagonalIterationCondition(type, i); i+=step )
                {
                    int winner;
 
