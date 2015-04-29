@@ -566,29 +566,16 @@ namespace ConnectXUnitTest
         
         [TestMethod]
         public void TestGiven45DegreeWonGameIfIsWon() {
-            Assert.IsTrue(gameWith45DegreeStartingAtColumn0Row0WonRaster.isWonDiagonal45() == 1);
-			Assert.IsTrue(gameWith45DegreeStartingAtColumn0Row1WonRaster.isWonDiagonal45() == 2);
-			Assert.IsTrue(gameWithout45Degree.isWonDiagonal45() == 0);
+            Assert.IsTrue(gameWith45DegreeStartingAtColumn0Row0WonRaster.isWonDiagonal() == 1);
+			Assert.IsTrue(gameWith45DegreeStartingAtColumn0Row1WonRaster.isWonDiagonal() == 2);
+			Assert.IsTrue(gameWithout45Degree.isWonDiagonal() == 0);
         }
 
         [TestMethod]
         public void Test10Rows14ColumnsGiven45DegreeWonGameIfIsWon()
         {
-            Assert.IsTrue(game10Rows14ColumnsWith45DegreeStartingAtColumn0Row0WonRaster.isWonDiagonal45() == 1);
-            Assert.IsTrue(game10Rows14ColumnsWith45DegreeStartingAtColumn0Row1WonRaster.isWonDiagonal45() == 2);
-        }
-
-
-		[TestMethod]
-		public void TestGiven135DegreeWonGameIfIsWon() {
-			Assert.IsTrue(gameWith135DegreeStartingAtColumn0Row0WonRaster.isWonDiagonal135() == 2);
-			Assert.IsTrue(gameWith135DegreeStartingAtColumnXRow1WonRaster.isWonDiagonal135() == 2);
-		}
-
-        [TestMethod]
-        public void Test10Rows14ColumnsGiven135DegreeWonGameIfIsWon() {
-            Assert.IsTrue(game10Rows14ColumnsWith135DegreeStartingAtColumn0Row0WonRaster.isWonDiagonal135() == 2);
-            Assert.IsTrue(game10Rows14ColumnsWith135DegreeStartingAtColumnXRow1WonRaster.isWonDiagonal135() == 2);
+            Assert.IsTrue(game10Rows14ColumnsWith45DegreeStartingAtColumn0Row0WonRaster.isWonDiagonal() == 1);
+            Assert.IsTrue(game10Rows14ColumnsWith45DegreeStartingAtColumn0Row1WonRaster.isWonDiagonal() == 2);
         }
 
         [TestMethod]
