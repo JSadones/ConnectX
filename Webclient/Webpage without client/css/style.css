@@ -147,9 +147,25 @@
 
     .sidebar > p {
         clear:both;
-        text-align:center;
-        padding:3px 20px 5px 70px;
+        text-align:left;
+        padding:3px 50px 5px 40px;
         line-height:150%;
+    }
+
+    button {
+        font-size:1.5em;
+    }
+
+    #start
+    {
+        margin-left:35%;
+        margin-top:8%;
+    }
+
+    #form {
+        margin-left:40%;
+        margin-top:8%;
+        font-size:1.7em;
     }
 
 
