@@ -25,6 +25,7 @@ namespace ConnectXLibrary
             listener.AuthenticationSchemes = AuthenticationSchemes.Anonymous;
 
             listener.Start();
+            
             this.listenThread1 = new Thread(new ParameterizedThreadStart(startlistener));
             listenThread1.Start();
            
@@ -51,6 +52,7 @@ namespace ConnectXLibrary
             Thread.Sleep(100);
             var data_text = new StreamReader(context.Request.InputStream, context.Request.ContentEncoding).ReadToEnd();
 
+
             //functions used to decode json encoded data.
             //JavaScriptSerializer js = new JavaScriptSerializer();
             //var data1 = Uri.UnescapeDataString(data_text);
@@ -64,10 +66,36 @@ namespace ConnectXLibrary
             string Param1 = context.Request.QueryString["Param1"];
             string Param2 = context.Request.QueryString["Param2"];
             string Param3 = context.Request.QueryString["Param3"];
-            var RegisteredUsers = new List<ResponseForWebClient>();
-            RegisteredUsers.Add(new ResponseForWebClient(Param1, Param2, Param3));
+
+            var Response = new List<ResponseForWebClient>();
+
+            if (Param1 == "startGame")
+            {
+                if (Thread.GetData(Thread.GetNamedDataSlot("game")) == null)
+                {
+                    lock (thislock){
+                    ConnectX game = new ConnectX();
+                    Thread.SetData(Thread.GetNamedDataSlot("game"), game);
+                    }
+                    Response.Add(new ResponseForWebClient("startGame", "OK", "Game Created"));
+                }
+                else Response.Add(new ResponseForWebClient("startGame", "NOK", "Game already exists"));
+
+            }
+            else if (Param1 == "insertToken")
+            {
+
+                ConnectX game = (ConnectX)Thread.GetData(Thread.GetNamedDataSlot("game"));
+                
+                bool response = game.insertToken(Convert.ToInt32(Param2), Convert.ToInt32(Param3));
+
+
+                Response.Add(new ResponseForWebClient("insertToken", response.ToString(), ""));
+
+            }
+
             JavaScriptSerializer js = new JavaScriptSerializer();
-            string JSONstring = js.Serialize(RegisteredUsers);
+            string JSONstring = js.Serialize(Response);
             string JSONPstring = string.Format("{0}({1});", callback, JSONstring);
             //context.Response. Write(JSONPstring);
             if (context.Request.HttpMethod == "OPTIONS")

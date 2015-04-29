@@ -29,7 +29,8 @@ $(document).ready(function(){
     }
 
     function insertToken(column) {
-        ajaxCall(callback, "insertToken", column);
+        var player = 1;
+        ajaxCall(callback, "insertToken", column, player);
     }
 
    $(document).on("mouseenter", ".column", function() {
@@ -51,6 +52,8 @@ $(document).ready(function(){
         console.log(data);
         console.log(request);
         console.log(param1);
+
+        insertToken(0);
     }
 
     function ajaxCall(callback, request, param1) {
@@ -62,7 +65,7 @@ $(document).ready(function(){
             contentType: "application/json; charset=utf-8",
             url: "http://127.0.0.1:8000/",
             dataType: "jsonp",
-            data: { Param1 : arguments[1]},
+            data: { Param1 : arguments[1], Param2 : arguments[2], Param3: arguments[3]},
             success: function (data) {
               callback(data, request, param1);
             }
