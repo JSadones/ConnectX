@@ -9,6 +9,7 @@ namespace ConnectXLibrary
         #region State
         bool multiplayer;
         #endregion
+
         #region Constructor
         public Menu() 
         {

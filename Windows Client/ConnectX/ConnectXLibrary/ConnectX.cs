@@ -437,6 +437,7 @@ namespace ConnectXLibrary
             return 0;
         }//isWonHorizontal
 
+
        /*  public int isWonDiagonal45()
         {
 			for (int i = columns - 1; i >= 0; i--) 
@@ -458,17 +459,30 @@ namespace ConnectXLibrary
 			}
 			return 0;
         } //isWonDiagonal45
-        */
-        // public int isWonDiagonal45(){
-        // diagonalStreak(columns - 1, i>=0, i--, getStreakWinnerDiagonal45(0,i))
-        // diagonalStreak(1, i < rows, i++, getStreakWinnerDiagonal45(i,0) }
-        // public diagonalStreak (b, c, d, e){
-        // for (int i = b; c; d){
-        // int winner = e;
-        // if (1 <= winner && winner <= 2){return winner;}}
-        // return 0;}
+        
+        
+        public int isWonDiagonal135()
+        {
+            for (int i = 0; i < columns; i++)
+            {
+                int winner = getStreakWinnerDiagonal135(0, i);
+                if (1 <= winner && winner <= 2)
+                {
+                    return winner;
+                }
+            }
 
-        // dit is een mogelijke fix voor de herhaling in onze diagonal code.
+            for (int i = 1; i < rows; i++)
+            {
+                int winner = getStreakWinnerDiagonal135(i, columns - 1);
+                if (1 <= winner && winner <= 2)
+                {
+                    return winner;
+                }
+            }
+            return 0;
+        }//isWonDiagonal135  */
+
 
         public int isWonDiagonal()
         {
@@ -539,30 +553,7 @@ namespace ConnectXLibrary
             {
                 return false;
             }
-        }
-
-        /* public int isWonDiagonal135()
-        {
-            for (int i = 0; i < columns; i++)
-            {
-                int winner = getStreakWinnerDiagonal135(0, i);
-                if (1 <= winner && winner <= 2)
-                {
-                    return winner;
-                }
-            }
-
-            for (int i = 1; i < rows; i++)
-            {
-                int winner = getStreakWinnerDiagonal135(i, columns - 1);
-                if (1 <= winner && winner <= 2)
-                {
-                    return winner;
-                }
-            }
-            return 0;
-        }//isWonDiagonal135
-        */
+        } 
         private List<byte> checkEmptySpotInColumn()
         {
             List<byte> empySpots = new List<byte>();
