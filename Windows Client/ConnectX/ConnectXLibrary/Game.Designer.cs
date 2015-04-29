@@ -54,7 +54,7 @@
 			// pnlGame
 			// 
 			this.pnlGame.BackColor = System.Drawing.SystemColors.WindowFrame;
-			this.pnlGame.BackgroundImage = global::ConnectXLibrary.Properties.Resources._128_184;
+			this.pnlGame.BackgroundImage = global::ConnectXLibrary.Properties.Resources.bg;
 			this.pnlGame.Location = new System.Drawing.Point(-4, 157);
 			this.pnlGame.Name = "pnlGame";
 			this.pnlGame.Size = new System.Drawing.Size(991, 540);
@@ -181,7 +181,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackgroundImage = global::ConnectXLibrary.Properties.Resources._128_184;
+			this.BackgroundImage = global::ConnectXLibrary.Properties.Resources.bg;
 			this.ClientSize = new System.Drawing.Size(984, 693);
 			this.Controls.Add(this.lblStreakNumber);
 			this.Controls.Add(this.lblStreak);
@@ -331,7 +331,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::ConnectXLibrary.Properties.Resources._128_184;
+            this.BackgroundImage = global::ConnectXLibrary.Properties.Resources.bg;
             this.ClientSize = new System.Drawing.Size(984, 693);
             this.Controls.Add(this.lblStreakNumber);
             this.Controls.Add(this.lblStreak);

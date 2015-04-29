@@ -4,7 +4,7 @@
     {
         public string type, parameter1, parameter2;
 
-        public ResponseForWebClient() : this("","",""){}
+        public ResponseForWebClient() : this("a","b","c"){}
 
         public ResponseForWebClient(string type, string parameter1, string parameter2)
         {
