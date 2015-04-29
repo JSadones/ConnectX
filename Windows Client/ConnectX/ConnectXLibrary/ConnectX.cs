@@ -385,11 +385,11 @@ namespace ConnectXLibrary
 
         public bool isWon()
         {
-            if (isWonVertical() == 1 || isWonHorizontal() == 1 || isWonDiagonal45() ==1 || isWonDiagonal135() == 1)
+            if (isWonVertical() == 1 || isWonHorizontal() == 1 || isWonDiagonal() == 1) // || isWonDiagonal45() ==1 || isWonDiagonal135() == 1)
             {
                 winningPlayer = 1;
                 return true;
-            } else if (isWonVertical() == 2 || isWonHorizontal() == 2 || isWonDiagonal45() == 2 || isWonDiagonal135() == 2)
+            } else if (isWonVertical() == 2 || isWonHorizontal() == 2 || isWonDiagonal() == 2) // isWonDiagonal45() == 2 || isWonDiagonal135() == 2)
             {
                 winningPlayer = 2;
                 return true;
@@ -437,7 +437,7 @@ namespace ConnectXLibrary
             return 0;
         }//isWonHorizontal
 
-        public int isWonDiagonal45()
+       /*  public int isWonDiagonal45()
         {
 			for (int i = columns - 1; i >= 0; i--) 
 			{
@@ -458,7 +458,7 @@ namespace ConnectXLibrary
 			}
 			return 0;
         } //isWonDiagonal45
-
+        */
         // public int isWonDiagonal45(){
         // diagonalStreak(columns - 1, i>=0, i--, getStreakWinnerDiagonal45(0,i))
         // diagonalStreak(1, i < rows, i++, getStreakWinnerDiagonal45(i,0) }
@@ -469,14 +469,14 @@ namespace ConnectXLibrary
         // return 0;}
 
         // dit is een mogelijke fix voor de herhaling in onze diagonal code.
+
         public int isWonDiagonal()
         {
-            gotStreakDiagonal(columns - 1, 1, -1);
-            gotStreakDiagonal(1, 2 ,1);
-
-            gotStreakDiagonal(0, 3, 1);
-            gotStreakDiagonal(1, 4, 1);
-            return 0;
+            if ((gotStreakDiagonal(columns - 1, 1, -1) != 0))  return (gotStreakDiagonal(columns - 1, 1, -1));
+            if ((gotStreakDiagonal(1, 2, 1) != 0)) return (gotStreakDiagonal(1, 2, 1));
+            if ((gotStreakDiagonal(0, 3, 1) !=0)) return (gotStreakDiagonal(0, 3, 1));
+            if ((gotStreakDiagonal(1, 4, 1) != 0)) return (gotStreakDiagonal(1, 4, 1));
+            else return 0;
 
         }
         // brainfuck //
@@ -484,52 +484,56 @@ namespace ConnectXLibrary
         {
             for (int i = 0; diagonalIterationCondition(type, i); i+=step )
                {
-                    if (type == 1)
-                    {
-                        return getStreakWinnerDiagonal45(0, i);
-                    }
-                    else if (type == 2)
-                    {
-                        return getStreakWinnerDiagonal45(i, 0);
-                    }
-                    else if (type == 3)
-                    {
-                        return getStreakWinnerDiagonal135(0, i);
-                    }
-                    else if (type == 4)
-                    {
-                        return getStreakWinnerDiagonal135(i, columns - 1);
-                    }
-                    else
-                    {
-                        return 0;
-                    }
-                    
+                   int winner;
+
+                   if (type == 1)
+                   {
+                       winner = getStreakWinnerDiagonal45(0, i);
+                   }
+                   else if (type == 2)
+                   {
+                       winner = getStreakWinnerDiagonal45(i, 0);
+                   }
+                   else if (type == 3)
+                   {
+                       winner = getStreakWinnerDiagonal135(0, i);
+                   }
+                   else if (type == 4)
+                   {
+                       winner = getStreakWinnerDiagonal135(i, columns - 1);
+                   }
+                   else break;
+
+                   if (1 <= winner && winner <= 2)
+                   {
+                       return winner;
+                   } 
+
                 }
             return 0;
         }
 
         public bool diagonalIterationCondition(int type, int i)
         {
-            if( type == 1)
+            if(type == 1)
             {
-                if (i >= 0) return true;
-                else return false;
+                return (i >= 0);
+               
             }
             else if (type == 2)
             {
-                if (i < rows) return true;
-                else return false;
+                return (i < rows);
+                
             }
             else if (type == 3)
             {
-                if (i < columns) return true;
-                else return false;
+                return (i < columns);
+                
             }
             else if (type == 4)
             {
-                if (i < rows) return true;
-                else return false;
+                return (i < rows);
+                
             }
             else
             {
@@ -537,7 +541,7 @@ namespace ConnectXLibrary
             }
         }
 
-        public int isWonDiagonal135()
+        /* public int isWonDiagonal135()
         {
             for (int i = 0; i < columns; i++)
             {
@@ -558,7 +562,7 @@ namespace ConnectXLibrary
             }
             return 0;
         }//isWonDiagonal135
-
+        */
         private List<byte> checkEmptySpotInColumn()
         {
             List<byte> empySpots = new List<byte>();
