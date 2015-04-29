@@ -29,9 +29,9 @@
             }
 
             function insertToken(column) {
-                
+                ajaxCall(callback, "insertToken");
             }
-           
+
            $(document).on("mouseenter", ".column", function() {
                 $('.'+getSecondClass($(this)).toString()).css("background-color","red");
             });
@@ -42,12 +42,32 @@
 
             $(document).on("click", ".column", function() {
                 var column = getSecondClass($(this)).replace(/\D/g,'');
-                insertToken(column);
-                //updateRaster();
+                
+                insertToken();
+                
             });
 
-            function ajaxCall() {
-                
+            function callback(data, request, param1) {
+                console.log(data);
+                console.log(request);
+                console.log(param1);
+            }
+
+            function ajaxCall(callback, request, param1) {
+
+                $.support.cors = true;
+                $.ajax({
+                    type: "POST",
+                    crossdomain: true,
+                    contentType: "application/json; charset=utf-8",
+                    url: "http://127.0.0.1:8000/",
+                    dataType: "jsonp",
+                    data: { Param1 : arguments[1]},
+                    success: function (data, request, param1) {
+                      callback(data, request, param1);
+                    }
+                });
+
             }
         });
 
