@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Threading;
+
+using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
 
@@ -13,6 +15,7 @@ namespace ConnectXLibrary
         #region State
         static HttpListener listener;
         private Thread listenThread1;
+        ThreadLocal<ConnectX> threadGame;
         #endregion State
 
         #region Constructor
@@ -81,16 +84,21 @@ namespace ConnectXLibrary
             string Param3 = context.Request.QueryString["Param3"];
 
             var Response = new List<ResponseForWebClient>();
-            
-            Object thisLock = new Object();
+            		
+                     
+
             if (Param1 == "startGame")
                 {
-                if (Thread.GetData(Thread.GetNamedDataSlot("game")) == null)
+                if (threadGame == null)
                 {
-                    lock (thisLock){
                     ConnectX game = new ConnectX();
-                    Thread.SetData(Thread.GetNamedDataSlot("game"), game);
-                    }
+                    
+
+                    threadGame = new ThreadLocal<ConnectX>(() =>
+                    {
+                        return game;
+                    });
+                    
                     Response.Add(new ResponseForWebClient("startGame", "OK", "Game Created"));
                 }
                 else Response.Add(new ResponseForWebClient("startGame", "NOK", "Game already exists"));
@@ -99,7 +107,7 @@ namespace ConnectXLibrary
             else if (Param1 == "insertToken")
             {
 
-                ConnectX game = (ConnectX)Thread.GetData(Thread.GetNamedDataSlot("game"));
+                ConnectX game = threadGame.Value;
                 
                 bool response = game.insertToken(Convert.ToInt32(Param2), Convert.ToInt32(Param3));
 
