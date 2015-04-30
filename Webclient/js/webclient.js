@@ -44,25 +44,27 @@ $(document).ready(function(){
     $(document).on("click", ".column", function() {
         var column = getSecondClass($(this)).replace(/\D/g,'');
         
-        if(insertToken(column)) {
-            var i = getHighestTokenInColumn();
-
-            $('.row+'i+'.column'+j).html("v");
-        } else {
-            alert('no');
-        }
+        insertToken(column);   
         
     });
 
-    function getHighestTokenInColumn(column) {
-        ajaxCall(callback, "getRowIndexOfLowestEmptyTokenInColumn", column);
+    function callback(data, column, player) {
+        console.log(data);
+        if (data[0].type=="insertToken") {
+            if(data[0].parameter1 == "True") {
+
+                $('.row'+data[0].parameter2+'.column'+arguments[1]).html(player);
+                console.log('.row'+data[0].parameter2+'.column'+column);
+                console.log("jup");
+
+            } else {
+                alert('no');
+            }
+        
+        }
     }
 
-    function callback(result) {
-        return result;
-    }
-
-    function ajaxCall(callback, request, param1) {
+    function ajaxCall(callback, request, column, player) {
 
         $.support.cors = true;
         $.ajax({
@@ -73,7 +75,7 @@ $(document).ready(function(){
             dataType: "jsonp",
             data: { Param1 : arguments[1], Param2 : arguments[2], Param3: arguments[3]},
             success: function (data) {
-              callback(data);
+              callback(data, column, player);
             }
         });
 
@@ -96,16 +98,16 @@ $(document).ready(function(){
         }
             
         content += '</tr>';
-        for (var i = 0; i< values["rows"]; i++) {
+        for (var i = values["rows"] - 1; i >= 0; i--) {
             content += '<tr>';
             for (var j = 0; j < values["columns"]; j++) {
-                content += "<td class='column column"+j+" row"+i+"'>x</td>"
+                content += "<td class='column column"+j+" row"+i+"'>_</td>"
             }
             content += '</tr>';
         }
         content += '</table>';
 
-        ajaxCall(callback, "startGame");
+        ajaxCall(callback, "startGame", values["rows"], values["columns"]);
 
         $( "#raster" ).html(content);
 
