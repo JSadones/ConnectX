@@ -10,7 +10,7 @@ namespace ConnectXLibrary
         #region State
         private int rows, columns, tokenStreak, startWidth, startHeight, size;
         private string namePlayer1, namePlayer2;
-        bool wonGame;
+        bool wonGame, gameChanges = false;
         Bitmap I;
         Graphics gr;
         ConnectX gamePlay;
@@ -239,6 +239,7 @@ namespace ConnectXLibrary
                 if ((i * size) + startWidth <= e.X  && e.X <= (size * (i + 1) + startWidth))
                 {
                     test(i);
+                    if (!gameChanges) gameChanges = true;
                     break;
                 }
             }
@@ -266,6 +267,22 @@ namespace ConnectXLibrary
 		{
 			size = 480 / rows;
         }//calculateSlotSize
+
+        private void Game_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (gameChanges)
+            {
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to close the game?", "Game is still in progress", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+                else
+                {
+                    showIfWon();
+                }
+            }
+        }//Game_FormClosing
         #endregion
     }
 }
