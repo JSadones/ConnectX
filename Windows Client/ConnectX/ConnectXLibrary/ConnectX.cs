@@ -415,7 +415,7 @@ namespace ConnectXLibrary
                 resetCounter();
                 for (int j = 0; j < rows; j++)
                 {
-                    winner = winnerCalculation("vertical", i, j, streakToWin);
+                    winner = winnerCalculation(j, i);
                     if (winner != 0) return winner;
                 }
             }
@@ -432,7 +432,7 @@ namespace ConnectXLibrary
                 resetCounter();
                 for (int j = 0; j < columns; j++)
                 {
-                    winner = winnerCalculation("horizontal", i, j, streakToWin);
+                    winner = winnerCalculation( i, j);
                     if (winner != 0) return winner;
                 }
             }
@@ -441,53 +441,38 @@ namespace ConnectXLibrary
             return winner;
         }//isWonHorizontal
 
-        public int winnerCalculation(string type, int i, int j, int streakToWin)
+        public int winnerCalculation( int i, int j)
         {
-            if (type == "vertical")
-            {
-                if (raster[j, i] == 1) counterPlayer1++;
-                else counterPlayer1 = 0;
-
-                if (raster[j, i] == 2) counterPlayer2++;
-                else counterPlayer2 = 0;
-                streakCounter("vertical", i, j);
-
-                if (counterPlayer1 == streakToWin) return 1;
-                if (counterPlayer2 == streakToWin) return 2;
-            }
-            else if (type == "horizontal")
-            {
-                if (raster[i, j] == 1) counterPlayer1++;
-                else counterPlayer1 = 0;
-
-                if (raster[i, j] == 2) counterPlayer2++;
-                else counterPlayer2 = 0;
-                streakCounter("horizontal", i, j);
-
-                if (counterPlayer1 == streakToWin) return 1;
-                if (counterPlayer2 == streakToWin) return 2;
-            }
+                if (streakCounter(i, j, 1) == streakToWin) return 1;
+                if (streakCounter(i, j, 2) == streakToWin) return 2;
+           
 
             return 0;
         }
-        public int streakCounter(string type, int i, int j)
+        public int streakCounter(int i, int j, int player)
         {
-				int row,column;
-				if (type == "vertical")
-				{
-				    row = i;
-                    column = j;
-				}
-				else if (type == "horizontal")
-				{
-                    row = j;
-                    column = i;
-				}
-				if (raster[i,j] == 1) return counterPlayer1++;
-				else  return counterPlayer1 = 0;
+                if (raster[i, j] == player)
+                {
+                    if (player == 1)
+                    {
+                        int tmp = j;
+                        counterPlayer2 = 0;
+                        counterPlayer1++ ;
+                        return counterPlayer1;
+                    }
+                    else if (player == 2)
+                    {
+                        counterPlayer2 = 0;
+                        return ++counterPlayer2;
+                    }
+                }
+                else {
+                    counterPlayer1 = 0;
+                    counterPlayer2 = 0;
+                }
+                return 0;
+             
 
-				if (raster[i,j] == 2) return counterPlayer2++;
-				else return counterPlayer2 = 0;
         }
         public int isWonDiagonal()
         {
