@@ -10,7 +10,7 @@ namespace ConnectXLibrary
         #region State
         private int rows, columns, tokenStreak, startWidth, startHeight, size;
         private string namePlayer1, namePlayer2;
-        bool wonGame;
+        bool wonGame, gameChanges = false;
         Bitmap I;
         Graphics gr;
         ConnectX gamePlay;
@@ -70,7 +70,7 @@ namespace ConnectXLibrary
             if (number == 1) return namePlayer1;
             else return namePlayer2;
         }
-        #endregion
+        #endregion+
 
         #region Methods
         private void pnlGame_Paint(object sender, PaintEventArgs e)
@@ -187,13 +187,13 @@ namespace ConnectXLibrary
                 row = gamePlay.checkIfColumnHasEmptySpot(column);
                 gamePlay.insertToken(column, gamePlay.getPlayerAtTurn());
                 drawToken(column, row);
-            } 
+            }
 
             gamePlay.switchPlayerAtTurn();
-            gamePlay.checkIfWon(column, gamePlay.getPlayerAtTurn());
-            showIfWon();
             showPlayerAtTurn();
-
+            bool isWon = gamePlay.checkIfWon(column, gamePlay.getPlayerAtTurn());
+            if(isWon) showIfWon();
+            
             if (multiplayer == false && gamePlay.getPlayerAtTurn() == 2 && !wonGame)
             {
                 showPlayerAtTurn();
@@ -239,6 +239,7 @@ namespace ConnectXLibrary
                 if ((i * size) + startWidth <= e.X  && e.X <= (size * (i + 1) + startWidth))
                 {
                     test(i);
+                    if (!gameChanges) gameChanges = true;
                     break;
                 }
             }
@@ -266,6 +267,22 @@ namespace ConnectXLibrary
 		{
 			size = 480 / rows;
         }//calculateSlotSize
+
+        private void Game_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (gameChanges)
+            {
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to close the game?", "Game is still in progress", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+                else
+                {
+                    showIfWon();
+                }
+            }
+        }//Game_FormClosing
         #endregion
     }
 }
