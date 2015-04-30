@@ -47,7 +47,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\chip-icon.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -80,6 +81,11 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ConnectX.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="ResponseForWebClient.cs" />
     <Compile Include="Server.cs">
       <SubType>Form</SubType>
@@ -87,7 +93,10 @@
     <Compile Include="Server.Designer.cs">
       <DependentUpon>Server.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Server.resx" />
+    <EmbeddedResource Include="Server.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Server1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Game.resx">
       <DependentUpon>Game.cs</DependentUpon>
     </EmbeddedResource>
@@ -103,11 +112,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -136,11 +140,12 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="media\banner.png" />
-    <None Include="media\frame.png" />
-    <Content Include="Resources\chip-icon.ico" />
-    <None Include="Resources\banner1.png" />
-    <None Include="Resources\128-184.jpg" />
+    <None Include="Resources\navBg.png" />
+    <None Include="Resources\frame.png" />
+    <None Include="Resources\exit.png" />
+    <None Include="Resources\banner.png" />
+    <None Include="Resources\bg.png" />
+    <None Include="Resources\bgpanel.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
