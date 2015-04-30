@@ -93,10 +93,6 @@
     <Compile Include="Server.Designer.cs">
       <DependentUpon>Server.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Server.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Server1.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Game.resx">
       <DependentUpon>Game.cs</DependentUpon>
     </EmbeddedResource>
