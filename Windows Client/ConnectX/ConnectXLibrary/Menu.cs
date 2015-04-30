@@ -7,10 +7,7 @@ namespace ConnectXLibrary
     public partial class Menu : Form
     {
         #region State
-        bool multiplayer;
-		bool dimensionOK;
-		bool streakOK;
-		bool namesOK;
+        bool multiplayer, dimensionOK, streakOK, namesOK;
         #endregion
 
         #region Constructor
@@ -22,7 +19,8 @@ namespace ConnectXLibrary
 			txtBoxRows.Text = ConnectX.GetDefaultRows().ToString();
 			txtBoxColumns.Text = ConnectX.GetDefaultColumns().ToString();
 			txtBoxStreakToWin.Text = ConnectX.GetDefaultStreakToWin().ToString();
-			startButtonState();
+            checkNames();
+            startButtonState();
         }//Menu
         #endregion
 
@@ -268,7 +266,7 @@ namespace ConnectXLibrary
             }
             pnlEnterData.Visible = true;
             pnlStartScreen.Visible = false;
-        }//showMenu
+        }
         #endregion
     }
 }
