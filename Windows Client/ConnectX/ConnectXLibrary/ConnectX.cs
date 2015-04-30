@@ -404,7 +404,7 @@ namespace ConnectXLibrary
             }
             return false;
         }//isWon
-        public int isWonVertical()
+/*        public int isWonVertical()
         {
             for (int i = 0; i < columns; i++)
             {
@@ -423,6 +423,7 @@ namespace ConnectXLibrary
             }
             return 0;
         }//isWonVertical
+*/
         public int isWonHorizontal()
         {
             for (int i = 0; i < rows; i++)
@@ -444,7 +445,7 @@ namespace ConnectXLibrary
         }
         //isWonHorizontal
 
-/       public int isWonVertical()
+       public int isWonVertical()
         {
             for (int i = 0; i < columns; i++)
             {
@@ -456,7 +457,7 @@ namespace ConnectXLibrary
             }
             return 0;
         }//isWonVertical
-*
+
         public int isWonHorizontal()
         {
             for (int i = 0; i < rows; i++)
@@ -469,7 +470,7 @@ namespace ConnectXLibrary
             }
             return 0;
         }//isWonHorizontal
-*
+
        public int crossWinCheck(int type, int i, int j, int streakToWin)
         {
             if (type == 1)
@@ -496,7 +497,7 @@ namespace ConnectXLibrary
             }
             else return 0;
         }
-*/
+
        /*  public int isWonDiagonal45()
         {
 			for (int i = columns - 1; i >= 0; i--) 
