@@ -1,4 +1,6 @@
 $(document).ready(function(){   
+
+    var playerAtPlay = 1;
         // Start
             // Show start div
         // Options
@@ -29,8 +31,9 @@ $(document).ready(function(){
     }
 
     function insertToken(column) {
-        var player = 1;
-        ajaxCall(callback, "insertToken", column, player);
+        ajaxCall(callback, "insertToken", column, playerAtPlay);
+        if (playerAtPlay == 1) playerAtPlay = 2;
+        else playerAtPlay = 1;
     }
 
    $(document).on("mouseenter", ".column", function() {
@@ -44,22 +47,27 @@ $(document).ready(function(){
     $(document).on("click", ".column", function() {
         var column = getSecondClass($(this)).replace(/\D/g,'');
         
-        if(insertTokenAndGetRow(column)) {
-            $('.row.b')
-        } else {
-
-        }
+        insertToken(column);   
         
     });
 
-    function callback(data, request, param1) {
+    function callback(data, column, player) {
         console.log(data);
-        console.log(request);
-        console.log(param1);
+        if (data[0].type=="insertToken") {
+            if(data[0].parameter1 == "True") {
 
+                $('.row'+data[0].parameter2+'.column'+arguments[1]).html(player);
+                console.log('.row'+data[0].parameter2+'.column'+column);
+                console.log("jup");
+
+            } else {
+                alert('no');
+            }
+        
+        }
     }
 
-    function ajaxCall(callback, request, param1) {
+    function ajaxCall(callback, request, column, player) {
 
         $.support.cors = true;
         $.ajax({
@@ -70,7 +78,7 @@ $(document).ready(function(){
             dataType: "jsonp",
             data: { Param1 : arguments[1], Param2 : arguments[2], Param3: arguments[3]},
             success: function (data) {
-              callback(data, request, param1);
+              callback(data, column, player);
             }
         });
 
@@ -93,16 +101,16 @@ $(document).ready(function(){
         }
             
         content += '</tr>';
-        for (var i = 0; i< values["rows"]; i++) {
+        for (var i = values["rows"] - 1; i >= 0; i--) {
             content += '<tr>';
             for (var j = 0; j < values["columns"]; j++) {
-                content += "<td class='column column"+j+" row"+i+"'>x</td>"
+                content += "<td class='column column"+j+" row"+i+"'>_</td>"
             }
             content += '</tr>';
         }
         content += '</table>';
 
-        ajaxCall(callback, "startGame");
+        ajaxCall(callback, "startGame", values["rows"], values["columns"]);
 
         $( "#raster" ).html(content);
 
