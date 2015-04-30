@@ -139,6 +139,20 @@ namespace ConnectXLibrary
             return -1;
         }//getRowIndexOfLowestEmptyTokenInColumn
 
+        public int getRowIndexOfHighestTokenInColumn(int column)
+        {
+            int row = 0;
+            while (row < rows)
+            {
+                if (raster[row, column] == 0) return row - 1;
+                if (row == rows - 1 ) return row ;
+                row++;
+            }
+
+
+            return -1;
+        }//getRowIndexOfHighestTokenInColumn
+
         public int getPlayerAtTurn()
         {
             return playerAtTurn;

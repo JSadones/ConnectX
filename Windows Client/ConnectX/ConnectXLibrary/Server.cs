@@ -111,7 +111,7 @@ namespace ConnectXLibrary
                 
                 bool response = game.insertToken(Convert.ToInt32(Param2), Convert.ToInt32(Param3));
 
-                int row = game.getRowIndexOfLowestEmptyTokenInColumn(Convert.ToInt32(Param2)) - 1;
+                int row = game.getRowIndexOfHighestTokenInColumn(Convert.ToInt32(Param2));
 
 
                 Response.Add(new ResponseForWebClient("insertToken", response.ToString(), row.ToString()));
