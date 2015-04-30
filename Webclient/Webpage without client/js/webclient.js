@@ -34,7 +34,7 @@ $(document).ready(function(){
     }
 
    $(document).on("mouseenter", ".column", function() {
-        $('.'+getSecondClass($(this)).toString()).css("background-color","red");
+       $('.' + getSecondClass($(this)).toString()).css("background-color", "red");
     });
 
     $(document).on("mouseleave", ".column", function() {
