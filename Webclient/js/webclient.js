@@ -1,4 +1,6 @@
 $(document).ready(function(){   
+
+    var playerAtPlay = 1;
         // Start
             // Show start div
         // Options
@@ -29,8 +31,9 @@ $(document).ready(function(){
     }
 
     function insertToken(column) {
-        var player = 1;
-        ajaxCall(callback, "insertToken", column, player);
+        ajaxCall(callback, "insertToken", column, playerAtPlay);
+        if (playerAtPlay == 1) playerAtPlay = 2;
+        else playerAtPlay = 1;
     }
 
    $(document).on("mouseenter", ".column", function() {

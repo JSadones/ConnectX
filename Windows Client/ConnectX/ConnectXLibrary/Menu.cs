@@ -29,6 +29,7 @@ namespace ConnectXLibrary
         #region EventClicks
         private void btnMultiplayer_Click(object sender, EventArgs e)
         {
+            groupDifficulty.Visible = false;
             multiplayer = true;
             showMenu();
         }//btnMultiplayer_Click
@@ -36,6 +37,7 @@ namespace ConnectXLibrary
         private void btnPlayCPU_Click(object sender, EventArgs e)
         {
             multiplayer = false;
+            groupDifficulty.Visible = true;
             showMenu();
         }
 
@@ -57,9 +59,13 @@ namespace ConnectXLibrary
             }
             else
             {
+                string test;
+                if (radioEasy.Checked) test = radioEasy.Text;
+                else if (radioMedium.Checked) test = radioMedium.Text;
+                else if (radioHard.Checked) test = radioHard.Text;
+
                 gameForm = new Game(columns, rows, streaktowin, namePlayer1);
             }
-
 
             pnlEnterData.Visible = false;
             pnlStartScreen.Visible = true;
