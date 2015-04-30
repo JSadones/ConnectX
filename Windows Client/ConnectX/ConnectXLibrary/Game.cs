@@ -15,12 +15,15 @@ namespace ConnectXLibrary
         Graphics gr;
         ConnectX gamePlay;
         Pen myPen;
-		SolidBrush redBrush = new SolidBrush(Color.Red);
-		SolidBrush blueBrush = new SolidBrush(Color.Blue);
-		Pen blackPen = new Pen(Color.Black, 3);
+        SolidBrush redBrush = new SolidBrush(Color.Red);
+        SolidBrush blueBrush = new SolidBrush(Color.Blue);
+        Pen blackPen = new Pen(Color.Black, 3);
         bool multiplayer;
+        int i = 0;
+        Timer t;
+        token[] tokens;
         #endregion
-
+        //this.FormBorderStyle = FormBorderStyle.None;
         #region Constructor
         public Game(int columns, int rows, int tokenStreak, string namePlayer1)
         {
@@ -44,7 +47,8 @@ namespace ConnectXLibrary
             showPlayerAtTurn();
         }//Game
 
-        public Game(int columns, int rows, int tokenStreak, string namePlayer1, string namePlayer2) {
+        public Game(int columns, int rows, int tokenStreak, string namePlayer1, string namePlayer2)
+        {
             InitializeComponent();
             this.namePlayer1 = namePlayer1;
             this.namePlayer2 = namePlayer2;
@@ -79,14 +83,16 @@ namespace ConnectXLibrary
             drawHud();
         }//pnlGame_MouseClick
 
-        private void updateScores() {
+        private void updateScores()
+        {
             lblPointsPlayer1.Text = gamePlay.getScore(1).ToString();
             lblPointsPlayer2.Text = gamePlay.getScore(2).ToString();
         }//updateScores
 
-        private void showIfWon() {
-			string title = "";
-			bool won = false;
+        private void showIfWon()
+        {
+            string title = "";
+            bool won = false;
             if (gamePlay.isCurrentGameWon())
             {
                 wonGame = true;
@@ -101,33 +107,34 @@ namespace ConnectXLibrary
                 won = true;
             }
             else wonGame = false;
-			if (won)
-			{
-				updateScores();
-				DialogResult dialogResult = MessageBox.Show("Play another one?", title, MessageBoxButtons.YesNo);
-				if (dialogResult == DialogResult.Yes)
-				{
-					newGame();
-				}
-				else if (dialogResult == DialogResult.No)
-				{
-					string message;
-					if (gamePlay.getWinnerOfLastSession() == 0)
-						message = "It's a tie!";
-					else
-						message = getName(gamePlay.getWinnerOfLastSession()) + " won the game!";
-					DialogResult dialogResult2 = MessageBox.Show(message, "Game over!", MessageBoxButtons.OK);
+            if (won)
+            {
+                updateScores();
+                DialogResult dialogResult = MessageBox.Show("Play another one?", title, MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    newGame();
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    string message;
+                    if (gamePlay.getWinnerOfLastSession() == 0)
+                        message = "It's a tie!";
+                    else
+                        message = getName(gamePlay.getWinnerOfLastSession()) + " won the game!";
+                    DialogResult dialogResult2 = MessageBox.Show(message, "Game over!", MessageBoxButtons.OK);
 
-					if (dialogResult2 == DialogResult.OK)
-					{
-						this.Hide();
-					}
-				}
-			}
+                    if (dialogResult2 == DialogResult.OK)
+                    {
+                        this.Hide();
+                    }
+                }
+            }
         }//checkIfWon
 
-        private void drawGrid() {
-			calculateSlotSize();
+        private void drawGrid()
+        {
+            calculateSlotSize();
             I = new Bitmap(rows, columns);
             gr = Graphics.FromImage(I);
             gr = pnlGame.CreateGraphics();
@@ -141,7 +148,7 @@ namespace ConnectXLibrary
 
             gr.Clear(Color.NavajoWhite);
 
-			Image newImage = Resources.frame;
+            Image newImage = Resources.frame;
 
             for (int i = 0; i < rows; i++)
             {
@@ -155,16 +162,16 @@ namespace ConnectXLibrary
             }
         }//drawGrid
 
-		private void drawHud()
-		{
-			Graphics hud = this.CreateGraphics();
-			Rectangle blueCircle = new Rectangle(75, 20, 45, 45);
-			Rectangle redCircle = new Rectangle(75, 80, 45, 45);
-			hud.DrawEllipse(blackPen, blueCircle);
-			hud.DrawEllipse(blackPen, redCircle);
-			hud.FillEllipse(blueBrush, blueCircle);
-			hud.FillEllipse(redBrush, redCircle);
-		}//drawHud
+        private void drawHud()
+        {
+            Graphics hud = this.CreateGraphics();
+            Rectangle blueCircle = new Rectangle(75, 20, 45, 45);
+            Rectangle redCircle = new Rectangle(75, 80, 45, 45);
+            hud.DrawEllipse(blackPen, blueCircle);
+            hud.DrawEllipse(blackPen, redCircle);
+            hud.FillEllipse(blueBrush, blueCircle);
+            hud.FillEllipse(redBrush, redCircle);
+        }//drawHud
 
         private void test(int column)
         {
@@ -192,8 +199,8 @@ namespace ConnectXLibrary
             gamePlay.switchPlayerAtTurn();
             showPlayerAtTurn();
             bool isWon = gamePlay.checkIfWon(column, gamePlay.getPlayerAtTurn());
-            if(isWon) showIfWon();
-            
+            if (isWon) showIfWon();
+
             if (multiplayer == false && gamePlay.getPlayerAtTurn() == 2 && !wonGame)
             {
                 showPlayerAtTurn();
@@ -203,15 +210,26 @@ namespace ConnectXLibrary
             }
         }
 
-        private void drawToken(int column, int row) {
-            if (row > -1) {
+        private void drawToken(int column, int row)
+        {
+            if (row > -1)
+            {
+                //Point location = new Point((column * size) + startWidth, -1 * rows + startHeight);
                 Rectangle circle = new Rectangle((column * size) + 5 + startWidth, ((rows - row - 1) * size) + 5 + startHeight, size - 10, size - 10);
                 gr.DrawEllipse(blackPen, circle);
 
                 if (gamePlay.getPlayerAtTurn() == 1)
                 {
+                    //token token = new token();
+                    //token.create(1, size, location, pnlGame);
+                    //pnlGame.Controls.Add(token);
                     gr.FillEllipse(blueBrush, circle);
-                } else {
+                }
+                else
+                {
+                    //token token = new token();
+                    //token.create(2, size, location, pnlGame);
+                    //pnlGame.Controls.Add(token);
                     gr.FillEllipse(redBrush, circle);
                 }
             }
@@ -236,7 +254,7 @@ namespace ConnectXLibrary
         {
             for (int i = 0; i < columns; i++)
             {
-                if ((i * size) + startWidth <= e.X  && e.X <= (size * (i + 1) + startWidth))
+                if ((i * size) + startWidth <= e.X && e.X <= (size * (i + 1) + startWidth))
                 {
                     test(i);
                     if (!gameChanges) gameChanges = true;
@@ -258,14 +276,15 @@ namespace ConnectXLibrary
             }
         }//showPlayerAtTurn
 
-        private void newGame() {
+        private void newGame()
+        {
             gamePlay.nextGame();
             drawGrid();
         }//newGame
 
-		private void calculateSlotSize()
-		{
-			size = 480 / rows;
+        private void calculateSlotSize()
+        {
+            size = 480 / rows;
         }//calculateSlotSize
 
         private void Game_FormClosing(object sender, FormClosingEventArgs e)
@@ -284,5 +303,42 @@ namespace ConnectXLibrary
             }
         }//Game_FormClosing
         #endregion
+    }
+
+    class token : PictureBox
+    {
+        Random r = new Random();
+
+        public token()
+        {
+            move();
+        }//token
+
+        public void create(int player, int size, Point location, Panel pnlGame)
+        {
+            this.Parent = pnlGame;
+            this.Location = location;
+            //this.MinimumSize = new Size(7, 7);
+            this.Size = new Size(size, size);
+            this.BackColor = Color.Transparent;
+            this.BackgroundImageLayout = ImageLayout.Stretch;
+            if (player == 1) this.BackgroundImage = Resources.blueToken;
+            else this.BackgroundImage = Resources.redToken;
+        }//create
+
+        private void move()
+        {
+            Timer t = new Timer();
+            t.Interval = 10;
+
+            t.Tick += new EventHandler(t_Tick);
+            
+            t.Start();
+        }//move
+
+        private void t_Tick(object sender, EventArgs e)
+        {
+            this.Location += new Size(0, 5);
+        }//t_Tick
     }
 }

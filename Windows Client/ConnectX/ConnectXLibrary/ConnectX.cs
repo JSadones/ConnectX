@@ -440,7 +440,7 @@ namespace ConnectXLibrary
                 resetCounter();
                 for (int j = 0; j < columns; j++)
                 {
-                    winner = winnerCalculation( i, j);
+                    winner = winnerCalculation(i, j);
                     if (winner != 0) return winner;
                 }
             }
@@ -515,7 +515,6 @@ namespace ConnectXLibrary
             return 0;
         }//gotStreakDiagonal
 
-
         public bool diagonalIterationCondition(int type, int i)
         {
             if(type == 1)
@@ -544,7 +543,6 @@ namespace ConnectXLibrary
             }
         } //diagonalIterationCondition
 
-
         private List<byte> checkEmptySpotInColumn()
         {
             List<byte> empySpots = new List<byte>();
@@ -564,7 +562,6 @@ namespace ConnectXLibrary
             if (playerAtTurn == 1) playerAtTurn = 2;
             else playerAtTurn = 1;
         }//switchPlayerAtTurn
-
 
         public bool rasterIsFull()
         {

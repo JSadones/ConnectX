@@ -134,7 +134,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\blueToken.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\navBg.png" />
     <None Include="Resources\frame.png" />
@@ -142,6 +144,12 @@
     <None Include="Resources\banner.png" />
     <None Include="Resources\bg.png" />
     <None Include="Resources\bgpanel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\redToken.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blueToken2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
