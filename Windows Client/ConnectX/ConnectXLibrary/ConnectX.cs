@@ -15,17 +15,12 @@ namespace ConnectXLibrary
         #endregion State
 
         #region Constructor
-        public ConnectX()
-            : this(defaultRows, defaultColumns, defaultStreak, defaultMP)
-        {
-        }
+        public ConnectX(): this(defaultRows, defaultColumns, defaultStreak, defaultMP){ }
 
-        public ConnectX(int rows, int columns)
-            : this(rows, columns, defaultStreak, defaultMP)
-        {
-        }
+        public ConnectX(int rows, int columns) : this(rows, columns, defaultStreak, defaultMP) { }
 
-        public ConnectX(int rows, int columns, int streakToWin, bool multiplayer) {
+        public ConnectX(int rows, int columns, int streakToWin, bool multiplayer)
+        {
             this.rows = rows;
             this.columns = columns;
             this.streakToWin = streakToWin;
@@ -133,7 +128,7 @@ namespace ConnectXLibrary
             return 0;
         }//getStreakWinnerDiagonal45
 
-        private int getRowIndexOfLowestEmptyTokenInColumn(int column)
+        public int getRowIndexOfLowestEmptyTokenInColumn(int column)
         {
             int row = 0;
             while (row < rows)
@@ -405,8 +400,7 @@ namespace ConnectXLibrary
             return false;
         }//isWon
 
-       public int isWonVertical()
-        
+        public int isWonVertical()
         {
             int winner;
 
@@ -443,35 +437,33 @@ namespace ConnectXLibrary
 
         public int winnerCalculation( int i, int j)
         {
-                if (streakCounter(i, j, 1) == streakToWin) return 1;
-
-                else if (streakCounter(i, j, 2) == streakToWin) return 2;
-           
-                else return 0;
+            if (streakCounter(i, j, 1) == streakToWin) return 1;
+            else if (streakCounter(i, j, 2) == streakToWin) return 2;
+            else return 0;
         }// winnerCalculation
 
         public int streakCounter(int i, int j, int player)
         {
-                if (raster[i, j] == player)
+            if (raster[i, j] == player)
+            {
+                if (player == 1)
                 {
-                    if (player == 1)
-                    {
-                        int tmp = j;
-                        counterPlayer2 = 0;
-                        counterPlayer1++ ;
-                        return counterPlayer1;
-                    }
-                    else if (player == 2)
-                    {
-                        counterPlayer1 = 0;
-                        return ++counterPlayer2;
-                    }
-                }
-                else {
-                    counterPlayer1 = 0;
+                    int tmp = j;
                     counterPlayer2 = 0;
+                    counterPlayer1++ ;
+                    return counterPlayer1;
                 }
-                return 0;    
+                else if (player == 2)
+                {
+                    counterPlayer2 = 0;
+                    return ++counterPlayer2;
+                }
+            }
+            else {
+                counterPlayer1 = 0;
+                counterPlayer2 = 0;
+            }
+            return 0;
         }// streakCounter
 
         public int isWonDiagonal()
@@ -504,8 +496,7 @@ namespace ConnectXLibrary
                    if (1 <= winner && winner <= 2)
                    {
                        return winner;
-                   } 
-
+                   }
                 }
             return 0;
         }//gotStreakDiagonal
@@ -556,10 +547,7 @@ namespace ConnectXLibrary
 
         public void switchPlayerAtTurn()
         {
-            if (playerAtTurn == 1)
-            {
-                playerAtTurn = 2;
-            }
+            if (playerAtTurn == 1) playerAtTurn = 2;
             else playerAtTurn = 1;
         }//switchPlayerAtTurn
 
@@ -634,16 +622,8 @@ namespace ConnectXLibrary
 
         public void incrementScorePlayer(int player)
         {
-            switch (player)
-            {
-                case 1:
-                    scorePlayer1++;
-                    break;
-
-                case 2:
-                    scorePlayer2++;
-                    break;
-            }
+            if (player == 1) scorePlayer1++;
+            else scorePlayer2++;
         }//incrementScorePlayer
 
         public int checkIfColumnHasEmptySpot(int column)

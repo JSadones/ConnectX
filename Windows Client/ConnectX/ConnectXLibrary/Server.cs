@@ -91,7 +91,7 @@ namespace ConnectXLibrary
                 {
                 if (threadGame == null)
                 {
-                    ConnectX game = new ConnectX();
+                    ConnectX game = new ConnectX(Convert.ToInt32(Param2), Convert.ToInt32(Param3));
                     
 
                     threadGame = new ThreadLocal<ConnectX>(() =>
@@ -111,8 +111,10 @@ namespace ConnectXLibrary
                 
                 bool response = game.insertToken(Convert.ToInt32(Param2), Convert.ToInt32(Param3));
 
+                int row = game.getRowIndexOfLowestEmptyTokenInColumn(Convert.ToInt32(Param2)) - 1;
 
-                Response.Add(new ResponseForWebClient("insertToken", response.ToString(), ""));
+
+                Response.Add(new ResponseForWebClient("insertToken", response.ToString(), row.ToString()));
 
             }
 

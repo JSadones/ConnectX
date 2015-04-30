@@ -55,11 +55,16 @@
             this.btnWebclient = new System.Windows.Forms.Button();
             this.picBoxBanner = new System.Windows.Forms.PictureBox();
             this.pnlStartScreen = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chckEasy = new System.Windows.Forms.CheckBox();
+            this.chckMedium = new System.Windows.Forms.CheckBox();
+            this.chckHard = new System.Windows.Forms.CheckBox();
             this.pnlEnterData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxPlayer2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxPlayer1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxBanner)).BeginInit();
             this.pnlStartScreen.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblSideInfo
@@ -123,6 +128,7 @@
             // pnlEnterData
             // 
             this.pnlEnterData.BackColor = System.Drawing.Color.Transparent;
+            this.pnlEnterData.Controls.Add(this.groupBox1);
             this.pnlEnterData.Controls.Add(this.lblErrorStreak);
             this.pnlEnterData.Controls.Add(this.lblErrorName);
             this.pnlEnterData.Controls.Add(this.lblErrorDimension);
@@ -182,7 +188,7 @@
             // 
             this.picBoxPlayer2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.picBoxPlayer2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picBoxPlayer2.Location = new System.Drawing.Point(662, 86);
+            this.picBoxPlayer2.Location = new System.Drawing.Point(545, 84);
             this.picBoxPlayer2.Name = "picBoxPlayer2";
             this.picBoxPlayer2.Size = new System.Drawing.Size(49, 49);
             this.picBoxPlayer2.TabIndex = 17;
@@ -193,7 +199,7 @@
             // 
             this.picBoxPlayer1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.picBoxPlayer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picBoxPlayer1.Location = new System.Drawing.Point(662, 18);
+            this.picBoxPlayer1.Location = new System.Drawing.Point(545, 16);
             this.picBoxPlayer1.Name = "picBoxPlayer1";
             this.picBoxPlayer1.Size = new System.Drawing.Size(49, 49);
             this.picBoxPlayer1.TabIndex = 16;
@@ -285,7 +291,7 @@
             // txtBoxPlayer2Name
             // 
             this.txtBoxPlayer2Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoxPlayer2Name.Location = new System.Drawing.Point(448, 86);
+            this.txtBoxPlayer2Name.Location = new System.Drawing.Point(331, 84);
             this.txtBoxPlayer2Name.MaxLength = 10;
             this.txtBoxPlayer2Name.Name = "txtBoxPlayer2Name";
             this.txtBoxPlayer2Name.Size = new System.Drawing.Size(189, 49);
@@ -298,7 +304,7 @@
             this.lblPlayer2Name.AutoSize = true;
             this.lblPlayer2Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPlayer2Name.ForeColor = System.Drawing.Color.White;
-            this.lblPlayer2Name.Location = new System.Drawing.Point(139, 89);
+            this.lblPlayer2Name.Location = new System.Drawing.Point(22, 87);
             this.lblPlayer2Name.Name = "lblPlayer2Name";
             this.lblPlayer2Name.Size = new System.Drawing.Size(288, 42);
             this.lblPlayer2Name.TabIndex = 3;
@@ -309,7 +315,7 @@
             this.lblPlayer1Name.AutoSize = true;
             this.lblPlayer1Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPlayer1Name.ForeColor = System.Drawing.Color.White;
-            this.lblPlayer1Name.Location = new System.Drawing.Point(139, 21);
+            this.lblPlayer1Name.Location = new System.Drawing.Point(22, 19);
             this.lblPlayer1Name.Name = "lblPlayer1Name";
             this.lblPlayer1Name.Size = new System.Drawing.Size(288, 42);
             this.lblPlayer1Name.TabIndex = 2;
@@ -318,7 +324,7 @@
             // txtBoxPlayer1Name
             // 
             this.txtBoxPlayer1Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoxPlayer1Name.Location = new System.Drawing.Point(448, 18);
+            this.txtBoxPlayer1Name.Location = new System.Drawing.Point(331, 16);
             this.txtBoxPlayer1Name.MaxLength = 10;
             this.txtBoxPlayer1Name.Name = "txtBoxPlayer1Name";
             this.txtBoxPlayer1Name.Size = new System.Drawing.Size(189, 49);
@@ -359,6 +365,50 @@
             this.pnlStartScreen.Size = new System.Drawing.Size(948, 447);
             this.pnlStartScreen.TabIndex = 5;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.chckHard);
+            this.groupBox1.Controls.Add(this.chckMedium);
+            this.groupBox1.Controls.Add(this.chckEasy);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.ForeColor = System.Drawing.Color.White;
+            this.groupBox1.Location = new System.Drawing.Point(638, 19);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(265, 279);
+            this.groupBox1.TabIndex = 21;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "AI Difficulty";
+            // 
+            // chckEasy
+            // 
+            this.chckEasy.AutoSize = true;
+            this.chckEasy.Location = new System.Drawing.Point(24, 30);
+            this.chckEasy.Name = "chckEasy";
+            this.chckEasy.Size = new System.Drawing.Size(79, 29);
+            this.chckEasy.TabIndex = 0;
+            this.chckEasy.Text = "Easy";
+            this.chckEasy.UseVisualStyleBackColor = true;
+            // 
+            // chckMedium
+            // 
+            this.chckMedium.AutoSize = true;
+            this.chckMedium.Location = new System.Drawing.Point(24, 63);
+            this.chckMedium.Name = "chckMedium";
+            this.chckMedium.Size = new System.Drawing.Size(107, 29);
+            this.chckMedium.TabIndex = 1;
+            this.chckMedium.Text = "Medium";
+            this.chckMedium.UseVisualStyleBackColor = true;
+            // 
+            // chckHard
+            // 
+            this.chckHard.AutoSize = true;
+            this.chckHard.Location = new System.Drawing.Point(24, 98);
+            this.chckHard.Name = "chckHard";
+            this.chckHard.Size = new System.Drawing.Size(77, 29);
+            this.chckHard.TabIndex = 2;
+            this.chckHard.Text = "Hard";
+            this.chckHard.UseVisualStyleBackColor = true;
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -390,6 +440,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBoxBanner)).EndInit();
             this.pnlStartScreen.ResumeLayout(false);
             this.pnlStartScreen.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -422,6 +474,10 @@
         private System.Windows.Forms.Button btnWebclient;
         private System.Windows.Forms.PictureBox picBoxBanner;
 		private System.Windows.Forms.Panel pnlStartScreen;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox chckHard;
+        private System.Windows.Forms.CheckBox chckMedium;
+        private System.Windows.Forms.CheckBox chckEasy;
     }
 }
 
