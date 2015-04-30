@@ -456,7 +456,7 @@ namespace ConnectXLibrary
                 }
             }
             return 0;
-        }//isWonVertical
+       }//isWonVertical
 
         public int isWonHorizontal()
         {
