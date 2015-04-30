@@ -393,18 +393,17 @@ namespace ConnectXLibrary
 
         public bool isWon()
         {
-            if (isWonVertical() == 1 || isWonHorizontal() == 1 || isWonDiagonal() == 1) // || isWonDiagonal45() ==1 || isWonDiagonal135() == 1)
+            if (isWonVertical() == 1 || isWonHorizontal() == 1 || isWonDiagonal() == 1)
             {
                 winningPlayer = 1;
                 return true;
-            } else if (isWonVertical() == 2 || isWonHorizontal() == 2 || isWonDiagonal() == 2) // isWonDiagonal45() == 2 || isWonDiagonal135() == 2)
+            } else if (isWonVertical() == 2 || isWonHorizontal() == 2 || isWonDiagonal() == 2)
             {
                 winningPlayer = 2;
                 return true;
             }
             return false;
         }//isWon
-
         public int isWonVertical()
         {
             for (int i = 0; i < columns; i++)
@@ -424,7 +423,6 @@ namespace ConnectXLibrary
             }
             return 0;
         }//isWonVertical
-
         public int isWonHorizontal()
         {
             for (int i = 0; i < rows; i++)
@@ -443,8 +441,84 @@ namespace ConnectXLibrary
                 }
             }
             return 0;
-        }//isWonHorizontal
+        }
+        //isWonHorizontal
 
+/       public int isWonVertical()
+        {
+            for (int i = 0; i < columns; i++)
+            {
+                resetCounter();
+                for (int j = 0; j < rows; j++)
+                {
+                    crossWinCheck(1, i, j, streakToWin);
+                }
+            }
+            return 0;
+        }//isWonVertical
+*
+        public int isWonHorizontal()
+        {
+            for (int i = 0; i < rows; i++)
+            {
+                resetCounter();
+                for (int j = 0; j < columns; j++)
+                {
+                    crossWinCheck(2, i, j, streakToWin);
+                }
+            }
+            return 0;
+        }//isWonHorizontal
+*
+       public int crossWinCheck(int type, int i, int j, int streakToWin)
+        {
+            if (type == 1)
+            {
+                if (raster[j, i] == 1) counterPlayer1++;
+                else counterPlayer1 = 0;
+
+                if (raster[j, i] == 2) counterPlayer2++;
+                else counterPlayer2 = 0;
+
+                if (counterPlayer1 == streakToWin) return 1;
+                if (counterPlayer2 == streakToWin) return 2;
+            }
+            else if (type == 2)
+            {
+                if (raster[i, j] == 1) counterPlayer1++;
+                else counterPlayer1 = 0;
+
+                if (raster[i, j] == 2) counterPlayer2++;
+                else counterPlayer2 = 0;
+
+                if (counterPlayer1 == streakToWin) return 1;
+                if (counterPlayer2 == streakToWin) return 2;
+            }
+            else return 0;
+        }
+*/
+       /*  public int isWonDiagonal45()
+        {
+			for (int i = columns - 1; i >= 0; i--) 
+			{
+                int winner = getStreakWinnerDiagonal45(0, i);
+
+                if (1 <= winner && winner <= 2)
+                {
+                    return winner;
+                }
+			}
+			for (int i = 1; i < rows; i++)
+            {
+                int winner = getStreakWinnerDiagonal45(i, 0);
+                if (1 <= winner && winner <= 2)
+                {
+                    return winner;
+                }
+			}
+			return 0;
+        } //isWonDiagonal45
+        */
         //public int isWonDiagonal45()
         //{
         //    for (int i = columns - 1; i >= 0; i--) 
@@ -466,6 +540,7 @@ namespace ConnectXLibrary
         //    }
         //    return 0;
         //} //isWonDiagonal45
+
         
         //public int isWonDiagonal135()
         //{
@@ -487,7 +562,7 @@ namespace ConnectXLibrary
         //        }
         //    }
         //    return 0;
-        //}//isWonDiagonal135
+        //} isWonDiagonal135
 
         public int isWonDiagonal()
         {
