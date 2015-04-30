@@ -404,76 +404,46 @@ namespace ConnectXLibrary
             }
             return false;
         }//isWon
-/*        public int isWonVertical()
-        {
-            for (int i = 0; i < columns; i++)
-            {
-                resetCounter();
-                for (int j = 0; j < rows; j++)
-                {
-                    if (raster[j, i] == 1) counterPlayer1++;
-                    else counterPlayer1 = 0;
 
-                    if (raster[j, i] == 2) counterPlayer2++;
-                    else counterPlayer2 = 0;
-
-                    if (counterPlayer1 == streakToWin) return 1;
-                    if (counterPlayer2 == streakToWin) return 2;
-                }
-            }
-            return 0;
-        }//isWonVertical
-*/
- /*       public int isWonHorizontal()
-        {
-            for (int i = 0; i < rows; i++)
-            {
-                resetCounter();
-                for (int j = 0; j < columns; j++)
-                {
-                    if (raster[i, j] == 1) counterPlayer1++;
-                    else counterPlayer1 = 0;
-
-                    if (raster[i, j] == 2) counterPlayer2++;
-                    else counterPlayer2 = 0;
-
-                    if (counterPlayer1 == streakToWin) return 1;
-                    if (counterPlayer2 == streakToWin) return 2;
-                }
-            }
-            return 0;
-        }
-        //isWonHorizontal
-*/
        public int isWonVertical()
+        
         {
+            int winner;
+
             for (int i = 0; i < columns; i++)
             {
                 resetCounter();
                 for (int j = 0; j < rows; j++)
                 {
-                    crossWinCheck(1, i, j, streakToWin);
+                    winner = winnerCalculation("vertical", i, j, streakToWin);
+                    if (winner != 0) return winner;
                 }
             }
-            return 0;
-       }//isWonVertical
+            winner = 0;
+            return winner;
+        }//isWonVertical
 
         public int isWonHorizontal()
         {
+            int winner;
+
             for (int i = 0; i < rows; i++)
             {
                 resetCounter();
                 for (int j = 0; j < columns; j++)
                 {
-                    crossWinCheck(2, i, j, streakToWin);
+                    winner = winnerCalculation("horizontal", i, j, streakToWin);
+                    if (winner != 0) return winner;
                 }
             }
-            return 0;
+
+            winner = 0;
+            return winner;
         }//isWonHorizontal
 
-       public int crossWinCheck(int type, int i, int j, int streakToWin)
+       public int winnerCalculation(string type, int i, int j, int streakToWin)
         {
-            if (type == 1)
+            if (type == "vertical")
             {
                 if (raster[j, i] == 1) counterPlayer1++;
                 else counterPlayer1 = 0;
@@ -484,7 +454,7 @@ namespace ConnectXLibrary
                 if (counterPlayer1 == streakToWin) return 1;
                 if (counterPlayer2 == streakToWin) return 2;
             }
-            else if (type == 2)
+            else if (type == "horizontal")
             {
                 if (raster[i, j] == 1) counterPlayer1++;
                 else counterPlayer1 = 0;
@@ -498,73 +468,6 @@ namespace ConnectXLibrary
 
             return 0;
         }
-
-       /*  public int isWonDiagonal45()
-        {
-			for (int i = columns - 1; i >= 0; i--) 
-			{
-                int winner = getStreakWinnerDiagonal45(0, i);
-
-                if (1 <= winner && winner <= 2)
-                {
-                    return winner;
-                }
-			}
-			for (int i = 1; i < rows; i++)
-            {
-                int winner = getStreakWinnerDiagonal45(i, 0);
-                if (1 <= winner && winner <= 2)
-                {
-                    return winner;
-                }
-			}
-			return 0;
-        } //isWonDiagonal45
-        */
-        //public int isWonDiagonal45()
-        //{
-        //    for (int i = columns - 1; i >= 0; i--) 
-        //    {
-        //        int winner = getStreakWinnerDiagonal45(0, i);
-
-        //        if (1 <= winner && winner <= 2)
-        //        {
-        //            return winner;
-        //        }
-        //    }
-        //    for (int i = 1; i < rows; i++)
-        //    {
-        //        int winner = getStreakWinnerDiagonal45(i, 0);
-        //        if (1 <= winner && winner <= 2)
-        //        {
-        //            return winner;
-        //        }
-        //    }
-        //    return 0;
-        //} //isWonDiagonal45
-
-        
-        //public int isWonDiagonal135()
-        //{
-        //    for (int i = 0; i < columns; i++)
-        //    {
-        //        int winner = getStreakWinnerDiagonal135(0, i);
-        //        if (1 <= winner && winner <= 2)
-        //        {
-        //            return winner;
-        //        }
-        //    }
-
-        //    for (int i = 1; i < rows; i++)
-        //    {
-        //        int winner = getStreakWinnerDiagonal135(i, columns - 1);
-        //        if (1 <= winner && winner <= 2)
-        //        {
-        //            return winner;
-        //        }
-        //    }
-        //    return 0;
-        //} isWonDiagonal135
 
         public int isWonDiagonal()
         {
@@ -581,24 +484,18 @@ namespace ConnectXLibrary
                {
                    int winner;
 
-                   if (type == 1)
+                   switch (type)
                    {
-                       winner = getStreakWinnerDiagonal45(0, i);
-                   }
-                   else if (type == 2)
-                   {
-                       winner = getStreakWinnerDiagonal45(i, 0);
-                   }
-                   else if (type == 3)
-                   {
-                       winner = getStreakWinnerDiagonal135(0, i);
-                   }
-                   else if (type == 4)
-                   {
-                       winner = getStreakWinnerDiagonal135(i, columns - 1);
-                   }
-                   else break;
+                       case 1: winner = getStreakWinnerDiagonal45(0, i); break;
 
+                       case 2: winner = getStreakWinnerDiagonal45(i, 0); break;
+
+                       case 3: winner = getStreakWinnerDiagonal135(0, i); break;
+
+                       case 4: winner = getStreakWinnerDiagonal135(i, columns - 1); break;
+
+                       default: winner = 0;  break;
+                   }
                    if (1 <= winner && winner <= 2)
                    {
                        return winner;
