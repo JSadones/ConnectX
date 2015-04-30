@@ -8,6 +8,9 @@ namespace ConnectXLibrary
     {
         #region State
         bool multiplayer;
+		bool dimensionOK;
+		bool streakOK;
+		bool namesOK;
         #endregion
 
         #region Constructor
@@ -19,6 +22,7 @@ namespace ConnectXLibrary
 			txtBoxRows.Text = ConnectX.GetDefaultRows().ToString();
 			txtBoxColumns.Text = ConnectX.GetDefaultColumns().ToString();
 			txtBoxStreakToWin.Text = ConnectX.GetDefaultStreakToWin().ToString();
+			startButtonState();
         }//Menu
         #endregion
 
@@ -87,26 +91,31 @@ namespace ConnectXLibrary
         private void txtBoxPlayer1Name_TextChanged(object sender, EventArgs e)
         {
             checkNames();
+			startButtonState();
         }//txtBoxPlayer1Name_TextChanged
 
         private void txtBoxPlayer2Name_TextChanged(object sender, EventArgs e)
         {
             checkNames();
+			startButtonState();
         }//txtBoxPlayer2Name_TextChanged
 
         private void txtBoxStreakToWin_TextChanged(object sender, EventArgs e)
         {
             checkStreak();
+			startButtonState();
         }//txtBoxStreakToWin_TextChanged
 
         private void txtBoxColumns_TextChanged(object sender, EventArgs e)
         {
             checkDimension();
+			startButtonState();
         } // txtBoxWidth_TextChanged
 
         private void txtBoxRows_TextChanged(object sender, EventArgs e)
         {
             checkDimension();
+			startButtonState();
         } //txtBoxLength_TextChanged
         #endregion
 
@@ -148,26 +157,26 @@ namespace ConnectXLibrary
 
                 if ((columns < 4) || (rows < 4))
                 {
-                    btnStart.Enabled = false;
+                    dimensionOK = false;
                     lblErrorDimension.Text = "Please select at least 4 columns and 4 rows.";
                 }
                 else if ((columns > 10 || rows > 10))
                 {
-                    btnStart.Enabled = false;
+                    dimensionOK = false;
                     lblErrorDimension.Text = "Please don't select more than 10 columns and 10 rows.";
                 }
                 else 
                 {
-                    btnStart.Enabled = true;
+                    dimensionOK = true;
                     lblErrorDimension.Text = "";
                 }
             }
             else
             {
-                btnStart.Enabled = false;
+                dimensionOK = false;
                 lblErrorDimension.Text = "";
             }
-        }// dimensionCheck
+        }// checkDimension
 
 		private void checkStreak()
 		{
@@ -194,19 +203,19 @@ namespace ConnectXLibrary
 
 				if ((streak > rows) && (streak > columns) || (streak <= 3))
 				{
-                    btnStart.Enabled = false;
+                    streakOK = false;
                     lblErrorStreak.Text = "Please select a valid streak.";
 				}
 				else
 				{
-                    btnStart.Enabled = true;
+                    streakOK = true;
                     lblErrorStreak.Text = "";
 				}
 			}
 
 			else 
             {
-				btnStart.Enabled = false;
+				streakOK = false;
                 lblErrorStreak.Text = "Please enter a streak";
 			}
 		}//checkStreak
@@ -215,15 +224,27 @@ namespace ConnectXLibrary
 		{
 			if ((txtBoxPlayer1Name.Text != txtBoxPlayer2Name.Text) && ((txtBoxPlayer1Name.Text != "") && (txtBoxPlayer2Name.Text != "")))
 			{
-				btnStart.Enabled = true;
+				namesOK = true;
 				lblErrorName.Text = "";
 			}
 			else
 			{
-				btnStart.Enabled = false;
+				namesOK = false;
 				lblErrorName.Text = "Empty or double names are not allowed";
 			}
 		}//checkNames
+
+		private void startButtonState()
+		{
+			if (dimensionOK && streakOK && namesOK)
+			{
+				btnStart.Enabled = true;
+			}
+			else
+			{
+				btnStart.Enabled = false;
+			}
+		}
 
         private void btnWebclient_Click(object sender, EventArgs e)
         {

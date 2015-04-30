@@ -70,7 +70,7 @@ namespace ConnectXLibrary
             if (number == 1) return namePlayer1;
             else return namePlayer2;
         }
-        #endregion
+        #endregion+
 
         #region Methods
         private void pnlGame_Paint(object sender, PaintEventArgs e)
