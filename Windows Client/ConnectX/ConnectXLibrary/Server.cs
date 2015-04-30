@@ -39,7 +39,7 @@ namespace ConnectXLibrary
             }
             catch (HttpListenerException)
             {
-                System.Diagnostics.Debug.Write("Run as admin or server is already listening.");
+                DialogResult dialogResult = MessageBox.Show("Run ConnectX as admin or server is already listening.", "Error");
                 this.Close();
             }
         }
