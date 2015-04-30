@@ -44,7 +44,11 @@ $(document).ready(function(){
     $(document).on("click", ".column", function() {
         var column = getSecondClass($(this)).replace(/\D/g,'');
         
-        insertToken(column);
+        if(insertTokenAndGetRow(column)) {
+            $('.row.b')
+        } else {
+
+        }
         
     });
 
@@ -53,7 +57,6 @@ $(document).ready(function(){
         console.log(request);
         console.log(param1);
 
-        insertToken(0);
     }
 
     function ajaxCall(callback, request, param1) {
@@ -93,7 +96,7 @@ $(document).ready(function(){
         for (var i = 0; i< values["rows"]; i++) {
             content += '<tr>';
             for (var j = 0; j < values["columns"]; j++) {
-                content += "<td class='column column"+j+"'>x</td>"
+                content += "<td class='column column"+j+" row"+i+"'>x</td>"
             }
             content += '</tr>';
         }
