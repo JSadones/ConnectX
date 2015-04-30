@@ -405,7 +405,7 @@ namespace ConnectXLibrary
             return false;
         }//isWon
 
-       public int isWonVertical()
+        public int isWonVertical()
         
         {
             int winner;
@@ -470,6 +470,7 @@ namespace ConnectXLibrary
 
             return 0;
         }
+
         public int streakCounter(string type, int i, int j)
         {
 				int row,column;

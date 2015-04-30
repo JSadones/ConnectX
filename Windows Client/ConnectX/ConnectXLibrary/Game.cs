@@ -265,6 +265,20 @@ namespace ConnectXLibrary
 		private void calculateSlotSize()
 		{
 			size = 480 / rows;
+        }
+
+        private void Game_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to close the game?", "Game is still in progress", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.No)
+            {
+                e.Cancel = true;
+                base.OnFormClosing(e);
+            }
+            else
+            {
+                
+            }
         }//calculateSlotSize
         #endregion
     }
