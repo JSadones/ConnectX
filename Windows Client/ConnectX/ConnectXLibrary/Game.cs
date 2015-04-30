@@ -70,7 +70,7 @@ namespace ConnectXLibrary
             if (number == 1) return namePlayer1;
             else return namePlayer2;
         }
-        #endregion
+        #endregion+
 
         #region Methods
         private void pnlGame_Paint(object sender, PaintEventArgs e)
@@ -187,13 +187,13 @@ namespace ConnectXLibrary
                 row = gamePlay.checkIfColumnHasEmptySpot(column);
                 gamePlay.insertToken(column, gamePlay.getPlayerAtTurn());
                 drawToken(column, row);
-            } 
+            }
 
             gamePlay.switchPlayerAtTurn();
-            gamePlay.checkIfWon(column, gamePlay.getPlayerAtTurn());
-            showIfWon();
             showPlayerAtTurn();
-
+            bool isWon = gamePlay.checkIfWon(column, gamePlay.getPlayerAtTurn());
+            if(isWon) showIfWon();
+            
             if (multiplayer == false && gamePlay.getPlayerAtTurn() == 2 && !wonGame)
             {
                 showPlayerAtTurn();

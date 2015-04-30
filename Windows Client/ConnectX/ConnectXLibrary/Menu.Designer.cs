@@ -371,8 +371,8 @@
             this.Controls.Add(this.btnMultiplayer);
             this.Controls.Add(this.btnQuit);
             this.Controls.Add(this.btnPlayCPU);
-            this.Controls.Add(this.pnlStartScreen);
             this.Controls.Add(this.pnlEnterData);
+            this.Controls.Add(this.pnlStartScreen);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;

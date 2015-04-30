@@ -624,8 +624,9 @@ namespace ConnectXLibrary
             if (isWon())
             {
                 incrementScorePlayer(getWinnerOfLastGame());
+                return true;
             }
-            return true;
+            return false;
         }//insertToken
 
         public void incrementScorePlayer(int player)
