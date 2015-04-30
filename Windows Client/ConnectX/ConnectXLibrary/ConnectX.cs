@@ -170,7 +170,7 @@ namespace ConnectXLibrary
                     {
                         counter++;
                     }
-                    else counter = 0;
+                    else resetStreakCounter();
                     j++;
                 }
 
@@ -200,7 +200,7 @@ namespace ConnectXLibrary
                     {
                         counter++;
                     }
-                    else counter = 0;
+                    else resetStreakCounter();
                     j++;
 
                     if (counter > longestStreak)
@@ -444,11 +444,12 @@ namespace ConnectXLibrary
         public int winnerCalculation( int i, int j)
         {
                 if (streakCounter(i, j, 1) == streakToWin) return 1;
-                if (streakCounter(i, j, 2) == streakToWin) return 2;
-           
 
-            return 0;
-        }
+                else if (streakCounter(i, j, 2) == streakToWin) return 2;
+           
+                else return 0;
+        }// winnerCalculation
+
         public int streakCounter(int i, int j, int player)
         {
                 if (raster[i, j] == player)
@@ -462,7 +463,7 @@ namespace ConnectXLibrary
                     }
                     else if (player == 2)
                     {
-                        counterPlayer2 = 0;
+                        counterPlayer1 = 0;
                         return ++counterPlayer2;
                     }
                 }
@@ -470,10 +471,9 @@ namespace ConnectXLibrary
                     counterPlayer1 = 0;
                     counterPlayer2 = 0;
                 }
-                return 0;
-             
+                return 0;    
+        }// streakCounter
 
-        }
         public int isWonDiagonal()
         {
             if ((gotStreakDiagonal(columns - 1, 1, -1) != 0))  return (gotStreakDiagonal(columns - 1, 1, -1));
@@ -510,6 +510,7 @@ namespace ConnectXLibrary
             return 0;
         }//gotStreakDiagonal
 
+
         public bool diagonalIterationCondition(int type, int i)
         {
             if(type == 1)
@@ -538,6 +539,7 @@ namespace ConnectXLibrary
             }
         } //diagonalIterationCondition
 
+
         private List<byte> checkEmptySpotInColumn()
         {
             List<byte> empySpots = new List<byte>();
@@ -560,6 +562,7 @@ namespace ConnectXLibrary
             }
             else playerAtTurn = 1;
         }//switchPlayerAtTurn
+
 
         public bool rasterIsFull()
         {
