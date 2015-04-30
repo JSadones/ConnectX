@@ -424,7 +424,7 @@ namespace ConnectXLibrary
             return 0;
         }//isWonVertical
 */
-        public int isWonHorizontal()
+ /*       public int isWonHorizontal()
         {
             for (int i = 0; i < rows; i++)
             {
@@ -444,7 +444,7 @@ namespace ConnectXLibrary
             return 0;
         }
         //isWonHorizontal
-
+*/
        public int isWonVertical()
         {
             for (int i = 0; i < columns; i++)
@@ -495,7 +495,8 @@ namespace ConnectXLibrary
                 if (counterPlayer1 == streakToWin) return 1;
                 if (counterPlayer2 == streakToWin) return 2;
             }
-            else return 0;
+
+            return 0;
         }
 
        /*  public int isWonDiagonal45()
