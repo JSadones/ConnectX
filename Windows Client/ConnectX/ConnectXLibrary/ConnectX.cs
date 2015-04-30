@@ -133,7 +133,7 @@ namespace ConnectXLibrary
             return 0;
         }//getStreakWinnerDiagonal45
 
-        private int getRowIndexOfLowestEmptyTokenInColumn(int column)
+        public int getRowIndexOfLowestEmptyTokenInColumn(int column)
         {
             int row = 0;
             while (row < rows)

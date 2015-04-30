@@ -44,19 +44,22 @@ $(document).ready(function(){
     $(document).on("click", ".column", function() {
         var column = getSecondClass($(this)).replace(/\D/g,'');
         
-        if(insertTokenAndGetRow(column)) {
-            $('.row.b')
-        } else {
+        if(insertToken(column)) {
+            var i = getHighestTokenInColumn();
 
+            $('.row+'i+'.column'+j).html("v");
+        } else {
+            alert('no');
         }
         
     });
 
-    function callback(data, request, param1) {
-        console.log(data);
-        console.log(request);
-        console.log(param1);
+    function getHighestTokenInColumn(column) {
+        ajaxCall(callback, "getRowIndexOfLowestEmptyTokenInColumn", column);
+    }
 
+    function callback(result) {
+        return result;
     }
 
     function ajaxCall(callback, request, param1) {
@@ -70,7 +73,7 @@ $(document).ready(function(){
             dataType: "jsonp",
             data: { Param1 : arguments[1], Param2 : arguments[2], Param3: arguments[3]},
             success: function (data) {
-              callback(data, request, param1);
+              callback(data);
             }
         });
 

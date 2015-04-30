@@ -115,6 +115,12 @@ namespace ConnectXLibrary
                 Response.Add(new ResponseForWebClient("insertToken", response.ToString(), ""));
 
             }
+            else if (Param1 == "getRowIndexOfLowestEmptyTokenInColumn")
+            {
+                ConnectX game = threadGame.Value;
+
+                bool response = game.getRowIndexOfLowestEmptyTokenInColumn(Convert.ToInt32(Param2));
+            }
 
             JavaScriptSerializer js = new JavaScriptSerializer();
             string JSONstring = js.Serialize(Response);
