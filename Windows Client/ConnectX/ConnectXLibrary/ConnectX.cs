@@ -441,7 +441,7 @@ namespace ConnectXLibrary
             return winner;
         }//isWonHorizontal
 
-       public int winnerCalculation(string type, int i, int j, int streakToWin)
+        public int winnerCalculation(string type, int i, int j, int streakToWin)
         {
             if (type == "vertical")
             {
@@ -450,6 +450,7 @@ namespace ConnectXLibrary
 
                 if (raster[j, i] == 2) counterPlayer2++;
                 else counterPlayer2 = 0;
+                streakCounter("vertical", i, j);
 
                 if (counterPlayer1 == streakToWin) return 1;
                 if (counterPlayer2 == streakToWin) return 2;
@@ -461,6 +462,7 @@ namespace ConnectXLibrary
 
                 if (raster[i, j] == 2) counterPlayer2++;
                 else counterPlayer2 = 0;
+                streakCounter("horizontal", i, j);
 
                 if (counterPlayer1 == streakToWin) return 1;
                 if (counterPlayer2 == streakToWin) return 2;
@@ -468,7 +470,25 @@ namespace ConnectXLibrary
 
             return 0;
         }
+        public int streakCounter(string type, int i, int j)
+        {
+				int row,column;
+				if (type == "vertical")
+				{
+				    row = i;
+                    column = j;
+				}
+				else if (type == "horizontal")
+				{
+                    row = j;
+                    column = i;
+				}
+				if (raster[i,j] == 1) return counterPlayer1++;
+				else  return counterPlayer1 = 0;
 
+				if (raster[i,j] == 2) return counterPlayer2++;
+				else return counterPlayer2 = 0;
+        }
         public int isWonDiagonal()
         {
             if ((gotStreakDiagonal(columns - 1, 1, -1) != 0))  return (gotStreakDiagonal(columns - 1, 1, -1));
