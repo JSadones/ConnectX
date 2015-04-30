@@ -18,7 +18,7 @@ Link tot opdracht : http://goo.gl/v0wKYx
 - C# moet runnen op een server
 - C# moet OOP zijn
 - Code efficiëntie is belangrijk
-- Moet bijhouden hoeveel keer een persoon heeft gewonnen
+- ~~Moet bijhouden hoeveel keer een persoon heeft gewonnen~~
 - ~~Eenmaal spel afgesloten wordt, kent hij niets meer~~
 
 ### Opdracht buiten programmeren
