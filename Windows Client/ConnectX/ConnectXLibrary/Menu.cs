@@ -7,7 +7,7 @@ namespace ConnectXLibrary
     public partial class Menu : Form
     {
         #region State
-        bool multiplayer, dimensionOK, streakOK, namesOK;
+        bool multiplayerGame, dimensionOK, streakOK, namesOK;
         #endregion
 
         #region Constructor
@@ -19,66 +19,72 @@ namespace ConnectXLibrary
 			txtBoxRows.Text = ConnectX.GetDefaultRows().ToString();
 			txtBoxColumns.Text = ConnectX.GetDefaultColumns().ToString();
 			txtBoxStreakToWin.Text = ConnectX.GetDefaultStreakToWin().ToString();
+            lblErrorDimension.Text = "";
+            lblErrorName.Text = "";
+            lblErrorStreak.Text = "";
             checkNames();
             startButtonState();
         }//Menu
         #endregion
 
         #region Methods
+        private void btnPlayCPU_Click(object sender, EventArgs e)
+        {
+            multiplayerGame = false;
+            groupDifficulty.Visible = true;
+            showMenu();
+        }//btnPlayCPU_Click
 
-        #region EventClicks
         private void btnMultiplayer_Click(object sender, EventArgs e)
         {
+            multiplayerGame = true;
             groupDifficulty.Visible = false;
-            multiplayer = true;
             showMenu();
         }//btnMultiplayer_Click
 
-        private void btnPlayCPU_Click(object sender, EventArgs e)
+        private void btnWebclient_Click(object sender, EventArgs e)
         {
-            multiplayer = false;
-            groupDifficulty.Visible = true;
-            showMenu();
-        }
-
-        private void btnStart_Click(object sender, EventArgs e)
-        {
-            string namePlayer1 = txtBoxPlayer1Name.Text;
-            int columns = int.Parse(txtBoxColumns.Text);
-            int rows = int.Parse(txtBoxRows.Text);
-            int streaktowin = int.Parse(txtBoxStreakToWin.Text);
-
-            pnlEnterData.Visible = false;
-            pnlStartScreen.Visible = true;
-            Game gameForm;
-
-            if (multiplayer)
-            {
-                string namePlayer2 = txtBoxPlayer2Name.Text;
-                gameForm = new Game(columns, rows, streaktowin, namePlayer1, namePlayer2);
-            }
-            else
-            {
-                string test;
-                if (radioEasy.Checked) test = radioEasy.Text;
-                else if (radioMedium.Checked) test = radioMedium.Text;
-                else if (radioHard.Checked) test = radioHard.Text;
-
-                gameForm = new Game(columns, rows, streaktowin, namePlayer1);
-            }
-
-            pnlEnterData.Visible = false;
-            pnlStartScreen.Visible = true;
-            
-            gameForm.StartPosition = FormStartPosition.Manual;
-            gameForm.Location = new Point(this.Location.X, this.Location.Y);
-            gameForm.Show();
-        }//btnStart_Click
+            Server server = new Server();
+            server.Show();
+        }//btnWebclient_Click
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }//btnClose_Click
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            string player1Name = txtBoxPlayer1Name.Text;
+            int columns = int.Parse(txtBoxColumns.Text);
+            int rows = int.Parse(txtBoxRows.Text);
+            int streaktowin = int.Parse(txtBoxStreakToWin.Text);
+            Game gameForm;
+            pnlEnterData.Visible = false;
+            pnlStartScreen.Visible = true;
+            
+            if (!multiplayerGame)
+            {
+                string difficulty;
+                if (radioEasy.Checked) difficulty = radioEasy.Text;
+                else if (radioMedium.Checked) difficulty = radioMedium.Text;
+                else if (radioHard.Checked) difficulty = radioHard.Text;
+
+                gameForm = new Game(columns, rows, streaktowin, player1Name);
+            }
+            else
+            {
+                string player2Name = txtBoxPlayer2Name.Text;
+                gameForm = new Game(columns, rows, streaktowin, player1Name, player2Name);
+            }
+
+            pnlEnterData.Visible = false;
+            pnlStartScreen.Visible = true;
+
+            gameForm.StartPosition = FormStartPosition.Manual;
+            gameForm.Location = new Point(this.Location.X, this.Location.Y);
+            gameForm.Show();
+        }//btnStart_Click
 
         private void picBoxPlayer1_Click(object sender, EventArgs e)
         {
@@ -89,9 +95,8 @@ namespace ConnectXLibrary
         {
             showColorDialog();
         }//picBoxPlayer2_Click
-        #endregion
 
-        #region EventTextChanged
+
         private void txtBoxPlayer1Name_TextChanged(object sender, EventArgs e)
         {
             checkNames();
@@ -121,12 +126,7 @@ namespace ConnectXLibrary
             checkDimension();
 			startButtonState();
         } //txtBoxLength_TextChanged
-        #endregion
 
-        private void showColorDialog()
-        {
-            //TODO (Zie issues)
-        }//showColorDialog
 
         private void checkDimension()
         {
@@ -135,29 +135,25 @@ namespace ConnectXLibrary
                 int columns = 0;
                 int rows = 0;
 
-                #region Exception Handling
                 try
                 {
-                    rows = Convert.ToInt32(txtBoxRows.Text);
+                    rows = int.Parse(txtBoxRows.Text);
                 }
                 catch (FormatException)
                 {
                     txtBoxRows.Text = ConnectX.GetDefaultRows().ToString();
                     rows = ConnectX.GetDefaultRows();
-                    lblErrorDimension.Text = "Invalid character.";
                 }
 
                 try
                 {
-                    columns = Convert.ToInt32(txtBoxColumns.Text);
+                    columns = int.Parse(txtBoxColumns.Text);
                 }
                 catch (FormatException)
                 {
                     txtBoxColumns.Text = ConnectX.GetDefaultColumns().ToString();
-					columns = ConnectX.GetDefaultColumns();
-                    lblErrorDimension.Text = "Invalid character.";
+                    columns = ConnectX.GetDefaultColumns();
                 }
-                #endregion
 
                 if ((columns < 4) || (rows < 4))
                 {
@@ -169,7 +165,7 @@ namespace ConnectXLibrary
                     dimensionOK = false;
                     lblErrorDimension.Text = "Please don't select more than 10 columns and 10 rows.";
                 }
-                else 
+                else
                 {
                     dimensionOK = true;
                     lblErrorDimension.Text = "";
@@ -178,65 +174,73 @@ namespace ConnectXLibrary
             else
             {
                 dimensionOK = false;
-                lblErrorDimension.Text = "";
+                lblErrorDimension.Text = "Please enter valid rows and/or columns.";
             }
         }// checkDimension
 
-		private void checkStreak()
-		{
-            
-
-            if (txtBoxStreakToWin.Text != "" && txtBoxColumns.Text !="" && txtBoxRows.Text != "")
-			{
+        private void checkStreak()
+        {
+            if (txtBoxStreakToWin.Text != "" && txtBoxColumns.Text != "" && txtBoxRows.Text != "")
+            {
                 int columns = int.Parse(txtBoxRows.Text);
                 int rows = int.Parse(txtBoxColumns.Text);
-                int streak = 0;
+                int streak;
 
-                #region Exception Handling
                 try
                 {
-                    streak = Convert.ToInt32(txtBoxStreakToWin.Text);
+                    streak = int.Parse(txtBoxStreakToWin.Text);
                 }
                 catch (FormatException)
                 {
                     txtBoxStreakToWin.Text = ConnectX.GetDefaultStreakToWin().ToString();
-					streak = ConnectX.GetDefaultStreakToWin();
-                    lblErrorStreak.Text = "Invalid character.";
+                    streak = ConnectX.GetDefaultStreakToWin();
                 }
-                #endregion
 
-				if ((streak > rows) && (streak > columns) || (streak <= 3))
-				{
+                if ((streak > rows) && (streak > columns))
+                {
                     streakOK = false;
                     lblErrorStreak.Text = "Please select a valid streak.";
-				}
-				else
-				{
+                }
+                else if(streak <= 3)
+                {
+                    lblErrorStreak.Text = "Streak must be higher than 3.";
+                }
+                else
+                {
                     streakOK = true;
                     lblErrorStreak.Text = "";
-				}
-			}
-
-			else 
+                }
+            }
+            else
             {
-				streakOK = false;
-                lblErrorStreak.Text = "Please enter a streak";
-			}
-		}//checkStreak
+                streakOK = false;
+                lblErrorStreak.Text = "Please enter a streak.";
+            }
+        }//checkStreak
 
-		private void checkNames()
-		{
-			if ((txtBoxPlayer1Name.Text != txtBoxPlayer2Name.Text) && ((txtBoxPlayer1Name.Text != "") && (txtBoxPlayer2Name.Text != "")))
-			{
-				namesOK = true;
-				lblErrorName.Text = "";
-			}
-			else
-			{
-				namesOK = false;
-				lblErrorName.Text = "Empty or double names are not allowed";
-			}
-		}//checkNames
+        private void checkNames()
+        {
+            if ((txtBoxPlayer1Name.Text == txtBoxPlayer2Name.Text) && (txtBoxPlayer1Name.Text != "") && (txtBoxPlayer2Name.Text != ""))
+            {
+                namesOK = false;
+                lblErrorName.Text = "Same names are not allowed.";
+            }
+            else if (txtBoxPlayer1Name.Text == "" || txtBoxPlayer2Name.Text == "")
+            {
+                namesOK = false;
+                lblErrorName.Text = "Please select a name.";
+            }
+            else
+            {
+                namesOK = true;
+                lblErrorName.Text = "";
+            }
+        }//checkNames
+
+        private void showColorDialog()
+        {
+            //TODO (Zie issues)
+        }//showColorDialog
 
 		private void startButtonState()
 		{
@@ -248,17 +252,11 @@ namespace ConnectXLibrary
 			{
 				btnStart.Enabled = false;
 			}
-		}
-
-        private void btnWebclient_Click(object sender, EventArgs e)
-        {
-            Server server = new Server();
-            server.Show();
-        }
+		}//startButtonState
 
         private void showMenu()
         {
-            if (multiplayer)
+            if (multiplayerGame)
             {
                 lblPlayer2Name.Visible = true;
                 picBoxPlayer2.Visible = true;
@@ -272,7 +270,7 @@ namespace ConnectXLibrary
             }
             pnlEnterData.Visible = true;
             pnlStartScreen.Visible = false;
-        }
+        }//showMenu
         #endregion
     }
 }

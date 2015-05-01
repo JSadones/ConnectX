@@ -364,30 +364,253 @@ namespace ConnectXLibrary
             }
             else return scorePlayer2;
         }//getScore
+
+        //public int getStreakDiagonal(int start, int type, int step)
+        //{
+        //    for (int i = start; diagonalIterationCondition(type, i); i += step)
+        //    {
+        //        int winner;
+
+        //        switch (type)
+        //        {
+        //            case 1: winner = getStreakWinnerDiagonal45(0, i); break;
+
+        //            case 2: winner = getStreakWinnerDiagonal45(i, 0); break;
+
+        //            case 3: winner = getStreakWinnerDiagonal135(0, i); break;
+
+        //            case 4: winner = getStreakWinnerDiagonal135(i, columns - 1); break;
+
+        //            default: winner = 0; break;
+        //        }
+        //        if (1 <= winner && winner <= 2)
+        //        {
+        //            return winner;
+        //        }
+        //    }
+        //    return 0;
+        //}//getStreakDiagonal
 		#endregion
 
         #region Methods
-        public bool exists()
+        //Methods for raster
+        public bool rasterIsFull()
         {
-            if (raster != null) {
-                return true;
+            for (int column = 0; column < columns; column++)
+            {
+                if (raster[rows - 1, column] == 0) return false;
             }
-            return false;
-        }//exists
+            return true;
+        }//rasterIsFull
+
+        public void clearRaster()
+        {
+            for (int row = 0; row < rows; row++)
+            {
+                for (int column = 0; column < columns; column++)
+                {
+                    raster[row, column] = 0;
+                }
+            }
+        }//clearRaster
 
         public bool isRasterInitializedWithZeros()
         {
-            for (int i = 0; i < rows; i++)
+            for (int row = 0; row < rows; row++)
             {
-                for (int j = 0; j < columns; j++)
+                for (int column = 0; column < columns; column++)
                 {
-                    if (raster[i, j] != 0) {
+                    if (raster[row, column] != 0)
+                    {
                         return false;
                     }
                 }
             }
             return true;
         }//isRasterInitializedWithZeros
+
+
+        //Winning algorithm
+
+        //public int streakCounter(int i, int j, int player)
+        //{
+        //    if (raster[i, j] == player)
+        //    {
+        //        if (player == 1)
+        //        {
+        //            int tmp = j;
+        //            counterPlayer2 = 0;
+        //            counterPlayer1++;
+        //            return counterPlayer1;
+        //        }
+        //        else if (player == 2)
+        //        {
+        //            counterPlayer2 = 0;
+        //            return ++counterPlayer2;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        counterPlayer1 = 0;
+        //        counterPlayer2 = 0;
+        //    }
+        //    return 0;
+        //}// streakCounter
+        
+        //public int isWonVertical()
+        //{
+        //    int winner;
+
+        //    for (int i = 0; i < columns; i++)
+        //    {
+        //        resetCounter();
+        //        for (int j = 0; j < rows; j++)
+        //        {
+        //            winner = winnerCalculation(j, i);
+        //            if (winner != 0) return winner;
+        //        }
+        //    }
+        //    winner = 0;
+        //    return winner;
+        //}//isWonVertical
+
+        //public int isWonHorizontal()
+        //{
+        //    int winner;
+
+        //    for (int i = 0; i < rows; i++)
+        //    {
+        //        resetCounter();
+        //        for (int j = 0; j < columns; j++)
+        //        {
+        //            winner = winnerCalculation(i, j);
+        //            if (winner != 0) return winner;
+        //        }
+        //    }
+
+        //    winner = 0;
+        //    return winner;
+        //}//isWonHorizontal
+
+        //public int isWonDiagonal()
+        //{
+        //    if ((getStreakDiagonal(columns - 1, 1, -1) != 0)) return (getStreakDiagonal(columns - 1, 1, -1));
+        //    if ((getStreakDiagonal(1, 2, 1) != 0)) return (getStreakDiagonal(1, 2, 1));
+        //    if ((getStreakDiagonal(0, 3, 1) != 0)) return (getStreakDiagonal(0, 3, 1));
+        //    if ((getStreakDiagonal(1, 4, 1) != 0)) return (getStreakDiagonal(1, 4, 1));
+        //    else return 0;
+        //}//isWonDiagonal
+
+        //public bool diagonalIterationCondition(int type, int i)
+        //{
+        //    if (type == 1)
+        //    {
+        //        return (i >= 0);
+
+        //    }
+        //    else if (type == 2)
+        //    {
+        //        return (i < rows);
+
+        //    }
+        //    else if (type == 3)
+        //    {
+        //        return (i < columns);
+
+        //    }
+        //    else if (type == 4)
+        //    {
+        //        return (i < rows);
+
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //} //diagonalIterationCondition
+
+        //public int winnerCalculation(int i, int j)
+        //{
+        //    if (streakCounter(i, j, 1) == streakToWin) return 1;
+        //    else if (streakCounter(i, j, 2) == streakToWin) return 2;
+        //    else return 0;
+        //}// winnerCalculation
+        private bool IsLinearMatch(int row, int column, int stepRow, int stepColumn)
+        {
+            /* Get the value of the start position. */
+            //int startValue = raster[x, y];
+            int counter = 0;
+
+            /* Confirm the two values after it match. */
+            for (int i = 1; i < streakToWin; i++)
+            {
+                try
+                {
+                    if (stepRow == 0 && stepColumn == 1) System.Diagnostics.Debug.WriteLine("---HORIZONTAL RECHTS---");
+                    if (stepRow == 0 && stepColumn == -1) System.Diagnostics.Debug.WriteLine("---HORIZONTAL LINKS---");
+                    if (stepRow == -1 && stepColumn == 0) System.Diagnostics.Debug.WriteLine("---VERTICAL DOWN---");
+                    if (stepRow == -1 && stepColumn == 1) System.Diagnostics.Debug.WriteLine("---DIAGONAL UP---");
+                    if (stepRow == -1 && stepColumn == -1) System.Diagnostics.Debug.WriteLine("---DIAGONAL DOWN---");
+
+                    System.Diagnostics.Debug.WriteLine("x : " + column);
+                    System.Diagnostics.Debug.WriteLine("y : " + row);
+                    System.Diagnostics.Debug.WriteLine("stepX : " + stepColumn);
+                    System.Diagnostics.Debug.WriteLine("stepY : " + stepRow);
+                    System.Diagnostics.Debug.WriteLine("---------------------------");
+                    System.Diagnostics.Debug.WriteLine(column + " + " + i + " * " + stepColumn);
+                    System.Diagnostics.Debug.WriteLine(row + " + " + i + " * " + stepRow);
+                    System.Diagnostics.Debug.Write("Coords : ");
+
+                    System.Diagnostics.Debug.Write(row + i * stepRow);
+                    System.Diagnostics.Debug.Write(" ");
+                    System.Diagnostics.Debug.WriteLine(column + i * stepColumn);
+
+                    if (raster[row + i * stepRow, column + i * stepColumn] == getPlayerAtTurn())
+                    {
+                        counter++;
+                        System.Diagnostics.Debug.WriteLine("counter +1");
+                    }
+                    else
+                    {
+                        System.Diagnostics.Debug.WriteLine("counter reset");
+                        return false;
+                    }
+                }
+                catch(IndexOutOfRangeException)
+                {
+                    System.Diagnostics.Debug.WriteLine("out of range");
+                    System.Diagnostics.Debug.WriteLine("");
+                    return false;
+                }
+
+                if (counter == streakToWin - 1) 
+                {
+                    System.Diagnostics.Debug.WriteLine("***********streak got***********");
+                    return true;
+                }
+            }
+            return false;
+            /* If we got here, then they all match! */
+        }
+
+        public bool IsLineStartingAt(int x, int y)
+        {
+            if(IsLinearMatch(x, y, 0, 1) || IsLinearMatch(x, y, 0, -1) || IsLinearMatch(x, y, -1, 0) || IsLinearMatch(x, y, -1,  1) || IsLinearMatch(x, y, -1, -1))
+            {
+                return true;
+            }
+            return false;
+        }
+
+
+        public bool gameExists()
+        {
+            if (raster != null)
+            {
+                return true;
+            }
+            return false;
+        }//exists
 
         private void resetCounter()
         {
@@ -400,148 +623,20 @@ namespace ConnectXLibrary
             counter = 0;
         }//resetStreakCounter
 
-        public bool isWon()
-        {
-            if (isWonVertical() == 1 || isWonHorizontal() == 1 || isWonDiagonal() == 1)
-            {
-                winningPlayer = 1;
-                return true;
-            } else if (isWonVertical() == 2 || isWonHorizontal() == 2 || isWonDiagonal() == 2)
-            {
-                winningPlayer = 2;
-                return true;
-            }
-            return false;
-        }//isWon
-
-        public int isWonVertical()
-        {
-            int winner;
-
-            for (int i = 0; i < columns; i++)
-            {
-                resetCounter();
-                for (int j = 0; j < rows; j++)
-                {
-                    winner = winnerCalculation(j, i);
-                    if (winner != 0) return winner;
-                }
-            }
-            winner = 0;
-            return winner;
-        }//isWonVertical
-
-        public int isWonHorizontal()
-        {
-            int winner;
-
-            for (int i = 0; i < rows; i++)
-            {
-                resetCounter();
-                for (int j = 0; j < columns; j++)
-                {
-                    winner = winnerCalculation(i, j);
-                    if (winner != 0) return winner;
-                }
-            }
-
-            winner = 0;
-            return winner;
-        }//isWonHorizontal
-
-        public int winnerCalculation( int i, int j)
-        {
-            if (streakCounter(i, j, 1) == streakToWin) return 1;
-            else if (streakCounter(i, j, 2) == streakToWin) return 2;
-            else return 0;
-        }// winnerCalculation
-
-        public int streakCounter(int i, int j, int player)
-        {
-            if (raster[i, j] == player)
-            {
-                if (player == 1)
-                {
-                    int tmp = j;
-                    counterPlayer2 = 0;
-                    counterPlayer1++ ;
-                    return counterPlayer1;
-                }
-                else if (player == 2)
-                {
-                    counterPlayer2 = 0;
-                    return ++counterPlayer2;
-                }
-            }
-            else {
-                counterPlayer1 = 0;
-                counterPlayer2 = 0;
-            }
-            return 0;
-        }// streakCounter
-
-        public int isWonDiagonal()
-        {
-            if ((gotStreakDiagonal(columns - 1, 1, -1) != 0))  return (gotStreakDiagonal(columns - 1, 1, -1));
-            if ((gotStreakDiagonal(1, 2, 1) != 0)) return (gotStreakDiagonal(1, 2, 1));
-            if ((gotStreakDiagonal(0, 3, 1) != 0)) return (gotStreakDiagonal(0, 3, 1));
-            if ((gotStreakDiagonal(1, 4, 1) != 0)) return (gotStreakDiagonal(1, 4, 1));
-            else return 0;
-        }//isWonDiagonal
-
-        public int gotStreakDiagonal(int start, int type, int step)
-        {
-            for (int i = start; diagonalIterationCondition(type, i); i+=step )
-               {
-                   int winner;
-
-                   switch (type)
-                   {
-                       case 1: winner = getStreakWinnerDiagonal45(0, i); break;
-
-                       case 2: winner = getStreakWinnerDiagonal45(i, 0); break;
-
-                       case 3: winner = getStreakWinnerDiagonal135(0, i); break;
-
-                       case 4: winner = getStreakWinnerDiagonal135(i, columns - 1); break;
-
-                       default: winner = 0;  break;
-                   }
-                   if (1 <= winner && winner <= 2)
-                   {
-                       return winner;
-                   }
-                }
-            return 0;
-        }//gotStreakDiagonal
-
-        public bool diagonalIterationCondition(int type, int i)
-        {
-            if(type == 1)
-            {
-                return (i >= 0);
-               
-            }
-            else if (type == 2)
-            {
-                return (i < rows);
-                
-            }
-            else if (type == 3)
-            {
-                return (i < columns);
-                
-            }
-            else if (type == 4)
-            {
-                return (i < rows);
-                
-            }
-            else
-            {
-                return false;
-            }
-        } //diagonalIterationCondition
+        //public bool isWon()
+        //{
+        //    if (isWonVertical() == 1 || isWonHorizontal() == 1 || isWonDiagonal() == 1)
+        //    {
+        //        winningPlayer = 1;
+        //        return true;
+        //    }
+        //    else if (isWonVertical() == 2 || isWonHorizontal() == 2 || isWonDiagonal() == 2)
+        //    {
+        //        winningPlayer = 2;
+        //        return true;
+        //    }
+        //    return false;
+        //}//isWon
 
         private List<byte> checkEmptySpotInColumn()
         {
@@ -562,15 +657,6 @@ namespace ConnectXLibrary
             if (playerAtTurn == 1) playerAtTurn = 2;
             else playerAtTurn = 1;
         }//switchPlayerAtTurn
-
-        public bool rasterIsFull()
-        {
-            for (int i = 0; i < columns; i++)
-            {
-                if (raster[rows - 1, i] == 0) return false;
-            }
-            return true;
-        }//rasterIsFull
 
         public bool insertToken(int column, int player)
         {
@@ -596,17 +682,6 @@ namespace ConnectXLibrary
             return spot;
         }//chooseRandomSpot
 
-        public void clearRaster()
-        {
-            for (int i = 0; i < rows; i++)
-            {
-                for (int j = 0; j < columns; j++)
-                {
-                    raster[i, j] = 0;
-                }
-            }
-        }//clearRaster
-
         private bool isColumnFull(int column)
         {
             if (raster[rows - 1, column] != 0)
@@ -616,20 +691,20 @@ namespace ConnectXLibrary
             else return false;
         }//isColumnFull
 
-        public bool isCurrentGameWon()
-        {
-            return isWon();
-        }//isCurrentGameWon
+        //public bool isCurrentGameWon()
+        //{
+        //    return isWon();
+        //}//isCurrentGameWon
 
-        public bool checkIfWon(int column, int player)
-        {
-            if (isWon())
-            {
-                incrementScorePlayer(getWinnerOfLastGame());
-                return true;
-            }
-            return false;
-        }//insertToken
+        //public bool checkIfWon(int column, int player)
+        //{
+        //    if (IsLineStartingAt())
+        //    {
+        //        incrementScorePlayer(getWinnerOfLastGame());
+        //        return true;
+        //    }
+        //    return false;
+        //}//insertToken
 
         public void incrementScorePlayer(int player)
         {

@@ -10,7 +10,7 @@ namespace ConnectXLibrary
         #region State
         private int rows, columns, tokenStreak, startWidth, startHeight, size;
         private string namePlayer1, namePlayer2;
-        bool wonGame, gameChanges = false;
+        bool wonGame, gameChanges = false, multiplayer;
         Bitmap I;
         Graphics gr;
         ConnectX gamePlay;
@@ -18,12 +18,8 @@ namespace ConnectXLibrary
         SolidBrush redBrush = new SolidBrush(Color.Red);
         SolidBrush blueBrush = new SolidBrush(Color.Blue);
         Pen blackPen = new Pen(Color.Black, 3);
-        bool multiplayer;
-        int i = 0;
-        Timer t;
-        token[] tokens;
         #endregion
-        //this.FormBorderStyle = FormBorderStyle.None;
+
         #region Constructor
         public Game(int columns, int rows, int tokenStreak, string namePlayer1)
         {
@@ -93,15 +89,12 @@ namespace ConnectXLibrary
         {
             string title = "";
             bool won = false;
-            if (gamePlay.isCurrentGameWon())
-            {
-                wonGame = true;
-                if (gamePlay.getWinnerOfLastGame() == 1) title = namePlayer1;
-                else title = namePlayer2;
-                title += " has won the game.";
-                won = true;
-            }
-            else if (gamePlay.rasterIsFull())
+            wonGame = true;
+            if (gamePlay.getWinnerOfLastGame() == 1) title = namePlayer1;
+            else title = namePlayer2;
+            title += " has won the game.";
+            won = true;
+            if (gamePlay.rasterIsFull())
             {
                 title = "Raster is full.";
                 won = true;
@@ -180,7 +173,7 @@ namespace ConnectXLibrary
             {
                 row = gamePlay.checkIfColumnHasEmptySpot(column);
                 gamePlay.insertToken(column, gamePlay.getPlayerAtTurn());
-                drawToken(column, row);
+                drawToken(row, column);
             }
             else if (multiplayer == false & gamePlay.getPlayerAtTurn() == 2)
             {
@@ -193,13 +186,23 @@ namespace ConnectXLibrary
             {
                 row = gamePlay.checkIfColumnHasEmptySpot(column);
                 gamePlay.insertToken(column, gamePlay.getPlayerAtTurn());
-                drawToken(column, row);
+                drawToken(row, column);
+                if (gamePlay.IsLineStartingAt(row, column))
+                {
+                    System.Diagnostics.Debug.WriteLine("winnaar");
+                    //showIfWon();
+                }
+                else System.Diagnostics.Debug.WriteLine("geen winnaar");
+                System.Diagnostics.Debug.WriteLine("");
+                System.Diagnostics.Debug.WriteLine("========================================================================");
+                System.Diagnostics.Debug.WriteLine("");
             }
 
             gamePlay.switchPlayerAtTurn();
             showPlayerAtTurn();
-            bool isWon = gamePlay.checkIfWon(column, gamePlay.getPlayerAtTurn());
-            if (isWon) showIfWon();
+            //bool isWon = gamePlay.checkIfWon(column, gamePlay.getPlayerAtTurn());
+            
+            //if (isWon) showIfWon();
 
             if (multiplayer == false && gamePlay.getPlayerAtTurn() == 2 && !wonGame)
             {
@@ -210,7 +213,7 @@ namespace ConnectXLibrary
             }
         }
 
-        private void drawToken(int column, int row)
+        private void drawToken(int row, int column)
         {
             if (row > -1)
             {
@@ -307,13 +310,18 @@ namespace ConnectXLibrary
 
     class token : PictureBox
     {
+        #region State
         Random r = new Random();
+        #endregion
 
+        #region Constructor
         public token()
         {
             move();
         }//token
+        #endregion
 
+        #region Methods
         public void create(int player, int size, Point location, Panel pnlGame)
         {
             this.Parent = pnlGame;
@@ -340,5 +348,6 @@ namespace ConnectXLibrary
         {
             this.Location += new Size(0, 5);
         }//t_Tick
+        #endregion
     }
 }

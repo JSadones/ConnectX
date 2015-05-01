@@ -402,7 +402,7 @@ namespace ConnectXUnitTest
 
         [TestMethod]
         public void TestGameExists() {
-            Assert.IsTrue(game.exists());
+            Assert.IsTrue(game.gameExists());
         }
 
 		[TestMethod]
