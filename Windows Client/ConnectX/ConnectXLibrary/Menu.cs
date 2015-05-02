@@ -120,12 +120,14 @@ namespace ConnectXLibrary
         private void txtBoxColumns_TextChanged(object sender, EventArgs e)
         {
             checkDimension();
+            checkStreak();
 			startButtonState();
         } // txtBoxWidth_TextChanged
 
         private void txtBoxRows_TextChanged(object sender, EventArgs e)
         {
             checkDimension();
+            checkStreak();
 			startButtonState();
         } //txtBoxLength_TextChanged
 
