@@ -10,8 +10,7 @@ namespace ConnectXLibrary
         #region State
         private int rows, columns, tokenStreak, startWidth, startHeight, size;
         private string namePlayer1, namePlayer2;
-        bool gameChanges = false, multiplayer;
-        string title;
+        bool gameChanges = false, multiplayer, gameEnd = false;
         Bitmap I;
         Graphics gr;
         ConnectX gamePlay;
@@ -74,47 +73,12 @@ namespace ConnectXLibrary
         #endregion+
 
         #region Methods
+        //===Drawing methods===
         private void pnlGame_Paint(object sender, PaintEventArgs e)
         {
             drawGrid();
             drawHud();
-        }//pnlGame_MouseClick
-
-        private void updateScores()
-        {
-            lblPointsPlayer1.Text = gamePlay.getScore(1).ToString();
-            lblPointsPlayer2.Text = gamePlay.getScore(2).ToString();
-        }//updateScores
-
-        private void showGameEndMessage()
-        {
-            updateScores();
-            DialogResult dialogResult = MessageBox.Show("Play another one?", title, MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                newGame();
-            }
-            else
-            {
-                showSessionEndMessage();
-            }
-        }
-
-        private void showSessionEndMessage()
-        {
-            string message;
-            if (gamePlay.getScore(1) == gamePlay.getScore(2)) message = "It's a tie!";
-            else
-            {
-                message = getName(gamePlay.getWinnerOfLastSession()) + " won the game!";
-            }
-            DialogResult dialogResult2 = MessageBox.Show(message, "Game over!", MessageBoxButtons.OK);
-
-            if (dialogResult2 == DialogResult.OK)
-            {
-                this.Hide();
-            }
-        }
+        }//pnlGame_Paint
 
         private void drawGrid()
         {
@@ -157,63 +121,6 @@ namespace ConnectXLibrary
             hud.FillEllipse(redBrush, redCircle);
         }//drawHud
 
-        private void switchPlayer(int column)
-        {
-            int row;
-            if (multiplayer == false && gamePlay.getPlayerAtTurn() == 1)
-            {
-                row = gamePlay.checkIfColumnHasEmptySpot(column);
-                gamePlay.insertToken(column, gamePlay.getPlayerAtTurn());
-                drawToken(row, column);
-                gamePlay.switchPlayerAtTurn();
-            }
-            else if (multiplayer == false & gamePlay.getPlayerAtTurn() == 2)
-            {
-                int spot = gamePlay.chooseRandomSpot();
-                row = gamePlay.checkIfColumnHasEmptySpot(spot);
-                gamePlay.insertToken(spot, gamePlay.getPlayerAtTurn());
-                drawToken(spot, row);
-                gamePlay.switchPlayerAtTurn();
-            }
-            else
-            {
-                row = gamePlay.checkIfColumnHasEmptySpot(column);
-                if(row > -1)
-                {
-                    gamePlay.insertToken(column, gamePlay.getPlayerAtTurn());
-                    drawToken(row, column);
-                    gamePlay.switchPlayerAtTurn();
-                    showPlayerAtTurn();
-                }
-                
-                if (gamePlay.isLineStartingAt(row, column))
-                {
-                    gamePlay.incrementScorePlayer(gamePlay.getPlayerAtTurn());
-                    updateScores();
-                    if (gamePlay.getPlayerAtTurn() == 1) title = namePlayer1;
-                    else title = namePlayer2;
-                    title += " has won the game.";
-                    if (!gameChanges) gameChanges = true;
-                    showGameEndMessage();
-                }
-                else if(gamePlay.rasterIsFull())
-                {
-                    updateScores();
-                    title = "Raster is full.";
-                    showGameEndMessage();
-                }
-                
-                
-            }
-            
-            if (multiplayer == false && gamePlay.getPlayerAtTurn() == 2)
-            {
-                showPlayerAtTurn();
-                row = gamePlay.checkIfColumnHasEmptySpot(column);
-                switchPlayer(row);
-            }
-        }
-
         private void drawToken(int row, int column)
         {
             if (row > -1)
@@ -239,43 +146,42 @@ namespace ConnectXLibrary
             }
         }//drawToken
 
-        private void pnlGame_MouseClick(object sender, MouseEventArgs e)
-        {
-            for (int i = 0; i < columns; i++)
-            {
-                if ((i * size) + startWidth <= e.X && e.X <= (size * (i + 1) + startWidth))
-                {
-                    switchPlayer(i);
-                    break;
-                }
-            }
-        }//pnlGame_MouseClick
-
-        private void showPlayerAtTurn()
-        {
-            int playerAtTurn = gamePlay.getPlayerAtTurn();
-            if (playerAtTurn == 1)
-            {
-                lblTurnName.Text = namePlayer1;
-            }
-            else
-            {
-                lblTurnName.Text = namePlayer2;
-            }
-        }//showPlayerAtTurn
-
-        private void newGame()
-        {
-            gamePlay.nextGame();
-            gamePlay.switchPlayerAtTurn();
-            drawGrid();
-            showPlayerAtTurn();
-        }//newGame
-
         private void calculateSlotSize()
         {
             size = 480 / rows;
         }//calculateSlotSize
+
+
+        //===Messageboxes methods===
+        private void showGameEndMessage(string title)
+        {
+            updateScores();
+            DialogResult dialogResult = MessageBox.Show("Play another one?", title, MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                newGame();
+            }
+            else
+            {
+                showSessionEndMessage();
+            }
+        }//showGameEndMessage
+
+        private void showSessionEndMessage()
+        {
+            string message;
+            if (gamePlay.getScore(1) == gamePlay.getScore(2)) message = "It's a tie!";
+            else
+            {
+                message = getName(gamePlay.getWinnerOfLastSession()) + " won the game!";
+            }
+            DialogResult dialogResult2 = MessageBox.Show(message, "Game over!", MessageBoxButtons.OK);
+
+            if (dialogResult2 == DialogResult.OK)
+            {
+                this.Hide();
+            }
+        }//showSessionEndMessage
 
         private void Game_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -292,6 +198,107 @@ namespace ConnectXLibrary
                 }
             }
         }//Game_FormClosing
+
+
+        //===GUI Methods===
+        private void updateScores()
+        {
+            lblPointsPlayer1.Text = gamePlay.getScore(1).ToString();
+            lblPointsPlayer2.Text = gamePlay.getScore(2).ToString();
+        }//updateScores
+
+        private void showPlayerAtTurn()
+        {
+            int playerAtTurn = gamePlay.getPlayerAtTurn();
+            if (playerAtTurn == 1) lblTurnName.Text = namePlayer1;
+            else lblTurnName.Text = namePlayer2;
+        }//showPlayerAtTurn
+
+
+        //===Input Methods===
+        private void pnlGame_MouseClick(object sender, MouseEventArgs e)
+        {
+            for (int i = 0; i < columns; i++)
+            {
+                if ((i * size) + startWidth <= e.X && e.X <= (size * (i + 1) + startWidth))
+                {
+                    gameEnd = false;
+                    insertTokenByPlayer(i);
+                    if(!multiplayer && !gameEnd)
+                    {
+                        insertTokenByAI();
+                    }
+                    break;
+                }
+            }
+        }//pnlGame_MouseClick
+
+
+        //===Insert Tokens===
+        private void insertTokenByPlayer(int column)
+        {
+            int row = gamePlay.selectLowestAvailableRow(column);
+
+            if (gamePlay.insertToken(column, row, gamePlay.getPlayerAtTurn()))
+            {
+                drawToken(row, column);
+                if(!checkTurn(row, column))
+                {
+                    gamePlay.switchPlayerAtTurn();
+                    showPlayerAtTurn();
+                }
+            }
+        }//insertTokenByPlayer
+
+        private void insertTokenByAI()
+        {
+            int column = gamePlay.chooseRandomSpot();
+            int row = gamePlay.selectLowestAvailableRow(column);
+
+            if (gamePlay.insertToken(column, row, gamePlay.getPlayerAtTurn()))
+            {
+                drawToken(row, column);
+                if (!checkTurn(row, column))
+                {
+                    gamePlay.switchPlayerAtTurn();
+                    showPlayerAtTurn();
+                }
+            }
+        }//insertTokenByAI
+
+
+        //===Other methods===
+        private bool checkTurn(int row, int column)
+        {
+            string title;
+            if (gamePlay.checkWinnerAllDirections(row, column))
+            {
+                gamePlay.incrementScorePlayer(gamePlay.getPlayerAtTurn());
+                updateScores();
+                if (gamePlay.getPlayerAtTurn() == 1) title = namePlayer1;
+                else title = namePlayer2;
+                title += " has won the game.";
+                showGameEndMessage(title);
+                gameEnd = true;
+                if (!gameChanges) gameChanges = true;
+                return true;
+            }
+            else if (gamePlay.rasterIsFull())
+            {
+                title = "Raster is full.";
+                showGameEndMessage(title);
+                gameEnd = true;
+                return true;
+            }
+            else return false;
+        }//checkTurn
+
+        private void newGame()
+        {
+            gamePlay.newGame();
+            drawGrid();
+            showPlayerAtTurn();
+        }//newGame
         #endregion
     }
 

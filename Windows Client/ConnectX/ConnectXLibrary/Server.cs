@@ -82,6 +82,7 @@ namespace ConnectXLibrary
             string Param1 = context.Request.QueryString["Param1"];
             string Param2 = context.Request.QueryString["Param2"];
             string Param3 = context.Request.QueryString["Param3"];
+            string Param4 = context.Request.QueryString["Param4"];
 
             var Response = new List<ResponseForWebClient>();
             		
@@ -109,7 +110,7 @@ namespace ConnectXLibrary
 
                 ConnectX game = threadGame.Value;
                 
-                bool response = game.insertToken(Convert.ToInt32(Param2), Convert.ToInt32(Param3));
+                bool response = game.insertToken(int.Parse(Param2), int.Parse(Param4), int.Parse(Param3));
 
                 int row = game.getRowIndexOfHighestTokenInColumn(Convert.ToInt32(Param2));
 

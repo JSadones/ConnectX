@@ -8,7 +8,7 @@ namespace ConnectXLibrary
     {
         #region State
         int[,] raster;
-        private int rows, columns, streakToWin, playerAtTurn, scorePlayer1 = 0, scorePlayer2 = 0;
+        private int rows, columns, streakToWin, playerAtTurn, scorePlayer1 = 0, scorePlayer2 = 0, difficulty;
 		private static int defaultRows = 6, defaultColumns = 7, defaultStreak = 4;
         private static bool  defaultMP = true;
         private bool multiplayer;
@@ -56,17 +56,6 @@ namespace ConnectXLibrary
 			return defaultStreak;
 		}//GetDefaultStreakToWin
 
-        public int getRowIndexOfLowestEmptyTokenInColumn(int column)
-        {
-            int row = 0;
-            while (row < rows)
-            {
-                if (raster[row, column] == 0) return row;
-                row++;
-            }
-            return -1;
-        }//getRowIndexOfLowestEmptyTokenInColumn
-
         public int getRowIndexOfHighestTokenInColumn(int column)
         {
             int row = 0;
@@ -84,7 +73,7 @@ namespace ConnectXLibrary
         public int getPlayerAtTurn()
         {
             return playerAtTurn;
-        }
+        }//getPlayerAtTurn
 
         public int getToken(int row, int column)
         {
@@ -118,7 +107,7 @@ namespace ConnectXLibrary
 		#endregion
 
         #region Methods
-        //Methods for raster
+        //===Methods for raster===
         public bool rasterIsFull()
         {
             for (int column = 0; column < columns; column++)
@@ -154,9 +143,48 @@ namespace ConnectXLibrary
             return true;
         }//isRasterInitializedWithZeros
 
+        public bool insertToken(int column, int row, int player)
+        {
+            if (!isColumnFull(column))
+            {
+                if (selectLowestAvailableRow(column) != -1)
+                {
+                    raster[row, column] = player;
+                }
+                return true;
+            }
+            else return false;
+        }//insertToken
 
-        //Winning algorithm
-        private bool isLinearMatch(int row, int column, int stepRow, int stepColumn)
+
+        //===Checks for raster===
+        private bool isColumnFull(int column)
+        {
+            if (raster[rows - 1, column] != 0)
+            {
+                return true;
+            }
+            else return false;
+        }//isColumnFull
+
+        public int selectLowestAvailableRow(int column)
+        {
+            if (!isColumnFull(column))
+            {
+                int row = 0;
+                while (row < rows)
+                {
+                    if (raster[row, column] == 0) return row;
+                    row++;
+                }
+                return rows;
+            }
+            else return -1;
+        }//selectLowestAvailableRow
+
+
+        //===Winning algorithm===
+        private bool checkWinner(int row, int column, int stepRow, int stepColumn)
         {
             int counter = 0;
             for (int i = 1; i < streakToWin; i++)
@@ -174,25 +202,28 @@ namespace ConnectXLibrary
                 if (counter == streakToWin - 1) return true;
             }
             return false;
-        }
+        }//checkWinner
 
-        public bool isLineStartingAt(int row, int column)
+        public bool checkWinnerAllDirections(int row, int column)
         {
-            if (isLinearMatch(row, column, 0, 1) || isLinearMatch(row, column, 0, -1) || isLinearMatch(row, column, -1, 0) || isLinearMatch(row, column, -1, 1) || isLinearMatch(row, column, -1, -1)) return true;
+            if (checkWinner(row, column, 0, 1) || checkWinner(row, column, 0, -1) || checkWinner(row, column, -1, 0) || checkWinner(row, column, -1, 1) || checkWinner(row, column, -1, -1)) return true;
             else return false;
-        }
+        }//checkWinnerAllDirections
 
 
-        public bool gameExists()
+        //===AI Methods===
+        public int chooseRandomSpot()
         {
-            if (raster != null)
-            {
-                return true;
-            }
-            return false;
-        }//exists
+            List<byte> emptySpots;
+            Random rnd = new Random();
+            emptySpots = selectAllAvailableColumns();
+            int length = emptySpots.Count;
+            int spot = rnd.Next(0, length);
 
-        private List<byte> checkEmptySpotInColumn()
+            return spot;
+        }//chooseRandomSpot
+
+        private List<byte> selectAllAvailableColumns()
         {
             List<byte> empySpots = new List<byte>();
 
@@ -204,73 +235,29 @@ namespace ConnectXLibrary
                 }
             }
             return empySpots;
-        }//checkEmptySpotInColumn
+        }//selectAllAvailableColumns
 
-        public void switchPlayerAtTurn()
-        {
-            if (playerAtTurn == 1) playerAtTurn = 2;
-            else playerAtTurn = 1;
-        }//switchPlayerAtTurn
 
-        public bool insertToken(int column, int player)
-        {
-            if (1 <= player && player <= 2)
-            {
-                if (getRowIndexOfLowestEmptyTokenInColumn(column) != -1)
-                {
-                    raster[getRowIndexOfLowestEmptyTokenInColumn(column), column] = player;
-                }
-                return true;
-            }
-            else return false;
-        }//insertToken
-
-        public int chooseRandomSpot()
-        {
-            List<byte> emptySpots;
-            Random rnd = new Random();
-            emptySpots = checkEmptySpotInColumn();
-            int length = emptySpots.Count;
-            int spot = rnd.Next(0, length);
-
-            return spot;
-        }//chooseRandomSpot
-
-        private bool isColumnFull(int column)
-        {
-            if (raster[rows - 1, column] != 0)
-            {
-                return true;
-            }
-            else return false;
-        }//isColumnFull
-
+        //===Score Methods===
         public void incrementScorePlayer(int player)
         {
             if (player == 1) scorePlayer1++;
             else scorePlayer2++;
         }//incrementScorePlayer
 
-        public int checkIfColumnHasEmptySpot(int column)
-        {
-            if (isColumnFull(column) == false)
-            {
-                int row = 0;
-                while (row < rows)
-                {
-                    if (raster[row, column] == 0) return row;
-                    row++;
-                }
-                return rows;
-            }
-            else return -1;
-        }//checkIfColumnHasEmptySpot
 
-        public void nextGame()
+        //===Other Methods===
+        public void newGame()
         {
             clearRaster();
             playerAtTurn = 1;
         }//nextGame
+
+        public void switchPlayerAtTurn()
+        {
+            if (playerAtTurn == 1) playerAtTurn = 2;
+            else playerAtTurn = 1;
+        }//switchPlayerAtTurn
         #endregion
     }
 }

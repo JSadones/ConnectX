@@ -28,6 +28,7 @@ namespace ConnectXLibrary
         #endregion
 
         #region Methods
+        //===Click Methods===
         private void btnPlayCPU_Click(object sender, EventArgs e)
         {
             multiplayerGame = false;
@@ -97,6 +98,7 @@ namespace ConnectXLibrary
         }//picBoxPlayer2_Click
 
 
+        //===TextBox Methods===
         private void txtBoxPlayer1Name_TextChanged(object sender, EventArgs e)
         {
             checkNames();
@@ -128,6 +130,7 @@ namespace ConnectXLibrary
         } //txtBoxLength_TextChanged
 
 
+        //===Check Methods===
         private void checkDimension()
         {
             if ((txtBoxRows.Text != "") && (txtBoxColumns.Text != ""))
@@ -237,22 +240,24 @@ namespace ConnectXLibrary
             }
         }//checkNames
 
+        private void startButtonState()
+        {
+            if (dimensionOK && streakOK && namesOK)
+            {
+                btnStart.Enabled = true;
+            }
+            else
+            {
+                btnStart.Enabled = false;
+            }
+        }//startButtonState
+
+
+        //===Other Methods===
         private void showColorDialog()
         {
             //TODO (Zie issues)
         }//showColorDialog
-
-		private void startButtonState()
-		{
-			if (dimensionOK && streakOK && namesOK)
-			{
-				btnStart.Enabled = true;
-			}
-			else
-			{
-				btnStart.Enabled = false;
-			}
-		}//startButtonState
 
         private void showMenu()
         {
