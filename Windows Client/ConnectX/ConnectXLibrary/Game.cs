@@ -88,8 +88,6 @@ namespace ConnectXLibrary
 
         private void showGameEndMessage()
         {
-            string message;
-
             updateScores();
             DialogResult dialogResult = MessageBox.Show("Play another one?", title, MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
@@ -98,16 +96,23 @@ namespace ConnectXLibrary
             }
             else
             {
-                if (gamePlay.getWinnerOfLastSession() == 0)
-                    message = "It's a tie!";
-                else
-                    message = getName(gamePlay.getWinnerOfLastSession()) + " won the game!";
-                DialogResult dialogResult2 = MessageBox.Show("Game over!", message, MessageBoxButtons.OK);
+                showSessionEndMessage();
+            }
+        }
 
-                if (dialogResult2 == DialogResult.OK)
-                {
-                    this.Hide();
-                }
+        private void showSessionEndMessage()
+        {
+            string message;
+            if (gamePlay.getScore(1) == gamePlay.getScore(2)) message = "It's a tie!";
+            else
+            {
+                message = getName(gamePlay.getWinnerOfLastSession()) + " won the game!";
+            }
+            DialogResult dialogResult2 = MessageBox.Show(message, "Game over!", MessageBoxButtons.OK);
+
+            if (dialogResult2 == DialogResult.OK)
+            {
+                this.Hide();
             }
         }
 
@@ -278,7 +283,7 @@ namespace ConnectXLibrary
                 }
                 else
                 {
-                    //endResult tonen
+                    showSessionEndMessage();
                 }
             }
         }//Game_FormClosing
