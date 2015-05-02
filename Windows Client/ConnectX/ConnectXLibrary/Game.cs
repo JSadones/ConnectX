@@ -178,9 +178,14 @@ namespace ConnectXLibrary
             else
             {
                 row = gamePlay.checkIfColumnHasEmptySpot(column);
-                gamePlay.insertToken(column, gamePlay.getPlayerAtTurn());
-                drawToken(row, column);
-
+                if(row > -1)
+                {
+                    gamePlay.insertToken(column, gamePlay.getPlayerAtTurn());
+                    drawToken(row, column);
+                    gamePlay.switchPlayerAtTurn();
+                    showPlayerAtTurn();
+                }
+                
                 if (gamePlay.isLineStartingAt(row, column))
                 {
                     gamePlay.incrementScorePlayer(gamePlay.getPlayerAtTurn());
@@ -188,6 +193,7 @@ namespace ConnectXLibrary
                     if (gamePlay.getPlayerAtTurn() == 1) title = namePlayer1;
                     else title = namePlayer2;
                     title += " has won the game.";
+                    if (!gameChanges) gameChanges = true;
                     showGameEndMessage();
                 }
                 else if(gamePlay.rasterIsFull())
@@ -196,8 +202,8 @@ namespace ConnectXLibrary
                     title = "Raster is full.";
                     showGameEndMessage();
                 }
-                gamePlay.switchPlayerAtTurn();
-                showPlayerAtTurn();
+                
+                
             }
             
             if (multiplayer == false && gamePlay.getPlayerAtTurn() == 2)
@@ -240,7 +246,6 @@ namespace ConnectXLibrary
                 if ((i * size) + startWidth <= e.X && e.X <= (size * (i + 1) + startWidth))
                 {
                     switchPlayer(i);
-                    if (!gameChanges) gameChanges = true;
                     break;
                 }
             }
