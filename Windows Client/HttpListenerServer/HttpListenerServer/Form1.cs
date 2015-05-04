@@ -1,65 +1,67 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Xml.Linq; 
 using System.Net;
 using System.Threading;
-
-using System.Threading.Tasks;
+using System.IO;
+using System.Text.RegularExpressions;
+using System.Diagnostics;
+using System.Web;
 using System.Web.Script.Serialization;
-using System.Windows.Forms;
 
-namespace ConnectXLibrary
+namespace HttpListenerServer
 {
-    public partial class Server : Form
+    public partial class Form1 : Form
     {
-        #region State
         static HttpListener listener;
         private Thread listenThread1;
-        ThreadLocal<ConnectX> threadGame;
-        #endregion State
-
-        #region Constructor
-        public Server()
+        public Form1()
         {
             InitializeComponent();
         }
-        #endregion
-
-        private void Server_Load(object sender, EventArgs e)
+        
+        
+        private void Form1_Load(object sender, EventArgs e)
         {
-            try
-            {
-                listener = new HttpListener();
-                listener.Prefixes.Add("http://localhost:8000/");
-                listener.Prefixes.Add("http://127.0.0.1:8000/");
-                listener.AuthenticationSchemes = AuthenticationSchemes.Anonymous;
+            listener = new HttpListener();
+            listener.Prefixes.Add("http://localhost:8000/");
+            listener.Prefixes.Add("http://127.0.0.1:8000/");
+            listener.AuthenticationSchemes = AuthenticationSchemes.Anonymous;
 
-                listener.Start();
-
-                this.listenThread1 = new Thread(new ParameterizedThreadStart(startlistener));
-                listenThread1.Start();
-                //System.Diagnostics.Process.Start("http://localhost:8000/");
-            }
-            catch (HttpListenerException)
-            {
-                DialogResult dialogResult = MessageBox.Show("Run ConnectX as admin or server is already listening.", "Error");
-                this.Close();
-            }
+            listener.Start();
+            this.listenThread1 = new Thread(new ParameterizedThreadStart(startlistener));
+            listenThread1.Start();
+           
         }
+
 
         private void startlistener(object s)
         {
+
             while (true)
             {
+               
                 ////blocks until a client has connected to the server
                 ProcessRequest();
+
             }
+
         }
+
 
         private void ProcessRequest()
         {
+
             var result = listener.BeginGetContext(ListenerCallback, listener);
             result.AsyncWaitHandle.WaitOne();
+
         }
 
         private void ListenerCallback(IAsyncResult result)
@@ -67,7 +69,6 @@ namespace ConnectXLibrary
             var context = listener.EndGetContext(result);
             Thread.Sleep(100);
             var data_text = new StreamReader(context.Request.InputStream, context.Request.ContentEncoding).ReadToEnd();
-
 
             //functions used to decode json encoded data.
             //JavaScriptSerializer js = new JavaScriptSerializer();
@@ -80,57 +81,13 @@ namespace ConnectXLibrary
             context.Response.ContentType = "application/json";
             string callback = context.Request.QueryString["callback"];
             string Param1 = context.Request.QueryString["Param1"];
-            string Param2 = context.Request.QueryString["Param2"];
-            string Param3 = context.Request.QueryString["Param3"];
-            string Param4 = context.Request.QueryString["Param4"];
-
-            var Response = new List<ResponseForWebClient>();
-            		
-                     
-
-            if (Param1 == "startGame")
-                {
-                if (threadGame == null)
-                {
-                    ConnectX game = new ConnectX(Convert.ToInt32(Param2), Convert.ToInt32(Param3));
-                    
-
-                    threadGame = new ThreadLocal<ConnectX>(() =>
-                    {
-                        return game;
-                    });
-                    
-                    Response.Add(new ResponseForWebClient("startGame", "OK", "Game Created"));
-                }
-                else Response.Add(new ResponseForWebClient("startGame", "NOK", "Game already exists"));
-
-            }
-            else if (Param1 == "insertToken")
-            {
-
-                ConnectX game = threadGame.Value;
-
-                int row = game.getRowIndexOfHighestTokenInColumn(Convert.ToInt32(Param2)) + 1;
-                bool response = game.insertToken(int.Parse(Param2), row, int.Parse(Param3));
-                
-
-
-                Response.Add(new ResponseForWebClient("insertToken", response.ToString(), row.ToString()));
-
-            } else if (Param1 == "isWon")
-            {
-
-                ConnectX game = threadGame.Value;
-                //bool won = game.isWon();
-                //bool winner = game;
-
-                
-               // Response.Add(new ResponseForWebClient("insertToken", response.ToString(), row.ToString()));
-
-            }
-
+            var RegisteredUsers = new List<Class1>();
+            RegisteredUsers.Add(new Class1() { PersonID = 1, Name = "Bryon Hetrick", Registered = true });
+            RegisteredUsers.Add(new Class1() { PersonID = 2, Name = "Nicole Wilcox", Registered = true });
+            RegisteredUsers.Add(new Class1() { PersonID = 3, Name = "Adrian Martinson", Registered = false });
+            RegisteredUsers.Add(new Class1() { PersonID = 4, Name = "Nora Osborn", Registered = false });
             JavaScriptSerializer js = new JavaScriptSerializer();
-            string JSONstring = js.Serialize(Response);
+            string JSONstring = js.Serialize(RegisteredUsers);
             string JSONPstring = string.Format("{0}({1});", callback, JSONstring);
             //context.Response. Write(JSONPstring);
             if (context.Request.HttpMethod == "OPTIONS")
@@ -141,6 +98,7 @@ namespace ConnectXLibrary
             }
             context.Response.AppendHeader("Access-Control-Allow-Origin", "*");
 
+            
             byte[] buffer = System.Text.Encoding.UTF8.GetBytes(JSONPstring);
             // Get a response stream and write the response to it.
             context.Response.ContentLength64 = buffer.Length;
@@ -155,8 +113,11 @@ namespace ConnectXLibrary
 
             //use this line to send your response in a custom header
             //context.Response.Headers["mycustomResponseHeader"] = "mycustomResponse";
-         
+            
+            MessageBox.Show(cleaned_data);
             context.Response.Close();
         }
+
+
     }
 }

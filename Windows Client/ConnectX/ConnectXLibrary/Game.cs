@@ -220,10 +220,10 @@ namespace ConnectXLibrary
         {
             for (int i = 0; i < columns; i++)
             {
-                if ((i * size) + startWidth <= e.X && e.X <= (size * (i + 1) + startWidth))
+                if (i * size + startWidth <= e.X && e.X <= (size * (i + 1) + startWidth))
                 {
                     gameEnd = false;
-                    insertTokenByPlayer(i);
+                    insertToken(i);
                     if(!multiplayer && !gameEnd)
                     {
                         insertTokenByAI();
@@ -235,7 +235,7 @@ namespace ConnectXLibrary
 
 
         //===Insert Tokens===
-        private void insertTokenByPlayer(int column)
+        private void insertToken(int column)
         {
             int row = gamePlay.selectLowestAvailableRow(column);
 
@@ -253,17 +253,7 @@ namespace ConnectXLibrary
         private void insertTokenByAI()
         {
             int column = gamePlay.chooseRandomSpot();
-            int row = gamePlay.selectLowestAvailableRow(column);
-
-            if (gamePlay.insertToken(column, row, gamePlay.getPlayerAtTurn()))
-            {
-                drawToken(row, column);
-                if (!checkTurn(row, column))
-                {
-                    gamePlay.switchPlayerAtTurn();
-                    showPlayerAtTurn();
-                }
-            }
+            insertToken(column);
         }//insertTokenByAI
 
 

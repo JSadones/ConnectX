@@ -36,6 +36,11 @@ $(document).ready(function(){
         else playerAtPlay = 1;
     }
 
+    function isWon() {
+
+        ajaxCall(callback, "isWon");
+    }
+
    $(document).on("mouseenter", ".column", function() {
        $('.' + getSecondClass($(this)).toString()).css("background-color", "red");
     });
@@ -47,7 +52,9 @@ $(document).ready(function(){
     $(document).on("click", ".column", function() {
         var column = getSecondClass($(this)).replace(/\D/g,'');
         
-        insertToken(column);   
+
+        insertToken(column); 
+        isWon();  
         
     });
 
@@ -59,6 +66,15 @@ $(document).ready(function(){
                 $('.row'+data[0].parameter2+'.column'+arguments[1]).html(player);
                 console.log('.row'+data[0].parameter2+'.column'+column);
                 console.log("jup");
+
+            } else {
+                alert('no');
+            }
+        
+        } else if (data[0].type=="isWon") {
+            if(data[0].parameter1 == "True") {
+
+                alert("Won by " + data[0].parameter2);
 
             } else {
                 alert('no');
