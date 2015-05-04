@@ -157,6 +157,7 @@ namespace ConnectXLibrary
         }//insertToken
 
 
+
         //===Checks for raster===
         private bool isColumnFull(int column)
         {

@@ -223,37 +223,39 @@ namespace ConnectXLibrary
                 if (i * size + startWidth <= e.X && e.X <= (size * (i + 1) + startWidth))
                 {
                     gameEnd = false;
-                    insertToken(i);
-                    if(!multiplayer && !gameEnd)
-                    {
-                        insertTokenByAI();
-                    }
+
+                    processTurn(i);
+
                     break;
                 }
             }
         }//pnlGame_MouseClick
 
-
-        //===Insert Tokens===
-        private void insertToken(int column)
+        private void processTurn(int column)
         {
             int row = gamePlay.selectLowestAvailableRow(column);
 
             if (gamePlay.insertToken(column, row, gamePlay.getPlayerAtTurn()))
             {
                 drawToken(row, column);
-                if(!checkTurn(row, column))
+
+                if (!checkTurn(row, column))
                 {
                     gamePlay.switchPlayerAtTurn();
                     showPlayerAtTurn();
+
+                    if (!multiplayer && !gameEnd && gamePlay.getPlayerAtTurn() == 2)
+                    {
+                        insertTokenByAI();
+                    }
                 }
             }
-        }//insertTokenByPlayer
+        }
 
         private void insertTokenByAI()
         {
             int column = gamePlay.chooseRandomSpot();
-            insertToken(column);
+            processTurn(column);
         }//insertTokenByAI
 
 
