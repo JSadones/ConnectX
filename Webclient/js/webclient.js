@@ -1,6 +1,8 @@
 $(document).ready(function(){   
 
     var playerAtPlay = 1;
+    var rows = 0;
+    var columns = 0;
         // Start
             // Show start div
         // Options
@@ -53,32 +55,51 @@ $(document).ready(function(){
         
     });
 
+    function nextGame() {
+        initializeRaster();
+    }
+
+    function endGame() {
+        $('#start').show();
+        $( "#options" ).hide();
+        $( "#raster" ).hide();
+    }
+
+    function initializeRaster() {
+        for (var i=0; i<columns; i++) {
+            for (var j=0; j<rows;j++) {
+                $('.row'+j+'.column'+i).html("-");
+
+            }
+        }
+    }
+
     function callback(data) {
         console.log(data);
         if (data[0].type=="insertToken") {
             if(data[0].status == "True") {
-                console.log(data[0].row + data[0].column);
                 $('.row'+data[0].row+'.column'+data[0].column).html(data[0].player);
 
 
                 if (data[0].won == "True")
                 {
                     alert("Game won by player " + data[0].player);
+                    if(confirm("Play another game?")) {
+                        ajaxCall(callback, "nextGame");
+                    } else endGame();
                 }
             } else {
                 alert('no');
             }
         
-        } else if (data[0].type=="isWon") {
-            if(data[0].parameter1 == "True") {
+        } else if (data[0].type=="nextGame") {
+            if(data[0].status == "True") {
+                initializeRaster();
+                playerAtPlay = 1;
 
-                alert("Won by " + data[0].parameter2);
-
-            } else {
-                alert('no');
-            }
+            } 
         
-        }
+        } 
     }
 
     function ajaxCall(callback) {
@@ -109,6 +130,9 @@ $(document).ready(function(){
         });
 
         var content = "<table width='70%'><tr id='selectie'>";
+
+        columns = values["columns"];
+        rows = values["rows"];
 
         for (var i = 0; i < values["columns"]; i++) {
             content += "<th>o</th>";

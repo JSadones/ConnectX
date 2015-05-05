@@ -248,10 +248,11 @@ namespace ConnectXLibrary
 
 
         //===Other Methods===
-        public void newGame()
+        public bool newGame()
         {
             clearRaster();
             playerAtTurn = 1;
+            return true;
         }//nextGame
 
         public void switchPlayerAtTurn()

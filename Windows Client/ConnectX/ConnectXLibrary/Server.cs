@@ -127,13 +127,17 @@ namespace ConnectXLibrary
 
                 Response.Add(response);
 
-            } else if (Param1 == "isWon")
+            } else if (Param1 == "nextGame")
             {
 
-               // ConnectX game = threadGame.Value;
+                ConnectX game = threadGame.Value;
 
-                
-               // Response.Add(new ResponseForWebClient("insertToken", response.ToString(), row.ToString()));
+                ResponseForWebClient response = new ResponseForWebClient();
+                response.type = "nextGame";
+
+                response.status = game.newGame().ToString(); ;
+
+                Response.Add(response);
 
             }
 
