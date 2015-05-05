@@ -2,7 +2,7 @@
 {
     public class ResponseForWebClient
     {
-        public string type, row, column, player, status, won;
+        public string type, row, column, player, status, won, full;
 
         public string getType()
         {

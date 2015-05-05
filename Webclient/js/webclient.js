@@ -1,8 +1,12 @@
 $(document).ready(function(){   
 
     var playerAtPlay = 1;
+    var scores = [];
+    scores[1] = 0;
+    scores[2] = 0; 
     var rows = 0;
     var columns = 0;
+    var multiplayer = false;
         // Start
             // Show start div
         // Options
@@ -10,13 +14,17 @@ $(document).ready(function(){
     $( "#play-vs-cpu" ).click(function() {
         $('#start').hide();
         $( "#options" ).show();
+        $( "#stats" ).hide();
         $( ".multiplayer-option" ).hide();
+        multiplayer = false;
 
     });
     $( "#play-multiplayer" ).click(function() {
         $('#start').hide();
         $( "#options" ).show();
+        $( "#stats" ).hide();
         $( ".multiplayer-option" ).show();
+        multiplayer = true;
 
     });
 
@@ -34,9 +42,14 @@ $(document).ready(function(){
 
     function insertToken(column) {
         ajaxCall(callback, "insertToken", column, playerAtPlay);
-        if (playerAtPlay == 1) playerAtPlay = 2;
-        else playerAtPlay = 1;
     }
+
+    function insertTokenByAI() {
+        var column = ~~(Math.random() * columns);
+        console.log(column);
+        insertToken(column);
+    }
+
 
 
    $(document).on("mouseenter", ".column", function() {
@@ -52,6 +65,7 @@ $(document).ready(function(){
         
 
         insertToken(column); 
+
         
     });
 
@@ -60,7 +74,18 @@ $(document).ready(function(){
     }
 
     function endGame() {
+
+        if (scores[1] == scores[2])
+            alert("It's a tie!");
+        else if (scores[1] > scores[2])
+            alert("Player 1 won the session");
+        else alert("Player 2 won the session");
+
+        initializeRaster();
+        $("#player1").html("0");
+        $("#player2").html("0");
         $('#start').show();
+        $( "#stats" ).hide();
         $( "#options" ).hide();
         $( "#raster" ).hide();
     }
@@ -84,12 +109,30 @@ $(document).ready(function(){
                 if (data[0].won == "True")
                 {
                     alert("Game won by player " + data[0].player);
+                    scores[data[0].player]++;
+                    $('#player'+data[0].player).html(scores[data[0].player]);
                     if(confirm("Play another game?")) {
                         ajaxCall(callback, "nextGame");
                     } else endGame();
+                } else if (data[0].full == "True")
+                {
+                    alert("Raster full");
+                    if(confirm("Play another game?")) {
+                        ajaxCall(callback, "nextGame");
+                    } else endGame();
+                } else{
+                
+                    if (playerAtPlay == 1) playerAtPlay = 2;
+                    else playerAtPlay = 1;
+
+                    if (!multiplayer && playerAtPlay == 2 ) {
+                        insertTokenByAI();
+                    }
                 }
+
             } else {
-                alert('no');
+                if (!multiplayer && playerAtPlay == 2) insertTokenByAI();
+                else alert('column full');
             }
         
         } else if (data[0].type=="nextGame") {
@@ -153,6 +196,7 @@ $(document).ready(function(){
         $( "#raster" ).html(content);
 
         $('#options').hide();
+        $( "#stats" ).show();
 
         $( "#raster" ).show();
 

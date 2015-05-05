@@ -178,6 +178,10 @@
         font-size:1.7em;
     }
 
+    #stats {
+        display: none;
+    }
+
 
   /* Footer */
 

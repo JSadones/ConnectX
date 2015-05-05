@@ -123,6 +123,7 @@ namespace ConnectXLibrary
                 response.player = player.ToString();
                 response.status = game.insertToken(column, row, player).ToString();
                 response.won = game.checkWinnerAllDirections(row, column).ToString();
+                response.full = game.rasterIsFull().ToString();
                 game.switchPlayerAtTurn();
 
                 Response.Add(response);
