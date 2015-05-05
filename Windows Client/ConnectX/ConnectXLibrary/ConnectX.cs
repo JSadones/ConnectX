@@ -19,6 +19,8 @@ namespace ConnectXLibrary
 
         public ConnectX(int rows, int columns) : this(rows, columns, defaultStreak, defaultMP) { }
 
+        public ConnectX(int rows, int columns, int streak) : this(rows, columns, streak, defaultMP) { }
+
         public ConnectX(int rows, int columns, int streakToWin, bool multiplayer)
         {
             this.rows = rows;

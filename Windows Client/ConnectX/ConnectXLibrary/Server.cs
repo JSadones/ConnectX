@@ -92,7 +92,8 @@ namespace ConnectXLibrary
                 {
                     int rows = Convert.ToInt32(Param2);
                     int columns = Convert.ToInt32(Param3);
-                    ConnectX game = new ConnectX(rows, columns);
+                    int streak = Convert.ToInt32(Param4);
+                    ConnectX game = new ConnectX(rows, columns, streak);
                     
 
                     threadGame = new ThreadLocal<ConnectX>(() =>

@@ -6,6 +6,7 @@ $(document).ready(function(){
     scores[2] = 0; 
     var rows = 0;
     var columns = 0;
+    var streak = 4;
     var multiplayer = false;
         // Start
             // Show start div
@@ -154,7 +155,7 @@ $(document).ready(function(){
             contentType: "application/json; charset=utf-8",
             url: "http://127.0.0.1:8000/",
             dataType: "jsonp",
-            data: { Param1 : arguments[1], Param2 : arguments[2], Param3: arguments[3]},
+            data: { Param1 : arguments[1], Param2 : arguments[2], Param3: arguments[3], Param4: arguments[4]},
             success: function (data) {
               callback(data);
             }
@@ -191,7 +192,10 @@ $(document).ready(function(){
         }
         content += '</table>';
 
-        ajaxCall(callback, "startGame", values["rows"], values["columns"]);
+        ajaxCall(callback, "startGame", values["rows"], values["columns"], values["streak"]);
+
+        $("#nameplayer1").html(values["nameplayer1"]);
+        $("#nameplayer2").html(values["nameplayer2"]);
 
         $( "#raster" ).html(content);
 
