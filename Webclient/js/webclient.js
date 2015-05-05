@@ -36,10 +36,6 @@ $(document).ready(function(){
         else playerAtPlay = 1;
     }
 
-    function isWon() {
-
-        ajaxCall(callback, "isWon");
-    }
 
    $(document).on("mouseenter", ".column", function() {
        $('.' + getSecondClass($(this)).toString()).css("background-color", "red");
@@ -54,19 +50,21 @@ $(document).ready(function(){
         
 
         insertToken(column); 
-        isWon();  
         
     });
 
-    function callback(data, column, player) {
+    function callback(data) {
         console.log(data);
         if (data[0].type=="insertToken") {
-            if(data[0].parameter1 == "True") {
+            if(data[0].status == "True") {
+                console.log(data[0].row + data[0].column);
+                $('.row'+data[0].row+'.column'+data[0].column).html(data[0].player);
 
-                $('.row'+data[0].parameter2+'.column'+arguments[1]).html(player);
-                console.log('.row'+data[0].parameter2+'.column'+column);
-                console.log("jup");
 
+                if (data[0].won == "True")
+                {
+                    alert("Game won by player " + data[0].player);
+                }
             } else {
                 alert('no');
             }
@@ -83,7 +81,7 @@ $(document).ready(function(){
         }
     }
 
-    function ajaxCall(callback, request, column, player) {
+    function ajaxCall(callback) {
 
         $.support.cors = true;
         $.ajax({
@@ -94,7 +92,7 @@ $(document).ready(function(){
             dataType: "jsonp",
             data: { Param1 : arguments[1], Param2 : arguments[2], Param3: arguments[3]},
             success: function (data) {
-              callback(data, column, player);
+              callback(data);
             }
         });
 

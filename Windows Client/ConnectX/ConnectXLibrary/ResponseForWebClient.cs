@@ -2,16 +2,7 @@
 {
     public class ResponseForWebClient
     {
-        public string type, parameter1, parameter2;
-
-        public ResponseForWebClient() : this("a","b","c"){}
-
-        public ResponseForWebClient(string type, string parameter1, string parameter2)
-        {
-            this.type = type;
-            this.parameter1 = parameter1;
-            this.parameter2 = parameter2;
-        }
+        public string type, row, column, player, status, won;
 
         public string getType()
         {

@@ -90,39 +90,47 @@ namespace ConnectXLibrary
 
             if (Param1 == "startGame")
                 {
-                if (threadGame == null)
-                {
-                    ConnectX game = new ConnectX(Convert.ToInt32(Param2), Convert.ToInt32(Param3));
+                    int rows = Convert.ToInt32(Param2);
+                    int columns = Convert.ToInt32(Param3);
+                    ConnectX game = new ConnectX(rows, columns);
                     
 
                     threadGame = new ThreadLocal<ConnectX>(() =>
                     {
                         return game;
                     });
+
+                    ResponseForWebClient response = new ResponseForWebClient();
+                    response.type = "startGame";
+                    response.status = true.ToString();
                     
-                    Response.Add(new ResponseForWebClient("startGame", "OK", "Game Created"));
-                }
-                else Response.Add(new ResponseForWebClient("startGame", "NOK", "Game already exists"));
+                    Response.Add(response);
 
             }
             else if (Param1 == "insertToken")
             {
 
                 ConnectX game = threadGame.Value;
+                int column = int.Parse(Param2);
+                int player = int.Parse(Param3);
 
-                int row = game.getRowIndexOfHighestTokenInColumn(Convert.ToInt32(Param2)) + 1;
-                bool response = game.insertToken(int.Parse(Param2), row, int.Parse(Param3));
-                
+                int row = game.selectLowestAvailableRow(Convert.ToInt32(Param2));
 
+                ResponseForWebClient response = new ResponseForWebClient();
+                response.type = "insertToken";
+                response.row = row.ToString();
+                response.column = column.ToString();
+                response.player = player.ToString();
+                response.status = game.insertToken(column, row, player).ToString();
+                response.won = game.checkWinnerAllDirections(row, column).ToString();
+                game.switchPlayerAtTurn();
 
-                Response.Add(new ResponseForWebClient("insertToken", response.ToString(), row.ToString()));
+                Response.Add(response);
 
             } else if (Param1 == "isWon")
             {
 
-                ConnectX game = threadGame.Value;
-                //bool won = game.isWon();
-                //bool winner = game;
+               // ConnectX game = threadGame.Value;
 
                 
                // Response.Add(new ResponseForWebClient("insertToken", response.ToString(), row.ToString()));
