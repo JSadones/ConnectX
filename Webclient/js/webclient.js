@@ -102,7 +102,7 @@
                 if(data.status == true) {
 
                     processInsertedToken(data.response);
-            checkIfGameIsWon();
+            checkIfGameIsWon(data.response);
                     
 
                 } else {
@@ -128,12 +128,12 @@
             
         }
 
-        function checkIfGameIsWon() {
+        function checkIfGameIsWon(response) {
             if (response.won == "True")
             {
-                alert("Game won by player " + data.player);
-                scores[data.player]++;
-                $('#player'+response.player).html(scores[data.player]);
+                alert("Game won by player " + response.player);
+                scores[response.player]++;
+                $('#player'+response.player).html(scores[response.player]);
                 if(confirm("Play another game?")) {
                     ajaxCall(callback, "nextGame");
                 } else endGame();
