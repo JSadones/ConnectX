@@ -159,6 +159,8 @@
 
         }
 
+        //
+
         $('#form').submit(function () {
 
 
@@ -168,6 +170,8 @@
             $inputs.each(function() {
                 values[this.name] = $(this).val();
             });
+
+           
 
             var content = "<table width='70%'><tr id='selectie'>";
 
