@@ -98,6 +98,7 @@
         }
 
         function callback(data) {
+            console.log(data);
             if (data[0].type=="insertToken") {
                 if(data[0].status == "True") {
                     $('.row'+data[0].row+'.column'+data[0].column).html(data[0].player);
@@ -143,6 +144,8 @@
         }
 
         function ajaxCall(callback) {
+
+            switch ("")
 
             $.support.cors = true;
             $.ajax({
