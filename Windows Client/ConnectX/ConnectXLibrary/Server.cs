@@ -62,29 +62,29 @@ namespace ConnectXLibrary
 
         private void ListenerCallback(IAsyncResult result)
         {
+            // Data inlezen
             var context = listener.EndGetContext(result);
             var data_text = new StreamReader(context.Request.InputStream, context.Request.ContentEncoding).ReadToEnd();
-
             var cleaned_data = System.Web.HttpUtility.UrlDecode(data_text);
-
-            context.Response.ContentType = "application/json";
             string callback = context.Request.QueryString["callback"];
+
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["action"] = context.Request.QueryString["action"];
-            string Param2 = context.Request.QueryString["Param2"];
-            string Param3 = context.Request.QueryString["Param3"];
-            string Param4 = context.Request.QueryString["Param4"];
+            parameters["option1"] = context.Request.QueryString["option1"];
+            parameters["option2"] = context.Request.QueryString["option2"];
+            parameters["option3"] = context.Request.QueryString["option3"];
+
+            // Input verwerken
 
             var Response = new List<ResponseForWebClient>();
 
             if (parameters["action"] == "startGame")
-                {
-                    int rows = Convert.ToInt32(Param2);
-                    int columns = Convert.ToInt32(Param3);
-                    int streak = Convert.ToInt32(Param4);
+            {
+                    int rows = Convert.ToInt32(parameters["option1"]);
+                    int columns = Convert.ToInt32(parameters["option2"]);
+                    int streak = Convert.ToInt32(parameters["option3"]);
                     ConnectX game = new ConnectX(rows, columns, streak);
                     
-
                     threadGame = new ThreadLocal<ConnectX>(() =>
                     {
                         return game;
@@ -100,12 +100,13 @@ namespace ConnectXLibrary
             {
 
                 ConnectX game = threadGame.Value;
-                int column = int.Parse(Param2);
-                int player = int.Parse(Param3);
+                int column = int.Parse(parameters["option1"]);
+                int player = int.Parse(parameters["option2"]);
 
-                int row = game.getLowestAvailableRowInColumn(Convert.ToInt32(Param2));
+                int row = game.getLowestAvailableRowInColumn(Convert.ToInt32(parameters["option1"]));
 
                 ResponseForWebClient response = new ResponseForWebClient();
+        
                 response.type = "insertToken";
                 response.row = row.ToString();
                 response.column = column.ToString();
@@ -113,6 +114,7 @@ namespace ConnectXLibrary
                 response.status = game.insertToken(column, row, player).ToString();
                 response.won = game.isCurrentGameWon(row, column).ToString();
                 response.full = game.isRasterFull().ToString();
+            
                 game.switchPlayerAtTurn();
 
                 Response.Add(response);
@@ -123,8 +125,8 @@ namespace ConnectXLibrary
                 ConnectX game = threadGame.Value;
 
                 ResponseForWebClient response = new ResponseForWebClient();
-                response.type = "nextGame";
 
+                response.type = "nextGame";
                 response.status = game.nextGame().ToString(); ;
 
                 Response.Add(response);
@@ -134,30 +136,24 @@ namespace ConnectXLibrary
             JavaScriptSerializer js = new JavaScriptSerializer();
             string JSONstring = js.Serialize(Response);
             string JSONPstring = string.Format("{0}({1});", callback, JSONstring);
+            byte[] buffer = System.Text.Encoding.UTF8.GetBytes(JSONPstring);
+            
             //context.Response. Write(JSONPstring);
+            context.Response.ContentType = "application/json";
+            context.Response.AppendHeader("Access-Control-Allow-Origin", "*");
+            context.Response.ContentLength64 = buffer.Length;
             if (context.Request.HttpMethod == "OPTIONS")
             {
                 context.Response.AddHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With");
                 context.Response.AddHeader("Access-Control-Allow-Methods", "GET, POST");
                 context.Response.AddHeader("Access-Control-Max-Age", "1728000");
             }
-            context.Response.AppendHeader("Access-Control-Allow-Origin", "*");
 
-            byte[] buffer = System.Text.Encoding.UTF8.GetBytes(JSONPstring);
-            // Get a response stream and write the response to it.
-            context.Response.ContentLength64 = buffer.Length;
             System.IO.Stream output = context.Response.OutputStream;
-            // You must close the output stream.
+
             output.Write(buffer, 0, buffer.Length);
             output.Close();
-            
-
-            //use this line to get your custom header data in the request.
-            //var headerText = context.Request.Headers["mycustomHeader"];
-
-            //use this line to send your response in a custom header
-            //context.Response.Headers["mycustomResponseHeader"] = "mycustomResponse";
-         
+        
             context.Response.Close();
         }
     }
