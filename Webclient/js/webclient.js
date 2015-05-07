@@ -20,6 +20,7 @@
             $( "#options" ).show();
             $( "#stats" ).hide();
             $( ".multiplayer-option" ).hide();
+            $( ".multiplayer-option" ).hide();
             multiplayer = false;
 
         });
@@ -121,11 +122,7 @@
         }
 
         function processInsertedToken(response) {
-
             $('.row'+response.row+'.column'+response.column).html(response.player);
-
-
-            
         }
 
         function checkIfGameIsWon(response) {
@@ -190,6 +187,28 @@
 
         }
 
+        function createTable(rows, columns) {
+            var content = "<table width='70%' id='raster'>";
+                
+            for (var i = rows - 1; i >= 0; i--) {
+                content += '<tr>';
+                for (var j = 0; j < columns; j++) {
+                    content += "<td class='column column"+j+" row"+i+"'>_</td>"
+                }
+                content += '</tr>';
+            }
+            content += '</table>';
+
+            return content;
+        }
+
+        function setNames(player1, player2) {
+            $("#nameplayer1").html(player1);
+            $("#nameplayer2").html(player2);
+        }
+
+        
+
         //
 
         $('#form').submit(function () {
@@ -202,28 +221,16 @@
                 values[this.name] = $(this).val();
             });
 
-            var content = "<table width='70%' id='raster'>";
+            if (!multiplayer) values["nameplayer2"] = "CPU";
 
-            columns = values["columns"];
-            rows = values["rows"];
-                
-            for (var i = values["rows"] - 1; i >= 0; i--) {
-                content += '<tr>';
-                for (var j = 0; j < values["columns"]; j++) {
-                    content += "<td class='column column"+j+" row"+i+"'>_</td>"
-                }
-                content += '</tr>';
-            }
-            content += '</table>';
+            var table = createTable(values["rows"],values["columns"]);
 
             ajaxCall(callback, "startGame", values["rows"], values["columns"], values["streak"]);
 
-            $("#nameplayer1").html(values["nameplayer1"]);
+            setNames(values["nameplayer1"],values["nameplayer2"]);
+            
 
-            if (multiplayer == true) $("#nameplayer2").html(values["nameplayer2"]);
-            else $("#nameplayer2").html("CPU");
-
-            $( "#rasterwrapper" ).html(content);
+            $( "#rasterwrapper" ).html(table);
 
             $('#options').hide();
             $( "#stats" ).show();
