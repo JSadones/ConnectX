@@ -14,7 +14,7 @@ namespace ConnectXLibrary
     {
         #region State
         static HttpListener listener;
-        private Thread listenThread1;
+        private Thread listenThread;
         ThreadLocal<ConnectX> threadGame;
         #endregion State
 
@@ -36,9 +36,8 @@ namespace ConnectXLibrary
 
                 listener.Start();
 
-                this.listenThread1 = new Thread(new ParameterizedThreadStart(startlistener));
-                listenThread1.Start();
-                //System.Diagnostics.Process.Start("http://localhost:8000/");
+                this.listenThread = new Thread(new ParameterizedThreadStart(startlistener));
+                listenThread.Start();
             }
             catch (HttpListenerException)
             {
@@ -51,7 +50,6 @@ namespace ConnectXLibrary
         {
             while (true)
             {
-                ////blocks until a client has connected to the server
                 ProcessRequest();
             }
         }
@@ -65,30 +63,21 @@ namespace ConnectXLibrary
         private void ListenerCallback(IAsyncResult result)
         {
             var context = listener.EndGetContext(result);
-            Thread.Sleep(100);
             var data_text = new StreamReader(context.Request.InputStream, context.Request.ContentEncoding).ReadToEnd();
-
-
-            //functions used to decode json encoded data.
-            //JavaScriptSerializer js = new JavaScriptSerializer();
-            //var data1 = Uri.UnescapeDataString(data_text);
-            //string da = Regex.Unescape(data_text);
-            // var unserialized = js.Deserialize(data_text, typeof(String));
 
             var cleaned_data = System.Web.HttpUtility.UrlDecode(data_text);
 
             context.Response.ContentType = "application/json";
             string callback = context.Request.QueryString["callback"];
-            string Param1 = context.Request.QueryString["Param1"];
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters["action"] = context.Request.QueryString["action"];
             string Param2 = context.Request.QueryString["Param2"];
             string Param3 = context.Request.QueryString["Param3"];
             string Param4 = context.Request.QueryString["Param4"];
 
             var Response = new List<ResponseForWebClient>();
-            		
-                     
 
-            if (Param1 == "startGame")
+            if (parameters["action"] == "startGame")
                 {
                     int rows = Convert.ToInt32(Param2);
                     int columns = Convert.ToInt32(Param3);
@@ -106,9 +95,8 @@ namespace ConnectXLibrary
                     response.status = true.ToString();
                     
                     Response.Add(response);
-
             }
-            else if (Param1 == "insertToken")
+            else if (parameters["action"] == "insertToken")
             {
 
                 ConnectX game = threadGame.Value;
@@ -129,7 +117,7 @@ namespace ConnectXLibrary
 
                 Response.Add(response);
 
-            } else if (Param1 == "nextGame")
+            } else if (parameters["action"] == "nextGame")
             {
 
                 ConnectX game = threadGame.Value;
