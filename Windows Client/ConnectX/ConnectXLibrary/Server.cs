@@ -68,53 +68,39 @@ namespace ConnectXLibrary
             var cleaned_data = System.Web.HttpUtility.UrlDecode(data_text);
             string callback = context.Request.QueryString["callback"];
 
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
-            parameters["action"] = context.Request.QueryString["action"];
-            parameters["option1"] = context.Request.QueryString["option1"];
-            parameters["option2"] = context.Request.QueryString["option2"];
-            parameters["option3"] = context.Request.QueryString["option3"];
+            Dictionary<string, string> request = new Dictionary<string, string>();
+
+            request["action"] = context.Request.QueryString["action"];
 
             // Input verwerken
 
             var Response = new List<ResponseForWebClient>();
 
-            if (parameters["action"] == "startGame")
+            if (request["action"] == "startGame")
             {
+                request["rows"] = context.Request.QueryString["rows"];
+                request["columns"] = context.Request.QueryString["columns"];
+                request["streak"] = context.Request.QueryString["streak"];
 
-                int rows = Convert.ToInt32(parameters["option1"]);
-                int columns = Convert.ToInt32(parameters["option2"]);
-                int streak = Convert.ToInt32(parameters["option3"]);
-                ConnectX game = new ConnectX(rows, columns, streak);
-                    
-                threadGame = new ThreadLocal<ConnectX>(() =>
-                {
-                    return game;
-                });
-
-                ResponseForWebClient response = new ResponseForWebClient("startGame",0,0,0,true,false,false);
+                ResponseForWebClient response = startGame(request);
                 
                     
                 Response.Add(response);
             }
-            else if (parameters["action"] == "insertToken")
+            else if (request["action"] == "insertToken")
             {
-                
-                int column = int.Parse(parameters["option1"]);
-                int player = int.Parse(parameters["option2"]);
-
-                ConnectX game = threadGame.Value;
-
-                ResponseForWebClient response =  insertToken(game, column, player);
+                request["player"] = context.Request.QueryString["player"];
+                request["column"] = context.Request.QueryString["columns"];
+                ResponseForWebClient response =  insertToken(request);
 
                 Response.Add(response);
 
-            } else if (parameters["action"] == "nextGame")
+            } else if (request["action"] == "nextGame")
             {
 
                 ConnectX game = threadGame.Value;
 
-                bool status = game.nextGame();
-                ResponseForWebClient response = new ResponseForWebClient("nextGame",0,0,0,status, false, false);
+                ResponseForWebClient response = nextGame(request);
 
                 Response.Add(response);
 
@@ -144,20 +130,59 @@ namespace ConnectXLibrary
             context.Response.Close();
         }
 
-        private ResponseForWebClient insertToken(ConnectX game, int column, int player)
+        private ResponseForWebClient insertToken(Dictionary<string, string> request)
         {
-            int row = game.getLowestAvailableRowInColumn(column);
+            ConnectX game = threadGame.Value;
 
-            string type = "insertToken";
+            int player = int.Parse(request["player"]);
+            int column = int.Parse(request["column"]);
+            int row = game.getLowestAvailableRowInColumn(column);
             bool status = game.insertToken(column, row, player);
             bool won = game.isCurrentGameWon(row, column);
             bool full = game.isRasterFull();
 
-            ResponseForWebClient response = new ResponseForWebClient("insertToken",row, column, player, status, won, full);
+            Dictionary<string, string> responseDictionary = new Dictionary<string, string>();
+
+            responseDictionary["row"] = row.ToString();
+            responseDictionary["column"] = column.ToString();
+            responseDictionary["player"] = player.ToString();
+            responseDictionary["status"] = status.ToString();
+            responseDictionary["won"] = won.ToString();
+            responseDictionary["full"] = full.ToString();
+
+            ResponseForWebClient response = new ResponseForWebClient(status, request, responseDictionary);
 
             game.switchPlayerAtTurn();
 
             return response;
+        }
+
+        private ResponseForWebClient nextGame(Dictionary<string, string> request)
+        {
+            ConnectX game = threadGame.Value;
+
+            bool status = game.nextGame();
+            Dictionary<string, string> response = new Dictionary<string, string>();
+            return new ResponseForWebClient(status, request, response);
+        }
+
+        private ResponseForWebClient startGame(Dictionary<string, string> request)
+        {
+
+            int rows = Convert.ToInt32(request["rows"]);
+            int columns = Convert.ToInt32(request["columns"]);
+            int streak = Convert.ToInt32(request["streak"]);
+
+            ConnectX game = new ConnectX(rows, columns, streak);
+
+            threadGame = new ThreadLocal<ConnectX>(() => { return game; });
+
+            bool status = true;
+
+            Dictionary<string, string> response = new Dictionary<string, string>();
+            
+            return new ResponseForWebClient(status, request, response);
+
         }
 
     }
