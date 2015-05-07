@@ -243,3 +243,6 @@
      padding-right:50px;
  }
 
+#rastertable td {
+height: 100px;
+}

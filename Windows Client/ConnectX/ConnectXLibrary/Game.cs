@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Collections.Generic;
 using ConnectXLibrary.Properties;
 
 namespace ConnectXLibrary
@@ -234,6 +235,7 @@ namespace ConnectXLibrary
         private void processTurn(int column)
         {
             int row = gamePlay.getLowestAvailableRowInColumn(column);
+            checkInList(row, column);
 
             if (gamePlay.insertToken(column, row, gamePlay.getPlayerAtTurn()))
             {
@@ -258,6 +260,20 @@ namespace ConnectXLibrary
             processTurn(column);
         }//insertTokenByAI
 
+        public void checkInList(int selectedRow, int selectedColumn)
+        {
+            List<possibleStreak> streakList = gamePlay.returnList();
+            foreach (possibleStreak streak in streakList)
+            {
+                int row = streak.getRow();
+                int column = streak.getColumn();
+
+                if (selectedRow == row && selectedColumn == column) {
+                    streakList.Remove(streak);
+                    break;
+                }
+            }
+        }
 
         //===Other methods===
         private bool checkTurn(int row, int column)
@@ -290,12 +306,21 @@ namespace ConnectXLibrary
             gamePlay.nextGame();
             drawGrid();
             showPlayerAtTurn();
-        }
+        }//nextGame
 
-		private void Game_Load(object sender, EventArgs e)
-		{
-
-		}//nextGame
+        private void textBox1_MouseHover(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
+            List<possibleStreak> streakList = gamePlay.returnList();
+            foreach (possibleStreak streak in streakList)
+            {
+                textBox1.Text += "Player : " + streak.getPlayer() + "\r\n";
+                textBox1.Text += "Streak : " + streak.getStreak() + "\r\n";
+                textBox1.Text += "Row : " + streak.getRow() + "\r\n";
+                textBox1.Text += "Column : " + streak.getColumn() + "\n";
+                textBox1.Text += "--------------------------------------------";
+            }
+        }//textBox1_MouseHover
         #endregion
     }
 
