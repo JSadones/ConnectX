@@ -188,7 +188,9 @@
             ajaxCall(callback, "startGame", values["rows"], values["columns"], values["streak"]);
 
             $("#nameplayer1").html(values["nameplayer1"]);
-            $("#nameplayer2").html(values["nameplayer2"]);
+
+            if (multiplayer == true) $("#nameplayer2").html(values["nameplayer2"]);
+            else $("#nameplayer2").html("CPU");
 
             $( "#raster" ).html(content);
 
