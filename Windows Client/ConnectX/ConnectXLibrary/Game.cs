@@ -35,7 +35,7 @@ namespace ConnectXLibrary
             multiplayer = false;
 
             gamePlay = new ConnectX(rows, columns, tokenStreak, multiplayer);
-            //newGame();
+            //nextGame();
 
             lblPlayer1.Text = namePlayer1;
             lblPlayer2.Text = cpuName;
@@ -55,7 +55,7 @@ namespace ConnectXLibrary
             multiplayer = true;
 
             gamePlay = new ConnectX(rows, columns, tokenStreak, multiplayer);
-            //newGame();
+            //nextGame();
 
             lblPlayer1.Text = namePlayer1;
             lblPlayer2.Text = namePlayer2;
@@ -159,7 +159,7 @@ namespace ConnectXLibrary
             DialogResult dialogResult = MessageBox.Show("Play another one?", title, MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                newGame();
+                nextGame();
             }
             else
             {
@@ -233,7 +233,7 @@ namespace ConnectXLibrary
 
         private void processTurn(int column)
         {
-            int row = gamePlay.selectLowestAvailableRow(column);
+            int row = gamePlay.getLowestAvailableRow(column);
 
             if (gamePlay.insertToken(column, row, gamePlay.getPlayerAtTurn()))
             {
@@ -263,9 +263,9 @@ namespace ConnectXLibrary
         private bool checkTurn(int row, int column)
         {
             string title;
-            if (gamePlay.checkWinnerAllDirections(row, column))
+            if (gamePlay.isCurrentGameWon(row, column))
             {
-                gamePlay.incrementScorePlayer(gamePlay.getPlayerAtTurn());
+                gamePlay.incrementScoreOfPlayer(gamePlay.getPlayerAtTurn());
                 updateScores();
                 if (gamePlay.getPlayerAtTurn() == 1) title = namePlayer1;
                 else title = namePlayer2;
@@ -275,7 +275,7 @@ namespace ConnectXLibrary
                 if (!gameChanges) gameChanges = true;
                 return true;
             }
-            else if (gamePlay.rasterIsFull())
+            else if (gamePlay.isRasterFull())
             {
                 title = "Raster is full.";
                 showGameEndMessage(title);
@@ -285,12 +285,12 @@ namespace ConnectXLibrary
             else return false;
         }//checkTurn
 
-        private void newGame()
+        private void nextGame()
         {
-            gamePlay.newGame();
+            gamePlay.nextGame();
             drawGrid();
             showPlayerAtTurn();
-        }//newGame
+        }//nextGame
         #endregion
     }
 

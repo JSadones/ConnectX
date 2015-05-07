@@ -58,6 +58,21 @@ namespace ConnectXLibrary
 			return DefaultStreak;
 		}//GetDefaultStreakToWin
 
+        public int getLowestAvailableRow(int column)
+        {
+            if (!isColumnFull(column))
+            {
+                int row = 0;
+                while (row < rows)
+                {
+                    if (raster[row, column] == 0) return row;
+                    row++;
+                }
+                return rows;
+            }
+            else return -1;
+        }//getLowestAvailableRow
+
         public int getRowIndexOfHighestTokenInColumn(int column)
         {
             int row = 0;
@@ -67,8 +82,6 @@ namespace ConnectXLibrary
                 if (row == rows - 1 ) return row ;
                 row++;
             }
-
-
             return -1;
         }//getRowIndexOfHighestTokenInColumn
 
@@ -110,14 +123,14 @@ namespace ConnectXLibrary
 
         #region Methods
         //===Methods for raster===
-        public bool rasterIsFull()
+        public bool isRasterFull()
         {
             for (int column = 0; column < columns; column++)
             {
                 if (raster[rows - 1, column] == 0) return false;
             }
             return true;
-        }//rasterIsFull
+        }//isRasterFull
 
         public void clearRaster()
         {
@@ -149,7 +162,7 @@ namespace ConnectXLibrary
         {
             if (!isColumnFull(column))
             {
-                if (selectLowestAvailableRow(column) != -1)
+                if (getLowestAvailableRow(column) != -1)
                 {
                     raster[row, column] = player;
                 }
@@ -157,8 +170,6 @@ namespace ConnectXLibrary
             }
             else return false;
         }//insertToken
-
-
 
         //===Checks for raster===
         private bool isColumnFull(int column)
@@ -170,24 +181,8 @@ namespace ConnectXLibrary
             else return false;
         }//isColumnFull
 
-        public int selectLowestAvailableRow(int column)
-        {
-            if (!isColumnFull(column))
-            {
-                int row = 0;
-                while (row < rows)
-                {
-                    if (raster[row, column] == 0) return row;
-                    row++;
-                }
-                return rows;
-            }
-            else return -1;
-        }//selectLowestAvailableRow
-
-
         //===Winning algorithm===
-        private bool checkWinner(int row, int column, int stepRow, int stepColumn)
+        private bool isStreakReachedFromCoordinateInDirection(int row, int column, int stepRow, int stepColumn)
         {
             int counter = 0;
             for (int i = 1; i < streakToWin; i++)
@@ -205,13 +200,13 @@ namespace ConnectXLibrary
                 if (counter == streakToWin - 1) return true;
             }
             return false;
-        }//checkWinner
+        }//isStreakReachedFromCoordinateInDirection
 
-        public bool checkWinnerAllDirections(int row, int column)
+        public bool isCurrentGameWon (int row, int column)
         {
-            if (checkWinner(row, column, 0, 1) || checkWinner(row, column, 0, -1) || checkWinner(row, column, -1, 0) || checkWinner(row, column, -1, 1) || checkWinner(row, column, -1, -1)) return true;
+            if (isStreakReachedFromCoordinateInDirection(row, column, 0, 1) || isStreakReachedFromCoordinateInDirection(row, column, 0, -1) || isStreakReachedFromCoordinateInDirection(row, column, -1, 0) || isStreakReachedFromCoordinateInDirection(row, column, -1, 1) || isStreakReachedFromCoordinateInDirection(row, column, -1, -1)) return true;
             else return false;
-        }//checkWinnerAllDirections
+        }//isCurrentGameWon
 
 
         //===AI Methods===
@@ -219,14 +214,14 @@ namespace ConnectXLibrary
         {
             List<byte> emptySpots;
             Random rnd = new Random();
-            emptySpots = selectAllAvailableColumns();
+            emptySpots = getListOfAvailableColumns();
             int length = emptySpots.Count;
             int spot = rnd.Next(0, length);
 
             return spot;
         }//chooseRandomSpot
 
-        private List<byte> selectAllAvailableColumns()
+        private List<byte> getListOfAvailableColumns()
         {
             List<byte> empySpots = new List<byte>();
 
@@ -238,19 +233,17 @@ namespace ConnectXLibrary
                 }
             }
             return empySpots;
-        }//selectAllAvailableColumns
-
+        }//getListOfAvailableColumns
 
         //===Score Methods===
-        public void incrementScorePlayer(int player)
+        public void incrementScoreOfPlayer(int player)
         {
             if (player == 1) scorePlayer1++;
             else scorePlayer2++;
-        }//incrementScorePlayer
-
-
+        }//incrementScoreOfPlayer
+        
         //===Other Methods===
-        public bool newGame()
+        public bool nextGame()
         {
             clearRaster();
             playerAtTurn = 1;

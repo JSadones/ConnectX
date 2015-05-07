@@ -115,7 +115,7 @@ namespace ConnectXLibrary
                 int column = int.Parse(Param2);
                 int player = int.Parse(Param3);
 
-                int row = game.selectLowestAvailableRow(Convert.ToInt32(Param2));
+                int row = game.getLowestAvailableRow(Convert.ToInt32(Param2));
 
                 ResponseForWebClient response = new ResponseForWebClient();
                 response.type = "insertToken";
@@ -123,8 +123,8 @@ namespace ConnectXLibrary
                 response.column = column.ToString();
                 response.player = player.ToString();
                 response.status = game.insertToken(column, row, player).ToString();
-                response.won = game.checkWinnerAllDirections(row, column).ToString();
-                response.full = game.rasterIsFull().ToString();
+                response.won = game.isCurrentGameWon(row, column).ToString();
+                response.full = game.isRasterFull().ToString();
                 game.switchPlayerAtTurn();
 
                 Response.Add(response);
@@ -137,7 +137,7 @@ namespace ConnectXLibrary
                 ResponseForWebClient response = new ResponseForWebClient();
                 response.type = "nextGame";
 
-                response.status = game.newGame().ToString(); ;
+                response.status = game.nextGame().ToString(); ;
 
                 Response.Add(response);
 
