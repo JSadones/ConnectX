@@ -114,7 +114,7 @@ namespace ConnectXLibrary
                 ConnectX game = threadGame.Value;
 
                 bool status = game.nextGame();
-                ResponseForWebClient response = new ResponseForWebClient("nextGame",0,0,0,status, 0, 0);
+                ResponseForWebClient response = new ResponseForWebClient("nextGame",0,0,0,status, false, false);
 
                 Response.Add(response);
 
