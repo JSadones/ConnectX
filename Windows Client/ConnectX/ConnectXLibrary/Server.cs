@@ -74,7 +74,7 @@ namespace ConnectXLibrary
 
             // Input verwerken
 
-            var Response = new List<ResponseForWebClient>();
+            ResponseForWebClient response;
 
             if (request["action"] == "startGame")
             {
@@ -82,32 +82,30 @@ namespace ConnectXLibrary
                 request["columns"] = context.Request.QueryString["columns"];
                 request["streak"] = context.Request.QueryString["streak"];
 
-                ResponseForWebClient response = startGame(request);
-                
-                    
-                Response.Add(response);
+                response = startGame(request);
+
             }
             else if (request["action"] == "insertToken")
             {
                 request["player"] = context.Request.QueryString["player"];
-                request["column"] = context.Request.QueryString["columns"];
-                ResponseForWebClient response =  insertToken(request);
+                request["column"] = context.Request.QueryString["column"];
+                response = insertToken(request);
 
-                Response.Add(response);
 
-            } else if (request["action"] == "nextGame")
+            }
+            else if (request["action"] == "nextGame")
             {
 
                 ConnectX game = threadGame.Value;
 
-                ResponseForWebClient response = nextGame(request);
+                response = nextGame(request);
 
-                Response.Add(response);
 
             }
+            else response = null;
 
             JavaScriptSerializer js = new JavaScriptSerializer();
-            string JSONstring = js.Serialize(Response);
+            string JSONstring = js.Serialize(response);
             string JSONPstring = string.Format("{0}({1});", callback, JSONstring);
             byte[] buffer = System.Text.Encoding.UTF8.GetBytes(JSONPstring);
             
@@ -137,7 +135,14 @@ namespace ConnectXLibrary
             int player = int.Parse(request["player"]);
             int column = int.Parse(request["column"]);
             int row = game.getLowestAvailableRowInColumn(column);
-            bool status = game.insertToken(column, row, player);
+            int rows = game.getRows();
+            bool status = false;
+
+            if (0 <= row && row < rows)
+            {
+                 status = game.insertToken(column, row, player);
+            }
+
             bool won = game.isCurrentGameWon(row, column);
             bool full = game.isRasterFull();
 

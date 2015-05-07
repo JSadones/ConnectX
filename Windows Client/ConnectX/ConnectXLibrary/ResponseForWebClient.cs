@@ -6,9 +6,9 @@ namespace ConnectXLibrary
 {
     public class ResponseForWebClient
     {
-        private bool status;
-        Dictionary<string, string> request = new Dictionary<string, string>();
-        Dictionary<string, string> response = new Dictionary<string, string>(); 
+        public bool status;
+        public Dictionary<string, string> request = new Dictionary<string, string>();
+        public Dictionary<string, string> response = new Dictionary<string, string>(); 
         
         public ResponseForWebClient(bool status, Dictionary<string, string> request, Dictionary<string, string> response)
         {
