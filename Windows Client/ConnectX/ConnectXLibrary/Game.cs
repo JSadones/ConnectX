@@ -79,7 +79,7 @@ namespace ConnectXLibrary
             drawGrid();
             drawHud();
         }//pnlGame_Paint
-
+        
         private void drawGrid()
         {
             calculateSlotSize();
@@ -233,7 +233,7 @@ namespace ConnectXLibrary
 
         private void processTurn(int column)
         {
-            int row = gamePlay.getLowestAvailableRow(column);
+            int row = gamePlay.getLowestAvailableRowInColumn(column);
 
             if (gamePlay.insertToken(column, row, gamePlay.getPlayerAtTurn()))
             {

@@ -9,9 +9,11 @@ namespace ConnectXLibrary
         #region State
         int[,] raster;
         private int rows, columns, streakToWin, playerAtTurn, scorePlayer1 = 0, scorePlayer2 = 0, difficulty;
-		private static int DefaultRows = 6, DefaultColumns = 7, DefaultStreak = 4;
-        private static bool  DefaultMP = true;
+		private const int DefaultRows = 6, DefaultColumns = 7, DefaultStreak = 4;
+        private const bool  DefaultMP = true;
         private bool multiplayer;
+        int counterLeft = 0;
+        int counterRight = 0;
         #endregion State
 
         #region Constructor
@@ -58,7 +60,7 @@ namespace ConnectXLibrary
 			return DefaultStreak;
 		}//GetDefaultStreakToWin
 
-        public int getLowestAvailableRow(int column)
+        public int getLowestAvailableRowInColumn(int column)
         {
             if (!isColumnFull(column))
             {
@@ -162,7 +164,7 @@ namespace ConnectXLibrary
         {
             if (!isColumnFull(column))
             {
-                if (getLowestAvailableRow(column) != -1)
+                if (getLowestAvailableRowInColumn(column) != -1)
                 {
                     raster[row, column] = player;
                 }
@@ -170,6 +172,7 @@ namespace ConnectXLibrary
             }
             else return false;
         }//insertToken
+
 
         //===Checks for raster===
         private bool isColumnFull(int column)
@@ -182,30 +185,96 @@ namespace ConnectXLibrary
         }//isColumnFull
 
         //===Winning algorithm===
+        private void resetCounter()
+        {
+            counterLeft = 0;
+            counterRight = 0;
+        }//resetCounter
+
         private bool isStreakReachedFromCoordinateInDirection(int row, int column, int stepRow, int stepColumn)
         {
-            int counter = 0;
             for (int i = 1; i < streakToWin; i++)
             {
                 try
                 {
-                    if (raster[row + i * stepRow, column + i * stepColumn] == getPlayerAtTurn()) counter++;
-                    else return false;
+                    //Check horizontal left && diagonal bottom to left && diagonal top to left
+                    if ((stepRow == 0 && stepColumn == -1) || (stepRow == -1 && stepColumn == -1) || (stepRow == 1 && stepColumn == 1))
+                    {
+                        if (raster[row + i * stepRow, column + i * stepColumn] == getPlayerAtTurn()) counterLeft++;
+                        else return false;
+                    }
+                    //Check horizontal right && diagonal bottom to right && diagonal top to right
+                    else if ((stepRow == 0 && stepColumn == 1) || (stepRow == -1 && stepColumn == 1) || (stepRow == 1 && stepColumn == -1))
+                    {
+                        if (raster[row + i * stepRow, column + i * stepColumn] == getPlayerAtTurn()) counterRight++;
+                        else return false;
+                    }
+                    else if (stepRow == -1 && stepColumn == 0)
+                    {
+                        if (raster[row + i * stepRow, column + i * stepColumn] == getPlayerAtTurn()) counterLeft++;
+                        else return false;
+                    }
                 }
                 catch(IndexOutOfRangeException)
                 {
                     return false;
                 }
 
-                if (counter == streakToWin - 1) return true;
+                if (counterLeft + counterRight == streakToWin - 1) return true;
             }
             return false;
         }//isStreakReachedFromCoordinateInDirection
 
         public bool isCurrentGameWon (int row, int column)
         {
-            if (isStreakReachedFromCoordinateInDirection(row, column, 0, 1) || isStreakReachedFromCoordinateInDirection(row, column, 0, -1) || isStreakReachedFromCoordinateInDirection(row, column, -1, 0) || isStreakReachedFromCoordinateInDirection(row, column, -1, 1) || isStreakReachedFromCoordinateInDirection(row, column, -1, -1)) return true;
-            else return false;
+            //0   1   --  Check horizontal right
+            //0  -1   --  Check horizontal left
+            //-1  0   --  Check vertical down
+            //-1  1   --  Check diagonal bottom to right
+            //1  1   --  Check diagonal top to left
+            //-1 -1   --  Check diagonal bottom to left
+            //1  -1    --  Check diagonal top to right
+
+            //Check left and right
+            if (isStreakReachedFromCoordinateInDirection(row, column, 0, 1) || isStreakReachedFromCoordinateInDirection(row, column, 0, -1))
+            {
+                return true;
+            }
+            else
+            {
+                resetCounter();
+            }
+
+            //Check vertical
+            if (isStreakReachedFromCoordinateInDirection(row, column, -1, 0))
+            {
+                return true;
+            }
+            else
+            {
+                resetCounter();
+            }
+
+            //Check diagonal bottom to right and diagonal top to left
+            if (isStreakReachedFromCoordinateInDirection(row, column, -1, 1) || isStreakReachedFromCoordinateInDirection(row, column, 1, 1))
+            {
+                return true;
+            }
+            else
+            {
+                resetCounter();
+            }
+
+            //Check diagonal bottom to left and diagonal top to right
+            if (isStreakReachedFromCoordinateInDirection(row, column, -1, -1) || isStreakReachedFromCoordinateInDirection(row, column, 1, -1))
+            {
+                return true;
+            }
+            else
+            {
+                resetCounter();
+            }
+            return false;
         }//isCurrentGameWon
 
 
@@ -235,6 +304,7 @@ namespace ConnectXLibrary
             return empySpots;
         }//getListOfAvailableColumns
 
+
         //===Score Methods===
         public void incrementScoreOfPlayer(int player)
         {
@@ -242,11 +312,14 @@ namespace ConnectXLibrary
             else scorePlayer2++;
         }//incrementScoreOfPlayer
         
+
         //===Other Methods===
         public bool nextGame()
         {
             clearRaster();
             playerAtTurn = 1;
+            counterLeft = 0;
+            counterRight = 0;
             return true;
         }//nextGame
 

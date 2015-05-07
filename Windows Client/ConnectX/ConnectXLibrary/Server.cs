@@ -103,7 +103,7 @@ namespace ConnectXLibrary
                 int column = int.Parse(Param2);
                 int player = int.Parse(Param3);
 
-                int row = game.getLowestAvailableRow(Convert.ToInt32(Param2));
+                int row = game.getLowestAvailableRowInColumn(Convert.ToInt32(Param2));
 
                 ResponseForWebClient response = new ResponseForWebClient();
                 response.type = "insertToken";
