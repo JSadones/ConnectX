@@ -63,7 +63,7 @@
         background-image:url(images/dark2-bg.jpg);
         background-repeat:no-repeat;
         background-position:center,center;
-    }
+    }	
 
     td {
         color:white;
@@ -107,7 +107,7 @@
         
     }
 	
-	div #options, #raster
+	div #options, #rasterwrapper
 	{
 		display: none;
 	}
@@ -225,6 +225,6 @@
      padding-right:50px;
  }
 
-#rastertable td {
-height: 100px;
+#rasterwrapper td {
+height: 50px;
 }
