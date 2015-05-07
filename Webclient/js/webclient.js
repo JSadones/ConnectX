@@ -202,16 +202,10 @@
                 values[this.name] = $(this).val();
             });
 
-           
-
             var content = "<table width='70%' id='rastertable'><tr id='selectie'>";
 
             columns = values["columns"];
             rows = values["rows"];
-
-            for (var i = 0; i < values["columns"]; i++) {
-                content += "<th>o</th>";
-            }
                 
             content += '</tr>';
             for (var i = values["rows"] - 1; i >= 0; i--) {
