@@ -1,45 +1,40 @@
-$("input").change(function veldenCheck() {
+var nummer;
+var string;
 
-
+$("#form").children().change(function () {
+    if (nummer == 1 && string == 1) {
+        $("#startgame").prop('disabled', false);
+    }
+    else
+    {
+        $("#startgame").prop('disabled', true);
+    }
 });
 
-$(".numeric").change(function nummerCheck() {
-    if (!isNaN($(this).val()) && $(this).val() != "") {
-        $("#startgame").prop('disabled', false);
-        console.log("true");
 
-        $(".numeric").each(function nummerCheck() {
-
-            if (isNaN($(this).val()) || $(this).val() == "") {
-                $("#startgame").prop('disabled', true);
-                console.log("false");
-            }
-        });
+$(".numeric").each(function () {
+    if (!isNaN($(this).val()) && $(this).val() != "")
+    {
+        console.log("nummer");
+        nummer == 1;
 
     }
     else {
-        $("#startgame").prop('disabled', true);
-        console.log("false");
+        console.log("geen nummer");
+        nummer == 0;
     }
 });
 
-
-$(".string").change(function playerCheck() {
+$(".string").each(function () {
     if (isNaN($(this).val()) && $(this).val() != "") {
-        $("#startgame").prop('disabled', false);
-        console.log("true");
-
-        $(".string").each(function playerCheck() {
-
-            if (!isNaN($(this).val()) || $(this).val() == "") {
-                $("#startgame").prop('disabled', true);
-                console.log("false");
-            }
-        });
+        console.log("string");
+       string == 1;
 
     }
     else {
-        $("#startgame").prop('disabled', true);
-        console.log("false");
+        console.log("geen string");
+        string == 0;
     }
 });
+
+
