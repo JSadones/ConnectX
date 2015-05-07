@@ -114,8 +114,8 @@ namespace ConnectXLibrary
         private void drawHud()
         {
             Graphics hud = this.CreateGraphics();
-            Rectangle blueCircle = new Rectangle(75, 20, 45, 45);
-            Rectangle redCircle = new Rectangle(75, 80, 45, 45);
+            Rectangle blueCircle = new Rectangle(85, 3, 35, 35);
+            Rectangle redCircle = new Rectangle(85, 48, 35, 35);
             hud.DrawEllipse(blackPen, blueCircle);
             hud.DrawEllipse(blackPen, redCircle);
             hud.FillEllipse(blueBrush, blueCircle);
@@ -320,7 +320,7 @@ namespace ConnectXLibrary
                 textBox1.Text += "Column : " + streak.getColumn() + "\n";
                 textBox1.Text += "--------------------------------------------";
             }
-        }//textBox1_Click
+        }//textBox1_MouseHover
         #endregion
     }
 
