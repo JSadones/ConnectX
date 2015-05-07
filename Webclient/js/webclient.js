@@ -83,7 +83,7 @@
             $('#start').show();
             $( "#stats" ).hide();
             $( "#options" ).hide();
-            $( "#rasterwrapper" ).hide();
+            $( "#raster" ).hide();
         }
 
         function initializeRaster() {
@@ -102,7 +102,7 @@
                 if(data.status == true) {
 
                     processInsertedToken(data.response);
-            checkIfGameIsWon(data.response);
+            checkIfGameIsWon();
                     
 
                 } else {
@@ -128,12 +128,12 @@
             
         }
 
-        function checkIfGameIsWon(response) {
+        function checkIfGameIsWon() {
             if (response.won == "True")
             {
-                alert("Game won by player " + response.player);
-                scores[response.player]++;
-                $('#player'+response.player).html(scores[response.player]);
+                alert("Game won by player " + data.player);
+                scores[data.player]++;
+                $('#player'+response.player).html(scores[data.player]);
                 if(confirm("Play another game?")) {
                     ajaxCall(callback, "nextGame");
                 } else endGame();
@@ -202,11 +202,12 @@
                 values[this.name] = $(this).val();
             });
 
-            var content = "<table width='70%' id='raster'>";
+            var content = "<table width='70%' id='rastertable'><tr id='selectie'>";
 
             columns = values["columns"];
             rows = values["rows"];
                 
+            content += '</tr>';
             for (var i = values["rows"] - 1; i >= 0; i--) {
                 content += '<tr>';
                 for (var j = 0; j < values["columns"]; j++) {
@@ -223,12 +224,12 @@
             if (multiplayer == true) $("#nameplayer2").html(values["nameplayer2"]);
             else $("#nameplayer2").html("CPU");
 
-            $( "#rasterwrapper" ).html(content);
+            $( "#raster" ).html(content);
 
             $('#options').hide();
             $( "#stats" ).show();
 
-            $( "#rasterwrapper" ).show();
+            $( "#raster" ).show();
 
             return false;
 
