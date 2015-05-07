@@ -71,17 +71,17 @@ namespace ConnectXLibrary
             string callback = context.Request.QueryString["callback"];
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["action"] = context.Request.QueryString["action"];
-            string Param2 = context.Request.QueryString["Param2"];
-            string Param3 = context.Request.QueryString["Param3"];
-            string Param4 = context.Request.QueryString["Param4"];
+            parameters["option1"] = context.Request.QueryString["option1"];
+            parameters["option2"] = context.Request.QueryString["option2"];
+            parameters["option3"] = context.Request.QueryString["option3"];
 
             var Response = new List<ResponseForWebClient>();
 
             if (parameters["action"] == "startGame")
                 {
-                    int rows = Convert.ToInt32(Param2);
-                    int columns = Convert.ToInt32(Param3);
-                    int streak = Convert.ToInt32(Param4);
+                    int rows = Convert.ToInt32(parameters["option1"]);
+                    int columns = Convert.ToInt32(parameters["option2"]);
+                    int streak = Convert.ToInt32(parameters["option3"]);
                     ConnectX game = new ConnectX(rows, columns, streak);
                     
                     threadGame = new ThreadLocal<ConnectX>(() =>
@@ -99,10 +99,10 @@ namespace ConnectXLibrary
             {
 
                 ConnectX game = threadGame.Value;
-                int column = int.Parse(Param2);
-                int player = int.Parse(Param3);
+                int column = int.Parse(parameters["option1"]);
+                int player = int.Parse(parameters["option2"]);
 
-                int row = game.getLowestAvailableRow(Convert.ToInt32(Param2));
+                int row = game.getLowestAvailableRow(Convert.ToInt32(parameters["option1"]));
 
                 ResponseForWebClient response = new ResponseForWebClient();
                 response.type = "insertToken";

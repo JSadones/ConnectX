@@ -61,7 +61,6 @@
         $(document).on("click", ".column", function() {
             var column = getSecondClass($(this)).replace(/\D/g,'');
             
-            console.log("click");
             insertToken(column); 
         });
 
@@ -149,7 +148,7 @@
                 contentType: "application/json; charset=utf-8",
                 url: "http://127.0.0.1:8000/",
                 dataType: "jsonp",
-                data: { action : arguments[1], Param2 : arguments[2], Param3: arguments[3], Param4: arguments[4]},
+                data: { action : arguments[1], option1 : arguments[2], option2: arguments[3], option3: arguments[4]},
                 success: function (data) {
                   callback(data);
                 }
