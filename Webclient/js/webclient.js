@@ -98,20 +98,22 @@
         }
 
         function callback(data) {
-            if (data[0].type=="insertToken") {
-                if(data[0].status == "True") {
-                    $('.row'+data[0].row+'.column'+data[0].column).html(data[0].player);
+            console.log(data);
+            if (data.request.action =="insertToken") {
+                if(data.status == true) {
+                    $('.row'+data.response.row+'.column'+data.response.column).html(data.response.player);
+                    console.log('.row'+data.response.row+'.column'+data.response.column);
 
 
-                    if (data[0].won == "True")
+                    if (data.response.won == "True")
                     {
-                        alert("Game won by player " + data[0].player);
-                        scores[data[0].player]++;
-                        $('#player'+data[0].player).html(scores[data[0].player]);
+                        alert("Game won by player " + data.player);
+                        scores[data.player]++;
+                        $('#player'+data.response.player).html(scores[data.player]);
                         if(confirm("Play another game?")) {
                             ajaxCall(callback, "nextGame");
                         } else endGame();
-                    } else if (data[0].full == "True")
+                    } else if (data.response.full == "True")
                     {
                         alert("Raster full");
                         if(confirm("Play another game?")) {
@@ -132,8 +134,8 @@
                     else alert('column full');
                 }
             
-            } else if (data[0].type=="nextGame") {
-                if(data[0].status == "True") {
+            } else if (data.request.action =="nextGame") {
+                if(data.status == true) {
                     initializeRaster();
                     playerAtPlay = 1;
 
@@ -144,6 +146,22 @@
 
         function ajaxCall(callback) {
 
+            var d = {action:arguments[1]}
+
+            switch (d.action) {
+                case "startGame" : 
+                    d.rows = arguments[2];
+                    d.columns = arguments[3];
+                    d.streak = arguments[4];
+                    break;
+                case "insertToken":
+                    d.column = arguments[2];
+                    d.player = arguments[3];
+
+                    break;
+            }
+            console.log(d);
+
             $.support.cors = true;
             $.ajax({
                 type: "POST",
@@ -151,7 +169,7 @@
                 contentType: "application/json; charset=utf-8",
                 url: "http://127.0.0.1:8000/",
                 dataType: "jsonp",
-                data: { action : arguments[1], option1 : arguments[2], option2: arguments[3], option3: arguments[4]},
+                data: d,
                 success: function (data) {
                   callback(data);
                 }
