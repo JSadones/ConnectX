@@ -83,7 +83,7 @@
             $('#start').show();
             $( "#stats" ).hide();
             $( "#options" ).hide();
-            $( "#raster" ).hide();
+            $( "#rasterwrapper" ).hide();
         }
 
         function initializeRaster() {
@@ -202,12 +202,11 @@
                 values[this.name] = $(this).val();
             });
 
-            var content = "<table width='70%' id='rastertable'><tr id='selectie'>";
+            var content = "<table width='70%' id='raster'>";
 
             columns = values["columns"];
             rows = values["rows"];
                 
-            content += '</tr>';
             for (var i = values["rows"] - 1; i >= 0; i--) {
                 content += '<tr>';
                 for (var j = 0; j < values["columns"]; j++) {
@@ -224,12 +223,12 @@
             if (multiplayer == true) $("#nameplayer2").html(values["nameplayer2"]);
             else $("#nameplayer2").html("CPU");
 
-            $( "#raster" ).html(content);
+            $( "#rasterwrapper" ).html(content);
 
             $('#options').hide();
             $( "#stats" ).show();
 
-            $( "#raster" ).show();
+            $( "#rasterwrapper" ).show();
 
             return false;
 
