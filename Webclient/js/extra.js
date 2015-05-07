@@ -1,40 +1,50 @@
-var nummer;
-var string;
+$(document).ready(function () {
 
-$("#form").children().change(function () {
-    if (nummer == 1 && string == 1) {
-        $("#startgame").prop('disabled', false);
+    var numeric;
+    var string;
+
+    function checkInputs() {
+
+
+        $(".numeric").each(function () {
+            if (!isNaN($(this).val()) && $(this).val() != "") {
+                console.log("nummer");
+                numeric = true;
+
+            }
+            else {
+                console.log("geen nummer");
+                numeric = false;
+            }
+        });
+
+        $(".string").each(function () {
+            if (isNaN($(this).val()) && $(this).val() != "") {
+                console.log("string");
+                string = true;
+
+            }
+            else {
+                console.log("geen string");
+                string = false;
+            }
+        });
     }
-    else
-    {
-        $("#startgame").prop('disabled', true);
-    }
+
+
+    $("#form").children().change(function () {
+
+        checkInputs();
+
+        if (numeric == true && string == true) {
+            $("#startgame").prop('disabled', false);
+            console.log("check klopt");
+        }
+        else {
+            $("#startgame").prop('disabled', true);
+            console.log("check klopt niet");
+        }
+    });
+
+
 });
-
-
-$(".numeric").each(function () {
-    if (!isNaN($(this).val()) && $(this).val() != "")
-    {
-        console.log("nummer");
-        nummer == 1;
-
-    }
-    else {
-        console.log("geen nummer");
-        nummer == 0;
-    }
-});
-
-$(".string").each(function () {
-    if (isNaN($(this).val()) && $(this).val() != "") {
-        console.log("string");
-       string == 1;
-
-    }
-    else {
-        console.log("geen string");
-        string == 0;
-    }
-});
-
-
