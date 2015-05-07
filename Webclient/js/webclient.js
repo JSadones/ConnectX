@@ -157,6 +157,17 @@
 
         }
 
+        if ((".player1Input").val() == "" || (".player2Input").val() == "")
+            {
+                $("#startgame").hide();
+            }
+            else {
+                $("#startgame").show();
+            }
+
+        $('#rows','#columns', '#streak').numeric();
+
+
         $('#form').submit(function () {
 
 
@@ -166,6 +177,8 @@
             $inputs.each(function() {
                 values[this.name] = $(this).val();
             });
+
+           
 
             var content = "<table width='70%'><tr id='selectie'>";
 
