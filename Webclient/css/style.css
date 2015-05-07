@@ -46,7 +46,7 @@
         padding-bottom:10px;
     }
 
-    h3, #clear {
+    h3.clear {
         text-align:center;
         line-height:1.5;
     }
@@ -98,10 +98,10 @@
 
 /* Box */
 
-    #float {
+    .float {
         float:left;
     }
-    #clear {
+    .clear {
         clear:both;
     }
 
@@ -124,6 +124,11 @@
         width:auto;
         
     }
+	
+	div #options, #raster
+	{
+		display: none;
+	}
 
     .container-nav {
         display:inline-block;
