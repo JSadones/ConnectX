@@ -13,6 +13,8 @@
         scores[1] = 0;
         scores[2] = 0; 
 
+        // Click Handlers
+
         $( "#play-vs-cpu" ).click(function() {
             $('#start').hide();
             $( "#options" ).show();
@@ -29,16 +31,29 @@
             multiplayer = true;
         });
 
-        function getSecondClass(thisObj) {
-            var counter = 0;
-            var classes = {};
+        $(document).on("mouseenter", ".column", function() {
+           $('.' + getClassnameOfIndexedColumn($(this)).toString()).css("background-color", "red");
+        });
+
+        $(document).on("mouseleave", ".column", function() {
+            $('.'+getClassnameOfIndexedColumn($(this)).toString()).css("background-color","transparent");
+        });
+
+        $(document).on("click", ".column", function() {
+            var column = getClassnameOfIndexedColumn($(this)).replace(/\D/g,'');
+            
+            insertToken(column); 
+        });
+
+        function getClassnameOfIndexedColumn(thisObj) {
+            var classname = "";
             $(thisObj.attr('class').split(' ')).each(function() { 
-                if (this !== '') {
-                    classes[counter] = this;
+                str = this.replace('column', '');
+                if (!isNaN(str)) {
+                    classname = this;
                 }    
-                counter++;
             });
-            return classes[1];
+            return classname;
         }
 
         function insertToken(column) {
@@ -50,19 +65,7 @@
             insertToken(column);
         }
 
-       $(document).on("mouseenter", ".column", function() {
-           $('.' + getSecondClass($(this)).toString()).css("background-color", "red");
-        });
 
-        $(document).on("mouseleave", ".column", function() {
-            $('.'+getSecondClass($(this)).toString()).css("background-color","transparent");
-        });
-
-        $(document).on("click", ".column", function() {
-            var column = getSecondClass($(this)).replace(/\D/g,'');
-            
-            insertToken(column); 
-        });
 
         function nextGame() {
             initializeRaster();
@@ -199,10 +202,7 @@
 
             $( "#raster" ).show();
 
-
-
             return false;
-        
 
         });
     });
