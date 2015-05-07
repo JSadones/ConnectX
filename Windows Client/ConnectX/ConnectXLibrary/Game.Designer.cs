@@ -41,6 +41,7 @@
             this.lblTurnName = new System.Windows.Forms.Label();
             this.lblStreak = new System.Windows.Forms.Label();
             this.lblStreakNumber = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lblName
@@ -57,7 +58,7 @@
             this.pnlGame.BackgroundImage = global::ConnectXLibrary.Properties.Resources.bg;
             this.pnlGame.Location = new System.Drawing.Point(-4, 157);
             this.pnlGame.Name = "pnlGame";
-            this.pnlGame.Size = new System.Drawing.Size(991, 540);
+            this.pnlGame.Size = new System.Drawing.Size(793, 540);
             this.pnlGame.TabIndex = 4;
             this.pnlGame.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlGame_Paint);
             this.pnlGame.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pnlGame_MouseClick);
@@ -177,12 +178,22 @@
             this.lblStreakNumber.TabIndex = 19;
             this.lblStreakNumber.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(813, 30);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(159, 583);
+            this.textBox1.TabIndex = 20;
+            this.textBox1.MouseHover += new System.EventHandler(this.textBox1_MouseHover);
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::ConnectXLibrary.Properties.Resources.bg;
             this.ClientSize = new System.Drawing.Size(984, 693);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.lblStreakNumber);
             this.Controls.Add(this.lblStreak);
             this.Controls.Add(this.lblTurnName);
@@ -221,5 +232,6 @@
         private System.Windows.Forms.Label lblTurnName;
 		private System.Windows.Forms.Label lblStreak;
 		private System.Windows.Forms.Label lblStreakNumber;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

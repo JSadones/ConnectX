@@ -8,12 +8,11 @@ namespace ConnectXLibrary
     {
         #region State
         int[,] raster;
-        private int rows, columns, streakToWin, playerAtTurn, scorePlayer1 = 0, scorePlayer2 = 0, difficulty;
+        private int rows, columns, streakToWin, playerAtTurn, scorePlayer1 = 0, scorePlayer2 = 0, difficulty, counterLeft = 0, counterRight = 0;
 		private const int DefaultRows = 6, DefaultColumns = 7, DefaultStreak = 4;
         private const bool  DefaultMP = true;
         private bool multiplayer;
-        int counterLeft = 0;
-        int counterRight = 0;
+        List<possibleStreak> streakList = new List<possibleStreak>();
         #endregion State
 
         #region Constructor
@@ -36,6 +35,11 @@ namespace ConnectXLibrary
         #endregion
 
         #region Properties
+        public List<possibleStreak> returnList()
+        {
+            return streakList;
+        }
+
         public int getRows() {
             return rows;
         }//getRows
@@ -184,6 +188,7 @@ namespace ConnectXLibrary
             else return false;
         }//isColumnFull
 
+
         //===Winning algorithm===
         private void resetCounter()
         {
@@ -197,21 +202,30 @@ namespace ConnectXLibrary
             {
                 try
                 {
+                    //Check vertical
+                    if (stepRow == -1 && stepColumn == 0)
+                    {
+                        checkAIPossiblePostitions(row, column, stepRow, stepColumn, "vertical");
+
+                        if (raster[row + i * stepRow, column + i * stepColumn] == getPlayerAtTurn()) counterLeft++;
+                        else return false;
+                    }
+
                     //Check horizontal left && diagonal bottom to left && diagonal top to left
                     if ((stepRow == 0 && stepColumn == -1) || (stepRow == -1 && stepColumn == -1) || (stepRow == 1 && stepColumn == 1))
                     {
+                        checkAIPossiblePostitions(row, column, stepRow, stepColumn, "");
+
                         if (raster[row + i * stepRow, column + i * stepColumn] == getPlayerAtTurn()) counterLeft++;
                         else return false;
                     }
+
                     //Check horizontal right && diagonal bottom to right && diagonal top to right
                     else if ((stepRow == 0 && stepColumn == 1) || (stepRow == -1 && stepColumn == 1) || (stepRow == 1 && stepColumn == -1))
                     {
+                        checkAIPossiblePostitions(row, column, stepRow, stepColumn, "");
+
                         if (raster[row + i * stepRow, column + i * stepColumn] == getPlayerAtTurn()) counterRight++;
-                        else return false;
-                    }
-                    else if (stepRow == -1 && stepColumn == 0)
-                    {
-                        if (raster[row + i * stepRow, column + i * stepColumn] == getPlayerAtTurn()) counterLeft++;
                         else return false;
                     }
                 }
@@ -220,16 +234,20 @@ namespace ConnectXLibrary
                     return false;
                 }
 
-                if (counterLeft + counterRight == streakToWin - 1) return true;
+                if (counterLeft + counterRight == streakToWin - 1)
+                {
+                    return true;
+                }
+
             }
             return false;
         }//isStreakReachedFromCoordinateInDirection
 
         public bool isCurrentGameWon (int row, int column)
         {
+            //-1  0   --  Check vertical down
             //0   1   --  Check horizontal right
             //0  -1   --  Check horizontal left
-            //-1  0   --  Check vertical down
             //-1  1   --  Check diagonal bottom to right
             //1  1   --  Check diagonal top to left
             //-1 -1   --  Check diagonal bottom to left
@@ -237,16 +255,6 @@ namespace ConnectXLibrary
 
             //Check left and right
             if (isStreakReachedFromCoordinateInDirection(row, column, 0, 1) || isStreakReachedFromCoordinateInDirection(row, column, 0, -1))
-            {
-                return true;
-            }
-            else
-            {
-                resetCounter();
-            }
-
-            //Check vertical
-            if (isStreakReachedFromCoordinateInDirection(row, column, -1, 0))
             {
                 return true;
             }
@@ -267,6 +275,16 @@ namespace ConnectXLibrary
 
             //Check diagonal bottom to left and diagonal top to right
             if (isStreakReachedFromCoordinateInDirection(row, column, -1, -1) || isStreakReachedFromCoordinateInDirection(row, column, 1, -1))
+            {
+                return true;
+            }
+            else
+            {
+                resetCounter();
+            }
+
+            //Check vertical
+            if (isStreakReachedFromCoordinateInDirection(row, column, -1, 0))
             {
                 return true;
             }
@@ -303,6 +321,29 @@ namespace ConnectXLibrary
             }
             return empySpots;
         }//getListOfAvailableColumns
+
+        private void checkAIPossiblePostitions(int row, int column, int selectedRow, int selectedColumn, string direction)
+        {
+            bool hasSet = false;
+            if (direction == "vertical")
+            {
+                if (counterLeft == streakToWin - 2)
+                {
+                    //3 Streak
+                    hasSet = true;
+                    streakList.Add(new possibleStreak(playerAtTurn, 2, row + 1, column));
+                }
+                else if (counterLeft == streakToWin - 3)
+                {
+                    if (!hasSet)
+                    {
+                        //2 Streak
+                        streakList.Add(new possibleStreak(playerAtTurn, 3, row + 1, column));
+                    }
+                }
+                
+            }
+        }
 
 
         //===Score Methods===
