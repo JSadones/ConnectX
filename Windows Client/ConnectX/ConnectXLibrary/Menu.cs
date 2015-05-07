@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -47,6 +48,7 @@ namespace ConnectXLibrary
         {
             Server server = new Server();
             server.Show();
+			Process.Start("Filenamepath");
         }//btnWebclient_Click
 
         private void btnClose_Click(object sender, EventArgs e)

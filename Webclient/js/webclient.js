@@ -84,7 +84,7 @@
             $('#start').show();
             $( "#stats" ).hide();
             $( "#options" ).hide();
-            $( "#rasterwrapper" ).hide();
+            $( "#raster" ).hide();
         }
 
         function initializeRaster() {
@@ -229,13 +229,12 @@
 
             setNames(values["nameplayer1"],values["nameplayer2"]);
             
-
             $( "#rasterwrapper" ).html(table);
 
             $('#options').hide();
             $( "#stats" ).show();
 
-            $( "#rasterwrapper" ).show();
+            $( "#raster" ).show();
 
             return false;
 

@@ -31,7 +31,6 @@ $(document).ready(function () {
         });
     }
 
-
     $("#form").children().change(function () {
 
         checkInputs();

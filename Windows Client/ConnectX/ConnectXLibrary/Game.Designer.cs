@@ -69,7 +69,7 @@
 			this.lblPlayer1.BackColor = System.Drawing.Color.Transparent;
 			this.lblPlayer1.Font = new System.Drawing.Font("Century Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblPlayer1.ForeColor = System.Drawing.Color.White;
-			this.lblPlayer1.Location = new System.Drawing.Point(135, -5);
+			this.lblPlayer1.Location = new System.Drawing.Point(135, 6);
 			this.lblPlayer1.Name = "lblPlayer1";
 			this.lblPlayer1.Size = new System.Drawing.Size(160, 44);
 			this.lblPlayer1.TabIndex = 8;
@@ -94,7 +94,7 @@
 			this.lblPointsPlayer1.BackColor = System.Drawing.Color.Transparent;
 			this.lblPointsPlayer1.Font = new System.Drawing.Font("Century Gothic", 27.75F);
 			this.lblPointsPlayer1.ForeColor = System.Drawing.Color.White;
-			this.lblPointsPlayer1.Location = new System.Drawing.Point(25, -5);
+			this.lblPointsPlayer1.Location = new System.Drawing.Point(25, 6);
 			this.lblPointsPlayer1.Name = "lblPointsPlayer1";
 			this.lblPointsPlayer1.Size = new System.Drawing.Size(41, 44);
 			this.lblPointsPlayer1.TabIndex = 11;
@@ -118,7 +118,7 @@
 			this.lblTurn.BackColor = System.Drawing.Color.Transparent;
 			this.lblTurn.Font = new System.Drawing.Font("Century Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblTurn.ForeColor = System.Drawing.Color.White;
-			this.lblTurn.Location = new System.Drawing.Point(480, -5);
+			this.lblTurn.Location = new System.Drawing.Point(480, 6);
 			this.lblTurn.Name = "lblTurn";
 			this.lblTurn.Size = new System.Drawing.Size(112, 44);
 			this.lblTurn.TabIndex = 14;
@@ -147,7 +147,7 @@
 			this.lblTurnName.BackColor = System.Drawing.Color.Transparent;
 			this.lblTurnName.Font = new System.Drawing.Font("Century Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblTurnName.ForeColor = System.Drawing.Color.White;
-			this.lblTurnName.Location = new System.Drawing.Point(621, 19);
+			this.lblTurnName.Location = new System.Drawing.Point(621, 6);
 			this.lblTurnName.Name = "lblTurnName";
 			this.lblTurnName.Size = new System.Drawing.Size(0, 44);
 			this.lblTurnName.TabIndex = 17;
@@ -172,7 +172,7 @@
 			this.lblStreakNumber.BackColor = System.Drawing.Color.Transparent;
 			this.lblStreakNumber.Font = new System.Drawing.Font("Century Gothic", 27.75F);
 			this.lblStreakNumber.ForeColor = System.Drawing.Color.White;
-			this.lblStreakNumber.Location = new System.Drawing.Point(621, 82);
+			this.lblStreakNumber.Location = new System.Drawing.Point(621, 50);
 			this.lblStreakNumber.Name = "lblStreakNumber";
 			this.lblStreakNumber.Size = new System.Drawing.Size(0, 44);
 			this.lblStreakNumber.TabIndex = 19;
