@@ -424,7 +424,7 @@ namespace ConnectXUnitTest
 		}
 
 		[TestMethod]
-		public void TestNewGameWithParameters() {
+		public void TestnextGameWithParameters() {
 			// New game with 10 rows, 12 columns, streakToWin of 7
 			ConnectX gameWithParameters = new ConnectX(10, 12, 7);
 			Assert.IsTrue(gameWithParameters.getRows() == 10);
@@ -458,7 +458,7 @@ namespace ConnectXUnitTest
 			// Let AI Determine Spot To Put Token
 			gameWithOneTokenBeforeFullRaster.insertTokenByAI();
 
-			Assert.IsTrue(gameWithOneTokenBeforeFullRaster.rasterIsFull());
+			Assert.IsTrue(gameWithOneTokenBeforeFullRaster.isRasterFull());
 		}
 
         [TestMethod]
@@ -518,17 +518,17 @@ namespace ConnectXUnitTest
 		public void Test10Rows14ColumnsTurnByAI() {
 			game10Rows14ColumnsWithOneTokenBeforeFullRaster.insertTokenByAI();
 
-			Assert.IsTrue(game10Rows14ColumnsWithOneTokenBeforeFullRaster.rasterIsFull());
+			Assert.IsTrue(game10Rows14ColumnsWithOneTokenBeforeFullRaster.isRasterFull());
 		}
 
 		[TestMethod]
 		public void TestIsRasterFullWhenRasterIsNotFull(){
-			Assert.IsFalse(gameWithOneTokenBeforeFullRaster.rasterIsFull());
+			Assert.IsFalse(gameWithOneTokenBeforeFullRaster.isRasterFull());
 		}
 
 		[TestMethod]
 		public void Test10Rows14ColumnsIsRasterFullWhenRasterIsNotFull(){
-			Assert.IsFalse(game10Rows14ColumnsWithOneTokenBeforeFullRaster.rasterIsFull());
+			Assert.IsFalse(game10Rows14ColumnsWithOneTokenBeforeFullRaster.isRasterFull());
 		}
 
 		[TestMethod]
@@ -595,13 +595,13 @@ namespace ConnectXUnitTest
         }
 
 		[TestMethod]
-		public void TestIsRasterFullWhenRasterIsFull() {
-			Assert.IsTrue(gameWithFullRaster.rasterIsFull());
+		public void TestIsRasterFullWhenisRasterFull() {
+			Assert.IsTrue(gameWithFullRaster.isRasterFull());
 		}
 
 		[TestMethod]
-		public void Test10Rows14ColumnsIsRasterFullWhenRasterIsFull() {
-			Assert.IsTrue(game10Rows14ColumnsWithFullRaster.rasterIsFull());
+		public void Test10Rows14ColumnsIsRasterFullWhenisRasterFull() {
+			Assert.IsTrue(game10Rows14ColumnsWithFullRaster.isRasterFull());
 		}
 
         [TestMethod]
@@ -640,7 +640,7 @@ namespace ConnectXUnitTest
         [TestMethod]
         public void TestInsertTokenByUserAndThenByAIAndThenByUserAndCheckIfTurnsAreRespected()
         {
-            gameInterface.newGame();
+            gameInterface.nextGame();
 
 
             Assert.IsTrue(gameInterface.checkIfWon(2, 1));
@@ -653,16 +653,16 @@ namespace ConnectXUnitTest
         }
 
         [TestMethod]
-        public void TestNewGameStarted()
+        public void TestnextGameStarted()
         {
-            gameInterface.newGame();
+            gameInterface.nextGame();
             Assert.IsTrue(gameInterface.gameRunning());
         }
 
         [TestMethod]
         public void TestGetScorePlayer1()
         {
-            gameInterface.incrementScorePlayer(1);
+            gameInterface.incrementScoreOfPlayer(1);
             // Parameter == player number
             Assert.IsTrue(gameInterface.getScore(1) == 1);
         }
@@ -670,42 +670,42 @@ namespace ConnectXUnitTest
         [TestMethod]
         public void TestGetOverallWonPlayer()
         {
-            game.incrementScorePlayer(1);
-            game.incrementScorePlayer(2);
+            game.incrementScoreOfPlayer(1);
+            game.incrementScoreOfPlayer(2);
             // Parameter == player number
             Assert.IsTrue(game.getWinnerOfLastSession() == 0);
-            game.incrementScorePlayer(1);
+            game.incrementScoreOfPlayer(1);
             Assert.IsTrue(game.getWinnerOfLastSession() == 1);
-            game.incrementScorePlayer(2);
-            game.incrementScorePlayer(2);
+            game.incrementScoreOfPlayer(2);
+            game.incrementScoreOfPlayer(2);
             Assert.IsTrue(gameInterface.getWinnerOfLastSession() == 2);
         }
 
         [TestMethod]
-        public void TestNewGame2HumanPlayersWith10RowsAnd14Columns()
+        public void TestnextGame2HumanPlayersWith10RowsAnd14Columns()
         {
-            game.newGame();
+            game.nextGame();
             Assert.IsTrue(gameInterface10Rows14Columns.gameRunning());
         }
 
         [TestMethod]
-        public void TestNewGameWith10Rows14ColumnsAnd5Streak()
+        public void TestnextGameWith10Rows14ColumnsAnd5Streak()
         {
-            gameInterface10Rows14Columns5Streak.newGame();
+            gameInterface10Rows14Columns5Streak.nextGame();
             Assert.IsTrue(gameInterface.gameRunning());
         }
 
         [TestMethod]
-        public void TestNewGameWith10RowsAnd14Columns()
+        public void TestnextGameWith10RowsAnd14Columns()
         {
-            gameInterface10Rows14Columns.newGame();
+            gameInterface10Rows14Columns.nextGame();
             Assert.IsTrue(gameInterface.gameRunning());
         }
 
         [TestMethod]
         public void TestCurrentGameWon()
         {
-            gameInterface.newGame();
+            gameInterface.nextGame();
 
             Assert.IsTrue(gameInterface.isCurrentGameWon() == false);
 
@@ -734,7 +734,7 @@ namespace ConnectXUnitTest
         [TestMethod]
         public void TestInsertTokenInColumn2ByPlayer1()
         {
-            gameInterface.newGame();
+            gameInterface.nextGame();
 
             // insertToken returns true if token is successfully inserted
             Assert.IsTrue(gameInterface.checkIfWon(2, 1));
