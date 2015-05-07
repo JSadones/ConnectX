@@ -9,17 +9,17 @@ namespace ConnectXLibrary
         #region State
         int[,] raster;
         private int rows, columns, streakToWin, playerAtTurn, scorePlayer1 = 0, scorePlayer2 = 0, difficulty;
-		private static int defaultRows = 6, defaultColumns = 7, defaultStreak = 4;
-        private static bool  defaultMP = true;
+		private static int DefaultRows = 6, DefaultColumns = 7, DefaultStreak = 4;
+        private static bool  DefaultMP = true;
         private bool multiplayer;
         #endregion State
 
         #region Constructor
-        public ConnectX(): this(defaultRows, defaultColumns, defaultStreak, defaultMP){ }
+        public ConnectX(): this(DefaultRows, DefaultColumns, DefaultStreak, DefaultMP){ }
 
-        public ConnectX(int rows, int columns) : this(rows, columns, defaultStreak, defaultMP) { }
+        public ConnectX(int rows, int columns) : this(rows, columns, DefaultStreak, DefaultMP) { }
 
-        public ConnectX(int rows, int columns, int streak) : this(rows, columns, streak, defaultMP) { }
+        public ConnectX(int rows, int columns, int streak) : this(rows, columns, streak, DefaultMP) { }
 
         public ConnectX(int rows, int columns, int streakToWin, bool multiplayer)
         {
@@ -47,15 +47,15 @@ namespace ConnectXLibrary
         }//getStreakToWin
 
 		public static int GetDefaultRows() {
-			return defaultRows;
+			return DefaultRows;
 		}//GetDefaultRows
 
 		public static int GetDefaultColumns() {
-			return defaultColumns;
+			return DefaultColumns;
 		}//GetDefaultColumns
 
 		public static int GetDefaultStreakToWin() {
-			return defaultStreak;
+			return DefaultStreak;
 		}//GetDefaultStreakToWin
 
         public int getRowIndexOfHighestTokenInColumn(int column)
