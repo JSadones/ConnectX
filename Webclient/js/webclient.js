@@ -65,8 +65,6 @@
             insertToken(column);
         }
 
-
-
         function nextGame() {
             initializeRaster();
         }
@@ -100,34 +98,12 @@
         function callback(data) {
             console.log(data);
             if (data.request.action =="insertToken") {
+
                 if(data.status == true) {
-                    $('.row'+data.response.row+'.column'+data.response.column).html(data.response.player);
-                    console.log('.row'+data.response.row+'.column'+data.response.column);
 
-
-                    if (data.response.won == "True")
-                    {
-                        alert("Game won by player " + data.player);
-                        scores[data.player]++;
-                        $('#player'+data.response.player).html(scores[data.player]);
-                        if(confirm("Play another game?")) {
-                            ajaxCall(callback, "nextGame");
-                        } else endGame();
-                    } else if (data.response.full == "True")
-                    {
-                        alert("Raster full");
-                        if(confirm("Play another game?")) {
-                            ajaxCall(callback, "nextGame");
-                        } else endGame();
-                    } else{
+                    processInsertedToken(data.response);
+                    checkIfGameIsWon(data.response);
                     
-                        if (playerAtPlay == 1) playerAtPlay = 2;
-                        else playerAtPlay = 1;
-
-                        if (!multiplayer && playerAtPlay == 2 ) {
-                            insertTokenByAI();
-                        }
-                    }
 
                 } else {
                     if (!multiplayer && playerAtPlay == 2) insertTokenByAI();
@@ -142,6 +118,40 @@
                 } 
             
             } 
+        }
+
+        function processInsertedToken(response) {
+
+            $('.row'+response.row+'.column'+response.column).html(response.player);
+        }
+
+        function checkIfGameIsWon(response) {
+            if (response.won == "True")
+            {
+                alert("Game won by player " + data.player);
+                scores[data.player]++;
+                $('#player'+response.player).html(scores[data.player]);
+                if(confirm("Play another game?")) {
+                    ajaxCall(callback, "nextGame");
+                } else endGame();
+
+            } else if (response.full == "True")
+            {
+                alert("Raster full");
+                if(confirm("Play another game?")) {
+                    ajaxCall(callback, "nextGame");
+                } else endGame();
+
+            } else{
+                
+
+                if (playerAtPlay == 1) playerAtPlay = 2;
+                else playerAtPlay = 1;
+
+                if (!multiplayer && playerAtPlay == 2 ) {
+                    insertTokenByAI();
+                }
+            }
         }
 
         function ajaxCall(callback) {
