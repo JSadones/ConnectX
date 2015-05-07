@@ -71,20 +71,30 @@
         }
 
         function endGame() {
+            showWinner();
+            initializeRaster();
+            resetScores();
+            showMenu();
+        }
 
+        function showWinner() {
             if (scores[1] == scores[2])
                 alert("It's a tie!");
             else if (scores[1] > scores[2])
                 alert("Player 1 won the session");
-            else alert("Player 2 won the session");
+            else alert("Player 2 won the session");            
+        }
 
-            initializeRaster();
-            $("#player1").html("0");
-            $("#player2").html("0");
+        function showMenu() {
             $('#start').show();
             $( "#stats" ).hide();
             $( "#options" ).hide();
             $( "#raster" ).hide();
+        }
+
+        function resetScores() {
+            $("#player1").html("0");
+            $("#player2").html("0");
         }
 
         function initializeRaster() {
@@ -103,7 +113,7 @@
                 if(data.status == true) {
 
                     processInsertedToken(data.response);
-            checkIfGameIsWon(data.response);
+                    checkIfGameIsWon(data.response);
                     
 
                 } else {
@@ -127,10 +137,11 @@
 
         function checkIfGameIsWon(response) {
             if (response.won == "True")
-            {
+            {   
                 alert("Game won by player " + response.player);
                 scores[response.player]++;
                 $('#player'+response.player).html(scores[response.player]);
+                
                 if(confirm("Play another game?")) {
                     ajaxCall(callback, "nextGame");
                 } else endGame();
@@ -221,9 +232,13 @@
                 values[this.name] = $(this).val();
             });
 
+            rows = values["rows"];
+            columns = values["columns"];
+
             if (!multiplayer) values["nameplayer2"] = "CPU";
 
-            var table = createTable(values["rows"],values["columns"]);
+            var table = createTable(rows, columns);
+
 
             ajaxCall(callback, "startGame", values["rows"], values["columns"], values["streak"]);
 
