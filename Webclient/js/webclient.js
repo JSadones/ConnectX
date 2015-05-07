@@ -102,7 +102,7 @@
                 if(data.status == true) {
 
                     processInsertedToken(data.response);
-                    checkIfGameIsWon(data.response);
+            checkIfGameIsWon();
                     
 
                 } else {
@@ -123,9 +123,12 @@
         function processInsertedToken(response) {
 
             $('.row'+response.row+'.column'+response.column).html(response.player);
+
+
+            
         }
 
-        function checkIfGameIsWon(response) {
+        function checkIfGameIsWon() {
             if (response.won == "True")
             {
                 alert("Game won by player " + data.player);
@@ -201,7 +204,7 @@
 
            
 
-            var content = "<table width='70%'><tr id='selectie'>";
+            var content = "<table width='70%' id='rastertable'><tr id='selectie'>";
 
             columns = values["columns"];
             rows = values["rows"];
