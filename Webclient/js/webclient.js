@@ -9,7 +9,6 @@
         var streak = 4;
         var multiplayer = false;
 
-
         scores[1] = 0;
         scores[2] = 0; 
 
@@ -32,15 +31,15 @@
             multiplayer = true;
         });
 
-        $(document).on("mouseenter", ".column", function() {
+        $(document).on("mouseenter", "#raster td", function() {
            $('.' + getClassnameOfIndexedColumn($(this)).toString()).css("background-color", "red");
         });
 
-        $(document).on("mouseleave", ".column", function() {
+        $(document).on("mouseleave", "#raster td", function() {
             $('.'+getClassnameOfIndexedColumn($(this)).toString()).css("background-color","transparent");
         });
 
-        $(document).on("click", ".column", function() {
+        $(document).on("click", "#raster td", function() {
             var column = getClassnameOfIndexedColumn($(this)).replace(/\D/g,'');
             
             insertToken(column); 
@@ -141,7 +140,7 @@
                 alert("Game won by player " + response.player);
                 scores[response.player]++;
                 $('#player'+response.player).html(scores[response.player]);
-                
+
                 if(confirm("Play another game?")) {
                     ajaxCall(callback, "nextGame");
                 } else endGame();
@@ -204,7 +203,7 @@
             for (var i = rows - 1; i >= 0; i--) {
                 content += '<tr>';
                 for (var j = 0; j < columns; j++) {
-                    content += "<td class='column column"+j+" row"+i+"'>_</td>"
+                    content += "<td class='column"+j+" row"+i+"'>_</td>"
                 }
                 content += '</tr>';
             }
