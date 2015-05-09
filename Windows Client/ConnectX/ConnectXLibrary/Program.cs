@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.IO;
 
 namespace ConnectXLibrary
 {
@@ -10,6 +11,7 @@ namespace ConnectXLibrary
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Console.Write(Directory.GetCurrentDirectory());
 
             Application.Run(new Menu());
         }

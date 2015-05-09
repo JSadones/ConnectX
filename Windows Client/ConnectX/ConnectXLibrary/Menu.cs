@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+using System.IO;
 
 namespace ConnectXLibrary
 {
@@ -48,7 +49,7 @@ namespace ConnectXLibrary
         {
             Server server = new Server();
             server.Show();
-			Process.Start("Filenamepath");
+			Process.Start(Path.Combine(Directory.GetCurrentDirectory(),"../../../../../Webclient/index.html"));
         }//btnWebclient_Click
 
         private void btnClose_Click(object sender, EventArgs e)
