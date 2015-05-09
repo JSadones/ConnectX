@@ -55,12 +55,52 @@
                         </div>
                         <div id='options'>
                             <form id='form'>
-                                <input type='text' name='rows' placeholder="Rows" class="numeric"><br>
-                                <input type='text' name='columns' placeholder="Columns" class="numeric"><br>
-                                <input type='text' name='streak' placeholder="Streak" class="numeric"><br>
-                                <input type='text' name='nameplayer1' placeholder="Player 1" class="string"><br>
-                                <input type='text' name='nameplayer2' placeholder="Player 2" class="string multiplayer-option"><br>
-                                <input type='submit' value='Start' id='startgame' disabled='true'>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <label for="rows">Rows</label>
+                                        </td>
+                                        <td>
+                                            <input type='text' name='rows' class="numeric">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="columns">Columns</label>
+                                        </td>
+                                        <td>
+                                            <input type='text' name='columns' class="numeric">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="streak">Streak</label>
+                                        </td>
+                                        <td>
+                                            <input type='text' name='streak' class="numeric">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="nameplayer1">Player 1</label>
+                                        </td>
+                                        <td>
+                                            <input type='text' name='nameplayer1' class="string">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="nameplayer2">Player 2</label>
+                                        </td>
+                                        <td>
+                                            <input type='text' name='nameplayer2' class="string multiplayer-option">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan='2'>
+                                            <input type='submit' value='Start' id='startgame' disabled='true'>
+                                    </tr>
+                                </table>
 
                             </form>
                         </div>

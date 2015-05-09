@@ -112,7 +112,6 @@
                 if(data.status == true) {
 
                     processInsertedToken(data.response);
-                    checkIfGameIsWon(data.response);
                     
 
                 } else {
@@ -132,6 +131,7 @@
 
         function processInsertedToken(response) {
             $('.row'+response.row+'.column'+response.column).html(response.player);
+                    checkIfGameIsWon(response);
         }
 
         function checkIfGameIsWon(response) {
@@ -154,7 +154,7 @@
 
             } else{
                 
-
+                console.log(playerAtPlay);
                 if (playerAtPlay == 1) playerAtPlay = 2;
                 else playerAtPlay = 1;
 
