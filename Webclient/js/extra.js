@@ -1,6 +1,8 @@
 $(document).ready(function () {
 
     var numeric;
+    var minimum = 4;
+    var minimumCheck;
     var string;
 
     function checkInputs() {
@@ -15,6 +17,18 @@ $(document).ready(function () {
             else {
                 console.log("geen nummer");
                 numeric = false;
+            }
+        });
+
+        $(".minimum").each(function () {
+            if ($(this).val() >= minimum) {
+                console.log("minimum voldaan");
+                minimumCheck = true;
+
+            }
+            else {
+                console.log("te klein");
+                minimumCheck = false;
             }
         });
 
@@ -35,7 +49,7 @@ $(document).ready(function () {
 
         checkInputs();
 
-        if (numeric == true && string == true) {
+        if (numeric == true && string == true && minimumCheck == true) {
             $("#startgame").prop('disabled', false);
             console.log("check klopt");
         }
