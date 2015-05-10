@@ -58,9 +58,14 @@ $(document).ready(function () {
             }
         });
 
-        if(rowCheck == true && columnCheck == true && streakCheck == true)
-        {
+        if (rowCheck == true && columnCheck == true && streakCheck == true) {
             return faultCheck = true;
+        }
+        else {
+            $("#rows").val('6');
+            $("#columns").val('7');
+            $("#streak").val('4');
+            console.log('velden gecorrigeerd');
         }
 
 
@@ -95,7 +100,7 @@ $(document).ready(function () {
         });
 
         $(".string").each(function () {
-            if (isNaN($(this).val()) && $(this).val() != "") {
+            if ($(this).val() != "") {
                 console.log("string");
                 string = true;
 
