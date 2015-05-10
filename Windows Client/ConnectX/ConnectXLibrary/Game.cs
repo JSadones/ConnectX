@@ -36,6 +36,7 @@ namespace ConnectXLibrary
             multiplayer = false;
 
             gamePlay = new ConnectX(rows, columns, tokenStreak, multiplayer);
+            AI ai = new AI(gamePlay);
             //nextGame();
 
             lblPlayer1.Text = namePlayer1;
@@ -274,6 +275,7 @@ namespace ConnectXLibrary
                 }
             }
         }
+
 
         //===Other methods===
         private bool checkTurn(int row, int column)
