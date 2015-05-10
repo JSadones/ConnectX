@@ -2,8 +2,70 @@ $(document).ready(function () {
 
     var numeric;
     var minimum = 4;
-    var minimumCheck;
+    var minStreak = 4;
+    var defRows = 6;
+    var defColumns = 7;
+    var faultCheck;
+    var minCheck;
     var string;
+
+
+
+    function correctFaults() {
+
+        var rowCheck;
+        var columnCheck;
+        var streakCheck;
+
+
+
+        $("#rows").each(function () {
+            if ($(this).val() >= defRows)
+            {
+                rowCheck = true;
+                console.log('rowCheck OK');
+            }
+            else {
+                rowCheck = false;
+                console.log('rowCheck Niet OK');
+            }
+        });
+            
+            
+        $("#columns").each(function () {
+            if ($(this).val() >= defColumns)
+                {
+                columnCheck = true;
+                console.log('columnCheck OK');
+                }
+            else
+                {
+                columnCheck = false;
+                console.log('columnCheck Niet OK')
+                }
+        });
+
+
+        $("#streak").each(function () {
+
+            if ($(this).val() >= minStreak) {
+                streakCheck = true;
+                console.log('streakCheck OK');
+            }
+            else {
+                streakCheck = false;
+                console.log('streakCheck Niet OK');
+            }
+        });
+
+        if(rowCheck == true && columnCheck == true && streakCheck == true)
+        {
+            return faultCheck = true;
+        }
+
+
+    }
+
 
     function checkInputs() {
 
@@ -23,12 +85,12 @@ $(document).ready(function () {
         $(".minimum").each(function () {
             if ($(this).val() >= minimum) {
                 console.log("minimum voldaan");
-                minimumCheck = true;
+                minCheck = true;
 
             }
             else {
                 console.log("te klein");
-                minimumCheck = false;
+                minCheck = false;
             }
         });
 
@@ -48,8 +110,9 @@ $(document).ready(function () {
     $("#form").children().change(function () {
 
         checkInputs();
+        correctFaults();
 
-        if (numeric == true && string == true && minimumCheck == true) {
+        if (numeric == true && string == true && minCheck == true && faultCheck == true) {
             $("#startgame").prop('disabled', false);
             console.log("check klopt");
         }
