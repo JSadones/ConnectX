@@ -239,7 +239,8 @@ namespace ConnectXLibrary
             int row = gamePlay.getLowestAvailableRowInColumn(column);
             checkInList(row, column);
 
-            if (gamePlay.insertToken(column, row, gamePlay.getPlayerAtTurn()))
+            //if (gamePlay.insertToken(column, row, gamePlay.getPlayerAtTurn()))
+            if(gamePlay.makeMovePlayer(column))
             {
                 drawToken(row, column);
 
@@ -287,7 +288,7 @@ namespace ConnectXLibrary
                     break;
                 }
             }
-        }
+        }//checkInList
 
 
         //===Other methods===
