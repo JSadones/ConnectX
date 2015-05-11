@@ -190,5 +190,9 @@ namespace ConnectXLibrary
 
         }
 
+		private void btnStopServer_Click(object sender, EventArgs e)
+		{
+			this.Close();
+		}
     }
 }
