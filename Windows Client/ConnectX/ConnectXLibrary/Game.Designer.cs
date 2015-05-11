@@ -42,6 +42,7 @@
 			this.lblStreak = new System.Windows.Forms.Label();
 			this.lblStreakNumber = new System.Windows.Forms.Label();
 			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.btnBack = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// lblName
@@ -187,12 +188,23 @@
 			this.textBox1.TabIndex = 20;
 			this.textBox1.MouseHover += new System.EventHandler(this.textBox1_MouseHover);
 			// 
+			// btnBack
+			// 
+			this.btnBack.Location = new System.Drawing.Point(813, 630);
+			this.btnBack.Name = "btnBack";
+			this.btnBack.Size = new System.Drawing.Size(159, 42);
+			this.btnBack.TabIndex = 21;
+			this.btnBack.Text = "Back";
+			this.btnBack.UseVisualStyleBackColor = true;
+			this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+			// 
 			// Game
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackgroundImage = global::ConnectXLibrary.Properties.Resources.bg;
 			this.ClientSize = new System.Drawing.Size(984, 693);
+			this.Controls.Add(this.btnBack);
 			this.Controls.Add(this.textBox1);
 			this.Controls.Add(this.lblStreakNumber);
 			this.Controls.Add(this.lblStreak);
@@ -233,5 +245,6 @@
 		private System.Windows.Forms.Label lblStreak;
 		private System.Windows.Forms.Label lblStreakNumber;
         private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.Button btnBack;
     }
 }

@@ -84,10 +84,12 @@ namespace ConnectXLibrary
 
             pnlEnterData.Visible = false;
             pnlStartScreen.Visible = true;
+			this.Hide();
 
             gameForm.StartPosition = FormStartPosition.Manual;
             gameForm.Location = new Point(this.Location.X, this.Location.Y);
             gameForm.Show();
+			
         }//btnStart_Click
 
         private void picBoxPlayer1_Click(object sender, EventArgs e)

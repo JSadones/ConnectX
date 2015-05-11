@@ -337,6 +337,13 @@ namespace ConnectXLibrary
                 textBox1.Text += "--------------------------------------------";
             }
         }//textBox1_MouseHover
+
+		private void btnBack_Click(object sender, EventArgs e)
+		{
+			this.Hide();
+			Menu menu = new Menu();
+			menu.Visible = true;
+		}
         #endregion
     }
 
