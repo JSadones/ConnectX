@@ -66,20 +66,20 @@ namespace ConnectXLibrary
             Game gameForm;
             pnlEnterData.Visible = false;
             pnlStartScreen.Visible = true;
+            int difficulty = 0;
             
             if (!multiplayerGame)
             {
-                string difficulty;
-                if (radioEasy.Checked) difficulty = radioEasy.Text;
-                else if (radioMedium.Checked) difficulty = radioMedium.Text;
-                else if (radioHard.Checked) difficulty = radioHard.Text;
+                if (radioEasy.Checked) difficulty = 1;
+                else if (radioMedium.Checked) difficulty = 2;
+                else if (radioHard.Checked) difficulty = 3;
 
-                gameForm = new Game(columns, rows, streaktowin, player1Name);
+                gameForm = new Game(difficulty, columns, rows, streaktowin, player1Name);
             }
             else
             {
                 string player2Name = txtBoxPlayer2Name.Text;
-                gameForm = new Game(columns, rows, streaktowin, player1Name, player2Name);
+                gameForm = new Game(0, columns, rows, streaktowin, player1Name, player2Name);
             }
 
             pnlEnterData.Visible = false;

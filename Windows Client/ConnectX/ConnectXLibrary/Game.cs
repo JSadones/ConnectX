@@ -9,43 +9,44 @@ namespace ConnectXLibrary
     public partial class Game : Form
     {
         #region State
-        private int rows, columns, tokenStreak, startWidth, startHeight, size;
+        private int rows, columns, tokenStreak, startWidth, startHeight, size, difficulty;
         private string namePlayer1, namePlayer2;
         bool gameChanges = false, multiplayer, gameEnd = false;
         Bitmap I;
         Graphics gr;
         ConnectX gamePlay;
         Pen myPen;
+        AI ai;
         SolidBrush redBrush = new SolidBrush(Color.Red);
         SolidBrush blueBrush = new SolidBrush(Color.Blue);
         Pen blackPen = new Pen(Color.Black, 3);
         #endregion
 
         #region Constructor
-        public Game(int columns, int rows, int tokenStreak, string namePlayer1)
+        public Game(int difficulty, int columns, int rows, int tokenStreak, string namePlayer1)
         {
+            InitializeComponent();
             string cpuName = "Computer";
 
-            InitializeComponent();
             this.namePlayer1 = namePlayer1;
             this.namePlayer2 = cpuName;
             this.rows = rows;
             this.columns = columns;
             this.tokenStreak = tokenStreak;
-            int streak = tokenStreak;
+            this.difficulty = difficulty;
             multiplayer = false;
 
             gamePlay = new ConnectX(rows, columns, tokenStreak, multiplayer);
-            AI ai = new AI(gamePlay);
+            ai = new AI(gamePlay);
             //nextGame();
 
             lblPlayer1.Text = namePlayer1;
             lblPlayer2.Text = cpuName;
-            lblStreakNumber.Text = streak.ToString();
+            lblStreakNumber.Text = tokenStreak.ToString();
             showPlayerAtTurn();
         }//Game
 
-        public Game(int columns, int rows, int tokenStreak, string namePlayer1, string namePlayer2)
+        public Game(int difficulty, int columns, int rows, int tokenStreak, string namePlayer1, string namePlayer2)
         {
             InitializeComponent();
             this.namePlayer1 = namePlayer1;
@@ -53,7 +54,7 @@ namespace ConnectXLibrary
             this.rows = rows;
             this.columns = columns;
             this.tokenStreak = tokenStreak;
-            int streak = tokenStreak;
+            this.difficulty = difficulty;
             multiplayer = true;
 
             gamePlay = new ConnectX(rows, columns, tokenStreak, multiplayer);
@@ -61,7 +62,7 @@ namespace ConnectXLibrary
 
             lblPlayer1.Text = namePlayer1;
             lblPlayer2.Text = namePlayer2;
-            lblStreakNumber.Text = streak.ToString();
+            lblStreakNumber.Text = tokenStreak.ToString();
             showPlayerAtTurn();
         }//Game
         #endregion
@@ -257,7 +258,19 @@ namespace ConnectXLibrary
 
         private void insertTokenByAI()
         {
-            int column = gamePlay.chooseRandomSpot();
+            int column;
+            switch(difficulty)
+            {
+                case 1:
+                    column = gamePlay.chooseRandomSpot();
+                    break;
+                case 2:
+                    column = ai.makeTurn();
+                    break;
+                default:
+                    column = -1;
+                    break;
+            }
             processTurn(column);
         }//insertTokenByAI
 

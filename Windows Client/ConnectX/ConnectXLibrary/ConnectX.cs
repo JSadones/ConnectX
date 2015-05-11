@@ -40,27 +40,33 @@ namespace ConnectXLibrary
             return streakList;
         }
 
-        public int getRows() {
+        public int getRows()
+        {
             return rows;
         }//getRows
 
-        public int getColumns() {
+        public int getColumns()
+        {
             return columns;
         }//getColumns
 
-        public int getStreakToWin() {
+        public int getStreakToWin()
+        {
             return streakToWin;
         }//getStreakToWin
 
-		public static int GetDefaultRows() {
+		public static int GetDefaultRows()
+        {
 			return DefaultRows;
 		}//GetDefaultRows
 
-		public static int GetDefaultColumns() {
+		public static int GetDefaultColumns()
+        {
 			return DefaultColumns;
 		}//GetDefaultColumns
 
-		public static int GetDefaultStreakToWin() {
+		public static int GetDefaultStreakToWin()
+        {
 			return DefaultStreak;
 		}//GetDefaultStreakToWin
 
@@ -115,7 +121,7 @@ namespace ConnectXLibrary
             {
                 return 0;
             }
-        }//getOverallWonPlayer
+        }//getWinnerOfLastSession
 
         public int getScore(int player)
         {
@@ -179,12 +185,9 @@ namespace ConnectXLibrary
 
 
         //===Checks for raster===
-        private bool isColumnFull(int column)
+        public bool isColumnFull(int column)
         {
-            if (raster[rows - 1, column] != 0)
-            {
-                return true;
-            }
+            if (raster[rows - 1, column] != 0) return true;
             else return false;
         }//isColumnFull
 

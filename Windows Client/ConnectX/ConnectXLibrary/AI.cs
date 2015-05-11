@@ -1,42 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConnectXLibrary
 {
     class AI
     {
         #region State
-        static int MaxDepth = 8;  //The AI does think MAX_DEPTH moves ahead.
-        static float WinRevenue = 1f;  //The score given to a state that leads to a win.
-        static float LoseRevenue = -1f;  //The score given to a state that leads to a lose.
-        static float UncertainRevenue = 0f; //The score given to a state that leads to a loss in the next turn.
-        ConnectX raster;
+	    static final int MAX_DEPTH = 8; //The AI does think MAX_DEPTH moves ahead.
+
+	    static final float WIN_REVENUE = 1f; //The score given to a state that leads to a win.
+
+	    static final float LOSE_REVENUE = -1f; //The score given to a state that leads to a lose.
+
+	    static final float UNCERTAIN_REVENUE = 0f; //The score given to a state that leads to a loss in the next turn
+
+	    Board board;
         #endregion
 
         #region Constructor
-        public AI(ConnectX raster)
-        {
-            this.raster = raster;
-        }
-        #endregion
-
-        #region Properties
-
+	    public Ai(Board board) {
+		    this.board = board;
+	    }
         #endregion
 
         #region Methods
-        /**
-	     * Makes a turn.
-	     * 
-	     * @return The column where the turn was made.
-	     *         Please note that the turn was
-	     *         already made and doesn't have to be
-	     *         done again.
-	     */
-        public int makeTurn()
+	    /**
+	        * Makes a turn.
+	        * 
+	        * @return The column where the turn was made.
+	        *         Please note that the turn was
+	        *         already made and doesn't have to be
+	        *         done again.
+	        */
+	    public int makeTurn()
         {
 		    double maxValue = 2. * Integer.MIN_VALUE;
 		    int move = 0;
@@ -46,9 +41,9 @@ namespace ConnectXLibrary
 		    // The best score possible is WIN_REVENUE.
 		    // So if we find a move that has this
 		    // score, the search can be stopped.
-		    for (int column = 0; column < raster.getWidth(); column++)
+		    for (int column = 0; column < board.getWidth(); column++)
             {
-			    if (raster.isValidMove(column))
+			    if (board.isValidMove(column))
                 {
 				    // Compare the score of this
 				    // particular move with the
@@ -58,100 +53,85 @@ namespace ConnectXLibrary
                     {
 					    maxValue = value;
 					    move = column;
-					    if (value == WinRevenue)
-                        {
-						    break;
-					    }
+					    if (value == WIN_REVENUE) break;
 				    }
 			    }
 		    }
 		    // Make the move
-		    raster.makeMoveAI(move);
+		    board.makeMoveAI(move);
 		    return move;
-	    }//makeTurn
+	    }
 
-        double moveValue(int column)
+	    double moveValue(int column)
         {
-            // To determine the value of a move, first
-            // make the move, estimate that state and
-            // then undo the move again.
-            raster.makeMoveAI(column);
-            double val = alphabeta(MaxDepth, Integer.MIN_VALUE, Integer.MAX_VALUE, false);
-            raster.undoMoveAI(column);
-            return val;
-        }//moveValue
+		    // To determine the value of a move, first
+		    // make the move, estimate that state and
+		    // then undo the move again.
+		    board.makeMoveAI(column);
+		    double val = alphabeta(MAX_DEPTH, Integer.MIN_VALUE, Integer.MAX_VALUE, false);
+		    board.undoMoveAI(column);
+		    return val;
+	    }
 
-        double alphabeta(int depth, double alpha, double beta, bool maximizingPlayer)
-        {
-            bool hasWinner = raster.hasWinner();
-            // All these conditions lead to a
-            // termination of the recursion
-            if (depth == 0 || hasWinner)
+        double alphabeta(int depth, double alpha, double beta, boolean maximizingPlayer)
             {
-                double score = 0;
-                if (hasWinner)
-                {
-                    score = raster.playerIsWinner() ? LoseRevenue : WinRevenue;
-                }
-                else
-                {
-                    score = UncertainRevenue;
-                }
-                // Note that depth in this
-                // implementation starts at a high
-                // value and is decreased in every
-                // recursive call. This means that the
-                // deeper the recursion is, the
-                // greater MAX_DEPTH - depth will
-                // become and thus the smaller the
-                // result will become.
-                // This is done as a tweak, simply
-                // spoken, something bad happening in
-                // the next turn is worse than it
-                // happening in let's say five steps.
-                // Analogously something good
-                // happening in the next turn is
-                // better than it happening in five
-                // steps.
-                return score / (MaxDepth - depth + 1);
-            }
+		    bool hasWinner = board.hasWinner();
+		    // All these conditions lead to a
+		    // termination of the recursion
+		    if (depth == 0 || hasWinner)
+            {
+			    double score = 0;
+			    if (hasWinner) score = board.playerIsWinner() ? LOSE_REVENUE : WIN_REVENUE;
+                else score = UNCERTAIN_REVENUE;
 
-            if (maximizingPlayer)
+			    // Note that depth in this
+			    // implementation starts at a high
+			    // value and is decreased in every
+			    // recursive call. This means that the
+			    // deeper the recursion is, the
+			    // greater MAX_DEPTH - depth will
+			    // become and thus the smaller the
+			    // result will become.
+			    // This is done as a tweak, simply
+			    // spoken, something bad happening in
+			    // the next turn is worse than it
+			    // happening in let's say five steps.
+			    // Analogously something good
+			    // happening in the next turn is
+			    // better than it happening in five
+			    // steps.
+			    return score / (MAX_DEPTH - depth + 1);
+		    }
+
+		    if (maximizingPlayer)
             {
-                for (int column = 0; column < raster.getWidth(); column++)
+			    for (int column = 0; column < board.getWidth(); column++)
                 {
-                    if (raster.isValidMove(column))
+				    if (board.isValidMove(column))
                     {
-                        raster.makeMoveAI(column);
-                        alpha = Math.max(alpha, alphabeta(depth - 1, alpha, beta, false));
-                        raster.undoMoveAI(column);
-
-                        if (beta <= alpha)
-                        {
-                            break;
-                        }
-                    }
-                }
-                return alpha;
-            }
+					    board.makeMoveAI(column);
+					    alpha = Math.max(alpha, alphabeta(depth - 1, alpha, beta, false));
+					    board.undoMoveAI(column);
+					    if (beta <= alpha) break;
+				    }
+			    }
+			    return alpha;
+		    }
             else
             {
-                for (int column = 0; column < raster.getWidth(); column++)
+			    for (int column = 0; column < board.getWidth(); column++)
                 {
-                    if (raster.isValidMove(column))
+				    if (board.isValidMove(column))
                     {
-                        raster.makeMovePlayer(column);
-                        beta = Math.min(beta, alphabeta( depth - 1, alpha, beta, true));
-                        raster.undoMovePlayer(column);
-                        if (beta <= alpha)
-                        {
-                            break;
-                        }
-                    }
-                }
-                return beta;
-            }
-        }//alphabeta
+					    board.makeMovePlayer(column);
+					    beta = Math.min(beta, alphabeta(depth - 1, alpha, beta, true));
+					    board.undoMovePlayer(column);
+					    if (beta <= alpha) break;
+				    }
+			    }
+			    return beta;
+		    }
+	    }
         #endregion
     }
 }
