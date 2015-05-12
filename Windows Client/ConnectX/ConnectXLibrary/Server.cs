@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Threading;
-
-using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
 
@@ -38,6 +37,7 @@ namespace ConnectXLibrary
 
                 this.listenThread = new Thread(new ParameterizedThreadStart(startlistener));
                 listenThread.Start();
+                Process.Start(Path.Combine(Directory.GetCurrentDirectory(), "../../../../../Webclient/index.html"));
             }
             catch (HttpListenerException)
             {
