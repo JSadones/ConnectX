@@ -80,6 +80,21 @@
         border-right:2px solid lightgrey;
     }
 
+
+    .token1 {
+	background-image: /images/redtoken.png;
+	background-repeat: no-repeat;
+	background-position: center center;
+    }
+
+    .token2 {
+	background-image: /images/bluetoken.png;
+	background-repeat: no-repeat;
+	background-position: center center;
+    }
+
+
+
 /* Box */
 
     .float {
