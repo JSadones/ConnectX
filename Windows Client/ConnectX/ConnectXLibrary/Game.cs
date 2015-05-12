@@ -14,7 +14,7 @@ namespace ConnectXLibrary
         bool gameChanges = false, multiplayer, gameEnd = false;
         Bitmap I;
         Graphics gr;
-        ConnectX gamePlay;
+        ConnectX board;
         Pen myPen;
         AI ai;
         SolidBrush redBrush = new SolidBrush(Color.Red);
@@ -36,8 +36,8 @@ namespace ConnectXLibrary
             this.difficulty = difficulty;
             multiplayer = false;
 
-            gamePlay = new ConnectX(rows, columns, tokenStreak, multiplayer);
-            ai = new AI(gamePlay);
+            board = new ConnectX(rows, columns, tokenStreak, multiplayer);
+            ai = new AI(board);
             //nextGame();
 
             lblPlayer1.Text = namePlayer1;
@@ -57,7 +57,7 @@ namespace ConnectXLibrary
             this.difficulty = difficulty;
             multiplayer = true;
 
-            gamePlay = new ConnectX(rows, columns, tokenStreak, multiplayer);
+            board = new ConnectX(rows, columns, tokenStreak, multiplayer);
             //nextGame();
 
             lblPlayer1.Text = namePlayer1;
@@ -132,7 +132,7 @@ namespace ConnectXLibrary
                 Rectangle circle = new Rectangle((column * size) + 5 + startWidth, ((rows - row - 1) * size) + 5 + startHeight, size - 10, size - 10);
                 gr.DrawEllipse(blackPen, circle);
 
-                if (gamePlay.getPlayerAtTurn() == 1)
+                if (board.getPlayerAtTurn() == 1)
                 {
                     //token token = new token();
                     //token.create(1, size, location, pnlGame);
@@ -173,16 +173,18 @@ namespace ConnectXLibrary
         private void showSessionEndMessage()
         {
             string message;
-            if (gamePlay.getScore(1) == gamePlay.getScore(2)) message = "It's a tie!";
+            if (board.getScore(1) == board.getScore(2)) message = "It's a tie!";
             else
             {
-                message = getName(gamePlay.getWinnerOfLastSession()) + " won the game!";
+                message = getName(board.getWinnerOfLastSession()) + " won the game!";
             }
             DialogResult dialogResult2 = MessageBox.Show(message, "Game over!", MessageBoxButtons.OK);
 
             if (dialogResult2 == DialogResult.OK)
             {
-                this.Hide();
+                Menu menu = new Menu();
+                menu.Show();
+                this.Close();
             }
         }//showSessionEndMessage
 
@@ -213,13 +215,13 @@ namespace ConnectXLibrary
         //===GUI Methods===
         private void updateScores()
         {
-            lblPointsPlayer1.Text = gamePlay.getScore(1).ToString();
-            lblPointsPlayer2.Text = gamePlay.getScore(2).ToString();
+            lblPointsPlayer1.Text = board.getScore(1).ToString();
+            lblPointsPlayer2.Text = board.getScore(2).ToString();
         }//updateScores
 
         private void showPlayerAtTurn()
         {
-            int playerAtTurn = gamePlay.getPlayerAtTurn();
+            int playerAtTurn = board.getPlayerAtTurn();
             if (playerAtTurn == 1) lblTurnName.Text = namePlayer1;
             else lblTurnName.Text = namePlayer2;
         }//showPlayerAtTurn
@@ -243,20 +245,19 @@ namespace ConnectXLibrary
 
         private void processTurn(int column)
         {
-            int row = gamePlay.getLowestAvailableRowInColumn(column);
-            checkInList(row, column);
+            int row = board.getLowestAvailableRowInColumn(column);
 
-            //if (gamePlay.insertToken(column, row, gamePlay.getPlayerAtTurn()))
-            if(gamePlay.makeMovePlayer(column))
+            if (board.insertToken(column, row, board.getPlayerAtTurn()))
+            //if(gamePlay.makeMovePlayer(column))
             {
                 drawToken(row, column);
 
                 if (!checkTurn(row, column))
                 {
-                    gamePlay.switchPlayerAtTurn();
+                    board.switchPlayerAtTurn();
                     showPlayerAtTurn();
 
-                    if (!multiplayer && !gameEnd && gamePlay.getPlayerAtTurn() == 2)
+                    if (!multiplayer && !gameEnd && board.getPlayerAtTurn() == 2)
                     {
                         insertTokenByAI();
                     }
@@ -270,7 +271,7 @@ namespace ConnectXLibrary
             switch(difficulty)
             {
                 case 1:
-                    column = gamePlay.chooseRandomSpot();
+                    column = board.chooseRandomSpot();
                     break;
                 case 2:
                     column = ai.makeTurn();
@@ -282,31 +283,16 @@ namespace ConnectXLibrary
             processTurn(column);
         }//insertTokenByAI
 
-        public void checkInList(int selectedRow, int selectedColumn)
-        {
-            List<possibleStreak> streakList = gamePlay.returnList();
-            foreach (possibleStreak streak in streakList)
-            {
-                int row = streak.getRow();
-                int column = streak.getColumn();
-
-                if (selectedRow == row && selectedColumn == column) {
-                    streakList.Remove(streak);
-                    break;
-                }
-            }
-        }//checkInList
-
 
         //===Other methods===
         private bool checkTurn(int row, int column)
         {
             string title;
-            if (gamePlay.isCurrentGameWon(row, column))
+            if (board.isCurrentGameWon(row, column))
             {
-                gamePlay.incrementScoreOfPlayer(gamePlay.getPlayerAtTurn());
+                board.incrementScoreOfPlayer(board.getPlayerAtTurn());
                 updateScores();
-                if (gamePlay.getPlayerAtTurn() == 1) title = namePlayer1;
+                if (board.getPlayerAtTurn() == 1) title = namePlayer1;
                 else title = namePlayer2;
                 title += " has won the game.";
                 showGameEndMessage(title);
@@ -314,7 +300,7 @@ namespace ConnectXLibrary
                 if (!gameChanges) gameChanges = true;
                 return true;
             }
-            else if (gamePlay.isRasterFull())
+            else if (board.isTie())
             {
                 title = "Raster is full.";
                 showGameEndMessage(title);
@@ -326,24 +312,10 @@ namespace ConnectXLibrary
 
         private void nextGame()
         {
-            gamePlay.nextGame();
+            board.nextGame();
             drawGrid();
             showPlayerAtTurn();
         }//nextGame
-
-        private void textBox1_MouseHover(object sender, EventArgs e)
-        {
-            textBox1.Text = "";
-            List<possibleStreak> streakList = gamePlay.returnList();
-            foreach (possibleStreak streak in streakList)
-            {
-                textBox1.Text += "Player : " + streak.getPlayer() + "\r\n";
-                textBox1.Text += "Streak : " + streak.getStreak() + "\r\n";
-                textBox1.Text += "Row : " + streak.getRow() + "\r\n";
-                textBox1.Text += "Column : " + streak.getColumn() + "\n";
-                textBox1.Text += "--------------------------------------------";
-            }
-        }//textBox1_MouseHover
         #endregion
     }
 

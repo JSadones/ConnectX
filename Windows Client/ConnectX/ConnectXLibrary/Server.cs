@@ -144,7 +144,7 @@ namespace ConnectXLibrary
             }
 
             bool won = game.isCurrentGameWon(row, column);
-            bool full = game.isRasterFull();
+            bool full = game.isTie();
 
             Dictionary<string, string> responseDictionary = new Dictionary<string, string>();
 
