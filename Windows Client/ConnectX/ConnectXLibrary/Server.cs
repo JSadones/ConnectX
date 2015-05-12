@@ -56,12 +56,20 @@ namespace ConnectXLibrary
 
         private void ProcessRequest()
         {
+            try { 
             var result = listener.BeginGetContext(ListenerCallback, listener);
             result.AsyncWaitHandle.WaitOne();
+
+            }
+            catch (ObjectDisposedException)
+            {
+                Console.WriteLine("Listen aborted");
+            }
         }
 
         private void ListenerCallback(IAsyncResult result)
         {
+            try {
             // Data inlezen
             var context = listener.EndGetContext(result);
             var data_text = new StreamReader(context.Request.InputStream, context.Request.ContentEncoding).ReadToEnd();
@@ -126,6 +134,12 @@ namespace ConnectXLibrary
             output.Close();
         
             context.Response.Close();
+
+            }
+            catch (ObjectDisposedException)
+            {
+                Console.WriteLine("Listen aborted");
+            }
         }
 
         private ResponseForWebClient insertToken(Dictionary<string, string> request)
@@ -189,12 +203,11 @@ namespace ConnectXLibrary
             return new ResponseForWebClient(status, request, response);
 
         }
-
 		private void btnStopServer_Click(object sender, EventArgs e)
-		{
-			listener.Stop();
-			listener.Close();
-			this.Close();
+        {
+            listener.Stop();
+            listener.Close();
+            this.Close();
 		}
     }
 }
