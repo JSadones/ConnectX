@@ -130,8 +130,8 @@
         }
 
         function processInsertedToken(response) {
-            $('.row'+response.row+'.column'+response.column).html(response.player);
-                    checkIfGameIsWon(response);
+            $('.row'+response.row+'.column'+response.column).addClass('token'+response.player);
+            checkIfGameIsWon(response);
         }
 
         function checkIfGameIsWon(response) {
