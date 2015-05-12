@@ -214,7 +214,7 @@
             this.Name = "Game";
             this.Text = "Connect X";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Game_FormClosing);
-            this.Validated += new System.EventHandler(this.Game_Validated);
+         //   this.Validated += new System.EventHandler(this.Game_Validated);
             this.ResumeLayout(false);
             this.PerformLayout();
 
