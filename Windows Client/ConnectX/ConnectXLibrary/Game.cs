@@ -207,7 +207,7 @@ namespace ConnectXLibrary
             this.Hide();
             Menu menu = new Menu();
             menu.Visible = true;
-        }
+        }//btnBack_Click
 
 
         //===GUI Methods===
@@ -262,7 +262,7 @@ namespace ConnectXLibrary
                     }
                 }
             }
-        }
+        }//processTurn
 
         private void insertTokenByAI()
         {
