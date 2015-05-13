@@ -1,19 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ConnectXLibrary
 {
-    class AI {
-	    static int MAX_DEPTH = 8;
+    class AI
+    {
+        #region State
+        static int MAX_DEPTH = 8;
 	    static float WIN_REVENUE = 1f;
 	    static float LOSE_REVENUE = -1f;
 	    static float UNCERTAIN_REVENUE = 0f;
 	    ConnectX board;
+        #endregion
 
-	    public AI(ConnectX board) {
+        #region Constructor
+        public AI(ConnectX board) {
 		    this.board = board;
-	    }
+	    }//AI
+        #endregion
 
-	    public int makeTurn() {
+        #region Methods
+        public int makeTurn() {
 		    double maxValue = 2.0 * Int32.MinValue;
 		    int move = 0;
 
@@ -31,16 +38,16 @@ namespace ConnectXLibrary
 		    }
 		    //board.makeMoveAI(move);
 		    return move;
-	    }
+	    }//makeTurn
 
-	    double moveValue(int column) {
+	    private double moveValue(int column) {
 		    board.makeMoveAI(column);
 		    double val = alphabeta(MAX_DEPTH, Int32.MinValue, Int32.MaxValue, false);
 		    board.undoMoveAI(column);
 		    return val;
-	    }
+	    }//moveValue
 
-	    double alphabeta(int depth, double alpha, double beta, bool maximizingPlayer) {
+	    private double alphabeta(int depth, double alpha, double beta, bool maximizingPlayer) {
 		    bool hasWinner = board.hasWinner();
 		    if (depth == 0 || hasWinner) {
 			    double score = 0;
@@ -78,6 +85,33 @@ namespace ConnectXLibrary
 			    }
 			    return beta;
 		    }
-	    }
+        }//alphabeta
+
+        public int chooseRandomSpot()
+        {
+            List<byte> emptySpots;
+            Random rnd = new Random();
+            emptySpots = getListOfAvailableColumns();
+            int length = emptySpots.Count;
+            int spot = rnd.Next(0, length);
+
+            return spot;
+        }//chooseRandomSpot
+
+        private List<byte> getListOfAvailableColumns()
+        {
+            List<byte> empySpots = new List<byte>();
+            int[,] raster = board.getRaster();
+
+            for (byte i = 0; i < board.getColumns(); i++)
+            {
+                if (raster[board.getRows() - 1, i] == 0)
+                {
+                    empySpots.Add(i);
+                }
+            }
+            return empySpots;
+        }//getListOfAvailableColumns
+        #endregion
     }
 }

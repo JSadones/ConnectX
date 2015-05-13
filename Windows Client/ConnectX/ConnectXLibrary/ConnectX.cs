@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Linq;
-using System.Collections.Generic;
 
 namespace ConnectXLibrary
 {
@@ -140,6 +138,11 @@ namespace ConnectXLibrary
             }
             else return scorePlayer2;
         }//getScore
+
+        public int[,] getRaster()
+        {
+            return raster;
+        }
 		#endregion
 
         #region Methods
@@ -296,33 +299,6 @@ namespace ConnectXLibrary
             }
             return false;
         }//isCurrentGameWon
-
-
-        //===AI Methods===
-        public int chooseRandomSpot()
-        {
-            List<byte> emptySpots;
-            Random rnd = new Random();
-            emptySpots = getListOfAvailableColumns();
-            int length = emptySpots.Count;
-            int spot = rnd.Next(0, length);
-
-            return spot;
-        }//chooseRandomSpot
-
-        private List<byte> getListOfAvailableColumns()
-        {
-            List<byte> empySpots = new List<byte>();
-
-            for (byte i = 0; i < columns; i++)
-            {
-                if (raster[rows - 1, i] == 0)
-                {
-                    empySpots.Add(i);
-                }
-            }
-            return empySpots;
-        }//getListOfAvailableColumns
 
 
         //===Score Methods===

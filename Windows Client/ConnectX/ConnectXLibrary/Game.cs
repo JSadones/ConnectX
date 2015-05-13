@@ -300,14 +300,14 @@ namespace ConnectXLibrary
             switch(difficulty)
             {
                 case 1:
-                    column = board.chooseRandomSpot();
+                    column = ai.chooseRandomSpot();
                     break;
                 case 2:
                     Random rnd = new Random();
                     int chance = rnd.Next(0, 10);
 
                     if (chance < 3) column = ai.makeTurn();
-                    else board.chooseRandomSpot();
+                    else ai.chooseRandomSpot();
                     break;
                 case 3:
                     column = ai.makeTurn();
