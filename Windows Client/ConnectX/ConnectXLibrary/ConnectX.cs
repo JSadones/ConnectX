@@ -6,17 +6,15 @@ namespace ConnectXLibrary
     {
         #region State
         int[,] raster;
-        private int rows, columns, streakToWin, playerAtTurn, scorePlayer1 = 0, scorePlayer2 = 0, difficulty, counterLeft = 0, counterRight = 0;
+        private int rows, columns, streakToWin, playerAtTurn, scorePlayer1 = 0, scorePlayer2 = 0, counterLeft = 0, counterRight = 0;
 		private const int DefaultRows = 6, DefaultColumns = 7, DefaultStreak = 4;
         private const bool  DefaultMP = true;
         private bool multiplayer;
-
 
         public byte NOBODY = 0;
         public byte PLAYER = 1;
         public byte AI = 2;
 
-        byte[,] board;
         int[] columnCounts;
         #endregion State
 
@@ -37,11 +35,8 @@ namespace ConnectXLibrary
             this.columnCounts = new int[columns];
 
             playerAtTurn = 1;
-            raster = new int[rows, columns];
+            raster = new int[columns, rows];
 
-
-
-            this.board = new byte[columns, rows];
             this.columnCounts = new int[columns];
         }
         #endregion
@@ -84,7 +79,7 @@ namespace ConnectXLibrary
                 int row = 0;
                 while (row < rows)
                 {
-                    if (raster[row, column] == 0) return row;
+                    if (raster[column, row] == 0) return row;
                     row++;
                 }
                 return rows;
@@ -162,8 +157,12 @@ namespace ConnectXLibrary
             {
                 for (int column = 0; column < columns; column++)
                 {
-                    raster[row, column] = 0;
+                    raster[column, row] = 0;
                 }
+            }
+
+            for (int test = 0; test < columns; test++) {
+                columnCounts[test] = 0;
             }
         }//clear
 
@@ -197,7 +196,7 @@ namespace ConnectXLibrary
 
         public bool isColumnFull(int column)
         {
-            return raster[rows - 1, column] != 0;
+            return raster[column, rows - 1] != 0;
         }//isColumnFull
 
 
@@ -217,21 +216,21 @@ namespace ConnectXLibrary
                     //Check vertical
                     if (stepRow == -1 && stepColumn == 0)
                     {
-                        if (raster[row + i * stepRow, column + i * stepColumn] == getPlayerAtTurn()) counterLeft++;
+                        if (raster[column + i * stepColumn, row + i * stepRow] == getPlayerAtTurn()) counterLeft++;
                         else return false;
                     }
 
                     //Check horizontal left && diagonal bottom to left && diagonal top to left
                     if ((stepRow == 0 && stepColumn == -1) || (stepRow == -1 && stepColumn == -1) || (stepRow == 1 && stepColumn == 1))
                     {
-                        if (raster[row + i * stepRow, column + i * stepColumn] == getPlayerAtTurn()) counterLeft++;
+                        if (raster[column + i * stepColumn, row + i * stepRow] == getPlayerAtTurn()) counterLeft++;
                         else return false;
                     }
 
                     //Check horizontal right && diagonal bottom to right && diagonal top to right
                     else if ((stepRow == 0 && stepColumn == 1) || (stepRow == -1 && stepColumn == 1) || (stepRow == 1 && stepColumn == -1))
                     {
-                        if (raster[row + i * stepRow, column + i * stepColumn] == getPlayerAtTurn()) counterRight++;
+                        if (raster[column + i * stepColumn, row + i * stepRow] == getPlayerAtTurn()) counterRight++;
                         else return false;
                     }
                 }
@@ -240,7 +239,7 @@ namespace ConnectXLibrary
                     return false;
                 }
 
-                if (counterLeft + counterRight == streakToWin - 1)
+                if (counterLeft + counterRight == streakToWin)
                 {
                     return true;
                 }
@@ -259,44 +258,11 @@ namespace ConnectXLibrary
             //1  -1    --  Check diagonal top to right
 
             //Check left and right
-            if (isStreakReachedFromCoordinateInDirection(row, column, 0, 1) || isStreakReachedFromCoordinateInDirection(row, column, 0, -1))
-            {
-                return true;
-            }
-            else
-            {
-                resetCounter();
-            }
-
-            //Check diagonal bottom to right and diagonal top to left
-            if (isStreakReachedFromCoordinateInDirection(row, column, -1, 1) || isStreakReachedFromCoordinateInDirection(row, column, 1, 1))
-            {
-                return true;
-            }
-            else
-            {
-                resetCounter();
-            }
-
-            //Check diagonal bottom to left and diagonal top to right
-            if (isStreakReachedFromCoordinateInDirection(row, column, -1, -1) || isStreakReachedFromCoordinateInDirection(row, column, 1, -1))
-            {
-                return true;
-            }
-            else
-            {
-                resetCounter();
-            }
-
-            //Check vertical
-            if (isStreakReachedFromCoordinateInDirection(row, column, -1, 0))
-            {
-                return true;
-            }
-            else
-            {
-                resetCounter();
-            }
+            if (isStreakReachedFromCoordinateInDirection(row, column, 0, 1) || isStreakReachedFromCoordinateInDirection(row, column, 0, -1) ||
+                isStreakReachedFromCoordinateInDirection(row, column, -1, 1) || isStreakReachedFromCoordinateInDirection(row, column, 1, 1) ||
+                isStreakReachedFromCoordinateInDirection(row, column, -1, -1) || isStreakReachedFromCoordinateInDirection(row, column, 1, -1) ||
+                isStreakReachedFromCoordinateInDirection(row, column, -1, 0)) return true;
+            else resetCounter();
             return false;
         }//isCurrentGameWon
 
@@ -314,8 +280,7 @@ namespace ConnectXLibrary
         {
             clear();
             playerAtTurn = 1;
-            counterLeft = 0;
-            counterRight = 0;
+            resetCounter();
             return true;
         }//nextGame
 
@@ -329,71 +294,63 @@ namespace ConnectXLibrary
 
 
 
-
-
-
         //AI HACKERINO PLSERINO STAYOFERINO
         public bool isValidMove(int column)
         {
             return columnCounts[column] < rows;
-        }
+        }//isValidMove
 
         public bool makeMovePlayer(int column)
         {
             return makeMove(column, true);
-        }
+        }//makeMovePlayer
 
         public bool makeMoveAI(int column)
         {
             return makeMove(column, false);
-        }
+        }//makeMoveAI
 
         public bool undoMovePlayer(int column)
         {
             return undoMove(column, true);
-        }
+        }//undoMovePlayer
 
         public bool undoMoveAI(int column)
         {
             return undoMove(column, false);
-        }
+        }//undoMoveAI
 
-        bool makeMove(int column, bool player)
+        private bool makeMove(int column, bool player)//makeMove
         {
             if (columnCounts[column] < rows)
             {
                 byte sign = player ? PLAYER : AI;
-                board[column, columnCounts[column]++] = sign;
+                raster[column, columnCounts[column]++] = sign;
                 return true;
             }
             return false;
         }
 
-        bool undoMove(int column, bool player)
+        private bool undoMove(int column, bool player)
         {
             if (columnCounts[column] > 0)
             {
                 byte sign = player ? PLAYER : AI;
-                if (board[column, columnCounts[column] - 1] == sign)
+                if (raster[column, columnCounts[column] - 1] == sign)
                 {
-                    board[column, columnCounts[column] - 1] =
+                    raster[column, columnCounts[column] - 1] =
                             NOBODY;
                     columnCounts[column]--;
                     return true;
                 }
             }
             return false;
-        }
-
-        public int getcolumns()
-        {
-            return columns;
-        }
+        }//undoMove
 
         public bool hasWinner()
         {
             return getWinner() != NOBODY;
-        }
+        }//hasWinner
 
         public byte getWinner()
         {
@@ -405,11 +362,11 @@ namespace ConnectXLibrary
                     bool aiWin = true;
                     for (int o = 0; o < streakToWin; o++)
                     {
-                        if (playerWin && board[x, y + o] != PLAYER)
+                        if (playerWin && raster[x, y + o] != PLAYER)
                         {
                             playerWin = false;
                         }
-                        if (aiWin && board[x, y + o] != AI)
+                        if (aiWin && raster[x, y + o] != AI)
                         {
                             aiWin = false;
                         }
@@ -434,13 +391,11 @@ namespace ConnectXLibrary
                     bool aiWin = true;
                     for (int o = 0; o < streakToWin; o++)
                     {
-                        if (playerWin
-                                && board[x + o, y] != PLAYER)
+                        if (playerWin && raster[x + o, y] != PLAYER)
                         {
                             playerWin = false;
                         }
-                        if (aiWin
-                                && board[x + o, y] != AI)
+                        if (aiWin && raster[x + o, y] != AI)
                         {
                             aiWin = false;
                         }
@@ -465,11 +420,11 @@ namespace ConnectXLibrary
                     bool aiWin = true;
                     for (int o = 0; o < streakToWin; o++)
                     {
-                        if (playerWin && board[x + o, y + o] != PLAYER)
+                        if (playerWin && raster[x + o, y + o] != PLAYER)
                         {
                             playerWin = false;
                         }
-                        if (aiWin && board[x + o, y + o] != AI)
+                        if (aiWin && raster[x + o, y + o] != AI)
                         {
                             aiWin = false;
                         }
@@ -494,11 +449,11 @@ namespace ConnectXLibrary
                     bool aiWin = true;
                     for (int o = 0; o < streakToWin; o++)
                     {
-                        if (playerWin && board[x - o, y + o] != PLAYER)
+                        if (playerWin && raster[x - o, y + o] != PLAYER)
                         {
                             playerWin = false;
                         }
-                        if (aiWin && board[x - o, y + o] != AI)
+                        if (aiWin && raster[x - o, y + o] != AI)
                         {
                             aiWin = false;
                         }
@@ -515,19 +470,19 @@ namespace ConnectXLibrary
             }
 
             return NOBODY;
-        }
+        }//getWinner
 
         public bool playerIsWinner()
         {
             return getWinner() == PLAYER;
-        }
+        }//playerIsWinner
 
         public bool isTie2()
         {
             return isBoardFull() && getWinner() == NOBODY;
-        }
+        }//isTie2
 
-        bool isBoardFull()
+        private bool isBoardFull()
         {
             bool emptyColumnFound = false;
             for (int x = 0; x < columns; x++)
@@ -539,18 +494,7 @@ namespace ConnectXLibrary
                 }
             }
             return !emptyColumnFound;
-        }
-
-        public int getLowestAvailableRowInColumn2(int column)
-        {
-            int row = 0;
-            while (row < rows)
-            {
-                if (board[column, row] == 0) return row;
-                row++;
-            }
-            return rows - 1;
-        }//getLowestAvailableRow
+        }//isBoardFull
         #endregion
     }
 }

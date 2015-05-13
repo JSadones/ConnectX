@@ -1,8 +1,7 @@
-﻿using System;
+﻿using ConnectXLibrary.Properties;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Collections.Generic;
-using ConnectXLibrary.Properties;
 
 namespace ConnectXLibrary
 {
@@ -11,7 +10,11 @@ namespace ConnectXLibrary
         #region State
         private int rows, columns, tokenStreak, startWidth, startHeight, size, difficulty;
         private string namePlayer1, namePlayer2;
-        bool gameChanges = false, multiplayer, gameEnd = false;
+        bool gameChanges = false, multiplayer, endGame = false;
+
+        private byte NOBODY = 0;
+        private byte PLAYER1 = 1;
+        private byte PLAYER2 = 2;
         Bitmap I;
         Graphics gr;
         ConnectX board;
@@ -20,7 +23,6 @@ namespace ConnectXLibrary
         SolidBrush redBrush = new SolidBrush(Color.Red);
         SolidBrush blueBrush = new SolidBrush(Color.Blue);
         Pen blackPen = new Pen(Color.Black, 3);
-        bool turn = true;
         #endregion
 
         #region Constructor
@@ -86,7 +88,7 @@ namespace ConnectXLibrary
             drawGrid();
             drawHud();
         }//pnlGame_Paint
-        
+
         private void drawGrid()
         {
             calculateSlotSize();
@@ -178,35 +180,21 @@ namespace ConnectXLibrary
             }
         }//drawToken
 
-        private void calculateSlotSize()
-        {
-            size = 480 / rows;
-        }//calculateSlotSize
-
 
         //===Messageboxes methods===
         private void showGameEndMessage(string title)
         {
-            updateScores();
             DialogResult dialogResult = MessageBox.Show("Play another one?", title, MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                nextGame();
-            }
-            else
-            {
-                showSessionEndMessage();
-            }
+            if (dialogResult == DialogResult.Yes) nextGame();
+            else showSessionEndMessage();
         }//showGameEndMessage
 
         private void showSessionEndMessage()
         {
             string message;
-            if (board.getScore(1) == board.getScore(2)) message = "It's a tie!";
-            else
-            {
-                message = getName(board.getWinnerOfLastSession()) + " won the game!";
-            }
+
+            if (board.getScore(PLAYER1) == board.getScore(PLAYER2)) message = "It's a tie!";
+            else message = getName(board.getWinnerOfLastSession()) + " won the game!";
             DialogResult dialogResult2 = MessageBox.Show(message, "Game over!", MessageBoxButtons.OK);
 
             if (dialogResult2 == DialogResult.OK)
@@ -219,7 +207,7 @@ namespace ConnectXLibrary
 
         private void Game_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (gameChanges)
+            if (gameChanges && !endGame)
             {
                 DialogResult dialogResult = MessageBox.Show("Are you sure you want to close the game?", "Game is still in progress", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.No) e.Cancel = true;
@@ -229,20 +217,9 @@ namespace ConnectXLibrary
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-			if (gameChanges)
-			{
-				DialogResult dialogResult = MessageBox.Show("Are you sure you want to close the game?", "Game is still in progress", MessageBoxButtons.YesNo);
-				if (dialogResult == DialogResult.No)
-				{
-					
-				}
-				else
-				{
-					this.Hide();
-					Menu menu = new Menu();
-					menu.Visible = true;
-				}
-			}
+            this.Hide();
+            Menu menu = new Menu();
+            menu.Visible = true;
         }//btnBack_Click
 
 
@@ -268,7 +245,6 @@ namespace ConnectXLibrary
             {
                 if (i * size + startWidth <= e.X && e.X <= (size * (i + 1) + startWidth))
                 {
-                    gameEnd = false;
                     processTurn(i);
                     break;
                 }
@@ -276,28 +252,41 @@ namespace ConnectXLibrary
         }//pnlGame_MouseClick
 
         private void processTurn(int column)
-        {   
+        {
+            int row;
             if (board.isValidMove(column))
             {
-                int testsdf = board.getLowestAvailableRowInColumn2(column);
+                row = board.getLowestAvailableRowInColumn(column);
                 board.makeMovePlayer(column);
-                drawToken2(testsdf, column, 1);
-                checkTurn(testsdf, column);
+                drawToken2(row, column, board.getPlayerAtTurn());
+                checkTurn(row, column);
+
+                if (!endGame)
+                {
+                    board.switchPlayerAtTurn();
+                    showPlayerAtTurn();
+                }
             }
             if (!multiplayer)
             {
                 int aiColumn = insertTokenByAI();
-                int testsdfa = board.getLowestAvailableRowInColumn2(aiColumn);
-                drawToken2(testsdfa, aiColumn, 2);
+                row = board.getLowestAvailableRowInColumn(aiColumn);
+                drawToken2(row, aiColumn, 2);
                 board.makeMoveAI(aiColumn);
-                checkTurn(testsdfa, column);
+                checkTurn(row, column);
+
+                if (!endGame)
+                {
+                    board.switchPlayerAtTurn();
+                    showPlayerAtTurn();
+                }
             }
         }//processTurn
 
         private int insertTokenByAI()
         {
             int column = 0;
-            switch(difficulty)
+            switch (difficulty)
             {
                 case 1:
                     column = ai.chooseRandomSpot();
@@ -325,19 +314,21 @@ namespace ConnectXLibrary
             {
                 board.incrementScoreOfPlayer(board.getPlayerAtTurn());
                 updateScores();
+
                 if (board.getPlayerAtTurn() == 1) title = namePlayer1;
                 else title = namePlayer2;
                 title += " has won the game.";
+
                 showGameEndMessage(title);
-                gameEnd = true;
                 if (!gameChanges) gameChanges = true;
+                endGame = true;
                 return true;
             }
             else if (board.isTie())
             {
                 title = "Raster is full.";
                 showGameEndMessage(title);
-                gameEnd = true;
+                endGame = true;
                 return true;
             }
             else return false;
@@ -348,7 +339,13 @@ namespace ConnectXLibrary
             board.nextGame();
             drawGrid();
             showPlayerAtTurn();
+            endGame = false;
         }//nextGame
+
+        private void calculateSlotSize()
+        {
+            size = 480 / rows;
+        }//calculateSlotSize
         #endregion
     }
 
@@ -384,7 +381,7 @@ namespace ConnectXLibrary
             t.Interval = 10;
 
             t.Tick += new EventHandler(t_Tick);
-            
+
             t.Start();
         }//move
 
