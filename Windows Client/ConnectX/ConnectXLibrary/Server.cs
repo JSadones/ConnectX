@@ -209,6 +209,13 @@ namespace ConnectXLibrary
             listener.Stop();
             listener.Close();
             this.Close();
-		}
+		}//btnStopServer_Click
+
+		private void Server_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			listenThread.Abort();
+			listener.Stop();
+			listener.Close();
+		}//Server_FormClosing
     }
 }
