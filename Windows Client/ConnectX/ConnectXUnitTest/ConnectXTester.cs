@@ -332,49 +332,48 @@ namespace ConnectXUnitTest
             }
 
                 // Game with almost full raster
-            gameWithOneTokenBeforeFullRaster = new ConnectX();
-            gameWithOneTokenBeforeFullRaster.insertToken(0, 1, 1);
+            gameWithOneTokenBeforeFullRaster = new ConnectX(6, 7);
+            gameWithOneTokenBeforeFullRaster.insertToken(0, 0, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(0, 1, 2);
             gameWithOneTokenBeforeFullRaster.insertToken(0, 2, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(0, 1, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(0, 2, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(0, 1, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(0, 2, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(1, 1, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(0, 3, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(0, 4, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(0, 5, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(1, 0, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(1, 1, 2);
             gameWithOneTokenBeforeFullRaster.insertToken(1, 2, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(1, 1, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(1, 2, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(1, 1, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(1, 2, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(2, 1, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(1, 3, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(1, 4, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(1, 5, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(2, 0, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(2, 1, 2);
             gameWithOneTokenBeforeFullRaster.insertToken(2, 2, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(2, 1, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(2, 2, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(2, 1, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(2, 2, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(2, 3, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(2, 4, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(2, 5, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(3, 0, 2);
             gameWithOneTokenBeforeFullRaster.insertToken(3, 1, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(3, 2, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(3, 1, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(3, 2, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(3, 1, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(3, 2, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(4, 1, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(3, 2, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(3, 3, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(3, 4, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(3, 5, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(4, 0, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(4, 1, 2);
             gameWithOneTokenBeforeFullRaster.insertToken(4, 2, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(4, 1, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(4, 2, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(4, 1, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(4, 2, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(5, 1, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(4, 3, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(4, 4, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(4, 5, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(5, 0, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(5, 1, 2);
             gameWithOneTokenBeforeFullRaster.insertToken(5, 2, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(5, 1, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(5, 2, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(5, 1, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(5, 2, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(6, 1, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(5, 3, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(5, 4, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(5, 5, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(6, 0, 1);
+            gameWithOneTokenBeforeFullRaster.insertToken(6, 1, 2);
             gameWithOneTokenBeforeFullRaster.insertToken(6, 2, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(6, 1, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(6, 2, 1);
-            gameWithOneTokenBeforeFullRaster.insertToken(6, 1, 1);
-
+            gameWithOneTokenBeforeFullRaster.insertToken(6, 3, 2);
+            gameWithOneTokenBeforeFullRaster.insertToken(6, 4, 1);
 
             game10Rows14ColumnsWithOneTokenBeforeFullRaster = new ConnectX(10, 14);
 
@@ -449,9 +448,9 @@ namespace ConnectXUnitTest
         }
 
 		[TestMethod]
-		public void TestWhichPlayerPlaysNextTurn() {
+		public void TestWhichPlayerPlaysCurrentTurn() {
             game.insertToken(0, 1, 1);
-			Assert.IsTrue(game.getPlayerAtTurn() == 2);
+			Assert.IsTrue(game.getPlayerAtTurn() == 1);
 		}
 
 		[TestMethod]

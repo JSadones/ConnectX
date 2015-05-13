@@ -229,9 +229,20 @@ namespace ConnectXLibrary
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            Menu menu = new Menu();
-            menu.Visible = true;
+			if (gameChanges)
+			{
+				DialogResult dialogResult = MessageBox.Show("Are you sure you want to close the game?", "Game is still in progress", MessageBoxButtons.YesNo);
+				if (dialogResult == DialogResult.No)
+				{
+					
+				}
+				else
+				{
+					this.Hide();
+					Menu menu = new Menu();
+					menu.Visible = true;
+				}
+			}
         }//btnBack_Click
 
 
