@@ -35,7 +35,7 @@ namespace ConnectXLibrary
 
                 listener.Start();
 
-                this.listenThread = new Thread(new ParameterizedThreadStart(startlistener));
+                listenThread = new Thread(new ParameterizedThreadStart(startlistener));
                 listenThread.Start();
                 Process.Start(Path.Combine(Directory.GetCurrentDirectory(), "../../../../../Webclient/index.html"));
             }
@@ -205,6 +205,7 @@ namespace ConnectXLibrary
         }
 		private void btnStopServer_Click(object sender, EventArgs e)
         {
+            listenThread.Abort();
             listener.Stop();
             listener.Close();
             this.Close();
