@@ -76,7 +76,7 @@ namespace ConnectXLibrary
             else
             {
                 string player2Name = txtBoxPlayer2Name.Text;
-                gameForm = new Game(0, columns, rows, streaktowin, player1Name, player2Name);
+                gameForm = new Game(difficulty, columns, rows, streaktowin, player1Name, player2Name);
             }
 
             pnlEnterData.Visible = false;

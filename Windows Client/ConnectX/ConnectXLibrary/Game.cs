@@ -20,6 +20,7 @@ namespace ConnectXLibrary
         SolidBrush redBrush = new SolidBrush(Color.Red);
         SolidBrush blueBrush = new SolidBrush(Color.Blue);
         Pen blackPen = new Pen(Color.Black, 3);
+        bool turn = true;
         #endregion
 
         #region Constructor
@@ -34,16 +35,19 @@ namespace ConnectXLibrary
             this.columns = columns;
             this.tokenStreak = tokenStreak;
             this.difficulty = difficulty;
-            multiplayer = false;
+            //multiplayer = false;
 
-            board = new ConnectX(rows, columns, tokenStreak, multiplayer);
-            ai = new AI(board);
-            //nextGame();
+            //board = new ConnectX(rows, columns, tokenStreak, multiplayer);
+            //ai = new AI(board);
+            ////nextGame();
 
             lblPlayer1.Text = namePlayer1;
             lblPlayer2.Text = cpuName;
             lblStreakNumber.Text = tokenStreak.ToString();
-            showPlayerAtTurn();
+            //showPlayerAtTurn();
+            board = new ConnectX(rows, columns, tokenStreak);
+            ai = new AI(board);
+
         }//Game
 
         public Game(int difficulty, int columns, int rows, int tokenStreak, string namePlayer1, string namePlayer2)
@@ -149,6 +153,31 @@ namespace ConnectXLibrary
             }
         }//drawToken
 
+        private void drawToken2(int row, int column, int player)
+        {
+            if (row > -1)
+            {
+                //Point location = new Point((column * size) + startWidth, -1 * rows + startHeight);
+                Rectangle circle = new Rectangle((column * size) + 5 + startWidth, ((rows - row - 1) * size) + 5 + startHeight, size - 10, size - 10);
+                gr.DrawEllipse(blackPen, circle);
+
+                if (player == 1)
+                {
+                    //token token = new token();
+                    //token.create(1, size, location, pnlGame);
+                    //pnlGame.Controls.Add(token);
+                    gr.FillEllipse(blueBrush, circle);
+                }
+                else
+                {
+                    //token token = new token();
+                    //token.create(2, size, location, pnlGame);
+                    //pnlGame.Controls.Add(token);
+                    gr.FillEllipse(redBrush, circle);
+                }
+            }
+        }//drawToken
+
         private void calculateSlotSize()
         {
             size = 480 / rows;
@@ -193,14 +222,8 @@ namespace ConnectXLibrary
             if (gameChanges)
             {
                 DialogResult dialogResult = MessageBox.Show("Are you sure you want to close the game?", "Game is still in progress", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.No)
-                {
-                    e.Cancel = true;
-                }
-                else
-                {
-                    showSessionEndMessage();
-                }
+                if (dialogResult == DialogResult.No) e.Cancel = true;
+                else showSessionEndMessage();
             }
         }//Game_FormClosing
 
@@ -235,52 +258,51 @@ namespace ConnectXLibrary
                 if (i * size + startWidth <= e.X && e.X <= (size * (i + 1) + startWidth))
                 {
                     gameEnd = false;
-
                     processTurn(i);
-
                     break;
                 }
             }
         }//pnlGame_MouseClick
 
         private void processTurn(int column)
-        {
-            int row = board.getLowestAvailableRowInColumn(column);
-
-            if (board.insertToken(column, row, board.getPlayerAtTurn()))
-            //if(gamePlay.makeMovePlayer(column))
+        {   
+            if (board.isValidMove(column))
             {
-                drawToken(row, column);
-
-                if (!checkTurn(row, column))
-                {
-                    board.switchPlayerAtTurn();
-                    showPlayerAtTurn();
-
-                    if (!multiplayer && !gameEnd && board.getPlayerAtTurn() == 2)
-                    {
-                        insertTokenByAI();
-                    }
-                }
+                int testsdf = board.getLowestAvailableRowInColumn2(column);
+                board.makeMovePlayer(column);
+                drawToken2(testsdf, column, 1);
+                checkTurn(testsdf, column);
+            }
+            if (!multiplayer)
+            {
+                int aiColumn = insertTokenByAI();
+                int testsdfa = board.getLowestAvailableRowInColumn2(aiColumn);
+                drawToken2(testsdfa, aiColumn, 2);
+                board.makeMoveAI(aiColumn);
+                checkTurn(testsdfa, column);
             }
         }//processTurn
 
-        private void insertTokenByAI()
+        private int insertTokenByAI()
         {
-            int column;
+            int column = 0;
             switch(difficulty)
             {
                 case 1:
                     column = board.chooseRandomSpot();
                     break;
                 case 2:
+                    Random rnd = new Random();
+                    int chance = rnd.Next(0, 10);
+
+                    if (chance < 3) column = ai.makeTurn();
+                    else board.chooseRandomSpot();
+                    break;
+                case 3:
                     column = ai.makeTurn();
                     break;
-                default:
-                    column = -1;
-                    break;
             }
-            processTurn(column);
+            return column;
         }//insertTokenByAI
 
 

@@ -167,7 +167,7 @@
             this.groupDifficulty.ForeColor = System.Drawing.Color.White;
             this.groupDifficulty.Location = new System.Drawing.Point(689, 42);
             this.groupDifficulty.Name = "groupDifficulty";
-            this.groupDifficulty.Size = new System.Drawing.Size(265, 308);
+            this.groupDifficulty.Size = new System.Drawing.Size(265, 355);
             this.groupDifficulty.TabIndex = 21;
             this.groupDifficulty.TabStop = false;
             this.groupDifficulty.Text = "AI Difficulty";
@@ -211,9 +211,9 @@
             this.lblInfoHard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInfoHard.Location = new System.Drawing.Point(33, 251);
             this.lblInfoHard.Name = "lblInfoHard";
-            this.lblInfoHard.Size = new System.Drawing.Size(104, 20);
+            this.lblInfoHard.Size = new System.Drawing.Size(138, 20);
             this.lblInfoHard.TabIndex = 5;
-            this.lblInfoHard.Text = "(I don\'t know)";
+            this.lblInfoHard.Text = "(AI is unbeatable.)";
             // 
             // lblInfoMedium
             // 
@@ -221,9 +221,9 @@
             this.lblInfoMedium.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInfoMedium.Location = new System.Drawing.Point(33, 163);
             this.lblInfoMedium.Name = "lblInfoMedium";
-            this.lblInfoMedium.Size = new System.Drawing.Size(104, 20);
+            this.lblInfoMedium.Size = new System.Drawing.Size(194, 40);
             this.lblInfoMedium.TabIndex = 4;
-            this.lblInfoMedium.Text = "(I don\'t know)";
+            this.lblInfoMedium.Text = "(AI chooses best available\r\ncolumn his turn.)";
             // 
             // lblInfoEasy
             // 
@@ -231,9 +231,9 @@
             this.lblInfoEasy.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInfoEasy.Location = new System.Drawing.Point(33, 62);
             this.lblInfoEasy.Name = "lblInfoEasy";
-            this.lblInfoEasy.Size = new System.Drawing.Size(220, 40);
+            this.lblInfoEasy.Size = new System.Drawing.Size(163, 40);
             this.lblInfoEasy.TabIndex = 3;
-            this.lblInfoEasy.Text = "(AI chooses a random column\r\nhis turn.)";
+            this.lblInfoEasy.Text = "(AI chooses his turn a\r\nrandom column.)";
             // 
             // lblErrorStreak
             // 
