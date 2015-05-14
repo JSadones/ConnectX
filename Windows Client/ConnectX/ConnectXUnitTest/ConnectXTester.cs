@@ -312,7 +312,7 @@ namespace ConnectXUnitTest
             {
                 for (int j = 0; j < gameWithFullRaster.getColumns(); j++)
                 {
-                    gameWithFullRaster.insertToken(j, 1, 1);
+                    gameWithFullRaster.insertToken(j, i, 1);
                 }
             }
             // Game 10Rows 14Colums with full Board
@@ -322,7 +322,7 @@ namespace ConnectXUnitTest
             {
                 for (int j = 0; j < game10Rows14ColumnsWithFullRaster.getColumns(); j++)
                 {
-                    game10Rows14ColumnsWithFullRaster.insertToken(j, 1, 1);
+                    game10Rows14ColumnsWithFullRaster.insertToken(j, i, 1);
                 }
             }
 
