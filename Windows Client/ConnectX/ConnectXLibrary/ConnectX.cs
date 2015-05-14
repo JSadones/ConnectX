@@ -213,26 +213,16 @@ namespace ConnectXLibrary
             {
                 try
                 {
-                    //Check vertical
-                    if (stepRow == -1 && stepColumn == 0)
+                    if (raster[column + i * stepColumn, row + i * stepRow] == getPlayerAtTurn())
                     {
-                        if (raster[column + i * stepColumn, row + i * stepRow] == getPlayerAtTurn()) counterLeft++;
+                        if ((stepRow == -1 && stepColumn == 0) || (stepRow == 0 && stepColumn == -1) || (stepRow == -1 && stepColumn == -1) || (stepRow == 1 && stepColumn == 1))
+                            counterLeft++;
+                        else if ((stepRow == 0 && stepColumn == 1) || (stepRow == -1 && stepColumn == 1) || (stepRow == 1 && stepColumn == -1))
+                            counterRight++;
                         else return false;
                     }
-
-                    //Check horizontal left && diagonal bottom to left && diagonal top to left
-                    if ((stepRow == 0 && stepColumn == -1) || (stepRow == -1 && stepColumn == -1) || (stepRow == 1 && stepColumn == 1))
-                    {
-                        if (raster[column + i * stepColumn, row + i * stepRow] == getPlayerAtTurn()) counterLeft++;
-                        else return false;
-                    }
-
-                    //Check horizontal right && diagonal bottom to right && diagonal top to right
-                    else if ((stepRow == 0 && stepColumn == 1) || (stepRow == -1 && stepColumn == 1) || (stepRow == 1 && stepColumn == -1))
-                    {
-                        if (raster[column + i * stepColumn, row + i * stepRow] == getPlayerAtTurn()) counterRight++;
-                        else return false;
-                    }
+                    else return false;
+                    
                 }
                 catch(IndexOutOfRangeException)
                 {
