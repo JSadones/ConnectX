@@ -9,7 +9,7 @@ namespace ConnectXLibrary
         private int rows, columns, streakToWin, playerAtTurn, scorePlayer1 = 0, scorePlayer2 = 0, counterLeft = 0, counterRight = 0;
 		private const int DefaultRows = 6, DefaultColumns = 7, DefaultStreak = 4;
         private const bool  DefaultMP = true;
-        private bool multiplayer;
+        private bool multiplayerON;
 
         public byte NOBODY = 0;
         public byte PLAYER1 = 1;
@@ -31,7 +31,7 @@ namespace ConnectXLibrary
             this.columns = columns;
             this.streakToWin = streakToWin;
 
-            this.multiplayer = multiplayer;
+            this.multiplayerON = multiplayer;
             this.columnCounts = new int[columns];
 
             playerAtTurn = 1;
@@ -137,7 +137,7 @@ namespace ConnectXLibrary
         public int[,] getRaster()
         {
             return raster;
-        }
+        }//getRaster
 		#endregion
 
         #region Methods
