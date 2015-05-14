@@ -176,7 +176,7 @@
             // radioHard
             // 
             this.radioHard.AutoSize = true;
-            this.radioHard.Location = new System.Drawing.Point(24, 219);
+            this.radioHard.Location = new System.Drawing.Point(24, 257);
             this.radioHard.Name = "radioHard";
             this.radioHard.Size = new System.Drawing.Size(76, 29);
             this.radioHard.TabIndex = 8;
@@ -209,7 +209,7 @@
             // 
             this.lblInfoHard.AutoSize = true;
             this.lblInfoHard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInfoHard.Location = new System.Drawing.Point(33, 251);
+            this.lblInfoHard.Location = new System.Drawing.Point(33, 289);
             this.lblInfoHard.Name = "lblInfoHard";
             this.lblInfoHard.Size = new System.Drawing.Size(138, 20);
             this.lblInfoHard.TabIndex = 5;
@@ -221,9 +221,9 @@
             this.lblInfoMedium.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInfoMedium.Location = new System.Drawing.Point(33, 163);
             this.lblInfoMedium.Name = "lblInfoMedium";
-            this.lblInfoMedium.Size = new System.Drawing.Size(194, 40);
+            this.lblInfoMedium.Size = new System.Drawing.Size(188, 60);
             this.lblInfoMedium.TabIndex = 4;
-            this.lblInfoMedium.Text = "(AI chooses best available\r\ncolumn his turn.)";
+            this.lblInfoMedium.Text = "(AI has a 70 % chance to\r\nchoose the best available\r\ncolumn his turn.)";
             // 
             // lblInfoEasy
             // 

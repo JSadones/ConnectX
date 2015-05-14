@@ -229,15 +229,19 @@ namespace ConnectXLibrary
             if (board.isValidMove(column))
             {
                 row = board.getLowestAvailableRowInColumn(column);
-                board.makeMovePlayer(column);
-                drawToken(row, column, board.getPlayerAtTurn());
-                checkTurn(row, column);
+                if(board.insertToken(column, row, board.getPlayerAtTurn()))
+                { 
+                    //board.makeMovePlayer(column);
+                    drawToken(row, column, board.getPlayerAtTurn());
+                    checkTurn(row, column);
 
-                if (!endGame)
-                {
-                    board.switchPlayerAtTurn();
-                    showPlayerAtTurn();
+                    if (!endGame)
+                    {
+                        board.switchPlayerAtTurn();
+                        showPlayerAtTurn();
+                    }
                 }
+
                 if (!multiplayer)
                 {
                     int aiColumn = insertTokenByAI();
