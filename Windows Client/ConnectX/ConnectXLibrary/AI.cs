@@ -20,7 +20,8 @@ namespace ConnectXLibrary
         #endregion
 
         #region Methods
-        public int makeTurn() {
+        public int makeTurn(int depth) {
+            MAX_DEPTH = depth;
 		    double maxValue = 2.0 * Int32.MinValue;
 		    int move = 0;
 
@@ -92,10 +93,10 @@ namespace ConnectXLibrary
             List<byte> emptySpots;
             Random rnd = new Random();
             emptySpots = getListOfAvailableColumns();
-            int length = emptySpots.Count;
+            int length = emptySpots.Count - 1;
             int spot = rnd.Next(0, length);
 
-            return spot;
+            return emptySpots[spot];
         }//chooseRandomSpot
 
         private List<byte> getListOfAvailableColumns()
@@ -105,10 +106,7 @@ namespace ConnectXLibrary
 
             for (byte i = 0; i < board.getColumns(); i++)
             {
-                if (raster[i, board.getRows() - 1] == 0)
-                {
-                    empySpots.Add(i);
-                }
+                if (raster[i, board.getRows() - 1] == 0) empySpots.Add(i);
             }
             return empySpots;
         }//getListOfAvailableColumns

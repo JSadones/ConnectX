@@ -157,12 +157,12 @@ namespace ConnectXLibrary
             {
                 for (int column = 0; column < columns; column++)
                 {
-                    raster[column, row] = 0;
+                    raster[column, row] = NOBODY;
                 }
             }
 
             for (int test = 0; test < columns; test++) {
-                columnCounts[test] = 0;
+                columnCounts[test] = NOBODY;
             }
         }//clear
 
@@ -172,7 +172,7 @@ namespace ConnectXLibrary
             {
                 for (int column = 0; column < columns; column++)
                 {
-                    if (raster[row, column] != 0)
+                    if (raster[row, column] != NOBODY)
                     {
                         return false;
                     }
@@ -183,20 +183,14 @@ namespace ConnectXLibrary
 
         public bool insertToken(int column, int row, int player)
         {
-            if (!isColumnFull(column))
-            {
-                if (getLowestAvailableRowInColumn(column) != -1)
-                {
-                    raster[column, row] = player;
-                }
-                return true;
-            }
-            else return false;
+            columnCounts[column]++;
+            raster[column, row] = player;
+            return true;
         }//insertToken
 
         public bool isColumnFull(int column)
         {
-            return raster[column, rows - 1] != 0;
+            return raster[column, rows - 1] != NOBODY;
         }//isColumnFull
 
 
@@ -281,15 +275,15 @@ namespace ConnectXLibrary
         public bool nextGame()
         {
             clear();
-            playerAtTurn = 1;
+            playerAtTurn = PLAYER1;
             resetCounter();
             return true;
         }//nextGame
 
         public void switchPlayerAtTurn()
         {
-            if (playerAtTurn == 1) playerAtTurn = 2;
-            else playerAtTurn = 1;
+            if (playerAtTurn == PLAYER1) playerAtTurn = PLAYER2;
+            else playerAtTurn = PLAYER1;
         }//switchPlayerAtTurn
 
 

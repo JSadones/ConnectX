@@ -37,7 +37,7 @@ namespace ConnectXLibrary
 
                 listenThread = new Thread(new ParameterizedThreadStart(startlistener));
                 listenThread.Start();
-                Process.Start(Path.Combine(Directory.GetCurrentDirectory(), "../../../../../Webclient/index.html"));
+            //    Process.Start(Path.Combine(Directory.GetCurrentDirectory(), "../../../../../Webclient/index.html"));
             }
             catch (HttpListenerException)
             {
@@ -139,7 +139,11 @@ namespace ConnectXLibrary
             catch (ObjectDisposedException)
             {
                 Console.WriteLine("Listen aborted");
-            }
+			}
+			catch (HttpListenerException)
+			{
+				Console.WriteLine("Listen aborted");
+			}
         }
 
         private ResponseForWebClient insertToken(Dictionary<string, string> request)
@@ -217,6 +221,7 @@ namespace ConnectXLibrary
 
 		private void Server_FormClosing(object sender, FormClosingEventArgs e)
 		{
+			e.Cancel = true;
 			listenThread.Abort();
 			listener.Stop();
 			listener.Close();
