@@ -320,7 +320,7 @@ namespace ConnectXLibrary
             return undoMove(column, false);
         }//undoMoveAI
 
-        private bool makeMove(int column, bool player)//makeMove
+        private bool makeMove(int column, bool player)
         {
             if (columnCounts[column] < rows)
             {
@@ -329,7 +329,7 @@ namespace ConnectXLibrary
                 return true;
             }
             return false;
-        }
+        }//makeMove
 
         private bool undoMove(int column, bool player)
         {
