@@ -87,8 +87,7 @@ namespace ConnectXLibrary
             pnlStartScreen.Visible = true;
 
 			this.Hide();
-			gameForm.Closed += (s, args) => this.Close();
-			gameForm.Show();
+			gameForm.Closed += (s, args) => this.Show();
 
             gameForm.StartPosition = FormStartPosition.Manual;
             gameForm.Location = new Point(this.Location.X, this.Location.Y);

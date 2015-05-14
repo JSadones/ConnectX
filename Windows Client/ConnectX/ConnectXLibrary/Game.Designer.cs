@@ -43,7 +43,10 @@
             this.lblStreakNumber = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pnlGame.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblName
@@ -58,6 +61,7 @@
             // 
             this.pnlGame.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.pnlGame.BackgroundImage = global::ConnectXLibrary.Properties.Resources.bg;
+            this.pnlGame.Controls.Add(this.pictureBox1);
             this.pnlGame.Location = new System.Drawing.Point(12, 157);
             this.pnlGame.Name = "pnlGame";
             this.pnlGame.Size = new System.Drawing.Size(960, 524);
@@ -195,6 +199,17 @@
             this.fileSystemWatcher1.EnableRaisingEvents = true;
             this.fileSystemWatcher1.SynchronizingObject = this;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackgroundImage = global::ConnectXLibrary.Properties.Resources.frame;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(318, 131);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(80, 80);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -221,7 +236,9 @@
             this.Name = "Game";
             this.Text = "Connect X";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Game_FormClosing);
+            this.pnlGame.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -243,5 +260,6 @@
         private System.Windows.Forms.Label lblStreakNumber;
         private System.Windows.Forms.Button btnBack;
         private System.IO.FileSystemWatcher fileSystemWatcher1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

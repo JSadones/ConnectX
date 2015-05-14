@@ -170,19 +170,19 @@ namespace ConnectXLibrary
 
             if (board.getScore(PLAYER1) == board.getScore(PLAYER2)) message = "It's a tie!";
             else message = getName(board.getWinnerOfLastSession()) + " won the game!";
+            
             DialogResult dialogResult2 = MessageBox.Show(message, "Game over!", MessageBoxButtons.OK);
 
             if (dialogResult2 == DialogResult.OK)
             {
-                Menu menu = new Menu();
-                menu.Show();
+                endGame = false;
                 this.Close();
             }
         }//showSessionEndMessage
 
         private void Game_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (gameChanges && !endGame)
+            if (gameChanges && endGame)
             {
                 DialogResult dialogResult = MessageBox.Show("Are you sure you want to close the game?", "Game is still in progress", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.No) e.Cancel = true;
@@ -195,22 +195,9 @@ namespace ConnectXLibrary
 			if (gameChanges)
 			{
 				DialogResult dialogResult = MessageBox.Show("Are you sure you want to close the game?", "Game is still in progress", MessageBoxButtons.YesNo);
-				if (dialogResult == DialogResult.No)
-				{
-					
-				}
-				else
-				{
-					this.Hide();
-					Menu menu = new Menu();
-					menu.Visible = true;
-				}
-			}
-			this.Hide();
-			Menu menu2 = new Menu();
-			//menu2.Closed += (s, args) => this.Close();
-			//menu2.Show();
-			menu2.Visible = true;
+                if (dialogResult == DialogResult.Yes) showSessionEndMessage();
+            }
+            else this.Close();
         }//btnBack_Click
 
 
@@ -355,65 +342,7 @@ namespace ConnectXLibrary
         private void calculateSlotSize()
         {
             size = 480 / rows;
-        }
-        #endregion
-    }
-
-    class token : PictureBox
-    {
-        #region State
-        Timer t;
-        Random r = new Random();
-        int row, rows, size, startHeight;
-        bool completed = false;
-        #endregion
-
-        #region Constructor
-        public token()
-        {
-            move();
-        }//token
-        #endregion
-
-        #region Methods
-        public void create(int player, int size, Point location, Panel pnlGame, int row, int rows, int startHeight)
-        {
-            this.row = row;
-            this.rows = rows;
-            this.size = size;
-            this.startHeight = startHeight;
-
-            this.Parent = pnlGame;
-            this.Location = location;
-            this.Size = new Size(size, size);
-            this.BackColor = Color.Transparent;
-            this.BackgroundImageLayout = ImageLayout.Stretch;
-
-            if (player == 1) this.BackgroundImage = Resources.blueToken;
-            else this.BackgroundImage = Resources.redToken;
-            while(completed){
-                System.Diagnostics.Debug.WriteLine("KANKERHOMOS");
-            }
-        }//create
-
-        private void move()
-        {
-            t = new Timer();
-            t.Interval = 10;
-
-            t.Tick += new EventHandler(t_Tick);
-
-            t.Start();
-        }//move
-
-        private void t_Tick(object sender, EventArgs e)
-        {
-            this.Location += new Size(0, 5);
-            if (this.Location.Y > ((rows - row - 1) * size) + startHeight) {
-                completed = !completed;
-                t.Stop();
-            }
-        }//t_Tick
+        }//calculateSlotSize
         #endregion
     }
 }
