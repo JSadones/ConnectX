@@ -189,10 +189,25 @@ namespace ConnectXLibrary
 
         private void btnBack_Click(object sender, EventArgs e)
         {
+			if (gameChanges)
+			{
+				DialogResult dialogResult = MessageBox.Show("Are you sure you want to close the game?", "Game is still in progress", MessageBoxButtons.YesNo);
+				if (dialogResult == DialogResult.No)
+				{
+					
+				}
+				else
+				{
+					this.Hide();
+					Menu menu = new Menu();
+					menu.Visible = true;
+				}
+			}
 			this.Hide();
-			Menu menu = new Menu();
-			menu.Closed += (s, args) => this.Close();
-			menu.Show();
+			Menu menu2 = new Menu();
+			//menu2.Closed += (s, args) => this.Close();
+			//menu2.Show();
+			menu2.Visible = true;
         }//btnBack_Click
 
 
@@ -230,7 +245,7 @@ namespace ConnectXLibrary
             int player;
             if (multiplayer)
             {
-                if (board.isValidMove(column)) {
+                if (!board.isColumnFull(column)) {
                     row = board.getLowestAvailableRowInColumn(column);
                     player = board.getPlayerAtTurn();
                     board.insertToken(column, row, player);
@@ -245,7 +260,7 @@ namespace ConnectXLibrary
             }
             else
             {
-                if (board.isValidMove(column))
+                if (!board.isColumnFull(column))
                 {
                     row = board.getLowestAvailableRowInColumn(column);
                     player = board.getPlayerAtTurn();
@@ -262,7 +277,8 @@ namespace ConnectXLibrary
                         player = board.getPlayerAtTurn();
                         int aiColumn = insertTokenByAI();
                         row = board.getLowestAvailableRowInColumn(aiColumn);
-                        board.makeMoveAI(aiColumn);
+                        board.insertToken(aiColumn, row, player);
+                        //board.makeMoveAI(aiColumn);
                         drawToken(aiColumn, row, player);
 
                         if (!checkTurn(aiColumn, row))
