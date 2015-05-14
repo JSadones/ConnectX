@@ -15,6 +15,7 @@ namespace ConnectXLibrary
         static HttpListener listener;
         private Thread listenThread;
         ThreadLocal<ConnectX> threadGame;
+        ThreadLocal<AI> threadAI;
         #endregion State
 
         #region Constructor
@@ -97,6 +98,15 @@ namespace ConnectXLibrary
             {
                 request["player"] = context.Request.QueryString["player"];
                 request["column"] = context.Request.QueryString["column"];
+                response = insertToken(request);
+
+            }
+            else if (request["action"] == "insertTokenByAI")
+            {
+
+                AI ai = threadAI.Value;
+                request["player"] = 2.ToString();
+                request["column"] = ai.makeTurn(8).ToString();
                 response = insertToken(request);
 
 
@@ -197,8 +207,10 @@ namespace ConnectXLibrary
             int streak = Convert.ToInt32(request["streak"]);
 
             ConnectX game = new ConnectX(rows, columns, streak);
+            AI ai = new AI(game);
 
             threadGame = new ThreadLocal<ConnectX>(() => { return game; });
+            threadAI = new ThreadLocal<AI>(() => { return ai; });
 
             bool status = true;
 
