@@ -189,10 +189,25 @@ namespace ConnectXLibrary
 
         private void btnBack_Click(object sender, EventArgs e)
         {
+			if (gameChanges)
+			{
+				DialogResult dialogResult = MessageBox.Show("Are you sure you want to close the game?", "Game is still in progress", MessageBoxButtons.YesNo);
+				if (dialogResult == DialogResult.No)
+				{
+					
+				}
+				else
+				{
+					this.Hide();
+					Menu menu = new Menu();
+					menu.Visible = true;
+				}
+			}
 			this.Hide();
-			Menu menu = new Menu();
-			menu.Closed += (s, args) => this.Close();
-			menu.Show();
+			Menu menu2 = new Menu();
+			//menu2.Closed += (s, args) => this.Close();
+			//menu2.Show();
+			menu2.Visible = true;
         }//btnBack_Click
 
 
