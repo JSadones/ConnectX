@@ -304,7 +304,7 @@ namespace ConnectXUnitTest
             game10Rows14ColumnsWithNotWonRaster.insertToken(0, 1, 1);
 
 
-            // Game with full raster
+            // Game with full board
             gameWithFullRaster = new ConnectX();
 
             for (int i = 0; i < gameWithFullRaster.getRows(); i++)
@@ -314,7 +314,7 @@ namespace ConnectXUnitTest
                     gameWithFullRaster.insertToken(j, 1, 1);
                 }
             }
-
+            // Game 10Rows 14Colums with full Board
             game10Rows14ColumnsWithFullRaster = new ConnectX(10, 14);
 
             for (int i = 0; i < game10Rows14ColumnsWithFullRaster.getRows(); i++)
@@ -325,7 +325,7 @@ namespace ConnectXUnitTest
                 }
             }
 
-                // Game with almost full raster
+                // Game with almost full board
             gameWithOneTokenBeforeFullRaster = new ConnectX(6, 7);
             gameWithOneTokenBeforeFullRaster.insertToken(0, 0, 1);
             gameWithOneTokenBeforeFullRaster.insertToken(0, 1, 2);
@@ -391,6 +391,7 @@ namespace ConnectXUnitTest
             gameInterface10Rows14Columns5Streak = new ConnectX(10, 14, 5);
         }
 
+        // Is the board really empty?
 		[TestMethod]
 		public void TestIsRasterInitializedWithZeros(){
 			Assert.IsTrue(game.isInitializedWithZeros());
