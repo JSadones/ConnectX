@@ -6,23 +6,28 @@ namespace ConnectXUnitTest
     [TestClass]
     public class ConnectXTester
     {
-        private ConnectX game;
-        private ConnectX game10Rows14Columns;
-        private ConnectX game10Rows14Columns6Streak;
+        //We kunnen tests schrijven van:
+        //Alle richtingen van een check te laten doen
+        //Ook bv 00X0XXX , en als laatste token laten checken via column 4 (Zodat hij goed links en rechts checkt)
+        //Kijken op volle kolommen
+        //Is kolom vol of leeg
+        //Is er een winnaar of is er een TIE
+        //undoMove en makeMove (momenteel nog)
 
-        private ConnectX gameInterface;
-        private ConnectX gameInterface10Rows14Columns;
-        private ConnectX gameInterface10Rows14Columns5Streak;
+        //nextGame checken of speler 1 wel aan de turn is
+        #region State
+        #region WinnerCheck
+        //Vertical
 
+        //Horizontal
+
+        //Diagonal bottom to right
+
+        //Diagonal bottom to left
         private ConnectX gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon;
         private ConnectX gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon;
-
-        private ConnectX game10Rows14ColumnsWithVerticalWonRasterByPlayer1BeforeControlIfIsWon;
-
-		private ConnectX gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon;
-
-		private ConnectX game10Rows14ColumnsWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon;
-
+        private ConnectX gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon;
+        private ConnectX game10Rows14ColumnsWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon;
         private ConnectX gameWith45DegreeStartingAtColumn0Row0WonRaster;
         private ConnectX gameWith45DegreeStartingAtColumn0Row1WonRaster;
         private ConnectX gameWithout45Degree;
@@ -31,27 +36,41 @@ namespace ConnectXUnitTest
         private ConnectX game10Rows14ColumnsWith45DegreeStartingAtColumn0Row1WonRaster;
         private ConnectX game10Rows14ColumnsWithout45Degree;
 
-		private ConnectX gameWith135DegreeStartingAtColumn0Row0WonRaster;
+        private ConnectX gameWith135DegreeStartingAtColumn0Row0WonRaster;
         private ConnectX gameWith135DegreeStartingAtColumnXRow1WonRaster;
 
         private ConnectX game10Rows14ColumnsWith135DegreeStartingAtColumn0Row0WonRaster;
         private ConnectX game10Rows14ColumnsWith135DegreeStartingAtColumnXRow1WonRaster;
-
         private ConnectX gameWithNotWonRaster;
         private ConnectX game10Rows14ColumnsWithNotWonRaster;
+        #endregion
+
+        #region RasterState
+        private ConnectX emptyGame;
         private ConnectX gameWithFullRaster;
-        private ConnectX game10Rows14ColumnsWithFullRaster;
         private ConnectX gameWithOneTokenBeforeFullRaster;
         private ConnectX game10Rows14ColumnsWithOneTokenBeforeFullRaster;
+        #endregion
+
+        private ConnectX game10Rows14Columns;
+        private ConnectX game10Rows14Columns6Streak;
+
+        private ConnectX gameInterface;
+        private ConnectX gameInterface10Rows14Columns;
+        private ConnectX gameInterface10Rows14Columns5Streak;
+        
+        
+        
         private ConnectX gameMakeMoveUndoMove;
 
         private AI aiCopy;
+        #endregion
 
-
+        #region Initialize
         [TestInitialize]
         public void setup() {
             // Empty game
-            game = new ConnectX();
+            emptyGame = new ConnectX();
 
             game10Rows14Columns = new ConnectX(10, 14);
             game10Rows14Columns6Streak = new ConnectX(10, 14, 6);
@@ -59,32 +78,25 @@ namespace ConnectXUnitTest
 
             // Game in raster where 4 in a row can be found vertically
             gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon = new ConnectX();
-            gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(0, 1, 1);
-            gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(0, 1, 1);
-            gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(0, 1, 1);
-            gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(0, 1, 1);
+            gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(0, 0, 1);
+            gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(1, 0, 1);
+            gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(2, 0, 1);
+            gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(3, 0, 1);
 
             // Game in raster where 4 in a row can be found vertically, and let game check if it is won
             gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon = new ConnectX();
-            gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.insertToken(0, 1, 1);
-            gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.insertToken(0, 1, 1);
-            gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.insertToken(0, 1, 1);
-            gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.insertToken(0, 1, 1);
-            gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.isCurrentGameWon(0,1);
-
-            // Game in raster where 4 in a row can be found vertically
-            game10Rows14ColumnsWithVerticalWonRasterByPlayer1BeforeControlIfIsWon = new ConnectX(10,14);
-            game10Rows14ColumnsWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(0, 1, 1);
-            game10Rows14ColumnsWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(0, 1, 1);
-            game10Rows14ColumnsWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(0, 1, 1);
-            game10Rows14ColumnsWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(0, 1, 1);
+            gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.insertToken(0, 0, 1);
+            gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.insertToken(1, 0, 1);
+            gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.insertToken(2, 0, 1);
+            gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.insertToken(3, 0, 1);
+            gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.isCurrentGameWon(3, 0);
 
 			//Game in raster where 4 in a row can be found horizontally
 			gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon = new ConnectX();
-			gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(0, 1, 1);
-			gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(1, 1, 1);
-			gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(2, 1, 1);
-            gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(3, 1, 1);
+			gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(0, 0, 1);
+			gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(1, 0, 1);
+			gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(2, 0, 1);
+            gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(3, 0, 1);
 
             //Game in raster where 4 in a row can be found horizontally
             game10Rows14ColumnsWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon = new ConnectX(10,14);
@@ -108,16 +120,11 @@ namespace ConnectXUnitTest
 
             // Game in raster where diagonal 45° can be found starting from column 0 row 0
             game10Rows14ColumnsWith45DegreeStartingAtColumn0Row0WonRaster = new ConnectX();
-            game10Rows14ColumnsWith45DegreeStartingAtColumn0Row0WonRaster.insertToken(0, 1, 1);
-            game10Rows14ColumnsWith45DegreeStartingAtColumn0Row0WonRaster.insertToken(1, 2, 1);
+            game10Rows14ColumnsWith45DegreeStartingAtColumn0Row0WonRaster.insertToken(0, 0, 1);
             game10Rows14ColumnsWith45DegreeStartingAtColumn0Row0WonRaster.insertToken(1, 1, 1);
             game10Rows14ColumnsWith45DegreeStartingAtColumn0Row0WonRaster.insertToken(2, 2, 1);
-            game10Rows14ColumnsWith45DegreeStartingAtColumn0Row0WonRaster.insertToken(2, 2, 1);
-            game10Rows14ColumnsWith45DegreeStartingAtColumn0Row0WonRaster.insertToken(2, 1, 1);
-            game10Rows14ColumnsWith45DegreeStartingAtColumn0Row0WonRaster.insertToken(3, 2, 1);
-            game10Rows14ColumnsWith45DegreeStartingAtColumn0Row0WonRaster.insertToken(3, 2, 1);
-            game10Rows14ColumnsWith45DegreeStartingAtColumn0Row0WonRaster.insertToken(3, 2, 1);
-            game10Rows14ColumnsWith45DegreeStartingAtColumn0Row0WonRaster.insertToken(3, 1, 1);
+            game10Rows14ColumnsWith45DegreeStartingAtColumn0Row0WonRaster.insertToken(3, 3, 1);
+            game10Rows14ColumnsWith45DegreeStartingAtColumn0Row0WonRaster.insertToken(4, 4, 1);
 
 			// Game in raster where diagonal 45° can be found starting from column 0 row 1
 			gameWith45DegreeStartingAtColumn0Row1WonRaster = new ConnectX();
@@ -315,18 +322,8 @@ namespace ConnectXUnitTest
                     gameWithFullRaster.insertToken(j, i, 1);
                 }
             }
-            // Game 10Rows 14Colums with full Board
-            game10Rows14ColumnsWithFullRaster = new ConnectX(10, 14);
 
-            for (int i = 0; i < game10Rows14ColumnsWithFullRaster.getRows(); i++)
-            {
-                for (int j = 0; j < game10Rows14ColumnsWithFullRaster.getColumns(); j++)
-                {
-                    game10Rows14ColumnsWithFullRaster.insertToken(j, i, 1);
-                }
-            }
-
-                // Game with almost full board
+            // Game with almost full board
             gameWithOneTokenBeforeFullRaster = new ConnectX(6, 7);
             gameWithOneTokenBeforeFullRaster.insertToken(0, 0, 1);
             gameWithOneTokenBeforeFullRaster.insertToken(0, 1, 2);
@@ -391,11 +388,13 @@ namespace ConnectXUnitTest
             gameInterface10Rows14Columns = new ConnectX(10, 14);
             gameInterface10Rows14Columns5Streak = new ConnectX(10, 14, 5);
         }
+        #endregion
 
+        #region TestMethods
         // Is the board really empty?
 		[TestMethod]
 		public void TestIsRasterInitializedWithZeros(){
-			Assert.IsTrue(game.isInitializedWithZeros());
+			Assert.IsTrue(emptyGame.isInitializedWithZeros());
 		}
 
 		[TestMethod]
@@ -424,8 +423,8 @@ namespace ConnectXUnitTest
 		public void TestInsertTokenInRasterAndAssertThatRasterIsNotZero()
 		{
 			// Insert token for column 0 for player 1
-			game.insertToken(0, 1, 1);
-			Assert.IsFalse(game.isInitializedWithZeros());
+			emptyGame.insertToken(0, 1, 1);
+			Assert.IsFalse(emptyGame.isInitializedWithZeros());
 		}
 
         [TestMethod]
@@ -437,15 +436,17 @@ namespace ConnectXUnitTest
 
 		[TestMethod]
 		public void TestWhichPlayerPlaysCurrentTurn() {
-            game.insertToken(0, 1, 1);
-			Assert.IsTrue(game.getPlayerAtTurn() == 1);
+            emptyGame.insertToken(0, 1, 1);
+			Assert.IsTrue(emptyGame.getPlayerAtTurn() == 1);
 		}
 
 		[TestMethod]
 		public void TestTurnByAI() {
 			// Let AI Determine Spot To Put Token
             aiCopy = new AI(gameWithOneTokenBeforeFullRaster);
-			aiCopy.chooseRandomSpot();
+			int column = aiCopy.chooseRandomSpot();
+            int row = gameWithOneTokenBeforeFullRaster.getLowestAvailableRowInColumn(column);
+            gameWithOneTokenBeforeFullRaster.insertToken(column, row, 1);
 
 			Assert.IsTrue(gameWithOneTokenBeforeFullRaster.isTie());
 		}
@@ -454,7 +455,9 @@ namespace ConnectXUnitTest
         public void Test10Rows14ColumnsTurnByAI()
         {
             aiCopy = new AI(game10Rows14ColumnsWithOneTokenBeforeFullRaster);
-            aiCopy.chooseRandomSpot();
+            int column = aiCopy.chooseRandomSpot();
+            int row = game10Rows14ColumnsWithOneTokenBeforeFullRaster.getLowestAvailableRowInColumn(column);
+            game10Rows14ColumnsWithOneTokenBeforeFullRaster.insertToken(column, row, 1);
 
             Assert.IsTrue(game10Rows14ColumnsWithOneTokenBeforeFullRaster.isTie());
         }
@@ -486,19 +489,13 @@ namespace ConnectXUnitTest
         [TestMethod]
         public void TestGivenVerticalWonGameIfIsWon()
         {
-            Assert.IsTrue(gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.isCurrentGameWon(0,1));
-        }
-
-        [TestMethod]
-        public void Test10Rows14ColumnsGivenVerticalWonGameIfIsWon()
-        {
-            Assert.IsTrue(game10Rows14ColumnsWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.isCurrentGameWon(0,1));
+            Assert.IsTrue(gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.isCurrentGameWon(3, 0));
         }
 
         [TestMethod]
         public void TestGivenHorizontalWonGameIfIsWon()
         {
-            Assert.IsTrue(gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon.isCurrentGameWon(0,1));
+            Assert.IsTrue(gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon.isCurrentGameWon(3, 0));
         }
 
         [TestMethod]
@@ -517,8 +514,7 @@ namespace ConnectXUnitTest
         [TestMethod]
         public void Test10Rows14ColumnsGiven45DegreeWonGameIfIsWon()
         {
-            Assert.IsTrue(game10Rows14ColumnsWith45DegreeStartingAtColumn0Row0WonRaster.isCurrentGameWon(0,0));
-            Assert.IsTrue(game10Rows14ColumnsWith45DegreeStartingAtColumn0Row1WonRaster.isCurrentGameWon(1,0));
+            Assert.IsTrue(game10Rows14ColumnsWith45DegreeStartingAtColumn0Row0WonRaster.isCurrentGameWon(0, 0));
         }
 
         [TestMethod]
@@ -543,22 +539,11 @@ namespace ConnectXUnitTest
             Assert.IsTrue(gameWithFullRaster.isTie());
         }
 
+
         [TestMethod]
-        public void Test10Rows14ColumnsIsRasterFullWhenisRasterFull()
+        public void TestInsertTokenInRasterInFullColumn()
         {
-            Assert.IsTrue(game10Rows14ColumnsWithFullRaster.isTie());
-        }
-
-        [TestMethod]
-        public void TestInsertTokenInRasterInFullColumn() {
-
-           Assert.IsFalse(gameWithFullRaster.insertToken(0, 1, 1));
-        }
-
-        [TestMethod]
-        public void Test10Rows14ColumnsInsertTokenInRasterInFullColumn()
-        {
-            Assert.IsFalse(game10Rows14ColumnsWithFullRaster.insertToken(0, 1, 1));
+           Assert.IsTrue(gameWithFullRaster.isColumnFull(0));
         }
 
         [TestMethod]
@@ -566,40 +551,16 @@ namespace ConnectXUnitTest
         {
             gameWithFullRaster.clear();
             Assert.IsTrue(gameWithFullRaster.isInitializedWithZeros());
-            game.insertToken(0, 1, 1);
-            Assert.IsFalse(game.isInitializedWithZeros());
+            emptyGame.insertToken(0, 1, 1);
+            Assert.IsFalse(emptyGame.isInitializedWithZeros());
         }
 
         [TestMethod]
         public void TestGetWinningPlayerGivenWonGame()
         {
-            gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.isCurrentGameWon(0,1);
+            gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.isCurrentGameWon(3, 0);
             Assert.IsTrue(gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.getWinner() == 1);
         }
-
-        [TestMethod]
-        public void Test10Rows14ColumnsClearRaster()
-        {
-            game10Rows14ColumnsWithFullRaster.clear();
-            Assert.IsTrue(game10Rows14ColumnsWithFullRaster.isInitializedWithZeros());
-            game.insertToken(1, 0, 1);
-            Assert.IsFalse(game.isInitializedWithZeros());
-        }
-
-        //[TestMethod]
-        //public void TestInsertTokenByUserAndThenByAIAndThenByUserAndCheckIfTurnsAreRespected()
-        //{
-        //    gameInterface.nextGame();
-
-
-        //    Assert.IsTrue(gameInterface.checkIfWon(2, 1));
-        //    Assert.IsFalse(gameInterface.checkIfWon(2, 1));
-
-        //    Assert.IsTrue(gameInterface.insertTokenByAI());
-        //    Assert.IsFalse(gameInterface.insertTokenByAI());
-
-        //    Assert.IsTrue(gameInterface.checkIfWon(2, 1));
-        //}
 
         [TestMethod]
         public void TestGetScorePlayer1()
@@ -612,18 +573,16 @@ namespace ConnectXUnitTest
         [TestMethod]
         public void TestGetOverallWonPlayer()
         {
-            game.incrementScoreOfPlayer(1);
-            game.incrementScoreOfPlayer(2);
-            // Parameter == player number
-            Assert.IsTrue(game.getWinnerOfLastSession() == 0);
-            game.incrementScoreOfPlayer(1);
-            Assert.IsTrue(game.getWinnerOfLastSession() == 1);
-            game.incrementScoreOfPlayer(2);
-            game.incrementScoreOfPlayer(2);
-            Assert.IsTrue(gameInterface.getWinnerOfLastSession() == 2);
+            emptyGame.incrementScoreOfPlayer(1);
+            emptyGame.incrementScoreOfPlayer(2);
+
+            Assert.IsTrue(emptyGame.getWinnerOfLastSession() == 0);
+            emptyGame.incrementScoreOfPlayer(1);
+            Assert.IsTrue(emptyGame.getWinnerOfLastSession() == 1);
+            emptyGame.incrementScoreOfPlayer(2);
+            emptyGame.incrementScoreOfPlayer(2);
+            Assert.IsTrue(emptyGame.getWinnerOfLastSession() == 2);
         }
-
-
-
+        #endregion
     }
 }
