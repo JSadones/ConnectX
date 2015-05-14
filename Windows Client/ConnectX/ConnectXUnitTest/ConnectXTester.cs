@@ -52,6 +52,7 @@ namespace ConnectXUnitTest
         public void setup() {
             // Empty game
             game = new ConnectX();
+
             game10Rows14Columns = new ConnectX(10, 14);
             game10Rows14Columns6Streak = new ConnectX(10, 14, 6);
             gameMakeMoveUndoMove = new ConnectX(7, 6, 4);
@@ -378,7 +379,7 @@ namespace ConnectXUnitTest
                 for (int j = 0; j < game10Rows14ColumnsWithOneTokenBeforeFullRaster.getColumns(); j++)
                 { 
                     if (!(i == (game10Rows14ColumnsWithOneTokenBeforeFullRaster.getRows() - 1) && j == (game10Rows14ColumnsWithOneTokenBeforeFullRaster.getColumns() - 1))) {
-                        game10Rows14ColumnsWithOneTokenBeforeFullRaster.insertToken(i, j, currentplayer);
+                        game10Rows14ColumnsWithOneTokenBeforeFullRaster.insertToken(j, i, currentplayer);
 
                         if (currentplayer == 1) currentplayer = 2;
                         else currentplayer = 1;
@@ -516,8 +517,8 @@ namespace ConnectXUnitTest
         [TestMethod]
         public void Test10Rows14ColumnsGiven45DegreeWonGameIfIsWon()
         {
-            Assert.IsTrue(game10Rows14ColumnsWith45DegreeStartingAtColumn0Row0WonRaster.isCurrentGameWon(0,1));
-            Assert.IsTrue(game10Rows14ColumnsWith45DegreeStartingAtColumn0Row1WonRaster.isCurrentGameWon(0,1));
+            Assert.IsTrue(game10Rows14ColumnsWith45DegreeStartingAtColumn0Row0WonRaster.isCurrentGameWon(0,0));
+            Assert.IsTrue(game10Rows14ColumnsWith45DegreeStartingAtColumn0Row1WonRaster.isCurrentGameWon(1,0));
         }
 
         [TestMethod]
@@ -551,13 +552,13 @@ namespace ConnectXUnitTest
         [TestMethod]
         public void TestInsertTokenInRasterInFullColumn() {
 
-            gameWithFullRaster.insertToken(0, 1, 1);
+           Assert.IsFalse(gameWithFullRaster.insertToken(0, 1, 1));
         }
 
         [TestMethod]
         public void Test10Rows14ColumnsInsertTokenInRasterInFullColumn()
         {
-            game10Rows14ColumnsWithFullRaster.insertToken(0, 1, 1);
+            Assert.IsFalse(game10Rows14ColumnsWithFullRaster.insertToken(0, 1, 1));
         }
 
         [TestMethod]

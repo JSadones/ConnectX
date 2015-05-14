@@ -94,7 +94,7 @@ namespace ConnectXLibrary
 
         public int getToken(int row, int column)
         {
-            return raster[row, column];
+            return raster[column, row];
         }//getToken
 
         public int getWinnerOfLastSession()
@@ -160,7 +160,7 @@ namespace ConnectXLibrary
             {
                 for (int column = 0; column < columns; column++)
                 {
-                    if (raster[row, column] != NOBODY)
+                    if (raster[column, row] != NOBODY)
                     {
                         return false;
                     }
