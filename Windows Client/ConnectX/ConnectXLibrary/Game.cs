@@ -132,26 +132,23 @@ namespace ConnectXLibrary
 
         private void drawToken(int row, int column, int player)
         {
-            if (row > -1)
-            {
-                //Point location = new Point((column * size) + startWidth, -1 * rows + startHeight);
-                Rectangle circle = new Rectangle((column * size) + 5 + startWidth, ((rows - row - 1) * size) + 5 + startHeight, size - 10, size - 10);
-                gr.DrawEllipse(blackPen, circle);
+            //Point location = new Point((column * size) + startWidth, -1 * rows + startHeight);
+            Rectangle circle = new Rectangle((column * size) + 5 + startWidth, ((rows - row - 1) * size) + 5 + startHeight, size - 10, size - 10);
+            gr.DrawEllipse(blackPen, circle);
 
-                if (player == 1)
-                {
-                    //token token = new token();
-                    //token.create(1, size, location, pnlGame);
-                    //pnlGame.Controls.Add(token);
-                    gr.FillEllipse(blueBrush, circle);
-                }
-                else
-                {
-                    //token token = new token();
-                    //token.create(2, size, location, pnlGame);
-                    //pnlGame.Controls.Add(token);
-                    gr.FillEllipse(redBrush, circle);
-                }
+            if (player == 1)
+            {
+                //token token = new token();
+                //token.create(1, size, location, pnlGame);
+                //pnlGame.Controls.Add(token);
+                gr.FillEllipse(blueBrush, circle);
+            }
+            else
+            {
+                //token token = new token();
+                //token.create(2, size, location, pnlGame);
+                //pnlGame.Controls.Add(token);
+                gr.FillEllipse(redBrush, circle);
             }
         }//drawToken
 

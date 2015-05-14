@@ -12,8 +12,8 @@ namespace ConnectXLibrary
         private bool multiplayer;
 
         public byte NOBODY = 0;
-        public byte PLAYER = 1;
-        public byte AI = 2;
+        public byte PLAYER1 = 1;
+        public byte PLAYER2 = 2;
 
         int[] columnCounts;
         #endregion State
@@ -324,7 +324,7 @@ namespace ConnectXLibrary
         {
             if (columnCounts[column] < rows)
             {
-                byte sign = player ? PLAYER : AI;
+                byte sign = player ? PLAYER1 : PLAYER2;
                 raster[column, columnCounts[column]++] = sign;
                 return true;
             }
@@ -335,11 +335,10 @@ namespace ConnectXLibrary
         {
             if (columnCounts[column] > 0)
             {
-                byte sign = player ? PLAYER : AI;
+                byte sign = player ? PLAYER1 : PLAYER2;
                 if (raster[column, columnCounts[column] - 1] == sign)
                 {
-                    raster[column, columnCounts[column] - 1] =
-                            NOBODY;
+                    raster[column, columnCounts[column] - 1] = NOBODY;
                     columnCounts[column]--;
                     return true;
                 }
@@ -362,22 +361,22 @@ namespace ConnectXLibrary
                     bool aiWin = true;
                     for (int o = 0; o < streakToWin; o++)
                     {
-                        if (playerWin && raster[x, y + o] != PLAYER)
+                        if (playerWin && raster[x, y + o] != PLAYER1)
                         {
                             playerWin = false;
                         }
-                        if (aiWin && raster[x, y + o] != AI)
+                        if (aiWin && raster[x, y + o] != PLAYER2)
                         {
                             aiWin = false;
                         }
                     }
                     if (playerWin)
                     {
-                        return PLAYER;
+                        return PLAYER1;
                     }
                     else if (aiWin)
                     {
-                        return AI;
+                        return PLAYER2;
                     }
                 }
             }
@@ -391,22 +390,22 @@ namespace ConnectXLibrary
                     bool aiWin = true;
                     for (int o = 0; o < streakToWin; o++)
                     {
-                        if (playerWin && raster[x + o, y] != PLAYER)
+                        if (playerWin && raster[x + o, y] != PLAYER1)
                         {
                             playerWin = false;
                         }
-                        if (aiWin && raster[x + o, y] != AI)
+                        if (aiWin && raster[x + o, y] != PLAYER2)
                         {
                             aiWin = false;
                         }
                     }
                     if (playerWin)
                     {
-                        return PLAYER;
+                        return PLAYER1;
                     }
                     else if (aiWin)
                     {
-                        return AI;
+                        return PLAYER2;
                     }
                 }
             }
@@ -420,22 +419,22 @@ namespace ConnectXLibrary
                     bool aiWin = true;
                     for (int o = 0; o < streakToWin; o++)
                     {
-                        if (playerWin && raster[x + o, y + o] != PLAYER)
+                        if (playerWin && raster[x + o, y + o] != PLAYER1)
                         {
                             playerWin = false;
                         }
-                        if (aiWin && raster[x + o, y + o] != AI)
+                        if (aiWin && raster[x + o, y + o] != PLAYER2)
                         {
                             aiWin = false;
                         }
                     }
                     if (playerWin)
                     {
-                        return PLAYER;
+                        return PLAYER1;
                     }
                     else if (aiWin)
                     {
-                        return AI;
+                        return PLAYER2;
                     }
                 }
             }
@@ -449,22 +448,22 @@ namespace ConnectXLibrary
                     bool aiWin = true;
                     for (int o = 0; o < streakToWin; o++)
                     {
-                        if (playerWin && raster[x - o, y + o] != PLAYER)
+                        if (playerWin && raster[x - o, y + o] != PLAYER1)
                         {
                             playerWin = false;
                         }
-                        if (aiWin && raster[x - o, y + o] != AI)
+                        if (aiWin && raster[x - o, y + o] != PLAYER2)
                         {
                             aiWin = false;
                         }
                     }
                     if (playerWin)
                     {
-                        return PLAYER;
+                        return PLAYER1;
                     }
                     else if (aiWin)
                     {
-                        return AI;
+                        return PLAYER2;
                     }
                 }
             }
@@ -474,7 +473,7 @@ namespace ConnectXLibrary
 
         public bool playerIsWinner()
         {
-            return getWinner() == PLAYER;
+            return getWinner() == PLAYER1;
         }//playerIsWinner
 
         public bool isTie2()
