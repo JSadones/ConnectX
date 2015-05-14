@@ -20,7 +20,8 @@ namespace ConnectXLibrary
         #endregion
 
         #region Methods
-        public int makeTurn() {
+        public int makeTurn(int depth) {
+            MAX_DEPTH = depth;
 		    double maxValue = 2.0 * Int32.MinValue;
 		    int move = 0;
 

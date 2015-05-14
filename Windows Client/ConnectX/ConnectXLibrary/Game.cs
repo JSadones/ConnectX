@@ -284,14 +284,13 @@ namespace ConnectXLibrary
                     column = ai.chooseRandomSpot();
                     break;
                 case 2:
-                    Random rnd = new Random();
-                    int chance = rnd.Next(0, 10);
-
-                    if (chance < 3) column = ai.chooseRandomSpot();
-                    else column = ai.makeTurn();
+                    column = ai.makeTurn(2);
                     break;
                 case 3:
-                    column = ai.makeTurn();
+                    column = ai.makeTurn(4);
+                    break;
+                case 4:
+                    column = ai.makeTurn(8);
                     break;
             }
             return column;
