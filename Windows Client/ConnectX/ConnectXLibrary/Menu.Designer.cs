@@ -36,6 +36,8 @@
             this.btnMultiplayer = new System.Windows.Forms.Button();
             this.pnlEnterData = new System.Windows.Forms.Panel();
             this.groupDifficulty = new System.Windows.Forms.GroupBox();
+            this.radioHardcore = new System.Windows.Forms.RadioButton();
+            this.lblInfoHardcore = new System.Windows.Forms.Label();
             this.radioHard = new System.Windows.Forms.RadioButton();
             this.radioMedium = new System.Windows.Forms.RadioButton();
             this.radioEasy = new System.Windows.Forms.RadioButton();
@@ -62,8 +64,6 @@
             this.btnWebclient = new System.Windows.Forms.Button();
             this.picBoxBanner = new System.Windows.Forms.PictureBox();
             this.pnlStartScreen = new System.Windows.Forms.Panel();
-            this.radioHardcore = new System.Windows.Forms.RadioButton();
-            this.lblInfoHardcore = new System.Windows.Forms.Label();
             this.pnlEnterData.SuspendLayout();
             this.groupDifficulty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxPlayer2)).BeginInit();
@@ -176,6 +176,26 @@
             this.groupDifficulty.TabStop = false;
             this.groupDifficulty.Text = "AI Difficulty";
             this.groupDifficulty.Visible = false;
+            // 
+            // radioHardcore
+            // 
+            this.radioHardcore.AutoSize = true;
+            this.radioHardcore.Location = new System.Drawing.Point(24, 293);
+            this.radioHardcore.Name = "radioHardcore";
+            this.radioHardcore.Size = new System.Drawing.Size(118, 29);
+            this.radioHardcore.TabIndex = 10;
+            this.radioHardcore.Text = "Hardcore";
+            this.radioHardcore.UseVisualStyleBackColor = true;
+            // 
+            // lblInfoHardcore
+            // 
+            this.lblInfoHardcore.AutoSize = true;
+            this.lblInfoHardcore.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInfoHardcore.Location = new System.Drawing.Point(33, 325);
+            this.lblInfoHardcore.Name = "lblInfoHardcore";
+            this.lblInfoHardcore.Size = new System.Drawing.Size(180, 20);
+            this.lblInfoHardcore.TabIndex = 9;
+            this.lblInfoHardcore.Text = "AI thinks 8 steps ahead.";
             // 
             // radioHard
             // 
@@ -411,6 +431,7 @@
             this.lblPlayer1Name.Size = new System.Drawing.Size(288, 42);
             this.lblPlayer1Name.TabIndex = 2;
             this.lblPlayer1Name.Text = "Player 1 name : ";
+            this.lblPlayer1Name.Click += new System.EventHandler(this.lblPlayer1Name_Click);
             // 
             // txtBoxPlayer1Name
             // 
@@ -456,33 +477,13 @@
             this.pnlStartScreen.Size = new System.Drawing.Size(967, 558);
             this.pnlStartScreen.TabIndex = 5;
             // 
-            // radioHardcore
-            // 
-            this.radioHardcore.AutoSize = true;
-            this.radioHardcore.Location = new System.Drawing.Point(24, 293);
-            this.radioHardcore.Name = "radioHardcore";
-            this.radioHardcore.Size = new System.Drawing.Size(118, 29);
-            this.radioHardcore.TabIndex = 10;
-            this.radioHardcore.Text = "Hardcore";
-            this.radioHardcore.UseVisualStyleBackColor = true;
-            // 
-            // lblInfoHardcore
-            // 
-            this.lblInfoHardcore.AutoSize = true;
-            this.lblInfoHardcore.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInfoHardcore.Location = new System.Drawing.Point(33, 325);
-            this.lblInfoHardcore.Name = "lblInfoHardcore";
-            this.lblInfoHardcore.Size = new System.Drawing.Size(180, 20);
-            this.lblInfoHardcore.TabIndex = 9;
-            this.lblInfoHardcore.Text = "AI thinks 8 steps ahead.";
-            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackgroundImage = global::ConnectXLibrary.Properties.Resources.bg;
-            this.ClientSize = new System.Drawing.Size(984, 693);
+            this.ClientSize = new System.Drawing.Size(984, 694);
             this.Controls.Add(this.btnWebclient);
             this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.btnMultiplayer);

@@ -16,6 +16,7 @@ namespace ConnectXLibrary
         private Thread listenThread;
         ThreadLocal<ConnectX> threadGame;
         ThreadLocal<AI> threadAI;
+        ThreadLocal<int> threadDifficulty;
         #endregion State
 
         #region Constructor
@@ -90,6 +91,7 @@ namespace ConnectXLibrary
                 request["rows"] = context.Request.QueryString["rows"];
                 request["columns"] = context.Request.QueryString["columns"];
                 request["streak"] = context.Request.QueryString["streak"];
+                request["difficulty"] = context.Request.QueryString["difficulty"];
 
                 response = startGame(request);
 
@@ -105,10 +107,26 @@ namespace ConnectXLibrary
             {
 
                 AI ai = threadAI.Value;
+                int difficulty = threadDifficulty.Value;
                 request["player"] = 2.ToString();
-                request["column"] = ai.makeTurn(8).ToString();
-                response = insertToken(request);
 
+                switch (difficulty)
+                {
+                case 1:
+                    request["column"] = ai.chooseRandomSpot().ToString();
+                    break;
+                case 2:
+                    request["column"] = ai.makeTurn(2).ToString();
+                    break;
+                case 3:
+                    request["column"] = ai.makeTurn(4).ToString();
+                    break;
+                case 4:
+                    request["column"] = ai.makeTurn(8).ToString();
+                    break;
+                }
+
+                response = insertToken(request);
 
             }
             else if (request["action"] == "nextGame")
@@ -205,12 +223,14 @@ namespace ConnectXLibrary
             int rows = Convert.ToInt32(request["rows"]);
             int columns = Convert.ToInt32(request["columns"]);
             int streak = Convert.ToInt32(request["streak"]);
+            int difficulty = Convert.ToInt32(request["difficulty"]);
 
             ConnectX game = new ConnectX(rows, columns, streak);
             AI ai = new AI(game);
 
             threadGame = new ThreadLocal<ConnectX>(() => { return game; });
             threadAI = new ThreadLocal<AI>(() => { return ai; });
+            threadDifficulty = new ThreadLocal<int>(() => { return difficulty; });
 
             bool status = true;
 

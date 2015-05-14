@@ -286,6 +286,11 @@ namespace ConnectXLibrary
             }
             pnlEnterData.Visible = true;
             pnlStartScreen.Visible = false;
+        }
+
+        private void lblPlayer1Name_Click(object sender, EventArgs e)
+        {
+
         }//showMenu
         #endregion
     }

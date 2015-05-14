@@ -154,6 +154,7 @@ $(document).ready(function () {
                 d.rows = arguments[2];
                 d.columns = arguments[3];
                 d.streak = arguments[4];
+                d.difficulty = arguments[5];
                 break;
             case "insertToken":
                 d.column = arguments[2];
@@ -210,7 +211,7 @@ $(document).ready(function () {
 
     }
 
-    start = function (r, c, s, namePlayer1, namePlayer2) {
+    start = function (r, c, s, d, namePlayer1, namePlayer2) {
         
         rows = r;
         columns = c;
@@ -220,7 +221,7 @@ $(document).ready(function () {
         scores[1] = 0;
         scores[2] = 0; 
         setNames(namePlayer1, namePlayer2);
-        ajaxCall(callback, "startGame", rows, columns, streak);
+        ajaxCall(callback, "startGame", rows, columns, streak, d);
         
         $( "#rasterwrapper" ).html(table);
         show();
