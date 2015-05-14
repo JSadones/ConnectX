@@ -146,7 +146,7 @@ namespace ConnectXLibrary
         {
             for (int column = 0; column < columns; column++)
             {
-                if (raster[rows - 1, column] == 0) return false;
+                if (raster[column, rows - 1] == 0) return false;
             }
             return true;
         }//isTie
