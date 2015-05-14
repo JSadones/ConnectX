@@ -230,7 +230,7 @@ namespace ConnectXLibrary
             int player;
             if (multiplayer)
             {
-                if (board.isValidMove(column)) {
+                if (!board.isColumnFull(column)) {
                     row = board.getLowestAvailableRowInColumn(column);
                     player = board.getPlayerAtTurn();
                     board.insertToken(column, row, player);
@@ -245,7 +245,7 @@ namespace ConnectXLibrary
             }
             else
             {
-                if (board.isValidMove(column))
+                if (!board.isColumnFull(column))
                 {
                     row = board.getLowestAvailableRowInColumn(column);
                     player = board.getPlayerAtTurn();
@@ -262,7 +262,8 @@ namespace ConnectXLibrary
                         player = board.getPlayerAtTurn();
                         int aiColumn = insertTokenByAI();
                         row = board.getLowestAvailableRowInColumn(aiColumn);
-                        board.makeMoveAI(aiColumn);
+                        board.insertToken(aiColumn, row, player);
+                        //board.makeMoveAI(aiColumn);
                         drawToken(aiColumn, row, player);
 
                         if (!checkTurn(aiColumn, row))

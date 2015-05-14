@@ -6,10 +6,10 @@ namespace ConnectXLibrary
     class AI
     {
         #region State
-        static int MAX_DEPTH = 8;
-	    static float WIN_REVENUE = 1f;
-	    static float LOSE_REVENUE = -1f;
-	    static float UNCERTAIN_REVENUE = 0f;
+        static int MaxDepth = 8;
+	    static float WinRevenue = 1f;
+	    static float LoseRevenue = -1f;
+	    static float UncertainRevenue = 0f;
 	    ConnectX board;
         #endregion
 
@@ -21,17 +21,17 @@ namespace ConnectXLibrary
 
         #region Methods
         public int makeTurn(int depth) {
-            MAX_DEPTH = depth;
+            MaxDepth = depth;
 		    double maxValue = 2.0 * Int32.MinValue;
 		    int move = 0;
 
 		    for (int column = 0; column < board.getColumns(); column++) {
-			    if (board.isValidMove(column)) {
+			    if (!board.isColumnFull(column)) {
 				    double value = moveValue(column);
 				    if (value > maxValue) {
 					    maxValue = value;
 					    move = column;
-					    if (value == WIN_REVENUE) {
+					    if (value == WinRevenue) {
 						    break;
 					    }
 				    }
@@ -42,8 +42,10 @@ namespace ConnectXLibrary
 	    }//makeTurn
 
 	    private double moveValue(int column) {
-		    board.makeMoveAI(column);
-		    double val = alphabeta(MAX_DEPTH, Int32.MinValue, Int32.MaxValue, false);
+            int row = board.getLowestAvailableRowInColumn(column);
+            board.insertToken(column, row, board.getPlayerAtTurn());
+		    //board.makeMoveAI(column);
+		    double val = alphabeta(MaxDepth, Int32.MinValue, Int32.MaxValue, false);
 		    board.undoMoveAI(column);
 		    return val;
 	    }//moveValue
@@ -52,36 +54,32 @@ namespace ConnectXLibrary
 		    bool hasWinner = board.hasWinner();
 		    if (depth == 0 || hasWinner) {
 			    double score = 0;
-			    if (hasWinner) {
-				    score = board.playerIsWinner() ? LOSE_REVENUE : WIN_REVENUE;
-			    } else {
-				    score = UNCERTAIN_REVENUE;
-			    }
-			    return score
-			            / (MAX_DEPTH - depth + 1);
+
+			    if (hasWinner) score = board.playerIsWinner() ? LoseRevenue : WinRevenue;
+                else score = UncertainRevenue;
+
+			    return score / (MaxDepth - depth + 1);
 		    }
 
 		    if (maximizingPlayer) {
 			    for (int column = 0; column < board.getColumns(); column++) {
-				    if (board.isValidMove(column)) {
-					    board.makeMoveAI(column);
+				    if (!board.isColumnFull(column)) {
+                        int row = board.getLowestAvailableRowInColumn(column);
+                        board.insertToken(column, row, board.getPlayerAtTurn());
+					    //board.makeMoveAI(column);
 					    alpha = Math.Max(alpha, alphabeta(depth - 1, alpha, beta, false));
 					    board.undoMoveAI(column);
-					    if (beta <= alpha) {
-						    break;
-					    }
+					    if (beta <= alpha) break;
 				    }
 			    }
 			    return alpha;
 		    } else {
 			    for (int column = 0; column < board.getColumns(); column++) {
-				    if (board.isValidMove(column)) {
+				    if (!board.isColumnFull(column)) {
 					    board.makeMovePlayer(column);
 					    beta = Math.Min(beta, alphabeta(depth - 1, alpha, beta, true));
 					    board.undoMovePlayer(column);
-					    if (beta <= alpha) {
-						    break;
-					    }
+					    if (beta <= alpha) break;
 				    }
 			    }
 			    return beta;

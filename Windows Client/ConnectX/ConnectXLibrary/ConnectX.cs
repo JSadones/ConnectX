@@ -87,18 +87,6 @@ namespace ConnectXLibrary
             else return -1;
         }//getLowestAvailableRow
 
-        public int getRowIndexOfHighestTokenInColumn(int column)
-        {
-            int row = 0;
-            while (row < rows)
-            {
-                if (raster[row, column] == 0) return row - 1;
-                if (row == rows - 1 ) return row ;
-                row++;
-            }
-            return -1;
-        }//getRowIndexOfHighestTokenInColumn
-
         public int getPlayerAtTurn()
         {
             return playerAtTurn;
@@ -187,6 +175,21 @@ namespace ConnectXLibrary
             raster[column, row] = player;
             return true;
         }//insertToken
+
+        private bool undoMove(int column, bool player)
+        {
+            if (columnCounts[column] > 0)
+            {
+                byte sign = player ? PLAYER1 : PLAYER2;
+                if (raster[column, columnCounts[column] - 1] == sign)
+                {
+                    raster[column, columnCounts[column] - 1] = NOBODY;
+                    columnCounts[column]--;
+                    return true;
+                }
+            }
+            return false;
+        }//undoMove
 
         public bool isColumnFull(int column)
         {
@@ -289,22 +292,11 @@ namespace ConnectXLibrary
 
 
 
-
         //AI HACKERINO PLSERINO STAYOFERINO
-        public bool isValidMove(int column)
-        {
-            return columnCounts[column] < rows;
-        }//isValidMove
-
         public bool makeMovePlayer(int column)
         {
             return makeMove(column, true);
         }//makeMovePlayer
-
-        public bool makeMoveAI(int column)
-        {
-            return makeMove(column, false);
-        }//makeMoveAI
 
         public bool undoMovePlayer(int column)
         {
@@ -327,21 +319,6 @@ namespace ConnectXLibrary
             return false;
         }//makeMove
 
-        private bool undoMove(int column, bool player)
-        {
-            if (columnCounts[column] > 0)
-            {
-                byte sign = player ? PLAYER1 : PLAYER2;
-                if (raster[column, columnCounts[column] - 1] == sign)
-                {
-                    raster[column, columnCounts[column] - 1] = NOBODY;
-                    columnCounts[column]--;
-                    return true;
-                }
-            }
-            return false;
-        }//undoMove
-
         public bool hasWinner()
         {
             return getWinner() != NOBODY;
@@ -357,110 +334,63 @@ namespace ConnectXLibrary
                     bool aiWin = true;
                     for (int o = 0; o < streakToWin; o++)
                     {
-                        if (playerWin && raster[x, y + o] != PLAYER1)
-                        {
-                            playerWin = false;
-                        }
-                        if (aiWin && raster[x, y + o] != PLAYER2)
-                        {
-                            aiWin = false;
-                        }
+                        if (playerWin && raster[x, y + o] != PLAYER1) playerWin = false;
+                        if (aiWin && raster[x, y + o] != PLAYER2) aiWin = false;
                     }
-                    if (playerWin)
-                    {
-                        return PLAYER1;
-                    }
-                    else if (aiWin)
-                    {
-                        return PLAYER2;
-                    }
+
+                    if (playerWin) return PLAYER1;
+                    else if (aiWin) return PLAYER2;
                 }
             }
 
             for (int y = 0; y < rows; y++)
             {
-                for (int x = 0; x <= columns
-                        - streakToWin; x++)
+                for (int x = 0; x <= columns - streakToWin; x++)
                 {
                     bool playerWin = true;
                     bool aiWin = true;
                     for (int o = 0; o < streakToWin; o++)
                     {
-                        if (playerWin && raster[x + o, y] != PLAYER1)
-                        {
-                            playerWin = false;
-                        }
-                        if (aiWin && raster[x + o, y] != PLAYER2)
-                        {
-                            aiWin = false;
-                        }
+                        if (playerWin && raster[x + o, y] != PLAYER1) playerWin = false;
+                        if (aiWin && raster[x + o, y] != PLAYER2) aiWin = false;
                     }
-                    if (playerWin)
-                    {
-                        return PLAYER1;
-                    }
-                    else if (aiWin)
-                    {
-                        return PLAYER2;
-                    }
+
+                    if (playerWin) return PLAYER1;
+                    else if (aiWin) return PLAYER2;
                 }
             }
 
             for (int x = 0; x <= columns - streakToWin; x++)
             {
-                for (int y = 0; y <= rows
-                        - streakToWin; y++)
+                for (int y = 0; y <= rows - streakToWin; y++)
                 {
                     bool playerWin = true;
                     bool aiWin = true;
                     for (int o = 0; o < streakToWin; o++)
                     {
-                        if (playerWin && raster[x + o, y + o] != PLAYER1)
-                        {
-                            playerWin = false;
-                        }
-                        if (aiWin && raster[x + o, y + o] != PLAYER2)
-                        {
-                            aiWin = false;
-                        }
+                        if (playerWin && raster[x + o, y + o] != PLAYER1) playerWin = false;
+                        if (aiWin && raster[x + o, y + o] != PLAYER2) aiWin = false;
                     }
-                    if (playerWin)
-                    {
-                        return PLAYER1;
-                    }
-                    else if (aiWin)
-                    {
-                        return PLAYER2;
-                    }
+
+                    if (playerWin) return PLAYER1;
+                    else if (aiWin) return PLAYER2;
                 }
             }
 
             for (int x = columns - 1; x >= streakToWin - 1; x--)
             {
-                for (int y = 0; y <= rows
-                        - streakToWin; y++)
+                for (int y = 0; y <= rows - streakToWin; y++)
                 {
                     bool playerWin = true;
                     bool aiWin = true;
                     for (int o = 0; o < streakToWin; o++)
                     {
-                        if (playerWin && raster[x - o, y + o] != PLAYER1)
-                        {
-                            playerWin = false;
-                        }
-                        if (aiWin && raster[x - o, y + o] != PLAYER2)
-                        {
-                            aiWin = false;
-                        }
+                        if (playerWin && raster[x - o, y + o] != PLAYER1) playerWin = false;
+                        if (aiWin && raster[x - o, y + o] != PLAYER2) aiWin = false;
                     }
-                    if (playerWin)
-                    {
-                        return PLAYER1;
-                    }
-                    else if (aiWin)
-                    {
-                        return PLAYER2;
-                    }
+
+                    if (playerWin) return PLAYER1;
+                    else if (aiWin) return PLAYER2;
                 }
             }
 
@@ -471,25 +401,6 @@ namespace ConnectXLibrary
         {
             return getWinner() == PLAYER1;
         }//playerIsWinner
-
-        public bool isTie2()
-        {
-            return isBoardFull() && getWinner() == NOBODY;
-        }//isTie2
-
-        private bool isBoardFull()
-        {
-            bool emptyColumnFound = false;
-            for (int x = 0; x < columns; x++)
-            {
-                if (columnCounts[x] < rows)
-                {
-                    emptyColumnFound = true;
-                    break;
-                }
-            }
-            return !emptyColumnFound;
-        }//isBoardFull
         #endregion
     }
 }

@@ -402,14 +402,6 @@ namespace ConnectXUnitTest
 			Assert.IsTrue(game.isInitializedWithZeros());
 		}
 
-        [TestMethod]
-        public void TestMakeMoveUndoMove()
-        {
-            gameMakeMoveUndoMove.makeMovePlayer(0);
-            gameMakeMoveUndoMove.undoMovePlayer(0);
-            Assert.IsTrue(gameMakeMoveUndoMove.isInitializedWithZeros());
-        }
-
 		[TestMethod]
 		public void Test10Rows14ColumnsIsRasterInitializedWithZeros() {
 			Assert.IsTrue(game10Rows14Columns.isInitializedWithZeros());
