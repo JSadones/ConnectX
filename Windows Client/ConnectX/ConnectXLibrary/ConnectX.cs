@@ -251,11 +251,6 @@ namespace ConnectXLibrary
             //-1 -1   --  Check diagonal bottom to left
 
             //Check left and right
-            if (isStreakReachedFromCoordinateInDirection(row, column, 0, 1) || isStreakReachedFromCoordinateInDirection(row, column, 0, -1) ||
-                isStreakReachedFromCoordinateInDirection(row, column, -1, 1) || isStreakReachedFromCoordinateInDirection(row, column, 1, 1) ||
-                isStreakReachedFromCoordinateInDirection(row, column, -1, -1) || isStreakReachedFromCoordinateInDirection(row, column, 1, -1) ||
-                isStreakReachedFromCoordinateInDirection(row, column, -1, 0)) return true;
-
             if (isStreakReachedFromCoordinateInDirection(row, column, 0, 1) || isStreakReachedFromCoordinateInDirection(row, column, 0, -1)) return true;
             else resetCounter();
 
