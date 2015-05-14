@@ -9,7 +9,7 @@ namespace ConnectXLibrary
         private int rows, columns, streakToWin, playerAtTurn, scorePlayer1 = 0, scorePlayer2 = 0, counterLeft = 0, counterRight = 0;
 		private const int DefaultRows = 6, DefaultColumns = 7, DefaultStreak = 4;
         private const bool  DefaultMP = true;
-        private bool multiplayer;
+        private bool multiplayerON;
 
         public byte NOBODY = 0;
         public byte PLAYER1 = 1;
@@ -31,7 +31,7 @@ namespace ConnectXLibrary
             this.columns = columns;
             this.streakToWin = streakToWin;
 
-            this.multiplayer = multiplayer;
+            this.multiplayerON = multiplayer;
             this.columnCounts = new int[columns];
 
             playerAtTurn = 1;
@@ -137,7 +137,7 @@ namespace ConnectXLibrary
         public int[,] getRaster()
         {
             return raster;
-        }
+        }//getRaster
 		#endregion
 
         #region Methods
@@ -213,26 +213,16 @@ namespace ConnectXLibrary
             {
                 try
                 {
-                    //Check vertical
-                    if (stepRow == -1 && stepColumn == 0)
+                    if (raster[column + i * stepColumn, row + i * stepRow] == getPlayerAtTurn())
                     {
-                        if (raster[column + i * stepColumn, row + i * stepRow] == getPlayerAtTurn()) counterLeft++;
+                        if ((stepRow == -1 && stepColumn == 0) || (stepRow == 0 && stepColumn == -1) || (stepRow == -1 && stepColumn == -1) || (stepRow == 1 && stepColumn == 1))
+                            counterLeft++;
+                        else if ((stepRow == 0 && stepColumn == 1) || (stepRow == -1 && stepColumn == 1) || (stepRow == 1 && stepColumn == -1))
+                            counterRight++;
                         else return false;
                     }
-
-                    //Check horizontal left && diagonal bottom to left && diagonal top to left
-                    if ((stepRow == 0 && stepColumn == -1) || (stepRow == -1 && stepColumn == -1) || (stepRow == 1 && stepColumn == 1))
-                    {
-                        if (raster[column + i * stepColumn, row + i * stepRow] == getPlayerAtTurn()) counterLeft++;
-                        else return false;
-                    }
-
-                    //Check horizontal right && diagonal bottom to right && diagonal top to right
-                    else if ((stepRow == 0 && stepColumn == 1) || (stepRow == -1 && stepColumn == 1) || (stepRow == 1 && stepColumn == -1))
-                    {
-                        if (raster[column + i * stepColumn, row + i * stepRow] == getPlayerAtTurn()) counterRight++;
-                        else return false;
-                    }
+                    else return false;
+                    
                 }
                 catch(IndexOutOfRangeException)
                 {
@@ -320,7 +310,7 @@ namespace ConnectXLibrary
             return undoMove(column, false);
         }//undoMoveAI
 
-        private bool makeMove(int column, bool player)//makeMove
+        private bool makeMove(int column, bool player)
         {
             if (columnCounts[column] < rows)
             {
@@ -329,7 +319,7 @@ namespace ConnectXLibrary
                 return true;
             }
             return false;
-        }
+        }//makeMove
 
         private bool undoMove(int column, bool player)
         {
