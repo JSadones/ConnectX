@@ -64,9 +64,9 @@
 
     #raster td {
         color:white;
-        border:3px solid lightgrey;
-        height: 35px;
-        width: 35px;
+     //   border:3px solid lightgrey;
+        height: 45px;
+        width: 45px;
         margin:0;
         padding: 0;
           white-space: nowrap;

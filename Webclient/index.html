@@ -9,8 +9,6 @@
     <script src="js/init.js"></script>
     <script type="text/javascript" src="js/menu.js"></script>
     <script type="text/javascript" src="js/game.js"></script>
-
-    <script src="parsley.min.js"></script>
 	<noscript>
         <link rel="stylesheet" href="css/reset.css" />
         <link rel="stylesheet" href="css/normalize.css" />
@@ -57,14 +55,14 @@
                         </div>
                         <div id='options'>
 
-                            <form id='form'>
+                            <form id='form' data-parsley-validate>
                                 <table>
                                     <tr>
                                         <td>
                                             <label for="rows">Rows</label>
                                         </td>
                                         <td><p>
-                                            <input  type="number" min="6" data-parsley-min="6" max="10" data-parsley-max="10" name='rows' required id="rows">
+                                            <input  type="number" min="4" data-parsley-min="4" max="10" data-parsley-max="10" name='rows' value='6' required id="rows">
                                         </p>
                                         </td>
                                     </tr>
@@ -73,7 +71,7 @@
                                             <label for="columns">Columns</label>
                                         </td>
                                         <td>
-                                            <input type='number'  min="6" data-parsley-min="6" max="10" data-parsley-max="10" name='columns' required id="columns">
+                                            <input type='number'  min="4" data-parsley-min="4" max="10" data-parsley-max="10" name='columns' value='7' required id="columns">
                                         </td>
                                     </tr>
                                     <tr>
@@ -81,7 +79,7 @@
                                             <label for="streak">Streak</label>
                                         </td>
                                         <td>
-                                            <input type='number'  min="6" data-parsley-min="6" max="10" data-parsley-max="10" required id="streak">
+                                            <input type='number' min="4" data-parsley-min="4" max="10" data-parsley-max="10" value='4' required id="streak">
                                         </td>
                                     </tr>
                                     <tr>
@@ -127,8 +125,6 @@
         </div>
     </footer>
     
-<script type="text/javascript">
-  $('#form').parsley();
-</script>
+    <script src="parsley.min.js"></script>
 </body>
 </html>
