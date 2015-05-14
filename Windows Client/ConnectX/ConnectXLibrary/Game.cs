@@ -130,32 +130,7 @@ namespace ConnectXLibrary
             hud.FillEllipse(redBrush, redCircle);
         }//drawHud
 
-        private void drawToken(int row, int column)
-        {
-            if (row > -1)
-            {
-                //Point location = new Point((column * size) + startWidth, -1 * rows + startHeight);
-                Rectangle circle = new Rectangle((column * size) + 5 + startWidth, ((rows - row - 1) * size) + 5 + startHeight, size - 10, size - 10);
-                gr.DrawEllipse(blackPen, circle);
-
-                if (board.getPlayerAtTurn() == 1)
-                {
-                    //token token = new token();
-                    //token.create(1, size, location, pnlGame);
-                    //pnlGame.Controls.Add(token);
-                    gr.FillEllipse(blueBrush, circle);
-                }
-                else
-                {
-                    //token token = new token();
-                    //token.create(2, size, location, pnlGame);
-                    //pnlGame.Controls.Add(token);
-                    gr.FillEllipse(redBrush, circle);
-                }
-            }
-        }//drawToken
-
-        private void drawToken2(int row, int column, int player)
+        private void drawToken(int row, int column, int player)
         {
             if (row > -1)
             {
@@ -258,7 +233,7 @@ namespace ConnectXLibrary
             {
                 row = board.getLowestAvailableRowInColumn(column);
                 board.makeMovePlayer(column);
-                drawToken2(row, column, board.getPlayerAtTurn());
+                drawToken(row, column, board.getPlayerAtTurn());
                 checkTurn(row, column);
 
                 if (!endGame)
@@ -266,19 +241,19 @@ namespace ConnectXLibrary
                     board.switchPlayerAtTurn();
                     showPlayerAtTurn();
                 }
-            }
-            if (!multiplayer)
-            {
-                int aiColumn = insertTokenByAI();
-                row = board.getLowestAvailableRowInColumn(aiColumn);
-                drawToken2(row, aiColumn, 2);
-                board.makeMoveAI(aiColumn);
-                checkTurn(row, column);
-
-                if (!endGame)
+                if (!multiplayer)
                 {
-                    board.switchPlayerAtTurn();
-                    showPlayerAtTurn();
+                    int aiColumn = insertTokenByAI();
+                    row = board.getLowestAvailableRowInColumn(aiColumn);
+                    drawToken(row, aiColumn, 2);
+                    board.makeMoveAI(aiColumn);
+                    checkTurn(row, column);
+
+                    if (!endGame)
+                    {
+                        board.switchPlayerAtTurn();
+                        showPlayerAtTurn();
+                    }
                 }
             }
         }//processTurn

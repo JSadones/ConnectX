@@ -105,7 +105,7 @@ namespace ConnectXLibrary
 
             for (byte i = 0; i < board.getColumns(); i++)
             {
-                if (raster[board.getRows() - 1, i] == 0)
+                if (raster[i, board.getRows() - 1] == 0)
                 {
                     empySpots.Add(i);
                 }
