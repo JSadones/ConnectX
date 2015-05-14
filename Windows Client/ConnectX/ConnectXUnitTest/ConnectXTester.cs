@@ -59,10 +59,10 @@ namespace ConnectXUnitTest
 
             // Game in raster where 4 in a row can be found vertically
             gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon = new ConnectX();
+            gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(0, 0, 1);
             gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(0, 1, 1);
-            gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(0, 1, 1);
-            gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(0, 1, 1);
-            gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(0, 1, 1);
+            gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(0, 2, 1);
+            gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.insertToken(0, 3, 1);
 
             // Game in raster where 4 in a row can be found vertically, and let game check if it is won
             gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon = new ConnectX();
@@ -445,7 +445,9 @@ namespace ConnectXUnitTest
 		public void TestTurnByAI() {
 			// Let AI Determine Spot To Put Token
             aiCopy = new AI(gameWithOneTokenBeforeFullRaster);
-			aiCopy.chooseRandomSpot();
+			int column = aiCopy.chooseRandomSpot();
+            int row = gameWithOneTokenBeforeFullRaster.getLowestAvailableRowInColumn(column);
+            gameWithOneTokenBeforeFullRaster.insertToken(column, row, 1);
 
 			Assert.IsTrue(gameWithOneTokenBeforeFullRaster.isTie());
 		}
@@ -486,7 +488,7 @@ namespace ConnectXUnitTest
         [TestMethod]
         public void TestGivenVerticalWonGameIfIsWon()
         {
-            Assert.IsTrue(gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.isCurrentGameWon(0,1));
+            Assert.IsTrue(gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.isCurrentGameWon(0, 3));
         }
 
         [TestMethod]
@@ -550,9 +552,9 @@ namespace ConnectXUnitTest
         }
 
         [TestMethod]
-        public void TestInsertTokenInRasterInFullColumn() {
-
-           Assert.IsFalse(gameWithFullRaster.insertToken(0, 1, 1));
+        public void TestInsertTokenInRasterInFullColumn()
+        {
+           Assert.IsTrue(gameWithFullRaster.isColumnFull(0));
         }
 
         [TestMethod]
