@@ -187,7 +187,7 @@ namespace ConnectXLibrary
             {
                 if (getLowestAvailableRowInColumn(column) != -1)
                 {
-                    raster[row, column] = player;
+                    raster[column, row] = player;
                 }
                 return true;
             }
