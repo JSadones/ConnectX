@@ -127,31 +127,6 @@ $(document).ready(function () {
         }
     });
 
-     $(".token1").each(function () {
- 
-        var ctx = $('.token1')[0].getContext("2d");
- 
-        //draw a circle
-        ctx.fillStyle = "#427EC1"
-        ctx.beginPath();
-        ctx.arc(75, 75, 10, 0, Math.PI * 2, true);
-        ctx.closePath();
-        ctx.fill();
- 
-    });
- 
-    $(".token2").each(function () {
- 
-        var ctx = $('.token2')[0].getContext("2d");
- 
-        //draw a circle
-        ctx.fillStyle = "#EF4136"
-        ctx.beginPath();
-        ctx.arc(75, 75, 10, 0, Math.PI * 2, true);
-        ctx.closePath();
-        ctx.fill();
- 
-    });
 
      $('#form').submit(function () {
 
@@ -160,7 +135,7 @@ $(document).ready(function () {
         rows = values["rows"];
         columns = values["columns"];
 
-        window.game.newSession();
+        window.connectx.newSession();
 
         var table = createTable(rows, columns);
 
@@ -188,7 +163,8 @@ $(document).ready(function () {
             values[this.name] = $(this).val();
         });
 
-        if (!multiplayer) values["nameplayer2"] = "CPU";
+        return values;
+
     }
 
 
