@@ -170,19 +170,19 @@ namespace ConnectXLibrary
 
             if (board.getScore(PLAYER1) == board.getScore(PLAYER2)) message = "It's a tie!";
             else message = getName(board.getWinnerOfLastSession()) + " won the game!";
+            
             DialogResult dialogResult2 = MessageBox.Show(message, "Game over!", MessageBoxButtons.OK);
 
             if (dialogResult2 == DialogResult.OK)
             {
-                Menu menu = new Menu();
-                menu.Show();
+                endGame = false;
                 this.Close();
             }
         }//showSessionEndMessage
 
         private void Game_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (gameChanges && !endGame)
+            if (gameChanges && endGame)
             {
                 DialogResult dialogResult = MessageBox.Show("Are you sure you want to close the game?", "Game is still in progress", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.No) e.Cancel = true;
@@ -195,22 +195,9 @@ namespace ConnectXLibrary
 			if (gameChanges)
 			{
 				DialogResult dialogResult = MessageBox.Show("Are you sure you want to close the game?", "Game is still in progress", MessageBoxButtons.YesNo);
-				if (dialogResult == DialogResult.No)
-				{
-					
-				}
-				else
-				{
-					this.Hide();
-					Menu menu = new Menu();
-					menu.Visible = true;
-				}
-			}
-			this.Hide();
-			Menu menu2 = new Menu();
-			//menu2.Closed += (s, args) => this.Close();
-			//menu2.Show();
-			menu2.Visible = true;
+                if (dialogResult == DialogResult.Yes) showSessionEndMessage();
+            }
+            else this.Close();
         }//btnBack_Click
 
 
