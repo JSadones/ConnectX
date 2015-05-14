@@ -46,7 +46,10 @@ namespace ConnectXLibrary
         private void btnWebclient_Click(object sender, EventArgs e)
         {
             Server server = new Server();
-            server.Show();
+			this.Hide();
+			server.Closed += (s, args) => this.Close();
+			server.Show();
+
         }//btnWebclient_Click
 
         private void btnClose_Click(object sender, EventArgs e)

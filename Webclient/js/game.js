@@ -1,172 +1,228 @@
 $(document).ready(function () {
 
-    var numeric;
-    var minimum = 4;
-    var minStreak = 4;
-    var defRows = 6;
-    var defColumns = 7;
-    var faultCheck;
-    var minCheck;
-    var string;
 
+ var playerAtPlay = 1;
+            var scores = [];
+            var rows = 0;
+            var columns = 0;
+            var streak = 4;
+            var multiplayer = false;
+           
 
+            $(document).on("mouseenter", "#raster td", function() {
+               $('.' + getClassnameOfIndexedColumn($(this)).toString()).css("background-color", "red");
+            });
 
-    function correctFaults() {
+            $(document).on("mouseleave", "#raster td", function() {
+                $('.'+getClassnameOfIndexedColumn($(this)).toString()).css("background-color","transparent");
+            });
 
-        var rowCheck;
-        var columnCheck;
-        var streakCheck;
+            $(document).on("click", "#raster td", function() {
+                var column = getClassnameOfIndexedColumn($(this)).replace(/\D/g,'');
+                
+                insertToken(column); 
+            });
 
-
-
-        $("#rows").each(function () {
-            if ($(this).val() >= defRows)
-            {
-                rowCheck = true;
-                console.log('rowCheck OK');
+            function getClassnameOfIndexedColumn(thisObj) {
+                var classname = "";
+                $(thisObj.attr('class').split(' ')).each(function() { 
+                    str = this.replace('column', '');
+                    if (!isNaN(str)) {
+                        classname = this;
+                    }    
+                });
+                return classname;
             }
-            else {
-                rowCheck = false;
-                console.log('rowCheck Niet OK');
+
+            function insertToken(column) {
+                ajaxCall(callback, "insertToken", column, playerAtPlay);
             }
-        });
-            
-            
-        $("#columns").each(function () {
-            if ($(this).val() >= defColumns)
-                {
-                columnCheck = true;
-                console.log('columnCheck OK');
+
+            function insertTokenByAI() {
+                var column = ~~(Math.random() * columns);
+                insertToken(column);
+            }
+
+            function nextGame() {
+                initializeRaster();
+            }
+
+            function endGame() {
+                showWinner();
+                initializeRaster();
+                resetScores();
+                showMenu();
+            }
+
+            function showWinner() {
+                if (scores[1] == scores[2])
+                    alert("It's a tie!");
+                else if (scores[1] > scores[2])
+                    alert("Player 1 won the session");
+                else alert("Player 2 won the session");            
+            }
+
+            function showMenu() {
+                hide();
+                window.menu.show();
+            }
+
+            function resetScores() {
+                $("#player1").html("0");
+                $("#player2").html("0");
+            }
+
+            function initializeRaster() {
+                for (var i=0; i<columns; i++) {
+                    for (var j=0; j<rows;j++) {
+                        $('.row'+j+'.column'+i).html("-");
+
+                    }
                 }
-            else
+            }
+
+            function callback(data) {
+                console.log(data);
+                if (data.request.action =="insertToken") {
+
+                    if(data.status == true) {
+
+                        processInsertedToken(data.response);
+                        
+
+                    } else {
+                        if (!multiplayer && playerAtPlay == 2) insertTokenByAI();
+                        else alert('column full');
+                    }
+                
+                } else if (data.request.action =="nextGame") {
+                    if(data.status == true) {
+                        initializeRaster();
+                        playerAtPlay = 1;
+
+                    } 
+                
+                } 
+            }
+
+            function processInsertedToken(response) {
+                $('.row'+response.row+'.column'+response.column).addClass('token'+response.player);
+                checkIfGameIsWon(response);
+                console.log("aa");
+            }
+
+            function checkIfGameIsWon(response) {
+                if (response.won == "True")
+                {   
+                    alert("Game won by player " + response.player);
+                    scores[response.player]++;
+                    $('#player'+response.player).html(scores[response.player]);
+
+                    if(confirm("Play another game?")) {
+                        ajaxCall(callback, "nextGame");
+                    } else endGame();
+
+                } else if (response.full == "True")
                 {
-                columnCheck = false;
-                console.log('columnCheck Niet OK')
+                    alert("Raster full");
+                    if(confirm("Play another game?")) {
+                        ajaxCall(callback, "nextGame");
+                    } else endGame();
+
+                } else{
+                    
+                    console.log(playerAtPlay);
+                    if (playerAtPlay == 1) playerAtPlay = 2;
+                    else playerAtPlay = 1;
+
+                    if (!multiplayer && playerAtPlay == 2 ) {
+                        insertTokenByAI();
+                    }
                 }
-        });
-
-
-        $("#streak").each(function () {
-
-            if ($(this).val() >= minStreak) {
-                streakCheck = true;
-                console.log('streakCheck OK');
             }
-            else {
-                streakCheck = false;
-                console.log('streakCheck Niet OK');
-            }
-        });
 
-        if (rowCheck == true && columnCheck == true && streakCheck == true) {
-            return faultCheck = true;
-        }
-        else {
-            $("#rows").val('6');
-            $("#columns").val('7');
-            $("#streak").val('4');
-            console.log('velden gecorrigeerd');
-        }
+            function ajaxCall(callback) {
 
+                var d = {action:arguments[1]}
 
-    }
+                switch (d.action) {
+                    case "startGame" : 
+                        d.rows = arguments[2];
+                        d.columns = arguments[3];
+                        d.streak = arguments[4];
+                        break;
+                    case "insertToken":
+                        d.column = arguments[2];
+                        d.player = arguments[3];
 
+                        break;
+                }
+                console.log(d);
 
-    function checkInputs() {
-
-
-        $(".numeric").each(function () {
-            if (!isNaN($(this).val()) && $(this).val() != "") {
-                console.log("nummer");
-                numeric = true;
+                $.support.cors = true;
+                $.ajax({
+                    type: "POST",
+                    crossdomain: true,
+                    contentType: "application/json; charset=utf-8",
+                    url: "http://127.0.0.1:8000/",
+                    dataType: "jsonp",
+                    data: d,
+                    success: function (data) {
+                      callback(data);
+                    }
+                });
 
             }
-            else {
-                console.log("geen nummer");
-                numeric = false;
+
+            function createTable(rows, columns) {
+                var content = "<table width='70%' id='raster'>";
+                    
+                for (var i = rows - 1; i >= 0; i--) {
+                    content += '<tr>';
+                    for (var j = 0; j < columns; j++) {
+                        content += "<td class='column"+j+" row"+i+"'>_</td>"
+                    }
+                    content += '</tr>';
+                }
+                content += '</table>';
+
+                return content;
             }
-        });
 
-        $(".minimum").each(function () {
-            if ($(this).val() >= minimum) {
-                console.log("minimum voldaan");
-                minCheck = true;
+            function setNames(player1, player2) {
+                $("#nameplayer1").html(player1);
+                $("#nameplayer2").html(player2);
+            }
+
+            function show() {
+                $( "#stats" ).show();
+                $( "#raster" ).show();
+            }
+
+            function hide() {
+                $( "#stats" ).hide();
+                $( "#raster" ).hide();
 
             }
-            else {
-                console.log("te klein");
-                minCheck = false;
+
+            function start(rows, columns, streak, namePlayer1, namePlayer2) {
+
+
+                var table = createTable(rows, columns);
+
+                ajaxCall(callback, "startGame", rows, columns, streak);
+                scores[1] = 0;
+                scores[2] = 0; 
+                setNames(namePlayer1, namePlayer2);
+                
+                $( "#rasterwrapper" ).html(table);
+                show();
+
             }
-        });
 
-        $(".string").each(function () {
-            if ($(this).val() != "") {
-                console.log("string");
-                string = true;
-
+            window.game.start = start;
+            window.connectx = {};
+            window.connectx.newSession = function () {
             }
-            else {
-                console.log("geen string");
-                string = false;
-            }
-        });
-    }
-
-    $("#form").children().change(function () {
-
-        checkInputs();
-        correctFaults();
-
-        if (numeric == true && string == true && minCheck == true && faultCheck == true) {
-            $("#startgame").prop('disabled', false);
-            console.log("check klopt");
-        }
-        else {
-            $("#startgame").prop('disabled', true);
-            console.log("check klopt niet");
-        }
-    });
-
-
-     $('#form').submit(function () {
-
-        values = processFormInputs();
-
-        rows = values["rows"];
-        columns = values["columns"];
-
-        window.connectx.newSession();
-
-        var table = createTable(rows, columns);
-
-        ajaxCall(callback, "startGame", values["rows"], values["columns"], values["streak"]);
-
-        setNames(values["nameplayer1"],values["nameplayer2"]);
-        
-        $( "#rasterwrapper" ).html(table);
-
-
-        window.game.show();
-        hide();
-
-        return false;
-
-    });
-
-    function hide() {
-        $('#options').hide();
-    }
-
-    function processFormInputs() {
-
-        $('#form :input').each(function() {
-            values[this.name] = $(this).val();
-        });
-
-        return values;
-
-    }
-
-
 
 });
