@@ -241,6 +241,7 @@ namespace ConnectXLibrary
                         board.switchPlayerAtTurn();
                         showPlayerAtTurn();
                     }
+                    else endGame = !endGame;
                 }
 
                 if (!multiplayer)

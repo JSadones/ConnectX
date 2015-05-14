@@ -208,7 +208,11 @@ namespace ConnectXLibrary
             listenThread.Abort();
             listener.Stop();
             listener.Close();
-            this.Close();
+
+			this.Hide();
+			Menu menu = new Menu();
+			menu.Closed += (s, args) => this.Close();
+			menu.Show();
 		}//btnStopServer_Click
 
 		private void Server_FormClosing(object sender, FormClosingEventArgs e)
@@ -216,6 +220,11 @@ namespace ConnectXLibrary
 			listenThread.Abort();
 			listener.Stop();
 			listener.Close();
+
+			this.Hide();
+			Menu menu = new Menu();
+			menu.Closed += (s, args) => this.Close();
+			menu.Show();
 		}//Server_FormClosing
     }
 }
