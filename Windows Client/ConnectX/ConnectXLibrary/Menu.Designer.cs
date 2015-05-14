@@ -186,22 +186,22 @@
             // radioMedium
             // 
             this.radioMedium.AutoSize = true;
-            this.radioMedium.Checked = true;
             this.radioMedium.Location = new System.Drawing.Point(24, 131);
             this.radioMedium.Name = "radioMedium";
             this.radioMedium.Size = new System.Drawing.Size(106, 29);
             this.radioMedium.TabIndex = 7;
-            this.radioMedium.TabStop = true;
             this.radioMedium.Text = "Medium";
             this.radioMedium.UseVisualStyleBackColor = true;
             // 
             // radioEasy
             // 
             this.radioEasy.AutoSize = true;
+            this.radioEasy.Checked = true;
             this.radioEasy.Location = new System.Drawing.Point(24, 30);
             this.radioEasy.Name = "radioEasy";
             this.radioEasy.Size = new System.Drawing.Size(78, 29);
             this.radioEasy.TabIndex = 6;
+            this.radioEasy.TabStop = true;
             this.radioEasy.Text = "Easy";
             this.radioEasy.UseVisualStyleBackColor = true;
             // 
