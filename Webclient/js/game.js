@@ -10,7 +10,7 @@ $(document).ready(function () {
            
 
             $(document).on("mouseenter", "#raster td", function() {
-               $('.' + getClassnameOfIndexedColumn($(this)).toString()).css("background-color", "red");
+               $('.' + getClassnameOfIndexedColumn($(this)).toString()).css("background-color", "dimgray");
             });
 
             $(document).on("mouseleave", "#raster td", function() {
@@ -180,7 +180,7 @@ $(document).ready(function () {
                 for (var i = rows - 1; i >= 0; i--) {
                     content += '<tr>';
                     for (var j = 0; j < columns; j++) {
-                        content += "<td class='column"+j+" row"+i+"'>&nsbp;</td>"
+                        content += "<td class='column"+j+" row"+i+"'>&nbsp;</td>"
                     }
                     content += '</tr>';
                 }
