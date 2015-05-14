@@ -180,7 +180,7 @@ $(document).ready(function () {
                 for (var i = rows - 1; i >= 0; i--) {
                     content += '<tr>';
                     for (var j = 0; j < columns; j++) {
-                        content += "<td class='column"+j+" row"+i+"'>_</td>"
+                        content += "<td class='column"+j+" row"+i+"'>&nsbp;</td>"
                     }
                     content += '</tr>';
                 }

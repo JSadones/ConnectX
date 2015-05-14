@@ -83,6 +83,28 @@
         border-right:2px solid lightgrey;
     }
 
+    label {
+       font-family:'Palatino Linotype', 'Times New Roman';
+       font-size:0.8em;
+       color:dimgrey;
+       line-height:inherit;
+       padding-right:20px;
+    }
+
+    button {
+       font-size:1.5em;
+       padding:5px,5px,5px,5px;
+    }
+
+    span {
+       font-family:'Palatino Linotype', 'Times New Roman';
+	   clear:both;
+       font-size:1.3em;
+       text-align:left;
+	   padding-top:20px;
+       margin-left:10%;
+       line-height:150%;
+	}
 
     .token1 {
 	background-image: url(images/redToken_tn.png);
@@ -167,20 +189,6 @@
         margin-top:110%;
         padding:3px 35px 5px 40px;
         line-height:150%;
-    }
-	
-	span {
-	    clear:both;
-		font-weight:bold;
-        font-size:1.1em;
-        text-align:left;
-		margin-top:10%;
-        margin-left:40px;
-        line-height:150%;
-	}
-
-    button {
-        font-size:1.5em;
     }
 
     #start
