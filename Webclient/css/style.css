@@ -44,9 +44,7 @@
     #raster {
         margin-left:160px;
         border:5px solid black;
-        background-image:url(images/dark2-bg.jpg);
-        background-repeat:no-repeat;
-        background-position:center,center;
+        background-color:black;
         
     }
 
