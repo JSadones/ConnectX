@@ -207,7 +207,7 @@ $(document).ready(function(){
             }
 
             window.connectx = {};
-            window.newSession {
+            window.connectx.newSession = function () {
                 scores[1] = 0;
                 scores[2] = 0; 
             }
