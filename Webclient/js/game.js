@@ -38,8 +38,7 @@ $(document).ready(function () {
 
             function insertTokenByAI() {
                 var column = ~~(Math.random() * columns);
-                alert(column);
-                insertToken(column);
+                ajaxCall(callback, "insertTokenByAI");
             }
 
             function nextGame() {
@@ -74,25 +73,24 @@ $(document).ready(function () {
             function initializeRaster() {
                 for (var i=0; i<columns; i++) {
                     for (var j=0; j<rows;j++) {
-                        $('.row'+j+'.column'+i).html("&nbsp;");
+                        $('.row'+j+'.column'+i).removeClass( "token1" );
+                        $('.row'+j+'.column'+i).removeClass( "token2" );
                     }
                 }
             }
 
             function callback(data) {
                 console.log(data);
-                if (data.request.action =="insertToken") {
+                if (data.request.action =="insertToken" || data.request.action =="insertTokenByAI") {
 
                     if(data.status == true) {
 
                         processInsertedToken(data.response);
-                        
-
-                    } else {
-                        if (!multiplayer && playerAtPlay == 2) insertTokenByAI();
-                        else alert('column full');
-                    }
-                
+                     
+                    } else if (!multiplayer && playerAtPlay == 2) {
+                        insertTokenByAI();
+                    } else alert('column full');
+                    
                 } else if (data.request.action =="nextGame") {
                     if(data.status == true) {
                         initializeRaster();
@@ -183,7 +181,6 @@ $(document).ready(function () {
                 }
                 content += '</table>';
 
-                initializeRaster();
 
                 return content;
             }

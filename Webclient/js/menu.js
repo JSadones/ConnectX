@@ -20,7 +20,7 @@ $(document).ready(function () {
     var minCheck;
     var string;
 
-
+/*
 
     function correctFaults() {
 
@@ -136,6 +136,10 @@ $(document).ready(function () {
             $("#startgame").prop('disabled', true);
             console.log("check klopt niet");
         }
+    });*/
+
+    $("#form input[name=rows]").on('input', function() {
+    // do something
     });
 
 
