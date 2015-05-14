@@ -189,9 +189,10 @@ namespace ConnectXLibrary
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            Menu menu = new Menu();
-            menu.Visible = true;
+			this.Hide();
+			Menu menu = new Menu();
+			menu.Closed += (s, args) => this.Close();
+			menu.Show();
         }//btnBack_Click
 
 
