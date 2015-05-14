@@ -9,6 +9,8 @@
     <script src="js/init.js"></script>
     <script type="text/javascript" src="js/menu.js"></script>
     <script type="text/javascript" src="js/game.js"></script>
+
+    <script src="parsley.js"></script>
 	<noscript>
         <link rel="stylesheet" href="css/reset.css" />
         <link rel="stylesheet" href="css/normalize.css" />
@@ -55,111 +57,47 @@
                         </div>
                         <div id='options'>
 
-<form action="" id="registration-form">
-    <p>
-        E-mail
-        <input name="email" data-validation="email"/>
-    </p>
-    <p>
-        User name
-        <input name="user"
-               data-validation="length alphanumeric" break=""
-               data-validation-length="3-12" break2=""
-               data-validation-error-msg="User name has to be an alphanumeric value (3-12 chars)"/>
-    </p>
-    <p>
-        Password
-        <input name="pass_confirmation" data-validation="strength" break="" data-validation-strength="2"/>
-    </p>
-    <p>
-        Repeat password
-        <input name="pass" data-validation="confirmation"/>
-    </p>
-    <p>
-        Birth date
-        <input name="birth" data-validation="birthdate" break="" data-validation-help="yyyy-mm-dd"/>
-    </p>
-    <p>
-        Country
-        <input name="country" id="country" data-validation="country"/>
-    </p>
-    <p>
-        Profile image
-        <input name="image" type="file" data-validation="mime size required" break1=""
-               data-validation-allowing="jpg, png" break2=""
-               data-validation-max-size="300kb"  break3=""
-               data-validation-error-msg-required="No image selected" />
-    </p>
-    <p>
-        User Presentation (<span id="pres-max-length">100</span> characters left)
-        <textarea name="presentation" id="presentation"></textarea>
-    </p>
-    <p>
-        <input type="checkbox" data-validation="required" break=""
-               data-validation-error-msg="You have to agree to our terms" />
-        I agree to the <a href="..." target="_blank">terms of service</a>
-    </p>
-    <p>
-        <input type="submit" value="Validate"/>
-        <input type="reset" value="Reset form" />
-    </p>
-</form>
                             <form id='form'>
                                 <table>
-                                    <tr>
-                                        <td colspan='2' class='tooltip-error'>error</td>
-                                    </tr>
                                     <tr>
                                         <td>
                                             <label for="rows">Rows</label>
                                         </td>
                                         <td><p>
-                                            <input  data-validation="number" data-validation-allowing="range[1;100]" type="text" name='rows' class="numeric minimum" id="rows">
+                                            <input  type="number" min="6" data-parsley-min="6" max="10" data-parsley-max="10" name='rows' required id="rows">
                                         </p>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan='2' class='tooltip-error'>error</td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <label for="columns">Columns</label>
                                         </td>
                                         <td>
-                                            <input type='text' name='columns' class="numeric minimum" id="columns">
+                                            <input type='number'  min="6" data-parsley-min="6" max="10" data-parsley-max="10" name='columns' required id="columns">
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan='2' class='tooltip-error'>error</td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <label for="streak">Streak</label>
                                         </td>
                                         <td>
-                                            <input type='text' name='streak' class="numeric minimum" id="streak">
+                                            <input type='number'  min="6" data-parsley-min="6" max="10" data-parsley-max="10" required id="streak">
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan='2' class='tooltip-error'>error</td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <label for="nameplayer1">Player 1</label>
                                         </td>
                                         <td>
-                                            <input type='text' name='nameplayer1' class="string">
+                                            <input type='text' name='nameplayer1' required>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan='2'><div class='tooltip-error'>error</div></td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <label for="nameplayer2" class='multiplayer-option'>Player 2</label>
                                         </td>
                                         <td>
-                                            <input type='text' name='nameplayer2' class="string multiplayer-option">
+                                            <input type='text' name='nameplayer2' class="multiplayer-option" required>
                                         </td>
                                     </tr>
                                     <tr>
@@ -189,8 +127,8 @@
         </div>
     </footer>
     
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.2.1/jquery.form-validator.min.js"></script>
-
-    <script> $.validate(); </script>
+<script type="text/javascript">
+  $('#form').parsley();
+</script>
 </body>
 </html>

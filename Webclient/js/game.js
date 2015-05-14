@@ -102,7 +102,7 @@ $(document).ready(function () {
             }
 
             function processInsertedToken(response) {
-                $('.row'+response.row+'.column'+response.column).addClass('token'+response.player);
+                $('.row'+response.row+'.column'+response.column+' > div').addClass('token'+response.player);
                 checkIfGameIsWon(response);
             }
 
@@ -175,7 +175,7 @@ $(document).ready(function () {
                 for (var i = rows - 1; i >= 0; i--) {
                     content += '<tr>';
                     for (var j = 0; j < columns; j++) {
-                        content += "<td class='column"+j+" row"+i+"'></td>"
+                        content += "<td class='column"+j+" row"+i+"'><div id='tokenholder'></div></td>"
                     }
                     content += '</tr>';
                 }
