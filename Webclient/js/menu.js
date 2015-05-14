@@ -175,10 +175,8 @@ $(document).ready(function () {
         var namePlayer1 = values["nameplayer1"];
         var namePlayer2 = values["nameplayer2"];
 
-        window.connectx.newSession();
 
         window.game.start(rows, columns, streak, namePlayer1, namePlayer2);
-
         hideForm();
 
         return false;

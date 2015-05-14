@@ -1,12 +1,10 @@
 $(document).ready(function () {
 
-
- var playerAtPlay = 1;
+            var playerAtPlay = 1;
             var scores = [];
             var rows = 0;
             var columns = 0;
             var streak = 4;
-            var multiplayer = false;
            
 
             $(document).on("mouseenter", "#raster td", function() {
@@ -40,6 +38,7 @@ $(document).ready(function () {
 
             function insertTokenByAI() {
                 var column = ~~(Math.random() * columns);
+                alert(column);
                 insertToken(column);
             }
 
@@ -75,8 +74,7 @@ $(document).ready(function () {
             function initializeRaster() {
                 for (var i=0; i<columns; i++) {
                     for (var j=0; j<rows;j++) {
-                        $('.row'+j+'.column'+i).html("-");
-
+                        $('.row'+j+'.column'+i).html("&nbsp;");
                     }
                 }
             }
@@ -108,7 +106,6 @@ $(document).ready(function () {
             function processInsertedToken(response) {
                 $('.row'+response.row+'.column'+response.column).addClass('token'+response.player);
                 checkIfGameIsWon(response);
-                console.log("aa");
             }
 
             function checkIfGameIsWon(response) {
@@ -131,7 +128,7 @@ $(document).ready(function () {
 
                 } else{
                     
-                    console.log(playerAtPlay);
+                    console.log(playerAtPlay+"a");
                     if (playerAtPlay == 1) playerAtPlay = 2;
                     else playerAtPlay = 1;
 
@@ -180,11 +177,13 @@ $(document).ready(function () {
                 for (var i = rows - 1; i >= 0; i--) {
                     content += '<tr>';
                     for (var j = 0; j < columns; j++) {
-                        content += "<td class='column"+j+" row"+i+"'>&nbsp;</td>"
+                        content += "<td class='column"+j+" row"+i+"'></td>"
                     }
                     content += '</tr>';
                 }
                 content += '</table>';
+
+                initializeRaster();
 
                 return content;
             }
@@ -205,8 +204,10 @@ $(document).ready(function () {
 
             }
 
-            function start(rows, columns, streak, namePlayer1, namePlayer2) {
-
+            start = function (r, c, s, namePlayer1, namePlayer2) {
+                
+                rows = r;
+                columns = c;
 
                 var table = createTable(rows, columns);
 
