@@ -29,6 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Server));
 			this.label1 = new System.Windows.Forms.Label();
 			this.btnStopServer = new System.Windows.Forms.Button();
 			this.SuspendLayout();
@@ -62,6 +63,7 @@
 			this.ClientSize = new System.Drawing.Size(331, 261);
 			this.Controls.Add(this.btnStopServer);
 			this.Controls.Add(this.label1);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "Server";
 			this.Text = "Server";
 			this.Load += new System.EventHandler(this.Server_Load);
