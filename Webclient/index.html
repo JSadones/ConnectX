@@ -54,17 +54,18 @@
                              <button type="button" id='play-multiplayer'>Play multiplayer</button> 
                         </div>
                         <div id='options'>
-
                             <form id='form' data-parsley-validate>
                                 <table>
+                                    <tr>
+                                        <th colspan='2'>Settings</th>
+                                    </tr>
                                     <tr>
                                         <td>
                                             <label for="rows">Rows</label>
                                         </td>
-                                        <td><p>
-                                            <input  type="number" min="4" data-parsley-min="4" max="10" data-parsley-max="10" name='rows' value='6' required id="rows">
-                                        </p>
-                                        </td>
+                                        <td>
+                                            <input  type="number" min="4" data-parsley-min="4" max="10" data-parsley-max="10" name='rows' value='6' size='5' required id="rows">
+                                       </td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -88,10 +89,10 @@
                                         </td>
                                         <td>
                                             
-                                            <input type="radio" name="difficulty" value="1" checked>Easy<br>
-                                            <input type="radio" name="difficulty" value="2" >Medium<br>
-                                            <input type="radio" name="difficulty" value="3" >Hard<br>
-                                            <input type="radio" name="difficulty" value="4" >Hardcore
+                                            <input type="radio" name="difficulty" value="1" id='difficulty1' checked><label for="difficulty1">Easy</label><br>
+                                            <input type="radio" name="difficulty" value="2"  id='difficulty2'><label for="difficulty2">Medium</label><br>
+                                            <input type="radio" name="difficulty" value="3"  id='difficulty3'><label for="difficulty3">Hard</label><br>
+                                            <input type="radio" name="difficulty" value="4"  id='difficulty4'><label for="difficulty4">Hardcore</label>
                                         </td>
                                     </tr>
                                     <tr>

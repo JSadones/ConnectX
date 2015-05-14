@@ -15,7 +15,6 @@
 	}
 
     h1 {
-   //     font-family:'Palatino Linotype', 'Times New Roman';
         font-size:18pt;
         margin-right:20px;
         padding-left:50px;
@@ -25,8 +24,7 @@
     }
 
 
-    h2 {
-   //     font-family:'Palatino Linotype', 'Times New Roman';
+    #header h2 {
         font-size:initial;
         text-align:right;
         margin-right:50px;
@@ -83,7 +81,6 @@
     }
 
     label {
-    //   font-family:'Palatino Linotype', 'Times New Roman';
        font-size:0.8em;
        color:dimgrey;
        line-height:inherit;
@@ -96,7 +93,6 @@
     }
 
     span {
-    //   font-family:'Palatino Linotype', 'Times New Roman';
        font-weight:bold;
 	   clear:both;
        font-size:1.3em;
@@ -236,7 +232,6 @@
     }
 
  .footer p {
- //    font-family: 'Palatino Linotype', 'Times New Roman';
      font-size: 1.4em;
      clear:both;
      padding-left:50px;
@@ -260,5 +255,17 @@
      padding-right:50px;
  }
 
+input[type="number"] {
+   width:50px;
+}
 
-
+#form td {
+    font-size: 14pt;
+    line-height: 16pt;
+}
+#form th {
+    font-size: 18pt;
+    line-height: 20pt;
+    padding-bottom: 20px;
+    text-align: left;
+}
