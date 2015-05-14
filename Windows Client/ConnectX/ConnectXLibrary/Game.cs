@@ -11,10 +11,8 @@ namespace ConnectXLibrary
         private int rows, columns, tokenStreak, startWidth, startHeight, size, difficulty;
         private string namePlayer1, namePlayer2;
         bool gameChanges = false, multiplayer, endGame = false;
+        private byte NOBODY = 0, PLAYER1 = 1, PLAYER2 = 2;
 
-        private byte NOBODY = 0;
-        private byte PLAYER1 = 1;
-        private byte PLAYER2 = 2;
         Bitmap I;
         Graphics gr;
         ConnectX board;
@@ -92,16 +90,20 @@ namespace ConnectXLibrary
         private void drawGrid()
         {
             calculateSlotSize();
+            
             I = new Bitmap(rows, columns);
             gr = Graphics.FromImage(I);
+
+            
             gr = pnlGame.CreateGraphics();
+
+
             gr.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             myPen = new Pen(Brushes.Black, 1);
             startWidth = (pnlGame.Width / 2) - ((size * columns) / 2);
             startHeight = (pnlGame.Height / 2) - ((size * rows) / 2);
 
-            float x = startWidth;
-            float y = startHeight;
+            float x = startWidth, y = startHeight;
 
             gr.Clear(Color.NavajoWhite);
 
@@ -124,6 +126,7 @@ namespace ConnectXLibrary
             Graphics hud = this.CreateGraphics();
             Rectangle blueCircle = new Rectangle(85, 10, 35, 35);
             Rectangle redCircle = new Rectangle(85, 55, 35, 35);
+
             hud.DrawEllipse(blackPen, blueCircle);
             hud.DrawEllipse(blackPen, redCircle);
             hud.FillEllipse(blueBrush, blueCircle);
@@ -132,23 +135,23 @@ namespace ConnectXLibrary
 
         private void drawToken(int column, int row, int player)
         {
-            //Point location = new Point((column * size) + startWidth, -1 * rows + startHeight);
-            Rectangle circle = new Rectangle((column * size) + 5 + startWidth, ((rows - row - 1) * size) + 5 + startHeight, size - 10, size - 10);
-            gr.DrawEllipse(blackPen, circle);
+            Point location = new Point((column * size) + startWidth, -1 * rows + startHeight);
+            //Rectangle circle = new Rectangle((column * size) + 5 + startWidth, ((rows - row - 1) * size) + 5 + startHeight, size - 10, size - 10);
+            //gr.DrawEllipse(blackPen, circle);
 
-            if (player == 1)
+            if (player == PLAYER1)
             {
-                //token token = new token();
-                //token.create(1, size, location, pnlGame);
-                //pnlGame.Controls.Add(token);
-                gr.FillEllipse(blueBrush, circle);
+                token token = new token();
+                token.create(1, size, location, pnlGame, row, rows, startHeight);
+                this.Controls.Add(token);
+                //gr.FillEllipse(blueBrush, circle);
             }
             else
             {
-                //token token = new token();
-                //token.create(2, size, location, pnlGame);
-                //pnlGame.Controls.Add(token);
-                gr.FillEllipse(redBrush, circle);
+                token token = new token();
+                token.create(2, size, location, pnlGame, row, rows, startHeight);
+                this.Controls.Add(token);
+                //gr.FillEllipse(redBrush, circle);
             }
         }//drawToken
 
@@ -214,8 +217,8 @@ namespace ConnectXLibrary
         //===GUI Methods===
         private void updateScores()
         {
-            lblPointsPlayer1.Text = board.getScore(1).ToString();
-            lblPointsPlayer2.Text = board.getScore(2).ToString();
+            lblPointsPlayer1.Text = board.getScore(PLAYER1).ToString();
+            lblPointsPlayer2.Text = board.getScore(PLAYER2).ToString();
         }//updateScores
 
         private void showPlayerAtTurn()
@@ -229,11 +232,11 @@ namespace ConnectXLibrary
         //===Input Methods===
         private void pnlGame_MouseClick(object sender, MouseEventArgs e)
         {
-            for (int i = 0; i < columns; i++)
+            for (int column = 0; column < columns; column++)
             {
-                if (i * size + startWidth <= e.X && e.X <= (size * (i + 1) + startWidth))
+                if (column * size + startWidth <= e.X && e.X <= (size * (column + 1) + startWidth))
                 {
-                    processTurn(i);
+                    processTurn(column);
                     break;
                 }
             }
@@ -352,14 +355,17 @@ namespace ConnectXLibrary
         private void calculateSlotSize()
         {
             size = 480 / rows;
-        }//calculateSlotSize
+        }
         #endregion
     }
 
     class token : PictureBox
     {
         #region State
+        Timer t;
         Random r = new Random();
+        int row, rows, size, startHeight;
+        bool completed = false;
         #endregion
 
         #region Constructor
@@ -370,21 +376,29 @@ namespace ConnectXLibrary
         #endregion
 
         #region Methods
-        public void create(int player, int size, Point location, Panel pnlGame)
+        public void create(int player, int size, Point location, Panel pnlGame, int row, int rows, int startHeight)
         {
+            this.row = row;
+            this.rows = rows;
+            this.size = size;
+            this.startHeight = startHeight;
+
             this.Parent = pnlGame;
             this.Location = location;
-            //this.MinimumSize = new Size(7, 7);
             this.Size = new Size(size, size);
             this.BackColor = Color.Transparent;
             this.BackgroundImageLayout = ImageLayout.Stretch;
+
             if (player == 1) this.BackgroundImage = Resources.blueToken;
             else this.BackgroundImage = Resources.redToken;
+            while(completed){
+                System.Diagnostics.Debug.WriteLine("KANKERHOMOS");
+            }
         }//create
 
         private void move()
         {
-            Timer t = new Timer();
+            t = new Timer();
             t.Interval = 10;
 
             t.Tick += new EventHandler(t_Tick);
@@ -395,6 +409,10 @@ namespace ConnectXLibrary
         private void t_Tick(object sender, EventArgs e)
         {
             this.Location += new Size(0, 5);
+            if (this.Location.Y > ((rows - row - 1) * size) + startHeight) {
+                completed = !completed;
+                t.Stop();
+            }
         }//t_Tick
         #endregion
     }

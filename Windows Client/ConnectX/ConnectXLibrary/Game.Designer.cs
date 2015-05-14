@@ -42,8 +42,8 @@
             this.lblStreak = new System.Windows.Forms.Label();
             this.lblStreakNumber = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
-            this.txtInsertedIntoPlayer = new System.Windows.Forms.TextBox();
-            this.txtInsertIntoAI = new System.Windows.Forms.TextBox();
+            this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblName
@@ -190,19 +190,10 @@
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // txtInsertedIntoPlayer
+            // fileSystemWatcher1
             // 
-            this.txtInsertedIntoPlayer.Location = new System.Drawing.Point(728, 43);
-            this.txtInsertedIntoPlayer.Name = "txtInsertedIntoPlayer";
-            this.txtInsertedIntoPlayer.Size = new System.Drawing.Size(100, 20);
-            this.txtInsertedIntoPlayer.TabIndex = 22;
-            // 
-            // txtInsertIntoAI
-            // 
-            this.txtInsertIntoAI.Location = new System.Drawing.Point(728, 69);
-            this.txtInsertIntoAI.Name = "txtInsertIntoAI";
-            this.txtInsertIntoAI.Size = new System.Drawing.Size(100, 20);
-            this.txtInsertIntoAI.TabIndex = 23;
+            this.fileSystemWatcher1.EnableRaisingEvents = true;
+            this.fileSystemWatcher1.SynchronizingObject = this;
             // 
             // Game
             // 
@@ -210,8 +201,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::ConnectXLibrary.Properties.Resources.bg;
             this.ClientSize = new System.Drawing.Size(984, 693);
-            this.Controls.Add(this.txtInsertIntoAI);
-            this.Controls.Add(this.txtInsertedIntoPlayer);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.lblStreakNumber);
             this.Controls.Add(this.lblStreak);
@@ -232,6 +221,7 @@
             this.Name = "Game";
             this.Text = "Connect X";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Game_FormClosing);
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -251,8 +241,7 @@
         private System.Windows.Forms.Label lblTurnName;
 		private System.Windows.Forms.Label lblStreak;
         private System.Windows.Forms.Label lblStreakNumber;
-		private System.Windows.Forms.Button btnBack;
-        private System.Windows.Forms.TextBox txtInsertedIntoPlayer;
-        private System.Windows.Forms.TextBox txtInsertIntoAI;
+        private System.Windows.Forms.Button btnBack;
+        private System.IO.FileSystemWatcher fileSystemWatcher1;
     }
 }
