@@ -66,7 +66,9 @@
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "Server";
 			this.Text = "Server";
-			this.Load += new System.EventHandler(this.Server_Load);
+			this.Load += new System.EventHandler(this.Server_Load); 
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Server_FormClosing);
+
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
