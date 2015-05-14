@@ -248,10 +248,12 @@ namespace ConnectXLibrary
             //1  -1    --  Check diagonal top to right
 
             //Check left and right
+            /*
             if (isStreakReachedFromCoordinateInDirection(row, column, 0, 1) || isStreakReachedFromCoordinateInDirection(row, column, 0, -1) ||
                 isStreakReachedFromCoordinateInDirection(row, column, -1, 1) || isStreakReachedFromCoordinateInDirection(row, column, 1, 1) ||
                 isStreakReachedFromCoordinateInDirection(row, column, -1, -1) || isStreakReachedFromCoordinateInDirection(row, column, 1, -1) ||
-                isStreakReachedFromCoordinateInDirection(row, column, -1, 0)) return true;
+                isStreakReachedFromCoordinateInDirection(row, column, -1, 0)) return true;*/
+            if (isStreakReachedFromCoordinateInDirection(row, column, -1, 0)) return true;
             else resetCounter();
             return false;
         }//isCurrentGameWon
