@@ -5,8 +5,9 @@ $(document).ready(function () {
     var rows = 0;
     var columns = 0;
     var streak = 4;
+    var ajaxrequest = false;
    
-    
+
     $(document).on("mouseenter", "#raster td", function() {
        $('.' + getClassnameOfIndexedColumn($(this)).toString()).css("background-color", "dimgray");
     });
@@ -18,7 +19,7 @@ $(document).ready(function () {
     $(document).on("click", "#raster td", function() {
         var column = getClassnameOfIndexedColumn($(this)).replace(/\D/g,'');
         
-        insertToken(column); 
+        if (ajaxrequest == false) {insertToken(column); console.log("start false");}
     });
 
     function getClassnameOfIndexedColumn(thisObj) {
@@ -37,7 +38,6 @@ $(document).ready(function () {
     }
 
     function insertTokenByAI() {
-        var column = ~~(Math.random() * columns);
         ajaxCall(callback, "insertTokenByAI");
     }
 
@@ -73,8 +73,8 @@ $(document).ready(function () {
     function initializeRaster() {
         for (var i=0; i<columns; i++) {
             for (var j=0; j<rows;j++) {
-                $('.row'+j+'.column'+i).removeClass( "token1" );
-                $('.row'+j+'.column'+i).removeClass( "token2" );
+                $('.row'+j+'.column'+i+' > div').removeClass( "token1" );
+                $('.row'+j+'.column'+i+' > div').removeClass( "token2" );
             }
         }
     }
@@ -103,6 +103,8 @@ $(document).ready(function () {
             if (data.status == true) show();
             else showMenu();
         }
+        ajaxrequest = false;
+        console.log("end false");
     }
 
     function processInsertedToken(response) {
@@ -138,9 +140,12 @@ $(document).ready(function () {
                 insertTokenByAI();
             }
         }
+
     }
 
     function ajaxCall(callback) {
+        console.log("request true");
+        ajaxrequest = true;
 
         var d = {action:arguments[1]}
 
@@ -206,7 +211,6 @@ $(document).ready(function () {
     }
 
     start = function (r, c, s, namePlayer1, namePlayer2) {
-        ajaxCall(callback, "startGame", rows, columns, streak);
         
         rows = r;
         columns = c;
@@ -216,6 +220,7 @@ $(document).ready(function () {
         scores[1] = 0;
         scores[2] = 0; 
         setNames(namePlayer1, namePlayer2);
+        ajaxCall(callback, "startGame", rows, columns, streak);
         
         $( "#rasterwrapper" ).html(table);
         show();
