@@ -6,6 +6,15 @@ namespace ConnectXUnitTest
     [TestClass]
     public class ConnectXTester
     {
+        //We kunnen tests schrijven van:
+        //Alle richtingen van een check te laten doen
+        //Ook bv 00X0XXX , en als laatste token laten checken via column 4 (Zodat hij goed links en rechts checkt)
+        //Kijken op volle kolommen
+        //Is kolom vol of leeg
+        //Is er een winnaar of is er een TIE
+        //undoMove en makeMove (momenteel nog)
+
+        //nextGame checken of speler 1 wel aan de turn is
         #region State
         #region WinnerCheck
         //Vertical
@@ -37,9 +46,12 @@ namespace ConnectXUnitTest
         #endregion
 
         #region RasterState
-
+        private ConnectX emptyGame;
+        private ConnectX gameWithFullRaster;
+        private ConnectX gameWithOneTokenBeforeFullRaster;
+        private ConnectX game10Rows14ColumnsWithOneTokenBeforeFullRaster;
         #endregion
-        private ConnectX game;
+
         private ConnectX game10Rows14Columns;
         private ConnectX game10Rows14Columns6Streak;
 
@@ -47,9 +59,8 @@ namespace ConnectXUnitTest
         private ConnectX gameInterface10Rows14Columns;
         private ConnectX gameInterface10Rows14Columns5Streak;
         
-        private ConnectX gameWithFullRaster;
-        private ConnectX gameWithOneTokenBeforeFullRaster;
-        private ConnectX game10Rows14ColumnsWithOneTokenBeforeFullRaster;
+        
+        
         private ConnectX gameMakeMoveUndoMove;
 
         private AI aiCopy;
@@ -59,7 +70,7 @@ namespace ConnectXUnitTest
         [TestInitialize]
         public void setup() {
             // Empty game
-            game = new ConnectX();
+            emptyGame = new ConnectX();
 
             game10Rows14Columns = new ConnectX(10, 14);
             game10Rows14Columns6Streak = new ConnectX(10, 14, 6);
@@ -383,7 +394,7 @@ namespace ConnectXUnitTest
         // Is the board really empty?
 		[TestMethod]
 		public void TestIsRasterInitializedWithZeros(){
-			Assert.IsTrue(game.isInitializedWithZeros());
+			Assert.IsTrue(emptyGame.isInitializedWithZeros());
 		}
 
 		[TestMethod]
@@ -412,8 +423,8 @@ namespace ConnectXUnitTest
 		public void TestInsertTokenInRasterAndAssertThatRasterIsNotZero()
 		{
 			// Insert token for column 0 for player 1
-			game.insertToken(0, 1, 1);
-			Assert.IsFalse(game.isInitializedWithZeros());
+			emptyGame.insertToken(0, 1, 1);
+			Assert.IsFalse(emptyGame.isInitializedWithZeros());
 		}
 
         [TestMethod]
@@ -425,8 +436,8 @@ namespace ConnectXUnitTest
 
 		[TestMethod]
 		public void TestWhichPlayerPlaysCurrentTurn() {
-            game.insertToken(0, 1, 1);
-			Assert.IsTrue(game.getPlayerAtTurn() == 1);
+            emptyGame.insertToken(0, 1, 1);
+			Assert.IsTrue(emptyGame.getPlayerAtTurn() == 1);
 		}
 
 		[TestMethod]
@@ -540,8 +551,8 @@ namespace ConnectXUnitTest
         {
             gameWithFullRaster.clear();
             Assert.IsTrue(gameWithFullRaster.isInitializedWithZeros());
-            game.insertToken(0, 1, 1);
-            Assert.IsFalse(game.isInitializedWithZeros());
+            emptyGame.insertToken(0, 1, 1);
+            Assert.IsFalse(emptyGame.isInitializedWithZeros());
         }
 
         [TestMethod]
@@ -562,15 +573,15 @@ namespace ConnectXUnitTest
         [TestMethod]
         public void TestGetOverallWonPlayer()
         {
-            game.incrementScoreOfPlayer(1);
-            game.incrementScoreOfPlayer(2);
+            emptyGame.incrementScoreOfPlayer(1);
+            emptyGame.incrementScoreOfPlayer(2);
 
-            Assert.IsTrue(game.getWinnerOfLastSession() == 0);
-            game.incrementScoreOfPlayer(1);
-            Assert.IsTrue(game.getWinnerOfLastSession() == 1);
-            game.incrementScoreOfPlayer(2);
-            game.incrementScoreOfPlayer(2);
-            Assert.IsTrue(game.getWinnerOfLastSession() == 2);
+            Assert.IsTrue(emptyGame.getWinnerOfLastSession() == 0);
+            emptyGame.incrementScoreOfPlayer(1);
+            Assert.IsTrue(emptyGame.getWinnerOfLastSession() == 1);
+            emptyGame.incrementScoreOfPlayer(2);
+            emptyGame.incrementScoreOfPlayer(2);
+            Assert.IsTrue(emptyGame.getWinnerOfLastSession() == 2);
         }
         #endregion
     }
