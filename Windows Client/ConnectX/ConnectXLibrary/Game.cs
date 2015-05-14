@@ -130,7 +130,7 @@ namespace ConnectXLibrary
             hud.FillEllipse(redBrush, redCircle);
         }//drawHud
 
-        private void drawToken(int row, int column, int player)
+        private void drawToken(int column, int row, int player)
         {
             //Point location = new Point((column * size) + startWidth, -1 * rows + startHeight);
             Rectangle circle = new Rectangle((column * size) + 5 + startWidth, ((rows - row - 1) * size) + 5 + startHeight, size - 10, size - 10);
@@ -242,35 +242,49 @@ namespace ConnectXLibrary
         private void processTurn(int column)
         {
             int row;
-            if (board.isValidMove(column))
+            int player;
+            if (multiplayer)
             {
-                row = board.getLowestAvailableRowInColumn(column);
-                if(board.insertToken(column, row, board.getPlayerAtTurn()))
-                { 
-                    //board.makeMovePlayer(column);
-                    drawToken(row, column, board.getPlayerAtTurn());
-                    checkTurn(row, column);
+                if (board.isValidMove(column)) {
+                    row = board.getLowestAvailableRowInColumn(column);
+                    player = board.getPlayerAtTurn();
+                    board.insertToken(column, row, player);
+                    drawToken(column, row, player);
 
-                    if (!endGame)
+                    if (!checkTurn(column, row))
                     {
                         board.switchPlayerAtTurn();
                         showPlayerAtTurn();
                     }
-                    else endGame = !endGame;
                 }
-
-                if (!multiplayer)
+            }
+            else
+            {
+                if (board.isValidMove(column))
                 {
-                    int aiColumn = insertTokenByAI();
-                    row = board.getLowestAvailableRowInColumn(aiColumn);
-                    drawToken(row, aiColumn, 2);
-                    board.makeMoveAI(aiColumn);
-                    checkTurn(row, column);
+                    row = board.getLowestAvailableRowInColumn(column);
+                    player = board.getPlayerAtTurn();
+                    board.insertToken(column, row, player);
+                    drawToken(column, row, player);
 
-                    if (!endGame)
+                    if (!checkTurn(column, row))
                     {
                         board.switchPlayerAtTurn();
                         showPlayerAtTurn();
+
+
+                        //AI Turn
+                        player = board.getPlayerAtTurn();
+                        int aiColumn = insertTokenByAI();
+                        row = board.getLowestAvailableRowInColumn(aiColumn);
+                        board.makeMoveAI(aiColumn);
+                        drawToken(aiColumn, row, player);
+
+                        if (!checkTurn(aiColumn, row))
+                        {
+                            board.switchPlayerAtTurn();
+                            showPlayerAtTurn();
+                        }
                     }
                 }
             }
@@ -285,14 +299,13 @@ namespace ConnectXLibrary
                     column = ai.chooseRandomSpot();
                     break;
                 case 2:
-                    Random rnd = new Random();
-                    int chance = rnd.Next(0, 10);
-
-                    if (chance < 3) column = ai.makeTurn();
-                    else ai.chooseRandomSpot();
+                    column = ai.makeTurn(2);
                     break;
                 case 3:
-                    column = ai.makeTurn();
+                    column = ai.makeTurn(4);
+                    break;
+                case 4:
+                    column = ai.makeTurn(8);
                     break;
             }
             return column;
@@ -300,7 +313,7 @@ namespace ConnectXLibrary
 
 
         //===Other methods===
-        private bool checkTurn(int row, int column)
+        private bool checkTurn(int column, int row)
         {
             string title;
             if (board.isCurrentGameWon(row, column))

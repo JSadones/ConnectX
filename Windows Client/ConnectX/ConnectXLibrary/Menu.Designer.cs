@@ -62,6 +62,8 @@
             this.btnWebclient = new System.Windows.Forms.Button();
             this.picBoxBanner = new System.Windows.Forms.PictureBox();
             this.pnlStartScreen = new System.Windows.Forms.Panel();
+            this.radioHardcore = new System.Windows.Forms.RadioButton();
+            this.lblInfoHardcore = new System.Windows.Forms.Label();
             this.pnlEnterData.SuspendLayout();
             this.groupDifficulty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxPlayer2)).BeginInit();
@@ -157,6 +159,8 @@
             // 
             // groupDifficulty
             // 
+            this.groupDifficulty.Controls.Add(this.radioHardcore);
+            this.groupDifficulty.Controls.Add(this.lblInfoHardcore);
             this.groupDifficulty.Controls.Add(this.radioHard);
             this.groupDifficulty.Controls.Add(this.radioMedium);
             this.groupDifficulty.Controls.Add(this.radioEasy);
@@ -167,7 +171,7 @@
             this.groupDifficulty.ForeColor = System.Drawing.Color.White;
             this.groupDifficulty.Location = new System.Drawing.Point(689, 42);
             this.groupDifficulty.Name = "groupDifficulty";
-            this.groupDifficulty.Size = new System.Drawing.Size(265, 355);
+            this.groupDifficulty.Size = new System.Drawing.Size(265, 374);
             this.groupDifficulty.TabIndex = 21;
             this.groupDifficulty.TabStop = false;
             this.groupDifficulty.Text = "AI Difficulty";
@@ -176,7 +180,7 @@
             // radioHard
             // 
             this.radioHard.AutoSize = true;
-            this.radioHard.Location = new System.Drawing.Point(24, 257);
+            this.radioHard.Location = new System.Drawing.Point(24, 215);
             this.radioHard.Name = "radioHard";
             this.radioHard.Size = new System.Drawing.Size(76, 29);
             this.radioHard.TabIndex = 8;
@@ -186,22 +190,22 @@
             // radioMedium
             // 
             this.radioMedium.AutoSize = true;
-            this.radioMedium.Checked = true;
             this.radioMedium.Location = new System.Drawing.Point(24, 131);
             this.radioMedium.Name = "radioMedium";
             this.radioMedium.Size = new System.Drawing.Size(106, 29);
             this.radioMedium.TabIndex = 7;
-            this.radioMedium.TabStop = true;
             this.radioMedium.Text = "Medium";
             this.radioMedium.UseVisualStyleBackColor = true;
             // 
             // radioEasy
             // 
             this.radioEasy.AutoSize = true;
+            this.radioEasy.Checked = true;
             this.radioEasy.Location = new System.Drawing.Point(24, 30);
             this.radioEasy.Name = "radioEasy";
             this.radioEasy.Size = new System.Drawing.Size(78, 29);
             this.radioEasy.TabIndex = 6;
+            this.radioEasy.TabStop = true;
             this.radioEasy.Text = "Easy";
             this.radioEasy.UseVisualStyleBackColor = true;
             // 
@@ -209,11 +213,11 @@
             // 
             this.lblInfoHard.AutoSize = true;
             this.lblInfoHard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInfoHard.Location = new System.Drawing.Point(33, 289);
+            this.lblInfoHard.Location = new System.Drawing.Point(33, 247);
             this.lblInfoHard.Name = "lblInfoHard";
-            this.lblInfoHard.Size = new System.Drawing.Size(138, 20);
+            this.lblInfoHard.Size = new System.Drawing.Size(180, 20);
             this.lblInfoHard.TabIndex = 5;
-            this.lblInfoHard.Text = "(AI is unbeatable.)";
+            this.lblInfoHard.Text = "AI thinks 4 steps ahead.\r\n";
             // 
             // lblInfoMedium
             // 
@@ -221,9 +225,9 @@
             this.lblInfoMedium.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInfoMedium.Location = new System.Drawing.Point(33, 163);
             this.lblInfoMedium.Name = "lblInfoMedium";
-            this.lblInfoMedium.Size = new System.Drawing.Size(188, 60);
+            this.lblInfoMedium.Size = new System.Drawing.Size(180, 20);
             this.lblInfoMedium.TabIndex = 4;
-            this.lblInfoMedium.Text = "(AI has a 70 % chance to\r\nchoose the best available\r\ncolumn his turn.)";
+            this.lblInfoMedium.Text = "AI thinks  2 steps ahead";
             // 
             // lblInfoEasy
             // 
@@ -231,9 +235,9 @@
             this.lblInfoEasy.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInfoEasy.Location = new System.Drawing.Point(33, 62);
             this.lblInfoEasy.Name = "lblInfoEasy";
-            this.lblInfoEasy.Size = new System.Drawing.Size(163, 40);
+            this.lblInfoEasy.Size = new System.Drawing.Size(158, 40);
             this.lblInfoEasy.TabIndex = 3;
-            this.lblInfoEasy.Text = "(AI chooses his turn a\r\nrandom column.)";
+            this.lblInfoEasy.Text = "AI chooses his turn a\r\nrandom column.";
             // 
             // lblErrorStreak
             // 
@@ -452,6 +456,26 @@
             this.pnlStartScreen.Size = new System.Drawing.Size(967, 558);
             this.pnlStartScreen.TabIndex = 5;
             // 
+            // radioHardcore
+            // 
+            this.radioHardcore.AutoSize = true;
+            this.radioHardcore.Location = new System.Drawing.Point(24, 293);
+            this.radioHardcore.Name = "radioHardcore";
+            this.radioHardcore.Size = new System.Drawing.Size(118, 29);
+            this.radioHardcore.TabIndex = 10;
+            this.radioHardcore.Text = "Hardcore";
+            this.radioHardcore.UseVisualStyleBackColor = true;
+            // 
+            // lblInfoHardcore
+            // 
+            this.lblInfoHardcore.AutoSize = true;
+            this.lblInfoHardcore.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInfoHardcore.Location = new System.Drawing.Point(33, 325);
+            this.lblInfoHardcore.Name = "lblInfoHardcore";
+            this.lblInfoHardcore.Size = new System.Drawing.Size(180, 20);
+            this.lblInfoHardcore.TabIndex = 9;
+            this.lblInfoHardcore.Text = "AI thinks 8 steps ahead.";
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -524,6 +548,8 @@
         private System.Windows.Forms.RadioButton radioHard;
         private System.Windows.Forms.RadioButton radioMedium;
         private System.Windows.Forms.RadioButton radioEasy;
+        private System.Windows.Forms.RadioButton radioHardcore;
+        private System.Windows.Forms.Label lblInfoHardcore;
     }
 }
 

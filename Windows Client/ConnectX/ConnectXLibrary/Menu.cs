@@ -73,6 +73,7 @@ namespace ConnectXLibrary
                 if (radioEasy.Checked) difficulty = 1;
                 else if (radioMedium.Checked) difficulty = 2;
                 else if (radioHard.Checked) difficulty = 3;
+                else if (radioHardcore.Checked) difficulty = 4;
 
                 gameForm = new Game(difficulty, columns, rows, streaktowin, player1Name);
             }
