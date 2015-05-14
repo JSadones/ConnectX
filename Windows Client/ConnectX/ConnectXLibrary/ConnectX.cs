@@ -240,12 +240,15 @@ namespace ConnectXLibrary
         public bool isCurrentGameWon (int row, int column)
         {
             //-1  0   --  Check vertical down
+
             //0   1   --  Check horizontal right
             //0  -1   --  Check horizontal left
+
             //-1  1   --  Check diagonal bottom to right
+            //1  -1    --  Check diagonal top to right
+
             //1  1   --  Check diagonal top to left
             //-1 -1   --  Check diagonal bottom to left
-            //1  -1    --  Check diagonal top to right
 
             //Check left and right
             if (isStreakReachedFromCoordinateInDirection(row, column, 0, 1) || isStreakReachedFromCoordinateInDirection(row, column, 0, -1)) return true;
@@ -256,11 +259,11 @@ namespace ConnectXLibrary
             else resetCounter();
 
             //Check diagonal bottom to right and diagonal top to left 
-            if (isStreakReachedFromCoordinateInDirection(row, column, -1, 1) || isStreakReachedFromCoordinateInDirection(row, column, 1, 1)) return true;
+            if (isStreakReachedFromCoordinateInDirection(row, column, -1, 1) || isStreakReachedFromCoordinateInDirection(row, column, 1, -1)) return true;
             else resetCounter();
 
             //Check diagonal bottom to left and diagonal top to right
-            if (isStreakReachedFromCoordinateInDirection(row, column, -1, -1) || isStreakReachedFromCoordinateInDirection(row, column, 1, -1)) return true;
+            if (isStreakReachedFromCoordinateInDirection(row, column, -1, -1) || isStreakReachedFromCoordinateInDirection(row, column, 1, 1)) return true;
             else resetCounter();
             return false;
         }//isCurrentGameWon
