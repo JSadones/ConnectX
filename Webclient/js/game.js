@@ -153,5 +153,44 @@ $(document).ready(function () {
  
     });
 
+     $('#form').submit(function () {
+
+        values = processFormInputs();
+
+        rows = values["rows"];
+        columns = values["columns"];
+
+        window.game.newSession();
+
+        var table = createTable(rows, columns);
+
+        ajaxCall(callback, "startGame", values["rows"], values["columns"], values["streak"]);
+
+        setNames(values["nameplayer1"],values["nameplayer2"]);
+        
+        $( "#rasterwrapper" ).html(table);
+
+
+        window.game.show();
+        hide();
+
+        return false;
+
+    });
+
+    function hide() {
+        $('#options').hide();
+    }
+
+    function processFormInputs() {
+
+        $('#form :input').each(function() {
+            values[this.name] = $(this).val();
+        });
+
+        if (!multiplayer) values["nameplayer2"] = "CPU";
+    }
+
+
 
 });
