@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ConnectXLibrary
 {
-    class AI
+    public class AI
     {
         #region State
         static int MaxDepth = 8;
