@@ -189,7 +189,7 @@ namespace ConnectXLibrary
                  status = game.insertToken(column, row, player);
             }
 
-            bool won = game.isCurrentGameWon(column, row, player);
+            bool won = game.hasWinner();
             bool full = game.isTie();
 
             Dictionary<string, string> responseDictionary = new Dictionary<string, string>();

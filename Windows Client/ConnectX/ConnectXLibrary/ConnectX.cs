@@ -205,36 +205,68 @@ namespace ConnectXLibrary
             counterRight = 0;
         }//resetCounter
 
-        private bool isStreakReachedFromCoordinateInDirection(int column, int row, int stepRow, int stepColumn, int player)
-        {
-            for (int i = 1; i < streakToWin; i++)
-            {
-                try
-                {
-                    if (raster[column + i * stepColumn, row + i * stepRow] == player)
-                    {
-                        if ((stepRow == -1 && stepColumn == 0) || (stepRow == 0 && stepColumn == -1) || (stepRow == -1 && stepColumn == -1) || (stepRow == 1 && stepColumn == 1))
-                            counterLeft++;
-                        else if ((stepRow == 0 && stepColumn == 1) || (stepRow == -1 && stepColumn == 1) || (stepRow == 1 && stepColumn == -1))
-                            counterRight++;
-                        else return false;
-                    }
-                    else return false;
+        //private bool isStreakReachedFromCoordinateInDirection(int column, int row, int stepRow, int stepColumn, int player)
+        //{
+        //    for (int i = 1; i < streakToWin; i++)
+        //    {
+        //        try
+        //        {
+        //            if (raster[column + i * stepColumn, row + i * stepRow] == player)
+        //            {
+        //                if ((stepRow == -1 && stepColumn == 0) || (stepRow == 0 && stepColumn == -1) || (stepRow == -1 && stepColumn == -1) || (stepRow == 1 && stepColumn == 1))
+        //                    counterLeft++;
+        //                else if ((stepRow == 0 && stepColumn == 1) || (stepRow == -1 && stepColumn == 1) || (stepRow == 1 && stepColumn == -1))
+        //                    counterRight++;
+        //                else return false;
+        //            }
+        //            else return false;
                     
-                }
-                catch(IndexOutOfRangeException)
-                {
-                    return false;
-                }
+        //        }
+        //        catch(IndexOutOfRangeException)
+        //        {
+        //            return false;
+        //        }
 
-                if (counterLeft + counterRight == streakToWin - 1)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }//isStreakReachedFromCoordinateInDirection
+        //        if (counterLeft + counterRight == streakToWin - 1)
+        //        {
+        //            return true;
+        //        }
+        //    }
+        //    return false;
+        //}//isStreakReachedFromCoordinateInDirection
 
+        //public bool isCurrentGameWon(int column, int row, int player)
+        //{
+        //    if (player == 0) player = playerAtTurn;
+
+        //    //-1  0   --  Check vertical down
+
+        //    //0   1   --  Check horizontal right
+        //    //0  -1   --  Check horizontal left
+
+        //    //-1  1   --  Check diagonal bottom to right
+        //    //1  -1    --  Check diagonal top to right
+
+        //    //1  1   --  Check diagonal top to left
+        //    //-1 -1   --  Check diagonal bottom to left
+
+        //    //Check left and right
+        //    if (isStreakReachedFromCoordinateInDirection(column, row, 0, 1, player) || isStreakReachedFromCoordinateInDirection(column, row, 0, -1, player)) return true;
+        //    else resetCounter();
+
+        //    //Check vertical
+        //    if (isStreakReachedFromCoordinateInDirection(column, row, -1, 0, player)) return true;
+        //    else resetCounter();
+
+        //    //Check diagonal bottom to right and diagonal top to left 
+        //    if (isStreakReachedFromCoordinateInDirection(column, row, -1, 1, player) || isStreakReachedFromCoordinateInDirection(column, row, 1, -1, player)) return true;
+        //    else resetCounter();
+
+        //    //Check diagonal bottom to left and diagonal top to right
+        //    if (isStreakReachedFromCoordinateInDirection(column, row, -1, -1, player) || isStreakReachedFromCoordinateInDirection(column, row, 1, 1, player)) return true;
+        //    else resetCounter();
+        //    return false;
+        //}//isCurrentGameWon
 
         public byte getWinner()
         {
@@ -308,38 +340,6 @@ namespace ConnectXLibrary
 
             return NOBODY;
         }//getWinner
-        public bool isCurrentGameWon (int column, int row, int player)
-        {
-            if (player == 0) player = playerAtTurn;
-
-            //-1  0   --  Check vertical down
-
-            //0   1   --  Check horizontal right
-            //0  -1   --  Check horizontal left
-
-            //-1  1   --  Check diagonal bottom to right
-            //1  -1    --  Check diagonal top to right
-
-            //1  1   --  Check diagonal top to left
-            //-1 -1   --  Check diagonal bottom to left
-
-            //Check left and right
-            if (isStreakReachedFromCoordinateInDirection(column, row, 0, 1, player) || isStreakReachedFromCoordinateInDirection(column, row, 0, -1, player)) return true;
-            else resetCounter();
-
-            //Check vertical
-            if (isStreakReachedFromCoordinateInDirection(column, row, -1, 0, player)) return true;
-            else resetCounter();
-
-            //Check diagonal bottom to right and diagonal top to left 
-            if (isStreakReachedFromCoordinateInDirection(column, row, -1, 1, player) || isStreakReachedFromCoordinateInDirection(column, row, 1, -1, player)) return true;
-            else resetCounter();
-
-            //Check diagonal bottom to left and diagonal top to right
-            if (isStreakReachedFromCoordinateInDirection(column, row, -1, -1, player) || isStreakReachedFromCoordinateInDirection(column, row, 1, 1, player)) return true;
-            else resetCounter();
-            return false;
-        }//isCurrentGameWon
 
         public bool playerIsWinner()
         {
@@ -352,8 +352,6 @@ namespace ConnectXLibrary
         }//hasWinner
 
         
-
-
         //===Score Methods===
         public void incrementScoreOfPlayer(int player)
         {

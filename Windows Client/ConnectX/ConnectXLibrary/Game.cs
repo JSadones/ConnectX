@@ -281,7 +281,7 @@ namespace ConnectXLibrary
         private bool checkTurn(int column, int row)
         {
             string title;
-            if (board.isCurrentGameWon(column, row, board.getPlayerAtTurn()))
+            if (board.hasWinner())
             {
                 board.incrementScoreOfPlayer(board.getPlayerAtTurn());
                 updateScores();
