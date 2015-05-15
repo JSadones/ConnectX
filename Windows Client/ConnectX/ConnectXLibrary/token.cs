@@ -39,7 +39,7 @@ namespace ConnectXLibrary
             else this.BackgroundImage = Resources.redToken;
             while (completed)
             {
-                System.Diagnostics.Debug.WriteLine("KANKERHOMOS");
+                //Hier is hij 'gevallen'
             }
         }//create
 

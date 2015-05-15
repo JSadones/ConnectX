@@ -37,14 +37,12 @@ namespace ConnectXLibrary
 				    }
 			    }
 		    }
-		    //board.makeMoveAI(move);
 		    return move;
 	    }//makeTurn
 
 	    private double moveValue(int column) {
             int row = board.getLowestAvailableRowInColumn(column);
             board.insertToken(column, row, board.getPlayerAtTurn());
-		    //board.makeMoveAI(column);
 		    double val = alphabeta(MaxDepth, Int32.MinValue, Int32.MaxValue, false);
 		    board.undoMoveAI(column);
 		    return val;
@@ -66,7 +64,6 @@ namespace ConnectXLibrary
 				    if (!board.isColumnFull(column)) {
                         int row = board.getLowestAvailableRowInColumn(column);
                         board.insertToken(column, row, board.getPlayerAtTurn());
-					    //board.makeMoveAI(column);
 					    alpha = Math.Max(alpha, alphabeta(depth - 1, alpha, beta, false));
 					    board.undoMoveAI(column);
 					    if (beta <= alpha) break;

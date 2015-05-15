@@ -36,14 +36,10 @@
             this.lblPointsPlayer1 = new System.Windows.Forms.Label();
             this.lblPointsPlayer2 = new System.Windows.Forms.Label();
             this.lblTurn = new System.Windows.Forms.Label();
-            this.lblMouseX = new System.Windows.Forms.Label();
-            this.lblMouseY = new System.Windows.Forms.Label();
             this.lblTurnName = new System.Windows.Forms.Label();
             this.lblStreak = new System.Windows.Forms.Label();
             this.lblStreakNumber = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
-            this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
-            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblName
@@ -127,22 +123,6 @@
             this.lblTurn.Text = "Turn :";
             this.lblTurn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblMouseX
-            // 
-            this.lblMouseX.AutoSize = true;
-            this.lblMouseX.Location = new System.Drawing.Point(356, 50);
-            this.lblMouseX.Name = "lblMouseX";
-            this.lblMouseX.Size = new System.Drawing.Size(0, 13);
-            this.lblMouseX.TabIndex = 15;
-            // 
-            // lblMouseY
-            // 
-            this.lblMouseY.AutoSize = true;
-            this.lblMouseY.Location = new System.Drawing.Point(359, 82);
-            this.lblMouseY.Name = "lblMouseY";
-            this.lblMouseY.Size = new System.Drawing.Size(0, 13);
-            this.lblMouseY.TabIndex = 16;
-            // 
             // lblTurnName
             // 
             this.lblTurnName.AutoSize = true;
@@ -190,11 +170,6 @@
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // fileSystemWatcher1
-            // 
-            this.fileSystemWatcher1.EnableRaisingEvents = true;
-            this.fileSystemWatcher1.SynchronizingObject = this;
-            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -205,8 +180,6 @@
             this.Controls.Add(this.lblStreakNumber);
             this.Controls.Add(this.lblStreak);
             this.Controls.Add(this.lblTurnName);
-            this.Controls.Add(this.lblMouseY);
-            this.Controls.Add(this.lblMouseX);
             this.Controls.Add(this.lblTurn);
             this.Controls.Add(this.lblPointsPlayer2);
             this.Controls.Add(this.lblPointsPlayer1);
@@ -221,7 +194,6 @@
             this.Name = "Game";
             this.Text = "Connect X";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Game_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -236,12 +208,9 @@
         private System.Windows.Forms.Label lblPointsPlayer1;
         private System.Windows.Forms.Label lblPointsPlayer2;
         private System.Windows.Forms.Label lblTurn;
-        private System.Windows.Forms.Label lblMouseX;
-        private System.Windows.Forms.Label lblMouseY;
         private System.Windows.Forms.Label lblTurnName;
 		private System.Windows.Forms.Label lblStreak;
         private System.Windows.Forms.Label lblStreakNumber;
         private System.Windows.Forms.Button btnBack;
-        private System.IO.FileSystemWatcher fileSystemWatcher1;
     }
 }
