@@ -205,13 +205,13 @@ namespace ConnectXLibrary
             counterRight = 0;
         }//resetCounter
 
-        private bool isStreakReachedFromCoordinateInDirection(int column, int row, int stepRow, int stepColumn)
+        private bool isStreakReachedFromCoordinateInDirection(int column, int row, int stepRow, int stepColumn, int player)
         {
             for (int i = 1; i < streakToWin; i++)
             {
                 try
                 {
-                    if (raster[column + i * stepColumn, row + i * stepRow] == getPlayerAtTurn())
+                    if (raster[column + i * stepColumn, row + i * stepRow] == player)
                     {
                         if ((stepRow == -1 && stepColumn == 0) || (stepRow == 0 && stepColumn == -1) || (stepRow == -1 && stepColumn == -1) || (stepRow == 1 && stepColumn == 1))
                             counterLeft++;
@@ -235,46 +235,6 @@ namespace ConnectXLibrary
             return false;
         }//isStreakReachedFromCoordinateInDirection
 
-        public bool isCurrentGameWon (int column, int row)
-        {
-            //-1  0   --  Check vertical down
-
-            //0   1   --  Check horizontal right
-            //0  -1   --  Check horizontal left
-
-            //-1  1   --  Check diagonal bottom to right
-            //1  -1    --  Check diagonal top to right
-
-            //1  1   --  Check diagonal top to left
-            //-1 -1   --  Check diagonal bottom to left
-
-            //Check left and right
-            if (isStreakReachedFromCoordinateInDirection(column, row, 0, 1) || isStreakReachedFromCoordinateInDirection(column, row, 0, -1)) return true;
-            else resetCounter();
-
-            //Check vertical
-            if (isStreakReachedFromCoordinateInDirection(column, row, -1, 0)) return true;
-            else resetCounter();
-
-            //Check diagonal bottom to right and diagonal top to left 
-            if (isStreakReachedFromCoordinateInDirection(column, row, -1, 1) || isStreakReachedFromCoordinateInDirection(column, row, 1, -1)) return true;
-            else resetCounter();
-
-            //Check diagonal bottom to left and diagonal top to right
-            if (isStreakReachedFromCoordinateInDirection(column, row, -1, -1) || isStreakReachedFromCoordinateInDirection(column, row, 1, 1)) return true;
-            else resetCounter();
-            return false;
-        }//isCurrentGameWon
-
-        public bool playerIsWinner()
-        {
-            return getWinner() == PLAYER1;
-        }//playerIsWinner
-
-        public bool hasWinner()
-        {
-            return getWinner() != NOBODY;
-        }//hasWinner
 
         public byte getWinner()
         {
@@ -348,6 +308,50 @@ namespace ConnectXLibrary
 
             return NOBODY;
         }//getWinner
+        public bool isCurrentGameWon (int column, int row, int player)
+        {
+            if (player == 0) player = playerAtTurn;
+
+            //-1  0   --  Check vertical down
+
+            //0   1   --  Check horizontal right
+            //0  -1   --  Check horizontal left
+
+            //-1  1   --  Check diagonal bottom to right
+            //1  -1    --  Check diagonal top to right
+
+            //1  1   --  Check diagonal top to left
+            //-1 -1   --  Check diagonal bottom to left
+
+            //Check left and right
+            if (isStreakReachedFromCoordinateInDirection(column, row, 0, 1, player) || isStreakReachedFromCoordinateInDirection(column, row, 0, -1, player)) return true;
+            else resetCounter();
+
+            //Check vertical
+            if (isStreakReachedFromCoordinateInDirection(column, row, -1, 0, player)) return true;
+            else resetCounter();
+
+            //Check diagonal bottom to right and diagonal top to left 
+            if (isStreakReachedFromCoordinateInDirection(column, row, -1, 1, player) || isStreakReachedFromCoordinateInDirection(column, row, 1, -1, player)) return true;
+            else resetCounter();
+
+            //Check diagonal bottom to left and diagonal top to right
+            if (isStreakReachedFromCoordinateInDirection(column, row, -1, -1, player) || isStreakReachedFromCoordinateInDirection(column, row, 1, 1, player)) return true;
+            else resetCounter();
+            return false;
+        }//isCurrentGameWon
+
+        public bool playerIsWinner()
+        {
+            return getWinner() == PLAYER1;
+        }//playerIsWinner
+
+        public bool hasWinner()
+        {
+            return getWinner() != NOBODY;
+        }//hasWinner
+
+        
 
 
         //===Score Methods===
