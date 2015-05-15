@@ -1,3 +1,412 @@
+commit d5260cba08de74ee044aba58d3d3c9cf094accf5
+Merge: e0c8aa8 3350dc6
+Author: Jel Sadones <jel.sadones@student.howest.be>
+Date:   Fri May 15 09:08:25 2015 +0200
+
+    Merge branch 'master' of https://github.com/JSadones/ConnectX
+
+commit e0c8aa84b052521faa384569355b6c11f27cfe3d
+Author: Jel Sadones <jel.sadones@student.howest.be>
+Date:   Fri May 15 09:08:15 2015 +0200
+
+    Wireframes
+
+commit 3350dc641c04443f869f0fbc7677358ad29def5e
+Author: Shane Deconinck <shane.deconinck@gmail.com>
+Date:   Fri May 15 08:55:53 2015 +0200
+
+    processTurn deel herhaling code weggewerkt
+
+commit 6280176be2fcddbe0178b54851f6a2920665127c
+Author: Jel Sadones <jel.sadones@student.howest.be>
+Date:   Fri May 15 08:35:48 2015 +0200
+
+    #85
+
+commit e15f70a9c7cc5d727e7910fcf977a95d8248a628
+Author: Jel Sadones <jel.sadones@student.howest.be>
+Date:   Fri May 15 08:09:50 2015 +0200
+
+    Kleine shizzle
+
+commit 11401ea6cc4b8c9a5fb2b93ed096bbe4db43653a
+Merge: 9fac27f dac26f1
+Author: Shane Deconinck <shane.deconinck@gmail.com>
+Date:   Fri May 15 02:24:27 2015 +0200
+
+    Merge branch 'master' of https://github.com/JSadones/ConnectX
+
+commit 9fac27fd59ffcfa3f2c8a0e25fc97ce829f25892
+Author: Shane Deconinck <shane.deconinck@gmail.com>
+Date:   Fri May 15 02:24:15 2015 +0200
+
+    layout webclient
+
+commit dac26f16d306763b38e8d39968a98b04501a75c9
+Author: Jel Sadones <jel.sadones@student.howest.be>
+Date:   Fri May 15 02:12:23 2015 +0200
+
+    Oude drawing method terug voorlopig
+
+commit 6e6bf993ed663c40b76c02ef0f71c8503dbdb7d7
+Merge: 5e3d4e6 1573f8c
+Author: Shane Deconinck <shane.deconinck@gmail.com>
+Date:   Fri May 15 01:05:31 2015 +0200
+
+    webclient difficulty
+
+commit 5e3d4e6a68e2746cbdb26b2454fe9bfa4cfb6b2d
+Author: Shane Deconinck <shane.deconinck@gmail.com>
+Date:   Fri May 15 01:03:10 2015 +0200
+
+    WebClient difficulty + font
+
+commit 1573f8c07ee9613936d73403faefe775daa18049
+Author: Jel Sadones <jel.sadones@student.howest.be>
+Date:   Fri May 15 00:55:17 2015 +0200
+
+    token in aparte classe
+
+commit b7c8916ae11aee4ff7b3c1cc3aff960a8ab8eefc
+Author: Shane Deconinck <shane.deconinck@gmail.com>
+Date:   Fri May 15 00:46:04 2015 +0200
+
+    webclient difficulty
+
+commit 859c2f22a3cee0266626d9b9be7c807ad15b1975
+Merge: bb1ed32 acbde26
+Author: Jel Sadones <jel.sadones@student.howest.be>
+Date:   Fri May 15 00:38:35 2015 +0200
+
+    Merge remote-tracking branch 'origin/master'
+
+commit bb1ed3268ed8318a9e7a7be9c0869d6a21b50f7f
+Author: Jel Sadones <jel.sadones@student.howest.be>
+Date:   Fri May 15 00:37:54 2015 +0200
+
+    Closes #91 #76
+
+commit acbde263f516402cb977e7188fad32a1d63e200e
+Author: Matthias Haelman <matthias.haelman@student.howest.be>
+Date:   Fri May 15 00:21:49 2015 +0200
+
+    css+
+
+commit 6f40cb8a511ee68542e2a26aec0789b29c2eaab0
+Author: Matthias Haelman <matthias.haelman@student.howest.be>
+Date:   Fri May 15 00:19:56 2015 +0200
+
+    Changed font to match windowsclient, cleaned css code.
+
+commit 56f11eb3fcddf2e62e31a534b0e0dc8e45062ff9
+Author: Shane Deconinck <shane.deconinck@gmail.com>
+Date:   Fri May 15 00:01:21 2015 +0200
+
+    jquery fixes
+
+commit e4be007ebe56b5d082d88c61f4a15edd9a4cccd0
+Author: Shane Deconinck <shane.deconinck@gmail.com>
+Date:   Thu May 14 23:22:06 2015 +0200
+
+    js
+
+commit 3c11c511416e817ba2a40fb4ed2bb73c8b4acada
+Author: Shane Deconinck <shane.deconinck@gmail.com>
+Date:   Thu May 14 22:36:22 2015 +0200
+
+    js min parsley
+
+commit 58e04b573539f778689bda46843d2c3b960190cd
+Merge: 49add71 6673e0f
+Author: Shane Deconinck <shane.deconinck@gmail.com>
+Date:   Thu May 14 22:31:09 2015 +0200
+
+    Merge branch 'master' of https://github.com/JSadones/ConnectX
+
+commit 49add71d76c4bec947cefe2f635f603c984a5993
+Author: Shane Deconinck <shane.deconinck@gmail.com>
+Date:   Thu May 14 22:30:54 2015 +0200
+
+    square cells, frame achtergrond en basic validatie
+
+commit 6673e0fc5c035dc0adf447e7437a014d1e918d27
+Author: Jel Sadones <jel.sadones@student.howest.be>
+Date:   Thu May 14 22:29:41 2015 +0200
+
+    UnitTests wat sorteren
+
+commit 13ffc327cf3402efdcc18d13cf13aa46d4759e1a
+Author: Jel Sadones <jel.sadones@student.howest.be>
+Date:   Thu May 14 22:22:07 2015 +0200
+
+    Closes #92
+
+commit 13da6f489c39f7bd3e87eeccaf7c1afe4885fa0c
+Author: Jel Sadones <jel.sadones@student.howest.be>
+Date:   Thu May 14 21:52:37 2015 +0200
+
+    unitTests fixes
+
+commit ed1403b69a291d0623503c22b9e8fcb9b45b801e
+Author: Shane Deconinck <shane.deconinck@gmail.com>
+Date:   Thu May 14 21:35:05 2015 +0200
+
+    test fix
+
+commit 410423fa173d6f4be69196234d8fb43e4f53ce8d
+Author: Shane Deconinck <shane.deconinck@gmail.com>
+Date:   Thu May 14 19:01:36 2015 +0200
+
+    Test Fixes
+
+commit a598000e62695e63797753235447728870b5d0ef
+Author: Matthias Haelman <matthias.haelman@student.howest.be>
+Date:   Thu May 14 18:36:39 2015 +0200
+
+    gg
+
+commit 3bedd77b81d1ac5fa6ce1d475ae6255766bf8b93
+Merge: a44a420 6a87ddf
+Author: Jel Sadones <jel.sadones@student.howest.be>
+Date:   Thu May 14 17:18:50 2015 +0200
+
+    Merge branch 'master' of https://github.com/JSadones/ConnectX
+
+commit a44a420861dc708175e8fca40ba016483ee69d9e
+Author: Jel Sadones <jel.sadones@student.howest.be>
+Date:   Thu May 14 17:18:34 2015 +0200
+
+    No clue
+
+commit 6a87ddf0029b2b227e6ad28def415f4ff2b0a41c
+Author: Shane Deconinck <shane.deconinck@gmail.com>
+Date:   Thu May 14 16:23:53 2015 +0200
+
+    WebClient AI 8 turns forward werkt
+
+commit 35b963d384442601a52dcbd9bc3057a38ef9880f
+Merge: 8a009c3 0c00895
+Author: Shane Deconinck <shane.deconinck@gmail.com>
+Date:   Thu May 14 15:46:46 2015 +0200
+
+    Merge branch 'master' of https://github.com/JSadones/ConnectX
+
+commit 8a009c3bb0c9a2ba6ea2bbe65aba5616f30673e2
+Author: Shane Deconinck <shane.deconinck@gmail.com>
+Date:   Thu May 14 15:46:30 2015 +0200
+
+    js
+
+commit 0c008957626ccbec895545222b477f083ec42720
+Merge: a477c35 34e0556
+Author: Matthias Haelman <matthias.haelman@student.howest.be>
+Date:   Thu May 14 14:49:02 2015 +0200
+
+    Merge branch 'master' of https://github.com/JSadones/ConnectX
+
+commit a477c353b2c1c5b8007d5affac6632419522a16b
+Author: Matthias Haelman <matthias.haelman@student.howest.be>
+Date:   Thu May 14 14:48:52 2015 +0200
+
+    Testers aanpassen, maar nogsteeds gebugged.
+
+commit 026a610810bc74c176498e097f9bf1121bceea79
+Author: Matthias Haelman <matthias.haelman@student.howest.be>
+Date:   Thu May 14 14:48:22 2015 +0200
+
+    AI class is nu public.
+
+commit 34e055648485c3d938e9c3f306ad21d59a57268f
+Merge: a7ecfc2 26fb4ee
+Author: Jel Sadones <jel.sadones@student.howest.be>
+Date:   Thu May 14 13:34:39 2015 +0200
+
+    Merge branch 'master' of https://github.com/JSadones/ConnectX
+
+commit a7ecfc24452f68d76777fcb85ab5f52cde9f06ae
+Author: Jel Sadones <jel.sadones@student.howest.be>
+Date:   Thu May 14 13:34:34 2015 +0200
+
+    Code nog opkuisen
+
+commit 26fb4ee298b642addc70b2fcc32cd0a7097ada66
+Merge: 992dc61 0d5c6b8
+Author: Lucas Pirard <lucas.pirard@student.howest.be>
+Date:   Thu May 14 13:29:19 2015 +0200
+
+    Merge branch 'master' of https://github.com/JSadones/4OPeenRij
+
+commit 992dc61419dca50f6b33615f537780453f4c91ce
+Author: Lucas Pirard <lucas.pirard@student.howest.be>
+Date:   Thu May 14 13:28:41 2015 +0200
+
+    backbutton progress
+
+commit 0d5c6b890f3499d7c9facc2f5a5b9233c2a10d8a
+Merge: e131d60 57a125e
+Author: Matthias Haelman <matthias.haelman@student.howest.be>
+Date:   Thu May 14 13:16:01 2015 +0200
+
+    Merge branch 'master' of https://github.com/JSadones/ConnectX
+
+commit e131d60992824e15429f519a72e52b54d78cce15
+Author: Matthias Haelman <matthias.haelman@student.howest.be>
+Date:   Thu May 14 13:15:53 2015 +0200
+
+    style changing
+
+commit 57a125e781d9f73c51ac212416133819cfc8039f
+Author: Jel Sadones <jel.sadones@student.howest.be>
+Date:   Thu May 14 12:23:57 2015 +0200
+
+    Closes #90
+
+commit bf64ae641859744bd328992896f94db6080076f4
+Author: Jel Sadones <jel.sadones@student.howest.be>
+Date:   Thu May 14 12:15:21 2015 +0200
+
+    Fixed #89
+
+commit 9c45ca90fe1ada8439683b97b168a48892786917
+Merge: 4773db4 b366b5d
+Author: Lucas Pirard <lucas.pirard@student.howest.be>
+Date:   Thu May 14 12:08:07 2015 +0200
+
+    Merge branch 'master' of https://github.com/JSadones/4OPeenRij
+
+commit 4773db41c9081c3703154a47882b0bfe1094bc0f
+Author: Lucas Pirard <lucas.pirard@student.howest.be>
+Date:   Thu May 14 12:06:41 2015 +0200
+
+    ServerForm WORKS. I'll go get a cornetto now.
+
+commit b366b5dd435be56ee5107eb5697f70bb3e73fc3d
+Author: Matthias Haelman <matthias.haelman@student.howest.be>
+Date:   Thu May 14 12:01:39 2015 +0200
+
+    achtergrond van spelbord veranderen naar een effen kleur.
+
+commit 64a68b8b09fdfcdfab193b7dab60f61e0ab3d4da
+Author: Matthias Haelman <matthias.haelman@student.howest.be>
+Date:   Thu May 14 11:55:49 2015 +0200
+
+    hoverkleur relevanter maken.
+
+commit 585132242dc7270ed0ef5e5bb8914f3a91ff9327
+Author: Matthias Haelman <matthias.haelman@student.howest.be>
+Date:   Thu May 14 11:49:06 2015 +0200
+
+    stylechanges in css, herordening van bepaalde css elementen. Vervanging van _ door &nsbp
+
+commit 04e4f58ea0ab4853204ab02ce131be192eab9931
+Author: Jel Sadones <jel.sadones@student.howest.be>
+Date:   Thu May 14 11:12:23 2015 +0200
+
+    a
+
+commit d3f4d5b4efc2c73d3c13a2b660272e3ad1ded269
+Merge: 8d2a383 db60d7b
+Author: Jel Sadones <jel.sadones@student.howest.be>
+Date:   Thu May 14 11:10:44 2015 +0200
+
+    Merge branch 'master' of https://github.com/JSadones/ConnectX
+
+commit 8d2a3835156b614138f178402aeda5e288fcc08e
+Author: Jel Sadones <jel.sadones@student.howest.be>
+Date:   Thu May 14 11:10:35 2015 +0200
+
+    Closes #82
+
+commit db60d7bad549cbc56a67119988df2bcd53fd116a
+Merge: e91984b c139ee8
+Author: Shane Deconinck <shane.deconinck@gmail.com>
+Date:   Thu May 14 10:59:07 2015 +0200
+
+    fix merge conflict
+
+commit e91984bf7298cc31e59cc80aae7b98e71a5ab65a
+Author: Shane Deconinck <shane.deconinck@gmail.com>
+Date:   Thu May 14 10:56:41 2015 +0200
+
+    optimisatie isStreakReachedIn.... ConnectX.cs
+
+commit c139ee863934799a311f1db0700d429c80b47b44
+Merge: 3935bec 7496c2f
+Author: Jel Sadones <jel.sadones@student.howest.be>
+Date:   Thu May 14 10:56:14 2015 +0200
+
+    Merge branch 'master' of https://github.com/JSadones/ConnectX
+
+commit 3935becc2094e494f587cab691949d2ddf038817
+Author: Jel Sadones <jel.sadones@student.howest.be>
+Date:   Thu May 14 10:56:03 2015 +0200
+
+    a
+
+commit 7496c2f31cd6a90cb9ae72c35740644617ab9c1c
+Merge: d700085 d54e63e
+Author: Lucas Pirard <lucas.pirard@student.howest.be>
+Date:   Thu May 14 10:53:12 2015 +0200
+
+    Merge branch 'master' of https://github.com/JSadones/4OPeenRij
+
+commit d7000858d11d60f1b0038be74f3e31168dca89e2
+Author: Lucas Pirard <lucas.pirard@student.howest.be>
+Date:   Thu May 14 10:52:44 2015 +0200
+
+    server als enkel window, server form icon added
+
+commit d54e63e243a509cfd4fc5ffe7b3282ba88ce2a46
+Merge: 47cd854 ec13877
+Author: Shane Deconinck <shane.deconinck@gmail.com>
+Date:   Thu May 14 10:46:38 2015 +0200
+
+    Merge branch 'master' of https://github.com/JSadones/ConnectX
+
+commit 47cd8543d9a862816845c9be6dcba3d4ce9979ab
+Author: Shane Deconinck <shane.deconinck@gmail.com>
+Date:   Thu May 14 10:46:18 2015 +0200
+
+    optimisatie isStreakReachedIn.... ConnectX.cs
+
+commit ec138772464d23004b5ddc4a80ef983880cb0c52
+Author: Matthias Haelman <matthias.haelman@student.howest.be>
+Date:   Thu May 14 10:45:39 2015 +0200
+
+    hehe minor changes in ai hackerino, plserino stayoferino
+
+commit 34cb1fa7bb93a966923de6b632a3558268ecd42d
+Author: Matthias Haelman <matthias.haelman@student.howest.be>
+Date:   Thu May 14 10:42:09 2015 +0200
+
+    minor changes in naamgeving.
+
+commit 93b2156a02666872a44b39cadf8a6934753d6106
+Merge: 774134c fa465a7
+Author: Lucas Pirard <lucas.pirard@student.howest.be>
+Date:   Thu May 14 10:33:55 2015 +0200
+
+    Merge branch 'master' of https://github.com/JSadones/4OPeenRij
+
+commit 774134c67855484db9d60db1b72e7b6457d64528
+Author: Lucas Pirard <lucas.pirard@student.howest.be>
+Date:   Thu May 14 10:33:01 2015 +0200
+
+    logboek first version as of thursday 14/05 10.30am
+
+commit fa465a75360c86ca3ebfd2360aee6e3487b76a96
+Merge: e15f860 0458e47
+Author: Shane Deconinck <shane.deconinck@gmail.com>
+Date:   Thu May 14 10:31:04 2015 +0200
+
+    Merge branch 'master' of https://github.com/JSadones/ConnectX
+
+commit e15f860a19623cf296556d81ff0ebde50a9030a7
+Author: Shane Deconinck <shane.deconinck@gmail.com>
+Date:   Thu May 14 10:30:51 2015 +0200
+
+    js shuffle
+
 commit 0458e479c3b59c6f0918b31960b4bbb14742e13e
 Author: Matthias Haelman <matthias.haelman@student.howest.be>
 Date:   Thu May 14 10:15:53 2015 +0200
@@ -138,7 +547,7 @@ Date:   Wed May 13 13:14:14 2015 +0200
     Merge branch 'master' of https://github.com/JSadones/4OPeenRij
     
     Conflicts:
-    	Windows Client/ConnectX/ConnectXLibrary/Server.cs
+"    	Windows Client/ConnectX/ConnectXLibrary/Server.cs"
 
 commit a67bb263661d12cf65aaccc97752684d98a768d6
 Author: Lucas Pirard <lucas.pirard@student.howest.be>
@@ -360,7 +769,7 @@ Date:   Thu May 7 16:24:50 2015 +0200
     Merge branch 'master' of https://github.com/JSadones/ConnectX
     
     Conflicts:
-    	Webclient/css/style.css
+"    	Webclient/css/style.css"
 
 commit a7e86a4d0cf8efeb3dc5110ffa73d9fdbf24d397
 Author: Matthias Haelman <matthias.haelman@student.howest.be>
@@ -478,8 +887,8 @@ Date:   Thu May 7 14:08:34 2015 +0200
     Merge branch 'master' of https://github.com/JSadones/ConnectX
     
     Conflicts:
-    	Windows Client/ConnectX/ConnectXLibrary/Game.Designer.cs
-    	Windows Client/ConnectX/ConnectXLibrary/Game.cs
+"    	Windows Client/ConnectX/ConnectXLibrary/Game.Designer.cs"
+"    	Windows Client/ConnectX/ConnectXLibrary/Game.cs"
 
 commit 8e465623a4262601c70f7a0f98a584905b43628d
 Author: Jel Sadones <jel.sadones@student.howest.be>
@@ -636,7 +1045,7 @@ Date:   Thu May 7 11:00:12 2015 +0200
     Merge branch 'master' of https://github.com/JSadones/ConnectX
     
     Conflicts:
-    	Windows Client/ConnectX/ConnectXLibrary/Server.cs
+"    	Windows Client/ConnectX/ConnectXLibrary/Server.cs"
 
 commit a4a3531d8aa6d149db88e442c9bc0656a5f2e820
 Author: Jel Sadones <jel.sadones@student.howest.be>
@@ -886,7 +1295,7 @@ Date:   Thu Apr 30 11:50:40 2015 +0200
     Merge branch 'master' of https://github.com/JSadones/ConnectX
     
     Conflicts:
-    	Windows Client/ConnectX/ConnectXLibrary/ConnectX.cs
+"    	Windows Client/ConnectX/ConnectXLibrary/ConnectX.cs"
 
 commit 2238e0ee7e250c5d4323c197653a8fb197d41649
 Author: Jel Sadones <jel.sadones@student.howest.be>
@@ -908,7 +1317,7 @@ Date:   Thu Apr 30 11:43:16 2015 +0200
     Merge branch 'master' of https://github.com/JSadones/ConnectX
     
     Conflicts:
-    	Windows Client/ConnectX/ConnectXLibrary/ConnectX.cs
+"    	Windows Client/ConnectX/ConnectXLibrary/ConnectX.cs"
 
 commit e786c9c6af753fe033d34a66b5ed67c99921f0d2
 Author: Matthias Haelman <matthias.haelman@student.howest.be>
@@ -924,7 +1333,7 @@ Date:   Thu Apr 30 11:26:26 2015 +0200
     Merge branch 'master' of https://github.com/JSadones/ConnectX
     
     Conflicts:
-    	Windows Client/ConnectX/ConnectXLibrary/ConnectX.cs
+"    	Windows Client/ConnectX/ConnectXLibrary/ConnectX.cs"
 
 commit fc439d2d89d99a473213fbc796e416f169d9c1a1
 Author: Jel Sadones <jel.sadones@student.howest.be>
@@ -1030,7 +1439,7 @@ Date:   Thu Apr 30 09:22:06 2015 +0200
     mMerge branch 'master' of https://github.com/JSadones/ConnectX
     
     Conflicts:
-    	Windows Client/ConnectX/ConnectXLibrary/ConnectX.cs
+"    	Windows Client/ConnectX/ConnectXLibrary/ConnectX.cs"
 
 commit 21c10ae0a81b3420988620c149825b2a9ee170ba
 Author: Matthias Haelman <matthias.haelman@student.howest.be>
@@ -1337,8 +1746,8 @@ Date:   Tue Apr 28 17:52:44 2015 +0200
     Merge branch 'master' of https://github.com/JSadones/4OPeenRij
     
     Conflicts:
-    	Windows Client/ConnectX/ConnectXLibrary/ConnectXLibrary.csproj
-    	Windows Client/ConnectX/ConnectXLibrary/Menu.Designer.cs
+"    	Windows Client/ConnectX/ConnectXLibrary/ConnectXLibrary.csproj"
+"    	Windows Client/ConnectX/ConnectXLibrary/Menu.Designer.cs"
 
 commit a85f846646ff5d43044c3d7763eed2bbe4adc582
 Author: Shane Deconinck <shane.deconinck@gmail.com>
@@ -1699,7 +2108,7 @@ Date:   Fri Apr 24 14:50:56 2015 +0200
     Merge branch 'master' of https://github.com/JSadones/ConnectX
     
     Conflicts:
-    	Windows Client/ConnectX/ConnectXLibrary/Menu.Designer.cs
+"    	Windows Client/ConnectX/ConnectXLibrary/Menu.Designer.cs"
 
 commit 0e31981e1733ce1135056049f2b3524976f99da2
 Author: Jel Sadones <jel.sadones@student.howest.be>
@@ -1977,7 +2386,7 @@ Date:   Thu Apr 23 09:14:46 2015 +0200
     Merge branch 'master' of https://github.com/JSadones/4OPeenRij
     
     Conflicts:
-    	Windows Client/ConnectX/ConnectXLibrary/ConnectX.cs
+"    	Windows Client/ConnectX/ConnectXLibrary/ConnectX.cs"
 
 commit 9790d6e4b0de6b3e1f8e410db16f4274d4e9b010
 Author: Jel Sadones <jel.sadones@student.howest.be>
@@ -2035,9 +2444,9 @@ Date:   Thu Apr 16 10:04:08 2015 +0200
     Merge branch 'master' of https://github.com/JSadones/4OPeenRij
     
     Conflicts:
-    	Windows Client/ConnectX/ConnectXLibrary/Game.cs
-    	Windows Client/ConnectX/ConnectXLibrary/Menu.Designer.cs
-    	Windows Client/ConnectX/ConnectXLibrary/Menu.cs
+"    	Windows Client/ConnectX/ConnectXLibrary/Game.cs"
+"    	Windows Client/ConnectX/ConnectXLibrary/Menu.Designer.cs"
+"    	Windows Client/ConnectX/ConnectXLibrary/Menu.cs"
 
 commit 44e11f164b57dfc85a97b9a8b7a922915ffe476a
 Author: Jel Sadones <jel.sadones@student.howest.be>
@@ -2130,7 +2539,7 @@ Date:   Thu Apr 2 11:46:06 2015 +0200
     Merge branch 'master' of https://github.com/JSadones/4OPeenRij
     
     Conflicts:
-    	Windows Client/ConnectX/ConnectXUnitTest/ConnectXTester.cs
+"    	Windows Client/ConnectX/ConnectXUnitTest/ConnectXTester.cs"
 
 commit 5e24b3a301050e0dbc43addc6adfe932d47955c2
 Author: Lucas Pirard <lucas.pirard@student.howest.be>
@@ -2330,7 +2739,7 @@ Date:   Thu Mar 26 16:51:43 2015 +0100
     Merge branch 'master' of https://github.com/JSadones/4OPeenRij
     
     Conflicts:
-    	Windows Client/ConnectX/ConnectXUnitTest/ConnectXTester.cs
+"    	Windows Client/ConnectX/ConnectXUnitTest/ConnectXTester.cs"
     
     Fixed heavy conflict.
 
@@ -2432,7 +2841,7 @@ Date:   Thu Mar 26 15:27:40 2015 +0100
     Merge branch 'deliverable2' of https://github.com/JSadones/4OPeenRij into deliverable1
     
     Conflicts:
-    	Windows Client/ConnectX/ConnectXLibrary/ConnectXInterface.cs
+"    	Windows Client/ConnectX/ConnectXLibrary/ConnectXInterface.cs"
 
 commit 76eb4983a2fc5196a27afdd412b752b31db41223
 Merge: 0eb110a 25a32d4
@@ -2813,7 +3222,7 @@ Date:   Fri Mar 20 11:19:03 2015 +0100
     Merge branch 'deliverable1' of https://github.com/JSadones/4OPeenRij
     
     Conflicts:
-    	Windows Client/ConnectX/ConnectXLibrary/ConnectXInterface.cs
+"    	Windows Client/ConnectX/ConnectXLibrary/ConnectXInterface.cs"
 
 commit c7f49f40ec0e6879531c6d9e4a40e4c9d35b923d
 Author: Lucas Pirard <lucas.pirard@student.howest.be>
@@ -3029,7 +3438,7 @@ commit c80dd0b08659a84450d879bb72f157c66e1a2f48
 Author: Jel Sadones <jel.sadones@student.howest.be>
 Date:   Thu Mar 19 13:31:29 2015 +0100
 
-    123
+123
 
 commit a021495b79426ae4a950921a0bee5e59f0277d55
 Merge: acd471f 5a2d939
@@ -3039,8 +3448,8 @@ Date:   Thu Mar 19 13:30:07 2015 +0100
     Merge branch 'master' of https://github.com/JSadones/4OPeenRij
     
     Conflicts:
-    	Windows Client/ConnectX/ConnectXLibrary/ConnectXInterface.cs
-    	Windows Client/ConnectX/ConnectXUnitTest/ConnectXInterfaceTester.cs
+"    	Windows Client/ConnectX/ConnectXLibrary/ConnectXInterface.cs"
+"    	Windows Client/ConnectX/ConnectXUnitTest/ConnectXInterfaceTester.cs"
 
 commit acd471fb05a86e6cef6faa9b53f18a9daf4dda05
 Merge: 4395ca9 06a6b00
@@ -3050,7 +3459,7 @@ Date:   Thu Mar 19 13:21:47 2015 +0100
     Merge branch 'master' of https://github.com/JSadones/4OPeenRij
     
     Conflicts:
-    	Windows Client/ConnectX/ConnectXUnitTest/ConnectXInterfaceTester.cs
+"    	Windows Client/ConnectX/ConnectXUnitTest/ConnectXInterfaceTester.cs"
 
 commit 5a2d9398649518b684d7112f323799d6de8d1fd3
 Author: Jel Sadones <jel.sadones@student.howest.be>
@@ -3233,7 +3642,7 @@ Date:   Wed Mar 18 13:28:50 2015 +0100
     Merge branch 'master' of https://github.com/JSadones/4OPeenRij
     
     Conflicts:
-    	Windows Client/XOPeenRijLibrary/XOPeenRijLibrary/XOPeenRij.cs
+"    	Windows Client/XOPeenRijLibrary/XOPeenRijLibrary/XOPeenRij.cs"
 
 commit c1be5612018081f0473b478433683f3f82ef1123
 Author: Lucas Pirard <lucas.pirard@student.howest.be>
@@ -3360,7 +3769,7 @@ Date:   Wed Mar 18 10:17:18 2015 +0100
     Merge branch 'master' of https://github.com/JSadones/4OPeenRij
     
     Conflicts:
-    	Windows Client/XOPeenRijLibrary/XOPeenRijUnitTest/XOPeenRijTester.cs
+"    	Windows Client/XOPeenRijLibrary/XOPeenRijUnitTest/XOPeenRijTester.cs"
 
 commit e867e507947586473d2b9450116c52fc088adcd0
 Author: Lucas Pirard <lucas.pirard@student.howest.be>
@@ -3444,8 +3853,8 @@ Date:   Tue Mar 17 12:43:49 2015 +0100
     Merge branch 'master' of https://github.com/JSadones/4OPeenRij
     
     Conflicts:
-    	Windows Client/XOPeenRijLibrary/XOPeenRijLibrary/XOPeenRij.cs
-    	Windows Client/XOPeenRijLibrary/XOPeenRijUnitTest/XOPeenRijTester.cs
+"    	Windows Client/XOPeenRijLibrary/XOPeenRijLibrary/XOPeenRij.cs"
+"    	Windows Client/XOPeenRijLibrary/XOPeenRijUnitTest/XOPeenRijTester.cs"
 
 commit e4d96375f03d081d1f352c7671efc885feb44e79
 Author: Lucas Pirard <lucas.pirard@student.howest.be>
@@ -3744,7 +4153,7 @@ Date:   Mon Mar 16 13:26:13 2015 +0100
     Merge remote-tracking branch 'origin/master'
     
     Conflicts:
-    	XOPeenRij/XOPeenRijUnitTest/XOPeenRijTest.cs
+"    	XOPeenRij/XOPeenRijUnitTest/XOPeenRijTest.cs"
 
 commit 01e1e3ad0ff6f4be89a4d85270f585332eaa2196
 Author: Jel Sadones <jel.sadones@student.howest.be>
