@@ -47,7 +47,7 @@ namespace ConnectXLibrary
         {
             Server server = new Server();
 			this.Hide();
-			server.Closed += (s, args) => this.Close();
+			server.Closed += (s, args) => this.Show();
 			server.Show();
 
         }//btnWebclient_Click

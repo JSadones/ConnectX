@@ -93,9 +93,6 @@
     <Compile Include="Server.Designer.cs">
       <DependentUpon>Server.cs</DependentUpon>
     </Compile>
-    <Compile Include="token.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <EmbeddedResource Include="Game.resx">
       <DependentUpon>Game.cs</DependentUpon>
     </EmbeddedResource>
