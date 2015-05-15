@@ -293,6 +293,19 @@
      color:white;
  }
 
+ #side-footer {
+     width:25%;
+     height:50px;
+     padding-bottom:10px;
+     display:none;
+ }
+
+ #main-footer {
+     width:75%;
+     height:50px;
+     text-align:right;
+     padding-right:50px;
+ }
 
 input[type="number"] {
    width:50px;
