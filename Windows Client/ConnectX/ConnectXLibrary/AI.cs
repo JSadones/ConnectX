@@ -63,7 +63,7 @@ namespace ConnectXLibrary
 			    for (int column = 0; column < board.getColumns(); column++) {
 				    if (!board.isColumnFull(column)) {
                         int row = board.getLowestAvailableRowInColumn(column);
-                        board.insertToken(column, row, board.getPlayerAtTurn());
+                        board.insertToken(column, row, 2);
 					    alpha = Math.Max(alpha, alphabeta(depth - 1, alpha, beta, false));
 					    board.undoMoveAI(column);
 					    if (beta <= alpha) break;
@@ -73,7 +73,8 @@ namespace ConnectXLibrary
 		    } else {
 			    for (int column = 0; column < board.getColumns(); column++) {
 				    if (!board.isColumnFull(column)) {
-					    board.makeMovePlayer(column);
+                        int row = board.getLowestAvailableRowInColumn(column);
+                        board.insertToken(column, row, 1);
 					    beta = Math.Min(beta, alphabeta(depth - 1, alpha, beta, true));
 					    board.undoMovePlayer(column);
 					    if (beta <= alpha) break;

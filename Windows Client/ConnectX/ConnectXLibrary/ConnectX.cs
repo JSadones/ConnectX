@@ -167,6 +167,16 @@ namespace ConnectXLibrary
             return true;
         }//insertToken
 
+        public bool undoMovePlayer(int column)
+        {
+            return undoMove(column, true);
+        }//undoMovePlayer
+
+        public bool undoMoveAI(int column)
+        {
+            return undoMove(column, false);
+        }//undoMoveAI
+
         private bool undoMove(int column, bool player)
         {
             if (columnCounts[column] > 0)
@@ -256,59 +266,10 @@ namespace ConnectXLibrary
             return false;
         }//isCurrentGameWon
 
-
-        //===Score Methods===
-        public void incrementScoreOfPlayer(int player)
+        public bool playerIsWinner()
         {
-            if (player == 1) scorePlayer1++;
-            else scorePlayer2++;
-        }//incrementScoreOfPlayer
-        
-
-        //===Other Methods===
-        public bool nextGame()
-        {
-            clear();
-            playerAtTurn = PLAYER1;
-            resetCounter();
-            return true;
-        }//nextGame
-
-        public void switchPlayerAtTurn()
-        {
-            if (playerAtTurn == PLAYER1) playerAtTurn = PLAYER2;
-            else playerAtTurn = PLAYER1;
-        }//switchPlayerAtTurn
-
-
-
-
-        //AI HACKERINO PLSERINO STAYOFERINO
-        public bool makeMovePlayer(int column)
-        {
-            return makeMove(column, true);
-        }//makeMovePlayer
-
-        public bool undoMovePlayer(int column)
-        {
-            return undoMove(column, true);
-        }//undoMovePlayer
-
-        public bool undoMoveAI(int column)
-        {
-            return undoMove(column, false);
-        }//undoMoveAI
-
-        private bool makeMove(int column, bool player)
-        {
-            if (columnCounts[column] < rows)
-            {
-                byte sign = player ? PLAYER1 : PLAYER2;
-                raster[column, columnCounts[column]++] = sign;
-                return true;
-            }
-            return false;
-        }//makeMove
+            return getWinner() == PLAYER1;
+        }//playerIsWinner
 
         public bool hasWinner()
         {
@@ -334,23 +295,6 @@ namespace ConnectXLibrary
                 }
             }
 
-            for (int y = 0; y < rows; y++)
-            {
-                for (int x = 0; x <= columns - streakToWin; x++)
-                {
-                    bool playerWin = true;
-                    bool aiWin = true;
-                    for (int o = 0; o < streakToWin; o++)
-                    {
-                        if (playerWin && raster[x + o, y] != PLAYER1) playerWin = false;
-                        if (aiWin && raster[x + o, y] != PLAYER2) aiWin = false;
-                    }
-
-                    if (playerWin) return PLAYER1;
-                    else if (aiWin) return PLAYER2;
-                }
-            }
-
             for (int x = 0; x <= columns - streakToWin; x++)
             {
                 for (int y = 0; y <= rows - streakToWin; y++)
@@ -361,6 +305,23 @@ namespace ConnectXLibrary
                     {
                         if (playerWin && raster[x + o, y + o] != PLAYER1) playerWin = false;
                         if (aiWin && raster[x + o, y + o] != PLAYER2) aiWin = false;
+                    }
+
+                    if (playerWin) return PLAYER1;
+                    else if (aiWin) return PLAYER2;
+                }
+            }
+
+            for (int y = 0; y < rows; y++)
+            {
+                for (int x = 0; x <= columns - streakToWin; x++)
+                {
+                    bool playerWin = true;
+                    bool aiWin = true;
+                    for (int o = 0; o < streakToWin; o++)
+                    {
+                        if (playerWin && raster[x + o, y] != PLAYER1) playerWin = false;
+                        if (aiWin && raster[x + o, y] != PLAYER2) aiWin = false;
                     }
 
                     if (playerWin) return PLAYER1;
@@ -388,10 +349,29 @@ namespace ConnectXLibrary
             return NOBODY;
         }//getWinner
 
-        public bool playerIsWinner()
+
+        //===Score Methods===
+        public void incrementScoreOfPlayer(int player)
         {
-            return getWinner() == PLAYER1;
-        }//playerIsWinner
+            if (player == 1) scorePlayer1++;
+            else scorePlayer2++;
+        }//incrementScoreOfPlayer
+        
+
+        //===Other Methods===
+        public bool nextGame()
+        {
+            clear();
+            playerAtTurn = PLAYER1;
+            resetCounter();
+            return true;
+        }//nextGame
+
+        public void switchPlayerAtTurn()
+        {
+            if (playerAtTurn == PLAYER1) playerAtTurn = PLAYER2;
+            else playerAtTurn = PLAYER1;
+        }//switchPlayerAtTurn
         #endregion
     }
 }
