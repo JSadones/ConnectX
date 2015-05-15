@@ -11,13 +11,12 @@ namespace ConnectXLibrary
         private int rows, columns, tokenStreak, startWidth, startHeight, size, difficulty;
         private string namePlayer1, namePlayer2;
         bool gameChanges = false, multiplayer, endGame = false;
-        private byte NOBODY = 0, PLAYER1 = 1, PLAYER2 = 2;
+        private byte PLAYER1 = 1, PLAYER2 = 2;
 
-        Bitmap I;
-        Graphics gr;
         ConnectX board;
-        Pen myPen;
         AI ai;
+
+        Graphics gr;
         SolidBrush redBrush = new SolidBrush(Color.Red);
         SolidBrush blueBrush = new SolidBrush(Color.Blue);
         Pen blackPen = new Pen(Color.Black, 3);
@@ -35,18 +34,15 @@ namespace ConnectXLibrary
             this.columns = columns;
             this.tokenStreak = tokenStreak;
             this.difficulty = difficulty;
-            //multiplayer = false;
-
-            //board = new ConnectX(rows, columns, tokenStreak, multiplayer);
-            //ai = new AI(board);
-            ////nextGame();
 
             lblPlayer1.Text = namePlayer1;
             lblPlayer2.Text = cpuName;
             lblStreakNumber.Text = tokenStreak.ToString();
-            //showPlayerAtTurn();
+
             board = new ConnectX(rows, columns, tokenStreak);
             ai = new AI(board);
+
+            showPlayerAtTurn();
 
         }//Game
 
@@ -62,11 +58,11 @@ namespace ConnectXLibrary
             multiplayer = true;
 
             board = new ConnectX(rows, columns, tokenStreak, multiplayer);
-            //nextGame();
 
             lblPlayer1.Text = namePlayer1;
             lblPlayer2.Text = namePlayer2;
             lblStreakNumber.Text = tokenStreak.ToString();
+
             showPlayerAtTurn();
         }//Game
         #endregion
@@ -90,24 +86,18 @@ namespace ConnectXLibrary
         private void drawGrid()
         {
             calculateSlotSize();
-            
-            I = new Bitmap(rows, columns);
-            gr = Graphics.FromImage(I);
-
-            
-            gr = pnlGame.CreateGraphics();
-
-
-            gr.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            myPen = new Pen(Brushes.Black, 1);
             startWidth = (pnlGame.Width / 2) - ((size * columns) / 2);
             startHeight = (pnlGame.Height / 2) - ((size * rows) / 2);
-
             float x = startWidth, y = startHeight;
 
+            Bitmap I = new Bitmap(rows, columns);
+            gr = Graphics.FromImage(I);
+            gr = pnlGame.CreateGraphics();
+            gr.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             gr.Clear(Color.NavajoWhite);
-
             Image newImage = Resources.frame;
+
+            Pen myPen = new Pen(Brushes.Black, 1);
 
             for (int row = 0; row < rows; row++)
             {
@@ -223,28 +213,25 @@ namespace ConnectXLibrary
            
             if (!board.isColumnFull(column))
             {
-                row = board.getLowestAvailableRowInColumn(column);
                 player = board.getPlayerAtTurn();
+                row = board.getLowestAvailableRowInColumn(column);
                 board.insertToken(column, row, player);
                 drawToken(column, row, player);
 
-                if (!checkTurn(column, row))
+                if (!checkTurn())
                 {
                     board.switchPlayerAtTurn();
                     showPlayerAtTurn();
 
                     if (!multiplayer)
                     {
-
-                        //AI Turn
                         player = board.getPlayerAtTurn();
                         int aiColumn = insertTokenByAI();
                         row = board.getLowestAvailableRowInColumn(aiColumn);
                         board.insertToken(aiColumn, row, player);
-                        //board.makeMoveAI(aiColumn);
                         drawToken(aiColumn, row, player);
 
-                        if (!checkTurn(aiColumn, row))
+                        if (!checkTurn())
                         {
                             board.switchPlayerAtTurn();
                             showPlayerAtTurn();
@@ -252,7 +239,6 @@ namespace ConnectXLibrary
                     }
                 }
             }
-            
         }//processTurn
 
         private int insertTokenByAI()
@@ -278,7 +264,7 @@ namespace ConnectXLibrary
 
 
         //===Other methods===
-        private bool checkTurn(int column, int row)
+        private bool checkTurn()
         {
             string title;
             if (board.hasWinner())

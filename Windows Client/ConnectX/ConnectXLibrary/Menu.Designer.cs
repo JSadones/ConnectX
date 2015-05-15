@@ -99,7 +99,7 @@
             // 
             this.btnPlayCPU.BackColor = System.Drawing.SystemColors.Control;
             this.btnPlayCPU.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPlayCPU.Location = new System.Drawing.Point(685, 7);
+            this.btnPlayCPU.Location = new System.Drawing.Point(136, 7);
             this.btnPlayCPU.Name = "btnPlayCPU";
             this.btnPlayCPU.Size = new System.Drawing.Size(148, 72);
             this.btnPlayCPU.TabIndex = 0;
@@ -286,25 +286,23 @@
             // 
             // picBoxPlayer2
             // 
-            this.picBoxPlayer2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.picBoxPlayer2.BackColor = System.Drawing.Color.Red;
             this.picBoxPlayer2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picBoxPlayer2.Location = new System.Drawing.Point(580, 107);
             this.picBoxPlayer2.Name = "picBoxPlayer2";
             this.picBoxPlayer2.Size = new System.Drawing.Size(49, 49);
             this.picBoxPlayer2.TabIndex = 17;
             this.picBoxPlayer2.TabStop = false;
-            this.picBoxPlayer2.Click += new System.EventHandler(this.picBoxPlayer2_Click);
             // 
             // picBoxPlayer1
             // 
-            this.picBoxPlayer1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.picBoxPlayer1.BackColor = System.Drawing.Color.Blue;
             this.picBoxPlayer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picBoxPlayer1.Location = new System.Drawing.Point(580, 39);
             this.picBoxPlayer1.Name = "picBoxPlayer1";
             this.picBoxPlayer1.Size = new System.Drawing.Size(49, 49);
             this.picBoxPlayer1.TabIndex = 16;
             this.picBoxPlayer1.TabStop = false;
-            this.picBoxPlayer1.Click += new System.EventHandler(this.picBoxPlayer1_Click);
             // 
             // txtBoxStreakToWin
             // 
@@ -396,7 +394,6 @@
             this.txtBoxPlayer2Name.Name = "txtBoxPlayer2Name";
             this.txtBoxPlayer2Name.Size = new System.Drawing.Size(189, 49);
             this.txtBoxPlayer2Name.TabIndex = 2;
-            this.txtBoxPlayer2Name.Text = "Red";
             this.txtBoxPlayer2Name.TextChanged += new System.EventHandler(this.txtBoxPlayer2Name_TextChanged);
             // 
             // lblPlayer2Name
@@ -420,7 +417,6 @@
             this.lblPlayer1Name.Size = new System.Drawing.Size(288, 42);
             this.lblPlayer1Name.TabIndex = 2;
             this.lblPlayer1Name.Text = "Player 1 name : ";
-            this.lblPlayer1Name.Click += new System.EventHandler(this.lblPlayer1Name_Click);
             // 
             // txtBoxPlayer1Name
             // 
@@ -430,14 +426,13 @@
             this.txtBoxPlayer1Name.Name = "txtBoxPlayer1Name";
             this.txtBoxPlayer1Name.Size = new System.Drawing.Size(189, 49);
             this.txtBoxPlayer1Name.TabIndex = 0;
-            this.txtBoxPlayer1Name.Text = "Blue";
             this.txtBoxPlayer1Name.TextChanged += new System.EventHandler(this.txtBoxPlayer1Name_TextChanged);
             // 
             // btnWebclient
             // 
             this.btnWebclient.BackColor = System.Drawing.SystemColors.Control;
             this.btnWebclient.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWebclient.Location = new System.Drawing.Point(153, 7);
+            this.btnWebclient.Location = new System.Drawing.Point(691, 7);
             this.btnWebclient.Name = "btnWebclient";
             this.btnWebclient.Size = new System.Drawing.Size(163, 72);
             this.btnWebclient.TabIndex = 8;
