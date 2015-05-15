@@ -49,8 +49,8 @@ namespace ConnectXLibrary
 	    }//moveValue
 
 	    private double alphabeta(int depth, double alpha, double beta, bool maximizingPlayer, int column_par, int row_par ) {
-      //      bool hasWinner = board.isCurrentGameWon(column_par, row_par, board.getPlayerAtTurn());
-            bool hasWinner = board.hasWinner();
+            bool hasWinner = board.isCurrentGameWon(column_par, row_par, board.getPlayerAtTurn());
+      //      bool hasWinner = board.hasWinner();
 		   
             if (depth == 0 || hasWinner) {
 			    double score = 0;
