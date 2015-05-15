@@ -17,7 +17,7 @@ namespace ConnectXLibrary
         #region Constructor
         public token()
         {
-            move();
+            
         }//token
         #endregion
 
@@ -37,31 +37,7 @@ namespace ConnectXLibrary
 
             if (player == 1) this.BackgroundImage = Resources.blueToken;
             else this.BackgroundImage = Resources.redToken;
-            while (completed)
-            {
-                //Hier is hij 'gevallen'
-            }
         }//create
-
-        private void move()
-        {
-            t = new Timer();
-            t.Interval = 10;
-
-            t.Tick += new EventHandler(t_Tick);
-
-            t.Start();
-        }//move
-
-        private void t_Tick(object sender, EventArgs e)
-        {
-            this.Location += new Size(0, 5);
-            if (this.Location.Y > ((rows - row - 1) * size) + startHeight)
-            {
-                completed = !completed;
-                t.Stop();
-            }
-        }//t_Tick
         #endregion
     }
 }
