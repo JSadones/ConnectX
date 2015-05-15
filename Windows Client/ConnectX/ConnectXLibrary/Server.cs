@@ -39,7 +39,7 @@ namespace ConnectXLibrary
 
                 listenThread = new Thread(new ParameterizedThreadStart(startlistener));
                 listenThread.Start();
-            //    Process.Start(Path.Combine(Directory.GetCurrentDirectory(), "../../../../../Webclient/index.html"));
+                Process.Start(Path.Combine(Directory.GetCurrentDirectory(), "../../../../../Webclient/index.html"));
             }
             catch (HttpListenerException)
             {
