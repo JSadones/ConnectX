@@ -23,24 +23,24 @@ $(document).ready(function () {
 
     function showForm(multiplayer) {
         if (multiplayer) 
-            $( ".multiplayer-option" ).show();
+            $( ".multiplayer-option" ).css('display','inline-block');    
         else  {
             $( ".multiplayer-option" ).hide();
             $("#form input[name=nameplayer2]").val('CPU');
         }
         hide();
-        $( "#options" ).show();
+        $( "#options" ).css('display','inline-block');  
     }
     window.menu = {};
     menu.show = function () {   
-        $('#start').show();        
+        $('#start').css('display','inline-block');  
     }
     function hide () {   
-        $('#start').hide();        
+        $('#start').css('display','none');  
     }
 
     function hideForm () {   
-        $('#options').hide();        
+        $('#options').css('display','none');  
     }
 
 

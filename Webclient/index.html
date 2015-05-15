@@ -31,30 +31,24 @@
     </div>
     <section class="wrapper">
         <div class="main-container">
-            <div class="container-sidebar">
+            <div id="container-sidebar-left" style='background-color:white;'>
+                        <p><span id="nameplayer1">Player 1</span> <br> <span id="player1">0</span></p>
+            </div>
+            <div id="container-sidebar-right" style='background-color:white;'>
                     <!-- Sidebar -->
-                <section class="sidebar float">
-                    <div id="stats">
-                        <p><span id="nameplayer1">Player 1</span> : <span id="player1">0</span></p>
-                        <p><span id="nameplayer2">Player 2</span> : <span id="player2">0</span></p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                    </div>
-                    <p>Project 1-TI Semester 2. <br /> Jel Sadones; Lucas Pirard; Shane Deconinck; Matthias Haelman; </p>
-                </section>
+                        <p><span id="nameplayer2">Player 2</span> <br> <span id="player1">0</span></p>
             </div>
 
-            <div class="container-content float">
+            <div class="container-content">
                     <!-- Content -->
                 <section>
                     <div id='game'>
                         <div id='start'>
-                             <button type="button" id='play-vs-cpu'>Play vs. CPU</button> 
-                             <button type="button" id='play-multiplayer'>Play multiplayer</button> 
+                             <p><a id='play-vs-cpu'>Play vs. CPU</a> </p>
+                             <p><a id='play-multiplayer'>Play Multiplayer</a> </p>
                         </div>
                         <div id='options'>
-                            <form id='form' data-parsley-validate>
+                            <form id='form' style='background-color:white;' data-parsley-validate>
                                 <table>
                                     <tr>
                                         <th colspan='2'>Settings</th>
@@ -128,8 +122,10 @@
     </section>
     <footer>
         <div class="container-footer">
+
             <!-- End Score-->
             <section class="footer">
+                    <p>Project 1-TI Semester 2. <br /> Jel Sadones; Lucas Pirard; Shane Deconinck; Matthias Haelman; </p>
                 <div class="side-footer float">
                     <p>U bent Gewonnen</p>
                     <p>U bent Verloren</p>

@@ -73,8 +73,8 @@ $(document).ready(function () {
     function initializeRaster() {
         for (var i=0; i<columns; i++) {
             for (var j=0; j<rows;j++) {
-                $('.row'+j+'.column'+i+' > div').removeClass( "token1" );
-                $('.row'+j+'.column'+i+' > div').removeClass( "token2" );
+                $('.row'+j+'.column'+i).removeClass( "token1" );
+                $('.row'+j+'.column'+i).removeClass( "token2" );
             }
         }
     }
@@ -108,7 +108,7 @@ $(document).ready(function () {
     }
 
     function processInsertedToken(response) {
-        $('.row'+response.row+'.column'+response.column+' > div').addClass('token'+response.player);
+        $('.row'+response.row+'.column'+response.column).addClass('token'+response.player);
         checkIfGameIsWon(response);
     }
 
@@ -185,7 +185,7 @@ $(document).ready(function () {
         for (var i = rows - 1; i >= 0; i--) {
             content += '<tr>';
             for (var j = 0; j < columns; j++) {
-                content += "<td class='column"+j+" row"+i+"'><div id='tokenholder'></div></td>"
+                content += "<td class='column"+j+" row"+i+"'><div id='tokenframe'></div></td>"
             }
             content += '</tr>';
         }
@@ -201,13 +201,15 @@ $(document).ready(function () {
     }
 
     function show() {
-        $( "#stats" ).show();
-        $( "#raster" ).show();
+        $( "#container-sidebar-left" ).css('display','inline-block'); 
+        $( "#container-sidebar-right" ).css('display','inline-block');   
+        $( "#raster" ).show();  
     }
 
     function hide() {
-        $( "#stats" ).hide();
-        $( "#raster" ).hide();
+        $( "#container-sidebar-left" ).css('display','none');  
+        $( "#container-sidebar-right" ).css('display','none');  
+        $( "#raster" ).hide();   
 
     }
 
