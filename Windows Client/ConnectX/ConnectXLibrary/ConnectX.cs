@@ -6,14 +6,11 @@ namespace ConnectXLibrary
     {
         #region State
         int[,] raster;
-        private int rows, columns, streakToWin, playerAtTurn, scorePlayer1 = 0, scorePlayer2 = 0, counterLeft = 0, counterRight = 0;
+        private int rows, columns, streakToWin, playerAtTurn, scorePlayer1 = 0, scorePlayer2 = 0;
 		private const int DefaultRows = 6, DefaultColumns = 7, DefaultStreak = 4;
         private const bool  DefaultMP = true;
         private bool multiplayerON;
-
-        public byte NOBODY = 0;
-        public byte PLAYER1 = 1;
-        public byte PLAYER2 = 2;
+        private byte NOBODY = 0, PLAYER1 = 1, PLAYER2 = 2;
 
         int[] columnCounts;
         #endregion State
@@ -30,9 +27,7 @@ namespace ConnectXLibrary
             this.rows = rows;
             this.columns = columns;
             this.streakToWin = streakToWin;
-
             this.multiplayerON = multiplayer;
-            this.columnCounts = new int[columns];
 
             playerAtTurn = 1;
             raster = new int[columns, rows];
@@ -140,8 +135,9 @@ namespace ConnectXLibrary
                 }
             }
 
-            for (int test = 0; test < columns; test++) {
-                columnCounts[test] = NOBODY;
+            for (int column = 0; column < columns; column++)
+            {
+                columnCounts[column] = NOBODY;
             }
         }//clear
 
@@ -151,10 +147,7 @@ namespace ConnectXLibrary
             {
                 for (int column = 0; column < columns; column++)
                 {
-                    if (raster[column, row] != NOBODY)
-                    {
-                        return false;
-                    }
+                    if (raster[column, row] != NOBODY) return false;
                 }
             }
             return true;
@@ -199,11 +192,11 @@ namespace ConnectXLibrary
 
 
         //===Winning algorithm methods===
-        private void resetCounter()
-        {
-            counterLeft = 0;
-            counterRight = 0;
-        }//resetCounter
+        //private void resetCounter()
+        //{
+        //    counterLeft = 0;
+        //    counterRight = 0;
+        //}//resetCounter
 
         //private bool isStreakReachedFromCoordinateInDirection(int column, int row, int stepRow, int stepColumn, int player)
         //{
@@ -365,7 +358,7 @@ namespace ConnectXLibrary
         {
             clear();
             playerAtTurn = PLAYER1;
-            resetCounter();
+            //resetCounter();
             return true;
         }//nextGame
 

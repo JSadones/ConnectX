@@ -394,6 +394,7 @@
             this.txtBoxPlayer2Name.Name = "txtBoxPlayer2Name";
             this.txtBoxPlayer2Name.Size = new System.Drawing.Size(189, 49);
             this.txtBoxPlayer2Name.TabIndex = 2;
+            this.txtBoxPlayer2Name.Text = "Red";
             this.txtBoxPlayer2Name.TextChanged += new System.EventHandler(this.txtBoxPlayer2Name_TextChanged);
             // 
             // lblPlayer2Name
@@ -426,6 +427,7 @@
             this.txtBoxPlayer1Name.Name = "txtBoxPlayer1Name";
             this.txtBoxPlayer1Name.Size = new System.Drawing.Size(189, 49);
             this.txtBoxPlayer1Name.TabIndex = 0;
+            this.txtBoxPlayer1Name.Text = "Blue";
             this.txtBoxPlayer1Name.TextChanged += new System.EventHandler(this.txtBoxPlayer1Name_TextChanged);
             // 
             // btnWebclient
