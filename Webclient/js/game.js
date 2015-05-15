@@ -95,6 +95,8 @@ $(document).ready(function () {
             if(data.status == true) {
                 initializeRaster();
                 playerAtPlay = 1;
+                $('#container-sidebar-right p').removeClass('active');
+                $('#container-sidebar-left p').addClass('active');
 
             } 
         
