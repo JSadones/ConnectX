@@ -14,14 +14,14 @@ namespace ConnectXLibrary
         public Menu() 
         {
             InitializeComponent();
-            picBoxPlayer1.BackColor = Color.Blue;
-            picBoxPlayer2.BackColor = Color.Red;
+
 			txtBoxRows.Text = ConnectX.GetDefaultRows().ToString();
 			txtBoxColumns.Text = ConnectX.GetDefaultColumns().ToString();
 			txtBoxStreakToWin.Text = ConnectX.GetDefaultStreakToWin().ToString();
             lblErrorDimension.Text = "";
             lblErrorName.Text = "";
             lblErrorStreak.Text = "";
+
             checkNames();
             startButtonState();
         }//Menu
@@ -95,48 +95,33 @@ namespace ConnectXLibrary
 			
         }//btnStart_Click
 
-        private void picBoxPlayer1_Click(object sender, EventArgs e)
-        {
-            showColorDialog();
-        }//picBoxPlayer1_Click
-
-        private void picBoxPlayer2_Click(object sender, EventArgs e)
-        {
-            showColorDialog();
-        }//picBoxPlayer2_Click
-
 
         //===TextBox Methods===
         private void txtBoxPlayer1Name_TextChanged(object sender, EventArgs e)
         {
             checkNames();
-			startButtonState();
         }//txtBoxPlayer1Name_TextChanged
 
         private void txtBoxPlayer2Name_TextChanged(object sender, EventArgs e)
         {
             checkNames();
-			startButtonState();
         }//txtBoxPlayer2Name_TextChanged
 
         private void txtBoxStreakToWin_TextChanged(object sender, EventArgs e)
         {
             checkStreak();
-			startButtonState();
         }//txtBoxStreakToWin_TextChanged
 
         private void txtBoxColumns_TextChanged(object sender, EventArgs e)
         {
             checkDimension();
             checkStreak();
-			startButtonState();
         } // txtBoxWidth_TextChanged
 
         private void txtBoxRows_TextChanged(object sender, EventArgs e)
         {
             checkDimension();
             checkStreak();
-			startButtonState();
         } //txtBoxLength_TextChanged
 
 
@@ -229,6 +214,7 @@ namespace ConnectXLibrary
                 streakOK = false;
                 lblErrorStreak.Text = "Please enter a streak.";
             }
+            startButtonState();
         }//checkStreak
 
         private void checkNames()
@@ -248,27 +234,17 @@ namespace ConnectXLibrary
                 namesOK = true;
                 lblErrorName.Text = "";
             }
+            startButtonState();
         }//checkNames
 
         private void startButtonState()
         {
-            if (dimensionOK && streakOK && namesOK)
-            {
-                btnStart.Enabled = true;
-            }
-            else
-            {
-                btnStart.Enabled = false;
-            }
+            if (dimensionOK && streakOK && namesOK) btnStart.Enabled = true;
+            else btnStart.Enabled = false;
         }//startButtonState
 
 
         //===Other Methods===
-        private void showColorDialog()
-        {
-            //TODO (Zie issues)
-        }//showColorDialog
-
         private void showMenu()
         {
             if (multiplayerGame)
@@ -285,11 +261,6 @@ namespace ConnectXLibrary
             }
             pnlEnterData.Visible = true;
             pnlStartScreen.Visible = false;
-        }
-
-        private void lblPlayer1Name_Click(object sender, EventArgs e)
-        {
-
         }//showMenu
         #endregion
     }
