@@ -17,6 +17,7 @@ namespace ConnectXLibrary
         ThreadLocal<ConnectX> threadGame;
         ThreadLocal<AI> threadAI;
         ThreadLocal<int> threadDifficulty;
+        bool formClosing = false;
         #endregion State
 
         #region Constructor
@@ -39,7 +40,7 @@ namespace ConnectXLibrary
 
                 listenThread = new Thread(new ParameterizedThreadStart(startlistener));
                 listenThread.Start();
-            //    Process.Start(Path.Combine(Directory.GetCurrentDirectory(), "../../../../../Webclient/index.html"));
+                Process.Start(Path.Combine(Directory.GetCurrentDirectory(), "../../../../../Webclient/index.html"));
             }
             catch (HttpListenerException)
             {
@@ -189,7 +190,7 @@ namespace ConnectXLibrary
                  status = game.insertToken(column, row, player);
             }
 
-            bool won = game.isCurrentGameWon(column, row, player);
+            bool won = game.hasWinner();
             bool full = game.isTie();
 
             Dictionary<string, string> responseDictionary = new Dictionary<string, string>();
@@ -242,26 +243,30 @@ namespace ConnectXLibrary
 		private void btnStopServer_Click(object sender, EventArgs e)
         {
             listenThread.Abort();
-            listener.Stop();
+            try
+            {
+                listener.Stop();
+            }
+            catch (ObjectDisposedException) { }
             listener.Close();
 
-			this.Hide();
-			Menu menu = new Menu();
-			menu.Closed += (s, args) => this.Close();
-			menu.Show();
+            formClosing = true;
+            this.Close();
 		}//btnStopServer_Click
 
 		private void Server_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			e.Cancel = true;
-			listenThread.Abort();
-			listener.Stop();
-			listener.Close();
-
-			this.Hide();
-			Menu menu = new Menu();
-			menu.Closed += (s, args) => this.Close();
-			menu.Show();
+            if (!formClosing)
+            { 
+			    listenThread.Abort();
+                try
+                {
+                    listener.Stop();
+                }
+                catch (ObjectDisposedException) { this.Close(); }
+			
+			    listener.Close();
+            }
 		}//Server_FormClosing
     }
 }

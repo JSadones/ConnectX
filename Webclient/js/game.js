@@ -132,9 +132,15 @@ $(document).ready(function () {
 
         } else{
             
-            console.log(playerAtPlay+"a");
-            if (playerAtPlay == 1) playerAtPlay = 2;
-            else playerAtPlay = 1;
+            if (playerAtPlay == 1){ playerAtPlay = 2;
+                $('#container-sidebar-left p').removeClass('active');
+                $('#container-sidebar-right p').addClass('active');
+            }
+            else{ 
+                playerAtPlay = 1;
+                $('#container-sidebar-right p').removeClass('active');
+                $('#container-sidebar-left p').addClass('active');
+            }
 
             if (!multiplayer && playerAtPlay == 2 ) {
                 insertTokenByAI();

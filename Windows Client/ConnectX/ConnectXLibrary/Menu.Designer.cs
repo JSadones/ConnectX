@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
             this.lblSideInfo = new System.Windows.Forms.Label();
             this.btnQuit = new System.Windows.Forms.Button();
-            this.btnSettings = new System.Windows.Forms.Button();
             this.btnPlayCPU = new System.Windows.Forms.Button();
             this.btnMultiplayer = new System.Windows.Forms.Button();
             this.pnlEnterData = new System.Windows.Forms.Panel();
@@ -86,31 +85,21 @@
             // 
             // btnQuit
             // 
+            this.btnQuit.BackColor = System.Drawing.Color.Transparent;
             this.btnQuit.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnQuit.Image = ((System.Drawing.Image)(resources.GetObject("btnQuit.Image")));
-            this.btnQuit.Location = new System.Drawing.Point(906, 7);
+            this.btnQuit.Location = new System.Drawing.Point(921, 7);
             this.btnQuit.Name = "btnQuit";
             this.btnQuit.Size = new System.Drawing.Size(40, 40);
             this.btnQuit.TabIndex = 1;
-            this.btnQuit.UseVisualStyleBackColor = true;
+            this.btnQuit.UseVisualStyleBackColor = false;
             this.btnQuit.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // btnSettings
-            // 
-            this.btnSettings.Enabled = false;
-            this.btnSettings.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSettings.Location = new System.Drawing.Point(705, 7);
-            this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(169, 72);
-            this.btnSettings.TabIndex = 4;
-            this.btnSettings.Text = "SETTINGS";
-            this.btnSettings.UseVisualStyleBackColor = true;
             // 
             // btnPlayCPU
             // 
             this.btnPlayCPU.BackColor = System.Drawing.SystemColors.Control;
             this.btnPlayCPU.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPlayCPU.Location = new System.Drawing.Point(71, 7);
+            this.btnPlayCPU.Location = new System.Drawing.Point(685, 7);
             this.btnPlayCPU.Name = "btnPlayCPU";
             this.btnPlayCPU.Size = new System.Drawing.Size(148, 72);
             this.btnPlayCPU.TabIndex = 0;
@@ -122,7 +111,7 @@
             // 
             this.btnMultiplayer.BackColor = System.Drawing.SystemColors.Control;
             this.btnMultiplayer.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMultiplayer.Location = new System.Drawing.Point(273, 7);
+            this.btnMultiplayer.Location = new System.Drawing.Point(404, 7);
             this.btnMultiplayer.Name = "btnMultiplayer";
             this.btnMultiplayer.Size = new System.Drawing.Size(193, 72);
             this.btnMultiplayer.TabIndex = 5;
@@ -448,7 +437,7 @@
             // 
             this.btnWebclient.BackColor = System.Drawing.SystemColors.Control;
             this.btnWebclient.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWebclient.Location = new System.Drawing.Point(505, 7);
+            this.btnWebclient.Location = new System.Drawing.Point(153, 7);
             this.btnWebclient.Name = "btnWebclient";
             this.btnWebclient.Size = new System.Drawing.Size(163, 72);
             this.btnWebclient.TabIndex = 8;
@@ -484,9 +473,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackgroundImage = global::ConnectXLibrary.Properties.Resources.bg;
-            this.ClientSize = new System.Drawing.Size(984, 694);
+            this.ClientSize = new System.Drawing.Size(984, 693);
             this.Controls.Add(this.btnWebclient);
-            this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.btnMultiplayer);
             this.Controls.Add(this.btnQuit);
             this.Controls.Add(this.btnPlayCPU);
@@ -519,7 +507,6 @@
 
         private System.Windows.Forms.Label lblSideInfo;
         private System.Windows.Forms.Button btnQuit;
-        private System.Windows.Forms.Button btnSettings;
         private System.Windows.Forms.Button btnPlayCPU;
         private System.Windows.Forms.Button btnMultiplayer;
         private System.Windows.Forms.Panel pnlEnterData;
