@@ -89,7 +89,7 @@ namespace ConnectXUnitTest
             gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.insertToken(1, 0, 1);
             gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.insertToken(2, 0, 1);
             gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.insertToken(3, 0, 1);
-            gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.isCurrentGameWon(3, 0);
+            gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.hasWinner();
 
 			//Game in raster where 4 in a row can be found horizontally
 			gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon = new ConnectX();
@@ -477,44 +477,44 @@ namespace ConnectXUnitTest
         [TestMethod]
         public void TestGivenNotWonGameIfIsNotWonYet()
         {
-            Assert.IsFalse(gameWithNotWonRaster.isCurrentGameWon(0,1));
+            Assert.IsFalse(gameWithNotWonRaster.hasWinner());
         }
 
         [TestMethod]
         public void Test10Rows14ColumnsGivenNotWonGameIfIsNotWonYet()
         {
-            Assert.IsFalse(game10Rows14ColumnsWithNotWonRaster.isCurrentGameWon(0,1));
+            Assert.IsFalse(game10Rows14ColumnsWithNotWonRaster.hasWinner());
         }
 
         [TestMethod]
         public void TestGivenVerticalWonGameIfIsWon()
         {
-            Assert.IsTrue(gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.isCurrentGameWon(3, 0));
+            Assert.IsTrue(gameWithVerticalWonRasterByPlayer1BeforeControlIfIsWon.hasWinner());
         }
 
         [TestMethod]
         public void TestGivenHorizontalWonGameIfIsWon()
         {
-            Assert.IsTrue(gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon.isCurrentGameWon(3, 0));
+            Assert.IsTrue(gameWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon.hasWinner());
         }
 
         [TestMethod]
         public void Test10Rows14ColumnsGivenHorizontalWonGameIfIsWon()
         {
-            Assert.IsTrue(game10Rows14ColumnsWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon.isCurrentGameWon(0,1));
+            Assert.IsTrue(game10Rows14ColumnsWithHorizontalWonRasterByPlayer1BeforeControlIfIsWon.hasWinner());
         }
 
         [TestMethod]
         public void TestGiven45DegreeWonGameIfIsWon()
         {
-            Assert.IsTrue(gameWith45DegreeStartingAtColumn0Row0WonRaster.isCurrentGameWon(0,1));
+            Assert.IsTrue(gameWith45DegreeStartingAtColumn0Row0WonRaster.hasWinner());
             //onderscheid tussen player 1 en 2 gewonnen.
         }
 
         [TestMethod]
         public void Test10Rows14ColumnsGiven45DegreeWonGameIfIsWon()
         {
-            Assert.IsTrue(game10Rows14ColumnsWith45DegreeStartingAtColumn0Row0WonRaster.isCurrentGameWon(0, 0));
+            Assert.IsTrue(game10Rows14ColumnsWith45DegreeStartingAtColumn0Row0WonRaster.hasWinner());
         }
 
         [TestMethod]
@@ -558,7 +558,7 @@ namespace ConnectXUnitTest
         [TestMethod]
         public void TestGetWinningPlayerGivenWonGame()
         {
-            gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.isCurrentGameWon(3, 0);
+            gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.hasWinner();
             Assert.IsTrue(gameWithVerticalWonRasterByPlayer1AfterControlIfIsWon.getWinner() == 1);
         }
 
