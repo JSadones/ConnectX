@@ -22,10 +22,15 @@ $(document).ready(function () {
 
 
     function showForm(multiplayer) {
-        if (multiplayer) 
-            $( ".multiplayer-option" ).css('display','inline-block');    
+        if (multiplayer) {
+            $( ".multiplayer-option" ).css('display','inline-block'); 
+            $( ".ai-option" ).hide();     
+            $("#form input[name=nameplayer2]").html('');
+        }
         else  {
             $( ".multiplayer-option" ).hide();
+
+            $( ".ai-option" ).css('display','inline-block');  
             $("#form input[name=nameplayer2]").val('CPU');
         }
         hide();
