@@ -150,7 +150,6 @@ $(document).ready(function () {
     }
 
     function ajaxCall(callback) {
-        console.log("request true");
         ajaxrequest = true;
 
         var d = {action:arguments[1]}

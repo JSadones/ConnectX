@@ -139,7 +139,7 @@
     }
 
 
-    .wrapper {
+    #wrapper {
         height:95%;
         margin: 0 0 -30px;
         background-image: url(images/light-bg.jpg); background-repeat:no-repeat; background-position: 0,0;
@@ -148,7 +148,7 @@
         min-height:95%;
     }
 
-    .main-container {
+    #main-container {
         width:1;
         
     }
@@ -163,7 +163,7 @@
 		display:none;
 	}
 
-    .container-nav {
+    #container-nav {
         display:inline-block;
         position:absolute;
         top:0;
@@ -193,7 +193,7 @@
         display:none;
     }
 
-    .container-content {
+    #container-content {
         width:100%;
         height:80%;
 
@@ -237,7 +237,7 @@
 
   /* Footer */
 
- .footer {
+ #footer {
        
         margin-left:25px;
         padding-bottom:25px;

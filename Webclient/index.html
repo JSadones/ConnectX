@@ -19,18 +19,16 @@
 
 <body>
     <div id="header">
-        <div class="nav-container">
-            <div class="container-nav">
-                <nav class="clear">
-                    <!-- Navbar -->
-                    <h1 class="float"> Connect X</h1>
-                    <h2 class="current"><a href="index.html">Home</a></h2>
-                </nav>
-            </div>
+        <div id="container-nav">
+            <nav class="clear">
+                <!-- Navbar -->
+                <h1 class="float"> Connect X</h1>
+                <h2 class="current"><a href="index.html">Home</a></h2>
+            </nav>
         </div>
     </div>
-    <section class="wrapper">
-        <div class="main-container">
+    <div id="wrapper">
+        <div id="main-container">
             <div id="container-sidebar-left" style='background-color:white;'>
                         <p class='active'><span id="nameplayer1">Player 1</span> <br> <span id="player1">0</span></p>
             </div>
@@ -39,9 +37,8 @@
                         <p><span id="nameplayer2">Player 2</span> <br> <span id="player2">0</span></p>
             </div>
 
-            <div class="container-content">
+            <div id="container-content">
                     <!-- Content -->
-                <section>
                     <div id='game'>
                         <div id='start'>
                              <p><a id='play-vs-cpu'>Play vs. CPU</a> </p>
@@ -91,7 +88,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <label for="nameplayer1">Player 1</label>
+                                            <label>Player 1</label>
                                         </td>
                                         <td>
                                             <input type='text' name='nameplayer1' required>
@@ -99,7 +96,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <label for="nameplayer2" class='multiplayer-option'>Player 2</label>
+                                            <label class='multiplayer-option'>Player 2</label>
                                         </td>
                                         <td>
                                             <input type='text' name='nameplayer2' class="multiplayer-option" required>
@@ -116,21 +113,20 @@
                         <div id='rasterwrapper'>
                         </div>
                     </div>
-                </section>
             </div>
         </div>
-    </section>
+    </div>
     <footer>
         <div class="container-footer">
 
             <!-- End Score-->
-            <section class="footer">
+            <div id="footer">
                     <p>Project 1-TI Semester 2. <br /> Jel Sadones; Lucas Pirard; Shane Deconinck; Matthias Haelman; </p>
-                <div class="side-footer float">
+                <div id="side-footer" class="float">
                     <p>U bent Gewonnen</p>
                     <p>U bent Verloren</p>
                 </div>
-            </section>
+            </div>
         </div>
     </footer>
     
