@@ -43,14 +43,13 @@ namespace ConnectXLibrary
 	    private double moveValue(int column) {
             int row = board.getLowestAvailableRowInColumn(column);
             board.insertToken(column, row, board.getPlayerAtTurn());
-		    double val = alphabeta(MaxDepth, Int32.MinValue, Int32.MaxValue, false,  column,  row);
+		    double val = alphabeta(MaxDepth, Int32.MinValue, Int32.MaxValue, false);
 		    board.undoMoveAI(column);
 		    return val;
 	    }//moveValue
 
-	    private double alphabeta(int depth, double alpha, double beta, bool maximizingPlayer, int column_par, int row_par ) {
-            bool hasWinner = board.isCurrentGameWon(column_par, row_par, board.getPlayerAtTurn());
-      //      bool hasWinner = board.hasWinner();
+	    private double alphabeta(int depth, double alpha, double beta, bool maximizingPlayer) {
+            bool hasWinner = board.hasWinner();
 		   
             if (depth == 0 || hasWinner) {
 			    double score = 0;
@@ -66,7 +65,7 @@ namespace ConnectXLibrary
 				    if (!board.isColumnFull(column)) {
                         int row = board.getLowestAvailableRowInColumn(column);
                         board.insertToken(column, row, 2);
-					    alpha = Math.Max(alpha, alphabeta(depth - 1, alpha, beta, false, column, row));
+					    alpha = Math.Max(alpha, alphabeta(depth - 1, alpha, beta, false));
 					    board.undoMoveAI(column);
 					    if (beta <= alpha) break;
 				    }
@@ -77,7 +76,7 @@ namespace ConnectXLibrary
 				    if (!board.isColumnFull(column)) {
                         int row = board.getLowestAvailableRowInColumn(column);
                         board.insertToken(column, row, 1);
-					    beta = Math.Min(beta, alphabeta(depth - 1, alpha, beta, true, column, row));
+					    beta = Math.Min(beta, alphabeta(depth - 1, alpha, beta, true));
 					    board.undoMovePlayer(column);
 					    if (beta <= alpha) break;
 				    }
