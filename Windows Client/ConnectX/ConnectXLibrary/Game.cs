@@ -233,35 +233,21 @@ namespace ConnectXLibrary
         {
             int row;
             int player;
-            if (multiplayer)
+           
+            if (!board.isColumnFull(column))
             {
-                if (!board.isColumnFull(column)) {
-                    row = board.getLowestAvailableRowInColumn(column);
-                    player = board.getPlayerAtTurn();
-                    board.insertToken(column, row, player);
-                    drawToken(column, row, player);
+                row = board.getLowestAvailableRowInColumn(column);
+                player = board.getPlayerAtTurn();
+                board.insertToken(column, row, player);
+                drawToken(column, row, player);
 
-                    if (!checkTurn(column, row))
-                    {
-                        board.switchPlayerAtTurn();
-                        showPlayerAtTurn();
-                    }
-                }
-            }
-            else
-            {
-                if (!board.isColumnFull(column))
+                if (!checkTurn(column, row))
                 {
-                    row = board.getLowestAvailableRowInColumn(column);
-                    player = board.getPlayerAtTurn();
-                    board.insertToken(column, row, player);
-                    drawToken(column, row, player);
+                    board.switchPlayerAtTurn();
+                    showPlayerAtTurn();
 
-                    if (!checkTurn(column, row))
+                    if (!multiplayer)
                     {
-                        board.switchPlayerAtTurn();
-                        showPlayerAtTurn();
-
 
                         //AI Turn
                         player = board.getPlayerAtTurn();
@@ -279,6 +265,7 @@ namespace ConnectXLibrary
                     }
                 }
             }
+            
         }//processTurn
 
         private int insertTokenByAI()
