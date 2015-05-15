@@ -8,6 +8,19 @@ $(document).ready(function () {
         window.multiplayer = true;
         showForm(true);
     });
+    
+    $( "#form :input" ).change(function() {
+        console.log('here');
+        var streak = parseInt($("#form input[name=streak]").val());
+        var rows = parseInt($("#form input[name=rows]").val());
+        var columns = parseInt($("#form input[name=columns]").val());
+
+        console.log(streak + '-' + rows + '-' + columns)
+        if (streak > rows && streak > columns) {
+            $("#form input[name=streak]").val(Math.max(rows, columns));
+            console.log('max');
+        }
+    });
 
 
 
